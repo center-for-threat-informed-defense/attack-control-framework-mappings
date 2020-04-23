@@ -23,7 +23,7 @@ A control object is an individual control from within a control framework. Contr
 | Name | Type | Required? | Description |
 |:----|:----|:----|:----|
 | id | string | yes | the ID of the control, corresponding to the `source_id` of a mapping object. |
-| name | string | no | the name of the mappings bundle | the long-form name of the control, e.g `"account management"` |
+| name | string | no | the long-form name of the control, e.g `"account management"` |
 | parent_id | string | no | the `id` of the control under which this control is nested. If this field is omitted, the control will be at the top-level of the control framework |
 | description | string | no | A description of the control |
 | characteristics | Characteristic[] | no | list of objects of type Characteristic (below) |
@@ -47,7 +47,7 @@ Example control bundle:
     "name": "NIST 800-53 revision 4",
     "description": "a catalog of security and privacy controls for all U.S. federal information systems except those related to national security",
     "spec_version": "1.0",
-    "source": "NIST 800-v3 rev4",
+    "source": "nist800-53 rev4",
     "controls": [
         {
             "id": "FAMILY-AC",
@@ -133,8 +133,8 @@ A mapping object is a mapping from a control to an ATT&CK technique.
 Example mapping bundle:
 ```json
 {
-    "name": "NIST 800-53 Rev4",
-    "description": "NIST 800-53 revision 4 mapped to ATT&CK version 6.3",
+    "name": "NIST 800-53 Revision 4 to ATT&CK v6.2",
+    "description": "NIST 800-53 revision 4 mapped to ATT&CK version 6.2",
     "spec_version": "1.0",
     "source": "nist800-53 rev4",
     "target": "ATT&CK v6.2",
