@@ -6,16 +6,6 @@ import stix2
 import itertools
 import uuid
 
-
-# AC-1            is a   CONTROL                                    ^\w+-\d+$
-# AC-1a.          is a   STATEMENT             about   AC-1         ^\w+-\d+\w+.$
-# AC-1a.1         is a   SUB-STATEMENT         of      AC-1a.       ^\w+-\d+\w+.\d+.$
-# ...
-# AC-2            is a   CONTROL                                    ^\w+-\d+$
-# AC-2 (7)        is a   CONTROL ENHANCEMENT   of      AC-2         ^\w+-\d+ \(\d+\)$
-# AC-2 (7)(a)     is a   STATEMENT             about   AC-2 (7)     ^\w+-\d+ \(\d+\)\(\w\)$
-# AC-19 (4)(b)(1) is a   SUB-STATEMENT         of      AC-19 (4)(b) ^\w+-\d+ \(\d+\)\(\w\)\(\d\)$
-
 id_formats = {
     "control": [                                                # CONTROL FORMATS:
         re.compile("^\w+-\d+$")                                 # AC-1
@@ -46,11 +36,13 @@ def row_type(row):
 class Statement:
     """helper class defining a statement or substatement"""
     def __init__(self, row):
+        """constructor"""
         self.external_id = row["NAME"]
         self.description = row["DESCRIPTION"]
         self.substatements = []
     
     def add_substatement(self, row):
+        """add a substatement to this statement"""
         self.substatements.append(Statement(row))
 
 class Control:
@@ -94,12 +86,13 @@ class Control:
         return fulldesc
 
     def toStix(self):
+        """convert to a stix2 Course of Action"""
         return stix2.CourseOfAction(
             id = self.stix_id,
             name = self.name,
             description = self.format_description(),
             external_references = [ {
-                "source_name": "NIST 800-53",
+                "source_name": "NIST 800-53 Revision 4",
                 "external_id": self.external_id
             } ]
         )
@@ -162,5 +155,5 @@ def parse_controls(controlpath, control_ids={}, relationship_ids={}):
                 ))
 
 
-    bundle = stix2.Bundle(*itertools.chain(stixcontrols, relationships), spec_version="2.0")
-    return bundle
+    return stix2.Bundle(*itertools.chain(stixcontrols, relationships), spec_version="2.0")
+
