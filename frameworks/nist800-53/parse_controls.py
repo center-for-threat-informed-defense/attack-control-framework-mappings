@@ -3,6 +3,8 @@ import os
 from tqdm import tqdm
 import re
 import stix2
+import itertools
+import uuid
 
 
 # AC-1            is a   CONTROL                                    ^\w+-\d+$
@@ -19,7 +21,7 @@ id_formats = {
         re.compile("^\w+-\d+$")                                 # AC-1
     ],
     "control_enhancement": [                                    # CONTROL ENHANCEMENT FORMATS:
-        re.compile("^\w+-\d+ \(\d+\)$")                         # AC-1 (1)
+        re.compile("^(\w+-\d+) \(\d+\)$")                         # AC-1 (1)
     ],
     "statement": [                                              # STATEMENT FORMATS:
         re.compile("^\w+-\d+\w+\.$"),                           # AC-1a.
@@ -61,12 +63,15 @@ class Control:
         self.supplemental = row["SUPPLEMENTAL GUIDANCE"]
         self.impact = row["BASELINE-IMPACT"]
         self.priority = row["PRIORITY"]
-        self.related = row["RELATED"].split(",")
-        self.enhancement = row_type(row) == "control_enhancement"
+        self.related = row["RELATED"].split(",") if row["RELATED"] else []
+        self.is_enhancement = row_type(row) == "control_enhancement"
         self.description = row["DESCRIPTION"]
         self.statements = []
         # try to manually set the STIX ID from the control_ids mapping, if not present it will randomly generate
-        self.stix_id = control_ids[self.external_id] if control_ids and self.external_id in control_ids else None
+        self.stix_id = control_ids[self.external_id] if control_ids and self.external_id in control_ids else f"course-of-action--{str(uuid.uuid4())}"
+        control_ids[self.external_id] = self.stix_id # update lookup so that subsequent objects can reference for relationships
+        # if this is a control enhancement, set the parent ID
+        self.parent_id = id_formats["control_enhancement"][0].search(self.external_id).groups(1)[0] if self.is_enhancement else None
 
     def add_statement(self, row):
         """add a statement to this control"""
@@ -100,19 +105,19 @@ class Control:
         )
 
 
-def parse_controls(controlpath, control_ids=None):
+def parse_controls(controlpath, control_ids={}, relationship_ids={}):
     """parse the NIST800-53 controls and return a STIX bundle
     :param controlpath the filepath to the controls TSV file
     :param control_ids is a dict of format {control_name: stixID} which maps control names (e.g AC-1) to desired STIX IDs
+    :param relationship_ids is a dict of format {relationship-source-id---relationship-target-id: relationship-id}
     """
 
-    print("parsing controls")
-    print(control_ids)
-    
+    tqdmformat = "{desc}: {percentage:3.0f}% |{bar}| {elapsed}<{remaining}{postfix}"
+
     controls_df = pd.read_csv(controlpath, sep="\t", keep_default_na=False)
     
     controls = []
-    for index, row in tqdm(list(controls_df.iterrows()), desc="parsing NIST 800-53"):
+    for index, row in tqdm(list(controls_df.iterrows()), desc="parsing NIST 800-53", bar_format=tqdmformat):
         rowtype = row_type(row)
         if rowtype == "control" or rowtype == "control_enhancement":
             controls.append(Control(row, control_ids))
@@ -121,8 +126,41 @@ def parse_controls(controlpath, control_ids=None):
         elif rowtype == "substatement":
             controls[-1].add_substatement(row)
     
+    # parse controls into stix
     stixcontrols = []
-    for control in tqdm(controls, desc="creating STIX"):
+    for control in tqdm(controls, desc="creating controls", bar_format=tqdmformat):
         stixcontrols.append(control.toStix())
-    bundle = stix2.Bundle(*stixcontrols, spec_version="2.0")
+
+    # parse control relationships into stix
+    relationships = []
+    for control in tqdm(list(filter(lambda c: control.parent_id or len(control.related) > 0, controls)), desc="creating control relationships", bar_format=tqdmformat):
+        if control.parent_id: 
+            # build subcontrol-of relationships
+            target_id = control_ids[control.parent_id]
+            source_id = control.stix_id
+            joined_id = f"{source_id}---{target_id}"
+
+            relationships.append(stix2.Relationship(
+                id=relationship_ids[joined_id] if joined_id in relationship_ids else None,
+                source_ref=source_id,
+                target_ref=target_id,
+                relationship_type="subcontrol-of"
+            ))
+
+        if len(control.related) > 0:
+            # build related-to relationships
+            for related_id in control.related:
+                if related_id not in control_ids: continue # sometimes related doesn't refer to a control but rather an appendix section
+                source_id = control.stix_id
+                target_id = control_ids[related_id]
+                joined_id = f"{source_id}---{target_id}"
+                relationships.append(stix2.Relationship(
+                    id=relationship_ids[joined_id] if joined_id in relationship_ids else None,
+                    source_ref=source_id,
+                    target_ref=target_id,
+                    relationship_type="related-to"
+                ))
+
+
+    bundle = stix2.Bundle(*itertools.chain(stixcontrols, relationships), spec_version="2.0")
     return bundle

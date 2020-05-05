@@ -25,22 +25,35 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    idMappings = {}
+    control_ids = {}
+    relationship_ids = {}
     if os.path.exists(args.outcontrols):
         # parse idMappings from existing output so that IDs don't change when regenerated
         with open(args.outcontrols, "r") as f:
             bundle = json.load(f)
         for sdo in bundle["objects"]:
-            fromID = sdo["external_references"][0]["external_id"]
-            toID = sdo["id"]
-            idMappings[fromID] = toID
-
+            if not sdo["type"] == "relationship":
+                fromID = sdo["external_references"][0]["external_id"]
+                toID = sdo["id"]
+                control_ids[fromID] = toID
+            else:
+                # parse relationships
+                fromIDs = f"{sdo['source_ref']}---{sdo['target_ref']}"
+                toID = sdo["id"]
+                relationship_ids[fromIDs] = toID
+    
     controls = parse_controls(
         args.incontrols,
-        idMappings
+        control_ids,
+        relationship_ids
     )
-    print(f"saving controls to {args.outcontrols}... ", end="", flush=True)
-    controls_ms = stix2.MemoryStore()
-    controls_ms.add(controls)
-    controls_ms.save_to_file(args.outcontrols)
+    print(f"writing {args.outcontrols}... ", end="", flush=True)
+    strbundle = controls.serialize(pretty=False, include_optional_defaults=False, ensure_ascii=False)
+    with open(args.outcontrols, "w") as outfile:
+        json.dump(json.loads(strbundle), outfile, indent=4, sort_keys=True)
+        # outfile.write(strbundle)
+
+    # controls_ms = stix2.MemoryStore()
+    # controls_ms.add(controls)
+    # controls_ms.save_to_file(args.outcontrols)
     print("done!")
