@@ -1,8 +1,19 @@
 import stix2
 import argparse
-from parse_controls import parse_controls
 import os
 import json
+from parse_controls import parse_controls
+from parse_mappings import parse_mappings
+
+def save_bundle(bundle, path):
+    """helper function to write a STIX bundle to a file
+    faster than memorystore util function"""
+
+    print(f"writing {path}... ", end="", flush=True)
+    strbundle = bundle.serialize(pretty=False, include_optional_defaults=False, ensure_ascii=False)
+    with open(path, "w") as outfile:
+        json.dump(json.loads(strbundle), outfile, indent=4, sort_keys=True)
+    print("done!")
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="parse the NIST 800-53 revision 4 controls and ATT&CK mappings into a STIX2.0 bundle")
@@ -22,6 +33,10 @@ if __name__ == "__main__":
                          dest="outmappings",
                          help="output STIX bundle file for the mappings.",
                          default=os.path.join("data", "800-53-r4-mappings.json"))
+    parser.add_argument("-attack-data",
+                        dest="attackdata",
+                        help="URL of the attack STIX bundle to use when looking up mapping IDs",
+                        default="https://raw.githubusercontent.com/mitre/cti/subtechniques/enterprise-attack/enterprise-attack.json")
 
     args = parser.parse_args()
 
@@ -50,13 +65,12 @@ if __name__ == "__main__":
         relationship_ids
     )
     
-    # write bundle JSON
-    print(f"writing {args.outcontrols}... ", end="", flush=True)
-    strbundle = controls.serialize(pretty=False, include_optional_defaults=False, ensure_ascii=False)
-    with open(args.outcontrols, "w") as outfile:
-        json.dump(json.loads(strbundle), outfile, indent=4, sort_keys=True)
+    # build mappings in STIX
+    mappings = parse_mappings(
+        args.inmappings,
+        controls,
+        args.attackdata
+    )
 
-    # controls_ms = stix2.MemoryStore()
-    # controls_ms.add(controls)
-    # controls_ms.save_to_file(args.outcontrols)
-    print("done!")
+    save_bundle(controls, args.outcontrols)
+    save_bundle(mappings, args.outmappings)

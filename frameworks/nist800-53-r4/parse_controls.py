@@ -99,7 +99,7 @@ class Control:
 
 
 def parse_controls(controlpath, control_ids={}, relationship_ids={}):
-    """parse the NIST800-53 controls and return a STIX bundle
+    """parse the NIST800-53 revision 4 controls and return a STIX bundle
     :param controlpath the filepath to the controls TSV file
     :param control_ids is a dict of format {control_name: stixID} which maps control names (e.g AC-1) to desired STIX IDs
     :param relationship_ids is a dict of format {relationship-source-id---relationship-target-id: relationship-id}
@@ -107,7 +107,7 @@ def parse_controls(controlpath, control_ids={}, relationship_ids={}):
 
     tqdmformat = "{desc}: {percentage:3.0f}% |{bar}| {elapsed}<{remaining}{postfix}"
 
-    controls_df = pd.read_csv(controlpath, sep="\t", keep_default_na=False)
+    controls_df = pd.read_csv(controlpath, sep="\t", keep_default_na=False, header=0)
     
     controls = []
     for index, row in tqdm(list(controls_df.iterrows()), desc="parsing NIST 800-53", bar_format=tqdmformat):
