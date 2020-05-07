@@ -9,7 +9,7 @@ def save_bundle(bundle, path):
     """helper function to write a STIX bundle to a file
     faster than memorystore util function"""
 
-    print(f"writing {path}... ", end="", flush=True)
+    print(f"{'overwriting' if os.path.exists(path) else 'writing'} {path}... ", end="", flush=True)
     strbundle = bundle.serialize(pretty=False, include_optional_defaults=False, ensure_ascii=False)
     with open(path, "w") as outfile:
         json.dump(json.loads(strbundle), outfile, indent=4, sort_keys=True)

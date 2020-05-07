@@ -25,8 +25,6 @@ def parse_mappings(mappingspath, controls, attackdataurl, relationship_ids={}):
     :param relationship_ids is a dict of format {relationship-source-id---relationship-target-id: relationship-id} which maps relationships to desired STIX IDs
     """
 
-    print(relationship_ids)
-
     tqdmformat = "{desc}: {percentage:3.0f}% |{bar}| {elapsed}<{remaining}{postfix}"
 
     # load ATT&CK STIX data
