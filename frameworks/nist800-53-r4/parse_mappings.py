@@ -16,13 +16,16 @@ def dict_regex_lookup(thedict, regexstr):
         if regex.match(key): values.append(thedict[key])
     return values
 
-def parse_mappings(mappingspath, controls, attackdataurl):
+def parse_mappings(mappingspath, controls, attackdataurl, relationship_ids={}):
     """parse the NIST800-53 revision 4 mappings and return a STIX bundle 
     of relationships mapping the controls to ATT&CK
     :param mappingspath the filepath to the mappings TSV file
     :param controls a stix2.Bundle represneting the controls framework
     :param attackdataurl the URL of the attack STIX bundle to use when looking up mapping IDs
+    :param relationship_ids is a dict of format {relationship-source-id---relationship-target-id: relationship-id} which maps relationships to desired STIX IDs
     """
+
+    print(relationship_ids)
 
     tqdmformat = "{desc}: {percentage:3.0f}% |{bar}| {elapsed}<{remaining}{postfix}"
 
@@ -62,9 +65,10 @@ def parse_mappings(mappingspath, controls, attackdataurl):
         # combinatorics of every from to every to
         for fromID in fromIDs:
             for toID in toIDs:
+                joined_id = f"{fromID}---{toID}"
                 # build the mapping relationship
                 relationships.append(stix2.Relationship(
-                    # TODO preserve IDs from previous runs
+                    id=relationship_ids[joined_id] if joined_id in relationship_ids else None,
                     source_ref=fromID,
                     target_ref=toID,
                     relationship_type="mitigates",

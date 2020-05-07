@@ -40,9 +40,9 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    # build ID helper lookups so that STIX IDs don't get replaced on each rebuild
+    # build control ID helper lookups so that STIX IDs don't get replaced on each rebuild
     control_ids = {}
-    relationship_ids = {}
+    control_relationship_ids = {}
     if os.path.exists(args.outcontrols):
         # parse idMappings from existing output so that IDs don't change when regenerated
         with open(args.outcontrols, "r") as f:
@@ -56,20 +56,31 @@ if __name__ == "__main__":
                 # parse relationships
                 fromIDs = f"{sdo['source_ref']}---{sdo['target_ref']}"
                 toID = sdo["id"]
-                relationship_ids[fromIDs] = toID
+                control_relationship_ids[fromIDs] = toID
     
     # build controls in STIX
     controls = parse_controls(
         args.incontrols,
         control_ids,
-        relationship_ids
+        control_relationship_ids
     )
+
+    # build mapping ID helper lookup so that STIX IDs don't get replaced on each rebuild
+    mapping_relationship_ids = {}
+    if os.path.exists(args.outmappings):
+        with open(args.outmappings, "r") as f:
+            bundle = json.load(f)
+        for sdo in bundle["objects"]:
+            fromIDs = f"{sdo['source_ref']}---{sdo['target_ref']}"
+            toID = sdo["id"]
+            mapping_relationship_ids[fromIDs] = toID
     
     # build mappings in STIX
     mappings = parse_mappings(
         args.inmappings,
         controls,
-        args.attackdata
+        args.attackdata,
+        mapping_relationship_ids
     )
 
     save_bundle(controls, args.outcontrols)
