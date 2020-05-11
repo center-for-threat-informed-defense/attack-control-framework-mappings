@@ -14,13 +14,22 @@ def save_bundle(bundle, path):
         json.dump(json.loads(strbundle), outfile, indent=4, sort_keys=True)
     print("done!")
 
-def substitute(attackbundle, controlsbundle, mappingsbundle):
+def substitute(attackbundle, controlsbundle, mappingsbundle, allowunmapped=False):
     """substitute the controls bundle and mappings bundle for the mitigations in attackbundle. 
-    All arguments are of type stix2.Bundle
+    attackbundle, controlsbundle and mappingsbundle are of type stix2.Bundle
+    allowunmapped, if true, allows controls in the output bundle if they don't have mappings to ATT&CK techniques
     Returns a new bundle resembling attackbundle but with mitigations and mitigates relationships from controlsbundle and mappingsbundle
     """
+    # add attack data which are not mitigations or mitigation relationships
     outobjects = list(filter(lambda sdo: not (sdo["type"] == "course-of-action") and not (sdo["type"] == "relationship" and sdo["relationship_type"] == "mitigates"), attackbundle.objects))
-    outobjects += controlsbundle.objects
+    if allowunmapped: # add all controls
+        outobjects += controlsbundle.objects
+    else: # add only controls which have associated mappings
+        used_ids = set()
+        for mapping in mappingsbundle.objects:
+            used_ids.add(mapping["source_ref"])
+        outobjects += list(filter(lambda sdo: sdo["id"] in used_ids, controlsbundle.objects))
+    # add mappings
     outobjects += mappingsbundle.objects
 
     return stix2.Bundle(*outobjects, spec_version="2.0", allow_custom=True)
@@ -39,9 +48,14 @@ if __name__ == "__main__":
                         choices=["enterprise-attack", "mobile-attack", "pre-attack"],
                         help="the domain of ATT&CK to substitute",
                         default="enterprise-attack")
+    parser.add_argument("--allow-unmapped",
+                        dest="allowunmapped",
+                        action="store_true",
+                        help="if flag is present, output bundle will include controls that don't map to techniques. By default only controls that have technique mappings will be included",
+                        default=False)
     parser.add_argument("-output",
                         help="filepath to write the output stix bundle to",
-                        default=os.path.join("..", "frameworks", "nist800-53-r4", "data", "enterprise-nist-800-53-rev4.json"))
+                        default=os.path.join("..", "frameworks", "nist800-53-r4", "data", "800-53-r4-enterprise-attack.json"))
 
     args = parser.parse_args()
 
@@ -63,7 +77,7 @@ if __name__ == "__main__":
     print("done")
 
     print("substituting... ", end="", flush=True)
-    outbundle = substitute(attackdata, controls, mappings)
+    outbundle = substitute(attackdata, controls, mappings, args.allowunmapped)
     print("done")
 
     save_bundle(outbundle, args.output)
