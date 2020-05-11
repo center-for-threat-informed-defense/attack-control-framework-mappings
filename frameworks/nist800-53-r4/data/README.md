@@ -1,0 +1,7 @@
+| file | about |
+|:-----|:------|
+| 800-53-r4-controls.json | NIST 800-53 revision 4 controls expressed as STIX2.0 JSON |
+| 800-53-r4-controls.tsv  | NIST 800-53 revision 4 controls expressed in tab separated values, as distributed by NIST |
+| 800-53-r4-mappings.json | STIX2.0 bundle of relationships between NIST 800-53 revision 4 controls and ATT&CK techniques |
+| 800-53-r4-mappings.tsv  | tab separated values expressing relationships between NIST 800-53 revision 4 controls and ATT&CK Techniques |
+| 800-53-r4-enterprise-attack.json | Enterprise ATT&CK STIX2.0 bundle, but with mitigations substituted for NIST 800-53 revision 4 controls. |
