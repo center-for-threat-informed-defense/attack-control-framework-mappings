@@ -79,9 +79,9 @@ class Control:
         if len(self.statements) > 0:
             fulldesc += "\n\n"
             for statement in self.statements:
-                fulldesc += f"- *{statement.external_id}*: {statement.description}\n"
+                fulldesc += f"* **{statement.external_id}** {statement.description}\n"
                 for substatement in statement.substatements:
-                    fulldesc += f"    - *{substatement.external_id}*: {substatement.description}\n"
+                    fulldesc += f"    * **{substatement.external_id}** {substatement.description}\n"
         if self.supplemental: fulldesc += "\n" + self.supplemental
         return fulldesc
 
