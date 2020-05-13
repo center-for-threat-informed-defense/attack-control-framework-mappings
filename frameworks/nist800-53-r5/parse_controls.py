@@ -28,7 +28,7 @@ def row_type(row):
         for id_format in id_formats[id_format_group]:
             if id_format.match(row):
                 return id_format_group
-    return "supplemental" # all other formats are supplemental guidance for the current control
+    return "freetext" # all other formats are supplemental guidance for the current control
 
 
 
@@ -67,19 +67,18 @@ class Control:
         def get_column(column):
             """helper function to get the control data for the given column in the tsv"""
             try:
-                return row.split("\t")[columns.index(column)]
+                return row.split("\t")[columns.index(column)].strip('"')
             except:
                 return None # column doesn't exist for row 
 
         self.external_id = get_column("identifier")
         self.name = get_column("name")
-        
-        self.description = get_column("control_text")
 
         self.related = get_column("related").split(", ") if get_column("related") else []
 
         self.statements = []
-        self.supplemental = [get_column("discussion")] if get_column("discussion") else []
+        for fieldname in ["control_text", "discussion"]:
+            self.add_statement(get_column(fieldname))
 
         # try to manually set the STIX ID from the control_ids mapping, if not present it will randomly generate
         self.stix_id = control_ids[self.external_id] if control_ids and self.external_id in control_ids else f"course-of-action--{str(uuid.uuid4())}"
@@ -91,20 +90,30 @@ class Control:
 
     def add_statement(self, row):
         """add a statement to this control"""
-        # TODO check statement format to see if it nests
-        self.statements.append(Statement(row))
-    
-    def add_supplemental(self, row):
-        """add additional supplemental guidence to this control"""
-        self.supplemental.append(row)
+        
+        # don't add None statements
+        if not row: return
+
+        # sometimes there are multiple statements in a row
+        if "\t" in row:
+            for subrow in row.split("\t"):
+                self.add_statement(subrow.strip('"'))
+
+        # base case, single statement in row
+        else:
+            # check if it's a statement or a freetext
+            if row_type(row) == "statement":
+                self.statements.append(Statement(row))
+            elif row_type(row) == "freetext":
+                self.statements.append(row)
+                
 
     def format_description(self):
-        """format and return the description, supplemental guidance and statements as a markdown string"""
+        """format and return the control description (statements, etc) as a markdown string"""
         paragraphs = []
-        if self.description: paragraphs.append(self.description)
         for statement in self.statements:
-            paragraphs.append(statement.format_statement())
-        paragraphs += self.supplemental
+            text = statement.format_statement() if isinstance(statement, Statement) else statement
+            paragraphs.append(text)
 
         return "\n\n".join(paragraphs)
 
@@ -138,13 +147,14 @@ def parse_controls(controlpath, control_ids={}, relationship_ids={}):
     controls = []
 
     for row in tqdm(controls_data, desc="parsing NIST 800-53", bar_format=tqdmformat):
+        row = row.strip('"') # remove leading and trailing quotation marks
         rowtype = row_type(row)
         if rowtype == "control" or rowtype == "control_enhancement":
             controls.append(Control(row, columns, control_ids))
         elif rowtype == "statement":
             controls[-1].add_statement(row)
-        elif rowtype == "supplemental":
-            controls[-1].add_supplemental(row)
+        elif rowtype == "freetext":
+            controls[-1].add_statement(row)
     
     # parse controls into stix
     stixcontrols = []
