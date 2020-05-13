@@ -1,0 +1,1527 @@
+{
+    "id": "bundle--3c19da93-1d91-48d7-b5db-d6e529353d45",
+    "objects": [
+        {
+            "created": "2020-05-13T14:38:39.561Z",
+            "description": "this is an example description of why this technique maps to the given control",
+            "id": "relationship--82d75b07-9912-422e-a7c4-ac58d656eea7",
+            "modified": "2020-05-13T14:38:39.561Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--063e8032-af75-49d7-95dc-6f7799996eb8",
+            "target_ref": "attack-pattern--1035cdf2-3e5f-446f-a7a7-e8f6d7925967",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.562Z",
+            "description": "this row maps both T1560.001 and T1560.002 to AC-1",
+            "id": "relationship--e44759ec-2f91-4a6c-8831-ad4218dfc004",
+            "modified": "2020-05-13T14:38:39.562Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--063e8032-af75-49d7-95dc-6f7799996eb8",
+            "target_ref": "attack-pattern--41868330-6ee2-4d0f-b743-9f2294c3c9b6",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.563Z",
+            "description": "this row maps both T1560.001 and T1560.002 to AC-1",
+            "id": "relationship--91f29591-feed-45c4-87cd-9f952b03f8d1",
+            "modified": "2020-05-13T14:38:39.563Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--063e8032-af75-49d7-95dc-6f7799996eb8",
+            "target_ref": "attack-pattern--00f90846-cbd1-4fc5-9233-df5c2bf2a662",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.564Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--0be76e6f-fbc0-4016-b13d-2a182e007b0b",
+            "modified": "2020-05-13T14:38:39.564Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--063e8032-af75-49d7-95dc-6f7799996eb8",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.564Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--ec5ed5a8-b9f4-49ed-89c4-a0c0c9b3bf67",
+            "modified": "2020-05-13T14:38:39.564Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--f494ff81-b458-4e93-aeeb-ee1ea49034a0",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.564Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--bfd81620-117b-4ca4-9fc6-3c2601fe88c7",
+            "modified": "2020-05-13T14:38:39.564Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--4fcf4fb0-23de-4552-93cc-0fe357670ad0",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.565Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--e6685f0c-7953-4474-9da9-e4c9ce1cd9f4",
+            "modified": "2020-05-13T14:38:39.565Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--cf2eb32a-c867-474f-a8fd-f1b6a8be6efd",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.565Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--f36e97bb-8ffe-4a3c-bed0-599a9386bee0",
+            "modified": "2020-05-13T14:38:39.565Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--446df69e-e11b-49bd-b4b5-bf609e8b5105",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.565Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--aac49654-280c-4883-97ee-d395d34ae1f7",
+            "modified": "2020-05-13T14:38:39.565Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--1c81f8ee-812c-4517-bc18-6ad61c1ec4f5",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.565Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--cc9b084c-e222-490a-b320-c6edf6c1a4a0",
+            "modified": "2020-05-13T14:38:39.565Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--315e63af-3e86-417a-85a2-b6431482dc1a",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.565Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--f43c4d15-5ea6-4c18-804b-a6293a5aa324",
+            "modified": "2020-05-13T14:38:39.565Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--00c0662e-ed2c-48fe-8811-0881513c517b",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.565Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--97d3b063-9745-4ca2-a9ab-090885b60c92",
+            "modified": "2020-05-13T14:38:39.565Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--78bed14d-c131-4c45-a06c-1d1f28367b64",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.565Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--9f90ca2c-106f-4b31-8889-9821ca1a79d5",
+            "modified": "2020-05-13T14:38:39.565Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--d6607612-d86c-4c63-8da4-c78fd6fd9d54",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.566Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--14fcaad3-b778-44eb-a885-dbf1b964de4f",
+            "modified": "2020-05-13T14:38:39.566Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--3fbd3cff-5531-455e-8ae9-fe3563e274bd",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.566Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--4647ba61-8dc1-4805-9ddf-7c20ff8ad971",
+            "modified": "2020-05-13T14:38:39.566Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--a717f441-4814-4511-8445-c17b13d836b2",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.566Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--41b4a830-1a46-4b39-b818-77c6e3afc71d",
+            "modified": "2020-05-13T14:38:39.566Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--88605d1a-1c18-4efc-894a-b8b4989d0293",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.566Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--1c8efe8a-5cfd-4a0b-bba7-271d500a67a8",
+            "modified": "2020-05-13T14:38:39.566Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--e5f64802-dd17-463a-ba27-8ea0c332a444",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.566Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--d3d8f839-6664-413e-8088-3596d9935ecf",
+            "modified": "2020-05-13T14:38:39.566Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--a9b3a274-8501-4a00-b8c5-bc7f11a5f1cd",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.566Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--655524f0-cc0e-49b4-b100-ca2dafe021a5",
+            "modified": "2020-05-13T14:38:39.566Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--7e2b0bed-88d7-4e1c-9c3e-eb10dde78913",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.566Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--6f9e5066-e3a5-49ca-8257-47f26bfcf197",
+            "modified": "2020-05-13T14:38:39.566Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--d99e9823-ac60-46ce-97e9-2754dfc4732f",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.567Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--b4dd52d1-0adc-4e9b-ac76-4aa56a3b1e75",
+            "modified": "2020-05-13T14:38:39.567Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--adad2804-df3b-4c94-b6e9-967921b3dcc5",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.567Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--bcc5558c-76ed-4aec-a2d6-6f45d65f77e2",
+            "modified": "2020-05-13T14:38:39.567Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--7b13b829-5e2c-4ec7-9ce0-aa41c577bdb3",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.567Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--0e7a5a97-5717-458f-b0f2-c9559f9a7b32",
+            "modified": "2020-05-13T14:38:39.567Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--d186a8b8-29b8-41d2-8406-a0e9b7ecdf76",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.567Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--1da15dc6-37cb-4434-8f78-48fdb36a4f56",
+            "modified": "2020-05-13T14:38:39.567Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--51359b16-31aa-4386-bea2-6cc096e20977",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.567Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--e2b8435e-4cd9-442b-96a3-13a2ad841d8c",
+            "modified": "2020-05-13T14:38:39.567Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--bd9a3902-1fbb-49e4-9cd4-9868738a3f13",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.567Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--133cbb9b-dff1-42db-b87e-f32999d9971f",
+            "modified": "2020-05-13T14:38:39.567Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--f57b6d77-43f3-490c-92ef-e83e0059109b",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.567Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--c60834d1-e0da-4cd1-b344-5f83b800f916",
+            "modified": "2020-05-13T14:38:39.567Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--001d4c4e-9f83-49d6-966f-3f82ebc62e50",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.568Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--43c05ced-14b8-4d11-9cbe-746203ab218b",
+            "modified": "2020-05-13T14:38:39.568Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--3963081c-9927-472d-927f-90590a54f335",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.568Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--5075988b-82ce-4186-8d5b-8a1306afd8e2",
+            "modified": "2020-05-13T14:38:39.568Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--367ac070-0121-4cdb-88f6-073db273cbae",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.568Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--a2f9af2a-4b90-4bc8-a49f-29d6e1d8d17b",
+            "modified": "2020-05-13T14:38:39.568Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--cd802654-5a0d-47a7-b52b-5c4677e42746",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.568Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--0a73a16b-962b-465d-88a9-ce0b0bd89df7",
+            "modified": "2020-05-13T14:38:39.568Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--826d2afb-16a7-4dcb-8e0e-783d96fc6815",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.568Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--c147e142-7101-44e5-ab60-a7c4de509b4c",
+            "modified": "2020-05-13T14:38:39.568Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--9f86950a-8b6c-4f5b-bfe8-2b2b6428076b",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.569Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--1ce81369-febd-4a79-b4cd-0a8610855c92",
+            "modified": "2020-05-13T14:38:39.569Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--528d1470-01bd-487c-9521-24ea67a1bfc4",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.569Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--841bcf90-c694-454b-845f-352696046b03",
+            "modified": "2020-05-13T14:38:39.569Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--aefcad9b-8d90-4d88-8deb-2fb24e39df0a",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.569Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--c8f3ffec-b26a-440b-9e43-59663fc2cb86",
+            "modified": "2020-05-13T14:38:39.569Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--45ad536e-6e54-46f4-a99f-055e78e1cafe",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.569Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--9c732cc5-c893-4517-a8df-9297e620e986",
+            "modified": "2020-05-13T14:38:39.569Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--d98e279a-bd67-45ab-9320-69289a5cb509",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.569Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--da4f6820-0be7-4e5f-af41-db33865c68cf",
+            "modified": "2020-05-13T14:38:39.569Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--0fea522c-a410-4e28-ba6d-3d14dfebbc6f",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.569Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--6a4100e9-2b50-4b89-ba4d-edddc00690f1",
+            "modified": "2020-05-13T14:38:39.569Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--df95f73d-0a07-426a-a90e-490b8d388d74",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.569Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--86a66100-bc80-4a60-9ba2-bdd91fea0917",
+            "modified": "2020-05-13T14:38:39.569Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--c970227e-06bf-4352-8d44-7a5f5bc709c6",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.570Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--3a97a259-0c85-490b-93c5-85d056c623dd",
+            "modified": "2020-05-13T14:38:39.570Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--b180f6cc-6d3f-4304-be02-aceb21235529",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.570Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--954be5a6-7e59-46af-8feb-e449c60783ac",
+            "modified": "2020-05-13T14:38:39.570Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--1c93f9de-284c-420b-965d-3842741a264b",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.570Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--fba46ddb-0b03-4e7b-908f-703b28a676a9",
+            "modified": "2020-05-13T14:38:39.570Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--71d3ebcf-ee1f-4d95-a6df-e1438cdf5887",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.570Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--9021117d-b280-4cc4-8e02-a6131a99acce",
+            "modified": "2020-05-13T14:38:39.570Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--b5354e47-9f7b-4c92-8494-7775cd4ef318",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.570Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--87706271-eaa3-47d0-b749-56b069ee8d75",
+            "modified": "2020-05-13T14:38:39.570Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--467141de-bb6a-400b-a658-09d31fae452a",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.570Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--b9b9bbe7-fb3a-4b84-bebd-5857a05af503",
+            "modified": "2020-05-13T14:38:39.570Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--e468bbf6-5793-43c3-8f89-69d1cb2ccf52",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.570Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--730f9ed6-3279-4c31-a9ae-6510a5109a95",
+            "modified": "2020-05-13T14:38:39.570Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--dc67e9dd-135d-4729-9052-9bfc65490f4b",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.571Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--0644edff-0cb6-4d40-bff3-09da58ad0888",
+            "modified": "2020-05-13T14:38:39.571Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--90e2b8ee-0a71-4c14-8822-9c5ad29d81da",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.571Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--aa422927-f37f-43d0-b5c2-c64329540959",
+            "modified": "2020-05-13T14:38:39.571Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--3a289565-59d0-40a2-938d-22847bfaecf5",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.571Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--844e0517-467c-48f9-8b45-0cdbcf0c48c9",
+            "modified": "2020-05-13T14:38:39.571Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--f8e7b9cc-ca80-4f49-8642-a24b51a460aa",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.571Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--0894a9ed-0411-4d14-ad13-84aff77554ff",
+            "modified": "2020-05-13T14:38:39.571Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--88087be2-9f9e-456c-92bf-e55080e30c83",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.571Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--907abd59-8266-4b95-bb90-ab7288650ae4",
+            "modified": "2020-05-13T14:38:39.571Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--bf781012-f153-4e44-9d3e-eb7362b0a82f",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.571Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--448f4ed9-c0ea-492c-8fe9-070df936523d",
+            "modified": "2020-05-13T14:38:39.571Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--9339d565-3bec-431f-aede-28b492caf604",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.571Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--9f96cb03-6f74-41ed-a9b6-5dcabba8c467",
+            "modified": "2020-05-13T14:38:39.571Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--05036c1f-1bae-419d-93d0-179f3749f230",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.572Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--b8fa0260-fc76-41e3-ab73-17a8129a7c2c",
+            "modified": "2020-05-13T14:38:39.572Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--bda92e09-2204-46ff-8d9b-318b03f7c353",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.572Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--ef72af27-1260-4652-ae9d-b3dcbcbfdd64",
+            "modified": "2020-05-13T14:38:39.572Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--6d40984d-e5e0-46be-9f84-4c351c2ffc2c",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.572Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--f7cb6006-2698-45e9-89ea-e90aa388c3e1",
+            "modified": "2020-05-13T14:38:39.572Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--d16d0397-d78e-4684-a579-44f301960043",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.572Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--18e6eb4f-4aa5-455d-861b-088f1050a64e",
+            "modified": "2020-05-13T14:38:39.572Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--09e86558-c241-470a-9f8e-e3cb575977dc",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.572Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--0e0b35fe-c59d-4e34-af4d-0af0afa3e10b",
+            "modified": "2020-05-13T14:38:39.572Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--e82270b5-98a8-4de7-98e9-78c30dae3dc6",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.572Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--180cc32f-fde7-4748-ab22-63baab9b5e41",
+            "modified": "2020-05-13T14:38:39.572Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--c150ce40-9cf9-45ab-ae5a-f9949e67d49e",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.573Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--cd286056-55c3-4350-b543-261b367dee54",
+            "modified": "2020-05-13T14:38:39.573Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--1b15247b-44ad-49d1-baca-6ffba2e3f4b7",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.573Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--b95436f2-fc61-4107-a1ad-cebb1bfbec09",
+            "modified": "2020-05-13T14:38:39.573Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--15c6cfae-9228-4bce-9d95-04727f7843c3",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.573Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--7f207ddd-f339-4d69-9d6e-009fe4253cb8",
+            "modified": "2020-05-13T14:38:39.573Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--4fe80604-9a3c-43f9-b2c0-caa8b468110b",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.573Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--f4765149-7334-4034-8614-36f2951fa948",
+            "modified": "2020-05-13T14:38:39.573Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--e4a5fcb6-068d-4b18-a6b2-cfeb9732eb44",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.573Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--ea51dd3c-2839-47f5-8cd9-91574c9eef2e",
+            "modified": "2020-05-13T14:38:39.573Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--6b49bf26-ecf3-4047-91b0-76d036e1cfe4",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.573Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--1c060929-d79d-4963-b54f-b6a2fd367549",
+            "modified": "2020-05-13T14:38:39.573Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--89e45cd3-d0e6-4c1f-9939-5137fe0107bc",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.574Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--317c3d81-50e1-4a98-b3d1-054bc56cdb73",
+            "modified": "2020-05-13T14:38:39.574Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--017a53d5-49f9-49a9-916d-80dd09c6b215",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.574Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--0b1477b8-0b32-4328-8149-f64700438eb3",
+            "modified": "2020-05-13T14:38:39.574Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--7771e63c-4d9b-4804-9a92-ad018bd4efe4",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.574Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--d31e6ca5-a5cc-4fdc-b35e-cecf0d169220",
+            "modified": "2020-05-13T14:38:39.574Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--36e53af7-8326-45e3-a03c-2d10915dbaf5",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.574Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--92bacf38-4dbf-47e4-934d-d34870e59522",
+            "modified": "2020-05-13T14:38:39.574Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--3690c975-72cf-4a8f-bf02-fd2985d32f47",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.574Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--b3b40f4b-d288-4d74-877f-19401ba996d0",
+            "modified": "2020-05-13T14:38:39.574Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--1d5c9a0d-f85a-49d6-ac9f-3ce322cf7039",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.574Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--2fab39ba-b67b-46b9-b4a2-eab81e052aeb",
+            "modified": "2020-05-13T14:38:39.574Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--42344198-78d6-472a-bf02-1fd153886349",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.574Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--07ebe753-c892-49bd-a446-39867dad4dbb",
+            "modified": "2020-05-13T14:38:39.574Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--cefc5abb-0e64-4c0c-8c36-468660110461",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.575Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--11a4c35b-9f24-443e-9720-06ccd4c4f3c4",
+            "modified": "2020-05-13T14:38:39.575Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--ae96265c-ab5a-4b70-9efd-7192595f6e1f",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.575Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--826d2153-6353-4ef6-a1bc-d1306c329d1a",
+            "modified": "2020-05-13T14:38:39.575Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--9f738da7-4745-4685-8bd8-fda36a334cda",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.575Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--a56e3d6c-03c8-42cd-9433-5b47a8a7a591",
+            "modified": "2020-05-13T14:38:39.575Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--f8e66cf8-1318-4ccc-9082-23d30014b075",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.575Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--d32f6494-7e0b-4ee6-ae4b-366610fdc455",
+            "modified": "2020-05-13T14:38:39.575Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--1ea17df2-a00b-41bd-908a-aa2470bfea83",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.575Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--548debd1-1f1f-4738-8da9-c74bb1756bc3",
+            "modified": "2020-05-13T14:38:39.575Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--dfbe9545-e52a-4099-a41f-cbea427839e5",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.575Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--669fb8b0-36bb-49da-aa50-4fc0e94dfcc9",
+            "modified": "2020-05-13T14:38:39.575Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--c09ded88-8db1-44e6-a833-cfe95f70543e",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.576Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--f294170b-15ae-40a9-bf93-c0d59a24dceb",
+            "modified": "2020-05-13T14:38:39.576Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--37a3679a-8077-4ece-858d-19c455d1a33b",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.576Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--8907678a-c8a8-4ad0-a523-c1e27e4436ea",
+            "modified": "2020-05-13T14:38:39.576Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--d47ad11d-53d5-41e8-a555-1a79ba1b9373",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.576Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--bb25814b-ca5e-49c0-8704-19749862df60",
+            "modified": "2020-05-13T14:38:39.576Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--22875b8c-087b-4ca4-bd94-a800cb58d054",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.576Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--dcb71eb2-8f99-4788-9c1e-d46541d1805d",
+            "modified": "2020-05-13T14:38:39.576Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--08f3207c-38f4-45d6-bf2e-7e819f23bac9",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.576Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--d329db02-3ba2-4bfe-99b5-c441fc1f2c89",
+            "modified": "2020-05-13T14:38:39.576Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--a5b73560-fd7b-4ea6-bf5b-543404e25cee",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.576Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--c696b0b2-b211-4322-912a-adbfa52649f5",
+            "modified": "2020-05-13T14:38:39.576Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--48a4dbe7-0ab4-462d-82ee-eef6488ef273",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.576Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--3f24e586-1e07-43d1-8c7b-432d43b16fd9",
+            "modified": "2020-05-13T14:38:39.576Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--c62237ae-fe99-4159-85d6-d2a1ecfae917",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.577Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--5bf85e18-3cb9-49a4-8295-c29e6c647c13",
+            "modified": "2020-05-13T14:38:39.577Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--dc038207-7444-4be4-b8d5-c3b33c3c496e",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.577Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--bbc4e415-6348-485b-ab06-f88156c4c8ac",
+            "modified": "2020-05-13T14:38:39.577Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--f6d4285b-4f08-4881-821c-2ab25ce633dc",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.577Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--d3232ce1-23fb-4656-b111-b9d28717e639",
+            "modified": "2020-05-13T14:38:39.577Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--b40c39e5-77b6-4de2-8d2f-a462eed51999",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.577Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--2b78b1a3-51a8-49ed-a13a-a4df0261129d",
+            "modified": "2020-05-13T14:38:39.577Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--ad692a0b-3944-40fd-b87a-5c81d54554d2",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.577Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--e855ae48-3786-4882-9788-1d65651af5dc",
+            "modified": "2020-05-13T14:38:39.577Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--bcd5cc03-f51d-41a9-b041-312e6cd725f3",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.577Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--31de9348-34bf-4e39-b0b6-f5cb9cdf0b5c",
+            "modified": "2020-05-13T14:38:39.577Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--569a57c6-87e6-4224-9335-695f99f61b20",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.578Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--b9849c76-4c70-4200-a649-508908420446",
+            "modified": "2020-05-13T14:38:39.578Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--51bdb5d0-9e87-4d5e-b9bc-61a3df90f416",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.578Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--bf46f28a-868d-41ef-9b47-e9301d7b13c4",
+            "modified": "2020-05-13T14:38:39.578Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--102ae178-2bcb-45c6-9ce4-4e873952870d",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.578Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--c14909ef-0f8d-4644-a29b-76b99991bcb2",
+            "modified": "2020-05-13T14:38:39.578Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--642e0341-e330-4178-9987-86f68ab19027",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.578Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--1c574ce5-7370-49d6-b738-7ed1893dbfe0",
+            "modified": "2020-05-13T14:38:39.578Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--2436f78c-61e1-409e-ab3e-3f1d044d16e3",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.578Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--5b06c92c-b497-44f7-809e-b49a4c5acb66",
+            "modified": "2020-05-13T14:38:39.578Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--cd16eec6-2f58-4d45-8098-f6e9248d1aa0",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.578Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--eda3577d-0032-4544-b5b8-0764784af281",
+            "modified": "2020-05-13T14:38:39.578Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--fd060cd4-8363-418e-9b8c-a956d462ef35",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.579Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--1ddfa421-595a-4768-ac26-5a0b9b0b6d32",
+            "modified": "2020-05-13T14:38:39.579Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--56ff8542-9e48-4b07-bc1d-05cb101924a3",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.579Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--f104c045-bfb2-4537-83a3-e70b6327b1a7",
+            "modified": "2020-05-13T14:38:39.579Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--bcd43ab8-d1c1-4441-beaf-fbb983653614",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.579Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--e7231374-bddc-4e74-859f-1fe616fc7983",
+            "modified": "2020-05-13T14:38:39.579Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--f152bfbc-44bb-4d1a-a8c2-17766d657637",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.579Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--75dc4bc9-aaeb-47a0-a375-1e6c78a7c013",
+            "modified": "2020-05-13T14:38:39.579Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--0b4f148d-25b9-478e-89b3-9c163d35138c",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.579Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--354f03cc-e916-40bf-8e7b-0165ee105953",
+            "modified": "2020-05-13T14:38:39.579Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--dcbea61e-b175-43ec-b3cc-ccdee37f2f5d",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.579Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--b1641e30-ab31-41f5-8a4f-218110b8bfa4",
+            "modified": "2020-05-13T14:38:39.579Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--dcebaddc-8a3b-421b-ba52-c35414c78d87",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.579Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--22c0e15d-693b-41fd-93e7-bdfc8d6e1de5",
+            "modified": "2020-05-13T14:38:39.579Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--1fbc7b7d-ce63-48d7-a74b-af05919ff004",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.580Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--7e9de6c7-5757-4ace-a91c-689541cdc9ae",
+            "modified": "2020-05-13T14:38:39.580Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--59e8be7d-1b95-4396-9876-ce916ac270e8",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.580Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--ea5c4de9-6f98-4a62-87fe-9a3438f7ce9c",
+            "modified": "2020-05-13T14:38:39.580Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--880bd5f4-cc67-4e37-b2c1-e789a9fecaa7",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.580Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--d3728ef6-e3bf-4cde-93ce-59350b30ca60",
+            "modified": "2020-05-13T14:38:39.580Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--f30f0c3c-ecb1-49eb-97d5-ec4567c7460c",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.580Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--acf0dd80-7c80-4c2e-a4cb-6e6afd027854",
+            "modified": "2020-05-13T14:38:39.580Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--c159fd69-6080-4948-a73e-20a0f515b3e5",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.580Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--49b7fb75-a6a7-491e-b669-40937ea595df",
+            "modified": "2020-05-13T14:38:39.580Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--a2d62863-c622-4417-949f-8f644c53143b",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.580Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--8c4fb6d4-42c3-4991-91b9-70d6b856897e",
+            "modified": "2020-05-13T14:38:39.580Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--a2406baa-4be8-401d-9237-b6c55978712f",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.580Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--c8f6bee9-a86a-4fff-88fa-53631b8777ca",
+            "modified": "2020-05-13T14:38:39.580Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--14980c2a-5cce-4d62-a514-4a7342967b1e",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.581Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--8d93dc54-fcb1-4ed5-9ba0-a5e3b8381306",
+            "modified": "2020-05-13T14:38:39.581Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--ba234ee7-e6d8-47da-9c42-998e1235306d",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.581Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--e974259b-e558-4ff8-b2dd-cd95746c6640",
+            "modified": "2020-05-13T14:38:39.581Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--1f7472ba-c06d-4b05-9087-72b02b6b18a4",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.581Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--72f5524a-7dc6-4aa3-abcd-631ea966268f",
+            "modified": "2020-05-13T14:38:39.581Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--2e75e452-70a9-4fbc-890d-2ea307564f99",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.581Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--72b1c4ae-f0d7-4a92-b8cc-091e35fcdf70",
+            "modified": "2020-05-13T14:38:39.581Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--b194ced5-032c-446d-916b-2fd4efba9513",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.581Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--837d60b4-99e1-4668-bb4c-d304740d53f4",
+            "modified": "2020-05-13T14:38:39.581Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--96d9b9ae-d298-4969-bcc3-5ade103cb60c",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.581Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--0cc2e71d-ea22-4373-8ad4-574668109019",
+            "modified": "2020-05-13T14:38:39.581Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--b8d14d51-0fbf-467f-8a42-0c0a4753a801",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.581Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--21530f92-14ba-4806-9e28-0980345f1ed1",
+            "modified": "2020-05-13T14:38:39.581Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--f727d747-74a2-4358-84ab-9811047c801e",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.582Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--95400974-7440-4df5-be27-89b57ca66578",
+            "modified": "2020-05-13T14:38:39.582Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--e27f9bf6-a7ff-4b9f-b70e-2a624f582dbc",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.582Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--e40292b2-908d-4799-808d-8394397b0c2c",
+            "modified": "2020-05-13T14:38:39.582Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--e0217dce-0c99-4b57-866c-f42c0de485e0",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.582Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--ae4f60c9-b442-45e1-a92d-438449c01009",
+            "modified": "2020-05-13T14:38:39.582Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--b460cfa0-115e-4d9a-b270-921f9a0545df",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.582Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--4728122c-f949-41ae-ad12-dc09ca4b4fd3",
+            "modified": "2020-05-13T14:38:39.582Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--2585c0b2-d6af-4a56-80f3-1525ac717814",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.582Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--d756a932-c6a8-4b1b-b156-9a24cbe23800",
+            "modified": "2020-05-13T14:38:39.582Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--cb6a4b79-bb06-4a84-9d0b-540b428584ce",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.582Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--38317f1d-efe6-4759-b660-24a6d6f679f7",
+            "modified": "2020-05-13T14:38:39.582Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--e6f240cc-57f5-4e34-8774-b1ac79019539",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.582Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--b68b495c-c6ab-4bd9-867e-f1cd3d73f4cd",
+            "modified": "2020-05-13T14:38:39.582Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--a9717191-adf7-40a2-a95e-03cac6827254",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.583Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--fa99d8e1-261b-4a1f-9cb3-019843d3e8b8",
+            "modified": "2020-05-13T14:38:39.583Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--d05e2b52-bbf5-4a13-80b5-6d08eb539ef8",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.583Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--12ca6006-d9b1-451b-b1f1-978bb5477e0d",
+            "modified": "2020-05-13T14:38:39.583Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--2684600c-d753-4906-91c8-63b0fa4e520a",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.583Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--b99c973f-e05b-42f5-8c44-cbf453b21c67",
+            "modified": "2020-05-13T14:38:39.583Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--11f0b857-3c2a-4a05-ac3f-2d985e460c6d",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.583Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--b8adb3c3-59b1-406e-a5e2-b687e34fc7ee",
+            "modified": "2020-05-13T14:38:39.583Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--b3331b2f-92be-4558-ad17-e70ed00017cd",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.583Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--4ca51424-baf4-43dd-9f57-97a9fd06d976",
+            "modified": "2020-05-13T14:38:39.583Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--4651cfc4-07ec-4dd1-8c24-ea4394147be3",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.583Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--89a4f79b-cd08-461a-aac7-6ed6e74727bb",
+            "modified": "2020-05-13T14:38:39.583Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--069b7a9e-2daa-4776-8059-7be35317ab11",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.583Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--8bdecbdc-7ab5-4804-9025-c7f2ec97898d",
+            "modified": "2020-05-13T14:38:39.583Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--42857f69-5fb8-4e30-a95e-c3a1ae0fe970",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.584Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--d0d171a9-04d8-42d1-a778-35bb84ac6a4a",
+            "modified": "2020-05-13T14:38:39.584Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--29f40e78-5114-4f7c-9340-5d44c55ad44e",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.584Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--378301fd-6662-419f-ad67-c0c54e03caf8",
+            "modified": "2020-05-13T14:38:39.584Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--d4a01dfe-7c05-4366-9ff5-f34573cf3f21",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.584Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--6d149691-b07d-4b39-bc79-46cc28a8a957",
+            "modified": "2020-05-13T14:38:39.584Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--27f8a9d9-e318-47ec-a4ad-34f16c0b8fce",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.584Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--1c221236-e825-4376-a638-e7c871389707",
+            "modified": "2020-05-13T14:38:39.584Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--2c3c9b15-6ced-4650-a4fe-d0d3b961919f",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.584Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--860bbfff-de9b-4073-a544-83e9e0474d20",
+            "modified": "2020-05-13T14:38:39.584Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--97bd4d13-aa4b-4bfe-af8f-29c822980b6b",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.585Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--35cfb472-2d9e-43b6-b029-f2cf94d91b27",
+            "modified": "2020-05-13T14:38:39.585Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--d9e1c7c1-539a-4e7c-9fbf-e722bd6ddc1d",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.585Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--033f9516-087c-402e-86a1-178f1743044c",
+            "modified": "2020-05-13T14:38:39.585Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--e0b8efb3-156f-40ab-b019-c43b2b5e3966",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.585Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--2c6cdc1f-54cb-4469-b88a-658a31f83858",
+            "modified": "2020-05-13T14:38:39.585Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--0941ad09-2204-436f-8571-cbc541ffe994",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.585Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--8650e0b0-d4c5-4d4c-9d50-8f6338f6d0c3",
+            "modified": "2020-05-13T14:38:39.585Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--84101e99-e8b5-4b1d-ba08-e7b6400c3baa",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.585Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--440b3481-a80d-4205-9ee8-5f12f59674b6",
+            "modified": "2020-05-13T14:38:39.585Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--a0ba45e5-85b7-46f3-8f74-ce3c825f7303",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.585Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--e056431e-da63-441a-a261-b9a903e05c62",
+            "modified": "2020-05-13T14:38:39.585Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--8183b7b4-1d63-4eab-a5de-8c8e9dcb3a3e",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.586Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--8a7a9e8d-732d-4f49-af8a-48fc83efd2e8",
+            "modified": "2020-05-13T14:38:39.586Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--cc9cbd18-8ba7-45c2-b096-30fa37303678",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.586Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--ce3a1eec-9734-410a-b671-0142d43d4288",
+            "modified": "2020-05-13T14:38:39.586Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--bdb1d23d-043e-4a8a-8f66-568a4e6eb50e",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.586Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--ac2174a4-9021-4c90-ac26-15f2dd06124d",
+            "modified": "2020-05-13T14:38:39.586Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--2c154a7b-cddb-430e-9587-f978602386d4",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.586Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--ac6571e4-25dd-4902-805e-c92581e1795e",
+            "modified": "2020-05-13T14:38:39.586Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--9d667e6c-02a3-4494-a2cf-8b1c3ccae34c",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.586Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--fd4b3cbe-fa7d-4586-b9fe-24339f6730dc",
+            "modified": "2020-05-13T14:38:39.586Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--6be57efc-998a-4c1d-a3f9-1f736980decb",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.586Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--4efe1137-4c79-486f-9ba6-1f39390b6bed",
+            "modified": "2020-05-13T14:38:39.586Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--1d9aa770-93c8-459c-9471-b19ecafdfaae",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.587Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--dd1f2ea6-db08-4980-a77e-24672baa7e82",
+            "modified": "2020-05-13T14:38:39.587Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--d712bbe0-070b-4cf4-b2e0-c107cc54b40d",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.587Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--c24bfc17-621e-4cb7-be1b-33fa285b2b56",
+            "modified": "2020-05-13T14:38:39.587Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--7edd2ec1-290e-4ddf-b713-4ef9ffac4f1c",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        },
+        {
+            "created": "2020-05-13T14:38:39.587Z",
+            "description": "this row maps T1011 to everything in the access control category. ",
+            "id": "relationship--7aedaf86-dae7-4c92-b462-ba8d94a2d505",
+            "modified": "2020-05-13T14:38:39.587Z",
+            "relationship_type": "mitigates",
+            "source_ref": "course-of-action--91e765ac-9f75-481b-9004-a00267a961f5",
+            "target_ref": "attack-pattern--51ea26b1-ff1e-4faa-b1a0-1114cd298c87",
+            "type": "relationship"
+        }
+    ],
+    "spec_version": "2.0",
+    "type": "bundle"
+}

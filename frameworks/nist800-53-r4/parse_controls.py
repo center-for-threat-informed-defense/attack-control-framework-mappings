@@ -63,7 +63,7 @@ class Control:
         self.stix_id = control_ids[self.external_id] if control_ids and self.external_id in control_ids else f"course-of-action--{str(uuid.uuid4())}"
         control_ids[self.external_id] = self.stix_id # update lookup so that subsequent objects can reference for relationships
         # if this is a control enhancement, set the parent ID
-        self.parent_id = id_formats["control_enhancement"][0].search(self.external_id).groups(1)[0] if self.is_enhancement else None
+        self.parent_id = id_formats["control_enhancement"][0].search(self.external_id).groups()[0] if self.is_enhancement else None
 
     def add_statement(self, row):
         """add a statement to this control"""
