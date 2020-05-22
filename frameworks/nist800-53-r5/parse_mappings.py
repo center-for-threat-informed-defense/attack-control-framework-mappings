@@ -10,7 +10,11 @@ def dict_regex_lookup(thedict, regexstr):
     # add anchor characters if they're not explicitly specified to prevent T1001 from matching T1001.001
     if not regexstr.endswith("$"): regexstr = regexstr + "$"
     if not regexstr.startswith("^"): regexstr = "^" + regexstr
-    regex = re.compile(regexstr)
+        try:
+        regex = re.compile(regexstr)
+    except Exception as err: 
+        print("cannot compile regex", regexstr, "because of", err)
+        exit()
     values = []
     for key in thedict:
         if regex.match(key): values.append(thedict[key])
@@ -60,6 +64,14 @@ def parse_mappings(mappingspath, controls, attackdataurl, relationship_ids={}):
         toIDs = dict_regex_lookup(attackID_to_stixID, row["techniqueID"])
         # only have a description if the row does
         description = row["description"] if row["description"] else None
+
+        if not fromIDs:
+            print("error looking up controlID", row["controlID"])
+        if not toIDs:
+            print("error looking up techniqueID", row["techniqueID"])
+        if not fromIDs or not toIDs:
+            exit()
+
         # combinatorics of every from to every to
         for fromID in fromIDs:
             for toID in toIDs:
