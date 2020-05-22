@@ -30,39 +30,12 @@ def row_type(row):
                 return id_format_group
     return "freetext" # all other formats are supplemental guidance for the current control
 
-
-
-
-class Statement:
-    """helper class defining a statement or substatement"""
-    def __init__(self, row):
-        """constructor"""
-        for id_format in id_formats["statement"]:
-            if id_format.match(row):
-                matches = id_format.search(row)
-                self.external_id = matches.groups()[0]
-                self.description = matches.groups()[1]
-                break
-
-        self.substatements = []
-    
-    def add_substatement(self, row):
-        """add a substatement to this statement"""
-        self.substatements.append(Statement(row))
-
-    def format_statement(self):
-        """transform statement into markdown string"""
-        formatted = f"* **{self.external_id}** {self.description}"
-        # recursively add substatements
-        for substatement in self.substatements:
-            formatted += f"\n    {substatement.format_statement()}"
-        
-        return formatted
-
 class Control:
     """helper class defining a Control"""
     def __init__(self, row, columns, control_ids):
         """constructor"""
+
+        print("building control:\n\n", row)
 
         def get_column(column):
             """helper function to get the control data for the given column in the tsv"""
@@ -70,52 +43,33 @@ class Control:
                 return row.split("\t")[columns.index(column)].strip('"')
             except:
                 return None # column doesn't exist for row 
+        
 
         self.external_id = get_column("identifier")
+        # print("id:", self.external_id)
         self.name = get_column("name")
-
+        # print("name:", self.name)
+        self.text = get_column("control_text")
+        # print("text:", self.text)
+        self.discussion = get_column("discussion")
+        # print("discussion:", self.discussion)
         self.related = get_column("related").split(", ") if get_column("related") else []
-
-        self.statements = []
-        for fieldname in ["control_text", "discussion"]:
-            self.add_statement(get_column(fieldname))
+        # print("related:", self.related)
 
         # try to manually set the STIX ID from the control_ids mapping, if not present it will randomly generate
         self.stix_id = control_ids[self.external_id] if control_ids and self.external_id in control_ids else f"course-of-action--{str(uuid.uuid4())}"
         control_ids[self.external_id] = self.stix_id # update lookup so that subsequent objects can reference for relationships
-        
+
         # if this is a control enhancement, set the parent ID
         self.is_enhancement = row_type(row) == "control_enhancement"
+        # print("enhancement:", self.is_enhancement)
         self.parent_id = id_formats["control_enhancement"][0].search(row).groups()[0] if self.is_enhancement else None
+        # print("parentID:", self.parent_id)
 
-    def add_statement(self, row):
-        """add a statement to this control"""
-        
-        # don't add None statements
-        if not row: return
-
-        # sometimes there are multiple statements in a row
-        if "\t" in row:
-            for subrow in row.split("\t"):
-                self.add_statement(subrow.strip('"'))
-
-        # base case, single statement in row
-        else:
-            # check if it's a statement or a freetext
-            if row_type(row) == "statement":
-                self.statements.append(Statement(row))
-            elif row_type(row) == "freetext":
-                self.statements.append(row)
-                
 
     def format_description(self):
         """format and return the control description (statements, etc) as a markdown string"""
-        paragraphs = []
-        for statement in self.statements:
-            text = statement.format_statement() if isinstance(statement, Statement) else statement
-            paragraphs.append(text)
-
-        return "\n\n".join(paragraphs)
+        return "\n\n".join([self.text, self.discussion])
 
     def toStix(self):
         """convert to a stix2 Course of Action"""
@@ -141,21 +95,25 @@ def parse_controls(controlpath, control_ids={}, relationship_ids={}):
 
     # controls_df = pd.read_csv(controlpath, sep="\t", keep_default_na=False, header=0)
     with open(controlpath, "r") as controlsfile:
-        controls_data = controlsfile.readlines()
+        controls_data = controlsfile.read().split("\n")
     columns = controls_data[0].split("\t")
     controls_data = controls_data[1:]
     controls = []
 
+    currentControl = []
     for row in tqdm(controls_data, desc="parsing NIST 800-53", bar_format=tqdmformat):
         row = row.strip('"') # remove leading and trailing quotation marks
         rowtype = row_type(row)
         if rowtype == "control" or rowtype == "control_enhancement":
-            controls.append(Control(row, columns, control_ids))
-        elif rowtype == "statement":
-            controls[-1].add_statement(row)
-        elif rowtype == "freetext":
-            controls[-1].add_statement(row)
-    
+            if currentControl: # otherwise first row creates an empty control
+                controls.append(Control("\n".join(currentControl), columns, control_ids)) # finish previous control
+            currentControl = [row] # start a new control
+        else:
+            currentControl.append(row) # append line to current control
+        
+    # finish last control
+    controls.append(Control("\n".join(currentControl), columns, control_ids))
+
     # parse controls into stix
     stixcontrols = []
     for control in tqdm(controls, desc="creating controls", bar_format=tqdmformat):

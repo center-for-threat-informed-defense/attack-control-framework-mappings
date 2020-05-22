@@ -10,7 +10,7 @@ def dict_regex_lookup(thedict, regexstr):
     # add anchor characters if they're not explicitly specified to prevent T1001 from matching T1001.001
     if not regexstr.endswith("$"): regexstr = regexstr + "$"
     if not regexstr.startswith("^"): regexstr = "^" + regexstr
-        try:
+    try:
         regex = re.compile(regexstr)
     except Exception as err: 
         print("cannot compile regex", regexstr, "because of", err)
