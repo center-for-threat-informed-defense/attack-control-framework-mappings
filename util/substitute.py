@@ -65,15 +65,15 @@ if __name__ == "__main__":
         spec_version="2.0",
         allow_custom=True)
     print("done")
+    
     print("loading controls framework... ", end="", flush=True)
     with open(args.controls, "r") as f:
         controls = stix2.Bundle(json.load(f)["objects"], spec_version="2.0")
-
     print("done")
+
     print("loading mappings... ", end="", flush=True)
     with open(args.mappings, "r") as f:
         mappings = stix2.Bundle(json.load(f)["objects"], spec_version="2.0")
-
     print("done")
 
     print("substituting... ", end="", flush=True)
