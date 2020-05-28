@@ -30,6 +30,10 @@ T1547\.007	AU-\d+	Audit
 T1547\.007	CM-(1|2|6|8)	"Configuring system settings, Configuration Management"
 T1547\.007	RA-5	Vulnerability Scanning
 T1547\.007	SI-(3|4)	"System Monitoring, malware"
+T1059(\.(001|005))?	AU-\d+	Audit
+T1059(\.(001|005))?	CM-(1|2|6|8)	Configuring system settings, Configuration Management
+T1059(\.(001|005))?	RA-5	Vulnerability Scanning
+T1059(\.(001|005))?	SI-(3|4)	System Monitoring, malware
 T1092	AU-\d+	Audit
 T1092	CM-(1|2|6|8)	"Configuring system settings, Configuration Management"
 T1092	RA-5	Vulnerability Scanning
