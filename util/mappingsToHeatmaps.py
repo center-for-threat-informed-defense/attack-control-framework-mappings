@@ -26,8 +26,9 @@ def layer(name, description, domain, techniques):
         "techniques": techniques,
         "gradient": {
             "colors": [
-                "#7aceff", # low counts are light blue
-                "#005384", # high counts are dark blue
+                "#8cff8c", # low counts are green
+                "#fcff7c",
+                "#ff8c8c", # high counts are red
             ],
             "minValue": min(map(lambda t: t["score"], techniques)) if len(techniques) > 0 else 0,
             "maxValue": max(map(lambda t: t["score"], techniques)) if len(techniques) > 0 else 100 # max value is max usage count
