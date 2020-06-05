@@ -1,13 +1,13 @@
 # ATT&CK Control Mappings
-This repository includes tools and data for mapping control frameworks to MITRE ATT&amp;CK. In addition to mapping the frameworks, it defines a common representation for frameworks — see [data format](#data-format), below.
+This repository includes tools and data for mapping control frameworks to MITRE ATT&amp;CK. In addition to mapping the frameworks, it defines a common STIX2.0 representation for control frameworks &mdash; see [data format](#data-format), below.
 
 # Usage
 
-This repository provides data representing control frameworks, and mappings from said frameworks to ATT&CK, in STIX2.0 JSON. You can find the data for those frameworks in the [frameworks] folder:
+This repository provides data representing control frameworks, and mappings from said frameworks to ATT&CK, in STIX2.0 JSON. You can find the data for those frameworks in the `/frameworks/` folder:
 - [NIST 800-53 Revision 4](frameworks/nist800-53-r4/)
 - [NIST 800-53 Revision 5](frameworks/nist800-53-r5/)
 
-Each framework folder includes the framework and mapping data in a `/data/` folder, and ATT&CK Navigator Layers in the `/layers/` folder. The [Install](#install) section below explains how to set up this repository for local use. However, since the majority of the functionality of this project is in providing data to users, unless your intention is to modify the data or run the build scripts, you 
+Each framework folder includes the framework and mapping data in a `/data/` folder, and ATT&CK Navigator Layers in the `/layers/` folder. The [Install](#install) section below explains how to set up this repository for local use if you intend to extend the defined mappings.
 
 ## Input Data
 Each control framework has one input for the controls and one for the mappings. The controls input is generally supplied by the organization publishing the controls in the first place. The mappings were created as part of this project. 
@@ -54,3 +54,8 @@ The [/util/](util/) folder includes utility scripts designed to work with generi
     - Windows: `env/Scripts/activate.bat`
 3. Install requirement packages: `pip3 install -r requirements.txt`
 
+## Rebuild the STIX data
+
+To rebuild the STIX data for a given control framework:
+1. run `python3 parser.py` from within the folder of the given control framework. This will rebuild the raw STIX data from the input spreadsheets.
+1. Then use the scripts in [util](util/) to regenerate the ancillary control data such as ATT&CK Navigator layers.
