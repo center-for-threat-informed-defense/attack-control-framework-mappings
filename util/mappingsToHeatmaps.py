@@ -17,6 +17,14 @@ def technique(attackID, mapped_controls):
 
 def layer(name, description, domain, techniques):
     """create a Layer"""
+    min_mappings = min(map(lambda t: t["score"], techniques)) if len(techniques) > 0 else 0
+    max_mappings = max(map(lambda t: t["score"], techniques)) if len(techniques) > 0 else 100
+    gradient = [ "#8ec843", "#ffe766", "#ff6666" ]
+    # check if all the same count of mappings
+    if max_mappings - min_mappings == 0: 
+        min_mappings = 0 # set low end of gradient to 0
+        gradient = ["#ffffff", "#66b1ff"]
+
     return {
         "name": name,
         "version": "3.0",
@@ -25,18 +33,14 @@ def layer(name, description, domain, techniques):
         "domain": domain,
         "techniques": techniques,
         "gradient": {
-            "colors": [
-                "#8cff8c", # low counts are green
-                "#fcff7c",
-                "#ff8c8c", # high counts are red
-            ],
-            "minValue": min(map(lambda t: t["score"], techniques)) if len(techniques) > 0 else 0,
-            "maxValue": max(map(lambda t: t["score"], techniques)) if len(techniques) > 0 else 100 # max value is max usage count
+            "colors": gradient,
+            "minValue": min_mappings,
+            "maxValue": max_mappings
         },
     }
 
 def mappingsToTechniquelist(controls, mappings, attackdata):
-    """take an array of controls ms, a mappings ms, and attackdata ms
+    """take a controls ms, a mappings ms, and attackdata ms
     return a list of Techniques where the score is the number of controls that map to the technique"""
     techniqueToMappedControls = {}
     for mapping in mappings.query():
@@ -50,10 +54,15 @@ def mappingsToTechniquelist(controls, mappings, attackdata):
             techniqueToMappedControls[attackID].append(controlID)
         else:
             techniqueToMappedControls[attackID] = [controlID]
+
+    # remove duplicate mappings
+    for id in techniqueToMappedControls:
+        techniqueToMappedControls[id] = list(set(techniqueToMappedControls[id]))
+
     # transform to techniques
     return [technique(id, techniqueToMappedControls[id]) for id in techniqueToMappedControls]
 
-def mappingsToHeatmaps(controls, mappings, attackdata, domain):
+def mappingsToHeatmaps(controls, mappings, attackdata, domain, frameworkname):
     """ingest mappings and controls and attackdata, and return an array of layer jsons"""
     # build list of control families
     idToFamily = re.compile("(\w+)-.*")
@@ -66,39 +75,65 @@ def mappingsToHeatmaps(controls, mappings, attackdata, domain):
             familyToControls[family].append(control)
     
     outlayers = [
-        layer(
-            "overview heatmap", 
-            "heatmap overview of control mappings, where scores are the number of associated controls",
-            domain, 
-            mappingsToTechniquelist(controls, mappings, attackdata)
-        )
+        {
+            "outfile": f"{frameworkname}-overview.json",
+            "layer": layer(
+                f"{frameworkname} overview", 
+                f"{frameworkname} heatmap overview of control mappings, where scores are the number of associated controls",
+                domain, 
+                mappingsToTechniquelist(controls, mappings, attackdata)
+            )
+        }
     ]
     for family in familyToControls:
         controlsInFamily = stix2.MemoryStore(stix_data=familyToControls[family])
-        techniques = mappingsToTechniquelist(controlsInFamily, mappings, attackdata)
-        if len(techniques) > 0: # don't build heatmaps with no mappings
-            outlayers.append(
-                layer(
-                    f"{family} heatmap",
-                    f"heatmap for controls in the family {family}, where scores are the number of associated controls",
+        techniquesInFamily = mappingsToTechniquelist(controlsInFamily, mappings, attackdata)
+        if len(techniquesInFamily) > 0: # don't build heatmaps with no mappings
+            # build family overview mapping
+            outlayers.append({
+                "outfile": os.path.join(family, f"{family}-overview.json"),
+                "layer": layer(
+                    f"{family} overview",
+                    f"{frameworkname} heatmap for controls in the family {family}, where scores are the number of associated controls",
                     domain,
-                    techniques
+                    techniquesInFamily
                 )
-        )
+            })
+            # build layer for each control
+            for control in familyToControls[family]:
+                controlMs = stix2.MemoryStore(stix_data=control)
+                control_id = control.external_references[0].external_id
+                techniquesMappedToControl = mappingsToTechniquelist(controlMs, mappings, attackdata)
+                if len(techniquesMappedToControl) > 0: # don't build heatmaps with no mappings
+                    outlayers.append({
+                        "outfile": os.path.join(family, f"{'_'.join(control_id.split(' '))}.json"),
+                        "layer": layer(
+                            f"{control_id} mappings",
+                            f"{frameworkname} {control_id} mappings",
+                            domain,
+                            techniquesMappedToControl
+                        )
+                    })
+
+            
+
 
     return outlayers
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Create ATT&CK Navigator heatmap layers from control mappings")
+    parser.add_argument("-framework",
+                        help="the name of the control framework",
+                        default="nist800-53-r5")
     parser.add_argument("-controls",
                         dest="controls",
                         help="filepath to the stix bundle representing the control framework",
-                        default=os.path.join("..", "frameworks", "nist800-53-r5", "data", "sp800-53r5-controls.json"))
+                        default=os.path.join("..", "frameworks", "nist800-53-r5", "data", "nist800-53-r5-controls.json"))
     parser.add_argument("-mappings",
                         dest="mappings",
                         help="filepath to the stix bundle mapping the controls to ATT&CK",
-                        default=os.path.join("..", "frameworks", "nist800-53-r5", "data", "sp800-53r5-mappings.json"))
+                        default=os.path.join("..", "frameworks", "nist800-53-r5", "data", "nist800-53-r5-mappings.json"))
     parser.add_argument("-domain",
                         choices=["enterprise-attack", "mobile-attack", "pre-attack"],
                         help="the domain of ATT&CK to visualize",
@@ -124,9 +159,13 @@ if __name__ == "__main__":
     print("done")
 
     print("creating layers... ", end="", flush=True)
-    layers = mappingsToHeatmaps(controls, mappings, attackdata, args.domain)
+    layers = mappingsToHeatmaps(controls, mappings, attackdata, args.domain, args.framework)
     for layer in layers:
-        filename = "_".join(layer["name"].split(" ")) + ".json"
-        with open(os.path.join(args.output, filename), "w") as f:
-            json.dump(layer, f)
+        # make path if it doesn't exist
+        layerdir = os.path.dirname(os.path.join(args.output, layer["outfile"]))
+        if not os.path.exists(layerdir):
+            os.makedirs(layerdir)
+        # write layer
+        with open(os.path.join(args.output, layer["outfile"]), "w") as f:
+            json.dump(layer["layer"], f)
     print("done")

@@ -39,11 +39,11 @@ if __name__ == "__main__":
     parser.add_argument("-controls",
                         dest="controls",
                         help="filepath to the stix bundle representing the control framework",
-                        default=os.path.join("..", "frameworks", "nist800-53-r5", "data", "sp800-53r5-controls.json"))
+                        default=os.path.join("..", "frameworks", "nist800-53-r5", "data", "nist800-53-r5-controls.json"))
     parser.add_argument("-mappings",
                         dest="mappings",
                         help="filepath to the stix bundle mapping the controls to ATT&CK",
-                        default=os.path.join("..", "frameworks", "nist800-53-r5", "data", "sp800-53r5-mappings.json"))
+                        default=os.path.join("..", "frameworks", "nist800-53-r5", "data", "nist800-53-r5-mappings.json"))
     parser.add_argument("-domain",
                         choices=["enterprise-attack", "mobile-attack", "pre-attack"],
                         help="the domain of ATT&CK to substitute",
@@ -55,7 +55,7 @@ if __name__ == "__main__":
                         default=False)
     parser.add_argument("-output",
                         help="filepath to write the output stix bundle to",
-                        default=os.path.join("..", "frameworks", "nist800-53-r5", "data", "sp800-53r5-enterprise-attack.json"))
+                        default=os.path.join("..", "frameworks", "nist800-53-r5", "data", "nist800-53-r5-enterprise-attack.json"))
 
     args = parser.parse_args()
 
