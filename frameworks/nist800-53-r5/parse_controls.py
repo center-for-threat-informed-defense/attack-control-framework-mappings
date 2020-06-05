@@ -35,8 +35,6 @@ class Control:
     def __init__(self, row, columns, control_ids):
         """constructor"""
 
-        print("building control:\n\n", row)
-
         def get_column(column):
             """helper function to get the control data for the given column in the tsv"""
             try:
@@ -44,7 +42,6 @@ class Control:
             except:
                 return None # column doesn't exist for row 
         
-
         self.external_id = get_column("identifier")
         # print("id:", self.external_id)
         self.name = get_column("name")
@@ -101,7 +98,7 @@ def parse_controls(controlpath, control_ids={}, relationship_ids={}):
     controls = []
 
     currentControl = []
-    for row in tqdm(controls_data, desc="parsing NIST 800-53", bar_format=tqdmformat):
+    for row in tqdm(controls_data, desc="parsing NIST 800-53 revision 5", bar_format=tqdmformat):
         row = row.strip('"') # remove leading and trailing quotation marks
         rowtype = row_type(row)
         if rowtype == "control" or rowtype == "control_enhancement":

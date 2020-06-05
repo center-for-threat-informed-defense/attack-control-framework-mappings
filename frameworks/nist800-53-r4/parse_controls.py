@@ -110,7 +110,7 @@ def parse_controls(controlpath, control_ids={}, relationship_ids={}):
     controls_df = pd.read_csv(controlpath, sep="\t", keep_default_na=False, header=0)
     
     controls = []
-    for index, row in tqdm(list(controls_df.iterrows()), desc="parsing NIST 800-53", bar_format=tqdmformat):
+    for index, row in tqdm(list(controls_df.iterrows()), desc="parsing NIST 800-53 revision 4", bar_format=tqdmformat):
         rowtype = row_type(row)
         if rowtype == "control" or rowtype == "control_enhancement":
             controls.append(Control(row, control_ids))
