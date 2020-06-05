@@ -56,6 +56,8 @@ The [/util/](util/) folder includes utility scripts designed to work with generi
 
 ## Rebuild the STIX data
 
-To rebuild the STIX data for a given control framework:
+To rebuild all the data in the repository based on the most up-to-date input data, run `python3 make.py`.
+
+To rebuild the STIX data for a specific control framework:
 1. run `python3 parser.py` from within the folder of the given control framework. This will rebuild the raw STIX data from the input spreadsheets.
-1. Then use the scripts in [util](util/) to regenerate the ancillary control data such as ATT&CK Navigator layers.
+2. Then use the scripts in [util](util/) to regenerate the ancillary control data such as ATT&CK Navigator layers.
