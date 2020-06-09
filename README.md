@@ -1,5 +1,5 @@
 # ATT&CK Control Mappings
-This repository includes tools and data for mapping control frameworks to MITRE ATT&amp;CK. In addition to mapping the frameworks, it defines a common STIX2.0 representation for control frameworks &mdash; see [data format](#data-format), below.
+This repository includes tools and data for mapping control frameworks to MITRE ATT&amp;CK. In addition to mapping the frameworks, it defines a common STIX2.0 representation for control frameworks &mdash; see [output data](#output-data), below.
 
 # Usage
 
@@ -7,7 +7,7 @@ This repository provides data representing control frameworks, and mappings from
 - [NIST 800-53 Revision 4](frameworks/nist800-53-r4/)
 - [NIST 800-53 Revision 5](frameworks/nist800-53-r5/)
 
-Each framework folder includes the framework and mapping data in a `/data/` folder, and ATT&CK Navigator Layers in the `/layers/` folder. The [Install](#install) section below explains how to set up this repository for local use if you intend to extend the defined mappings.
+Each framework folder includes the framework and mapping data in a `/data/` folder, and ATT&CK Navigator Layers in the `/layers/` folder. The [install](#install) section below explains how to set up this repository for local use if you intend to extend the defined mappings.
 
 ## Input Data
 Each control framework has one input for the controls and one for the mappings. The controls input is generally supplied by the organization publishing the controls in the first place. The mappings were created as part of this project. 
