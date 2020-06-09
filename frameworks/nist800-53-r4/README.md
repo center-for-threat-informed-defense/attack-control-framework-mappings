@@ -13,6 +13,6 @@ The Nist 800-53 Revision 4 STIX data extends the controls format with the follow
 
 | STIX field | type | description |
 |:-----------|:-----|:------------|
-| `x_mitre_impact` | list of strings | the baseline-impact of the control or enhancement. Values include "LOW", "MODERATE", "HIGH" |
-| `x_mitre_family` | string | the family the control belongs to |
+| `x_mitre_impact` | list of strings | the baseline-impact of the control or enhancement. Values include `"LOW"`, `"MODERATE"`, `"HIGH"`. |
+| `x_mitre_family` | string | the family to which the control belongs. |
 | `x_mitre_priority` | string | the priority of the control. Control enhancements inherit this value from their parent control. |
