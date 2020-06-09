@@ -6,3 +6,7 @@ To build the framework from the input data, run `python3 parse.py`.
 
 - The [data](data) folder contains the input spreadsheets and output STIX2.0 json data. See the README in that folder for more information.
 - The [layers](layers) folder contains [ATT&CK Navigator](https://github.com/mitre-attack/attack-navigator) layers showing the mappings in the context of the ATT&CK Matrix.
+
+## Extended Fields
+
+The Nist 800-53 Revision 5 STIX data does not extend the controls format with any additional properties.

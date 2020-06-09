@@ -11,7 +11,7 @@ def technique(attackID, mapped_controls):
     return {
         "techniqueID": attackID,
         "score": len(mapped_controls), # count of mapped controls
-        "comment": "Mitigated by " + ", ".join(mapped_controls) # list of mapped controls
+        "comment": "Mitigated by " + ", ".join(sorted(mapped_controls)) # list of mapped controls
     }
 
 
@@ -150,7 +150,7 @@ if __name__ == "__main__":
 
     print("loading controls framework... ", end="", flush=True)
     with open(args.controls, "r") as f:
-        controls = stix2.MemoryStore(stix_data=json.load(f)["objects"])
+        controls = stix2.MemoryStore(stix_data=json.load(f)["objects"], allow_custom=True)
     print("done")
 
     print("loading mappings... ", end="", flush=True)

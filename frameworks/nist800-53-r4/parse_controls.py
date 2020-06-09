@@ -47,23 +47,24 @@ class Statement:
 
 class Control:
     """helper class defining a Control"""
-    def __init__(self, row, control_ids):
+    def __init__(self, row, control_ids, parent=None):
         """constructor"""
         self.external_id = row["NAME"]
         self.name = row["TITLE"].title() # titlecase
         self.family = row["FAMILY"].title() # titlecase
         self.supplemental = row["SUPPLEMENTAL GUIDANCE"]
         self.impact = row["BASELINE-IMPACT"]
-        self.priority = row["PRIORITY"]
         self.related = row["RELATED"].split(",") if row["RELATED"] else []
         self.is_enhancement = row_type(row) == "control_enhancement"
         self.description = row["DESCRIPTION"]
         self.statements = []
+        # parent control
+        self.parent_id = parent.external_id if self.is_enhancement else None
+        self.priority = parent.priority if self.is_enhancement else row["PRIORITY"] # inherit from parent
+
         # try to manually set the STIX ID from the control_ids mapping, if not present it will randomly generate
         self.stix_id = control_ids[self.external_id] if control_ids and self.external_id in control_ids else f"course-of-action--{str(uuid.uuid4())}"
         control_ids[self.external_id] = self.stix_id # update lookup so that subsequent objects can reference for relationships
-        # if this is a control enhancement, set the parent ID
-        self.parent_id = id_formats["control_enhancement"][0].search(self.external_id).groups()[0] if self.is_enhancement else None
 
     def add_statement(self, row):
         """add a statement to this control"""
@@ -87,6 +88,11 @@ class Control:
 
     def toStix(self):
         """convert to a stix2 Course of Action"""
+        custom_properties = {}
+        if self.impact: custom_properties["x_mitre_impact"] = self.impact.split(",")
+        if self.priority: custom_properties["x_mitre_priority"] = self.priority
+        if self.family: custom_properties["x_mitre_family"] = self.family
+
         return stix2.CourseOfAction(
             id = self.stix_id,
             name = self.name,
@@ -94,7 +100,8 @@ class Control:
             external_references = [ {
                 "source_name": "NIST 800-53 Revision 4",
                 "external_id": self.external_id
-            } ]
+            } ],
+            custom_properties = custom_properties
         )
 
 
@@ -110,13 +117,18 @@ def parse_controls(controlpath, control_ids={}, relationship_ids={}):
     controls_df = pd.read_csv(controlpath, sep="\t", keep_default_na=False, header=0)
     
     controls = []
+    currentControl = None
     for index, row in tqdm(list(controls_df.iterrows()), desc="parsing NIST 800-53 revision 4", bar_format=tqdmformat):
         rowtype = row_type(row)
-        if rowtype == "control" or rowtype == "control_enhancement":
+        
+        if rowtype == "control": 
             controls.append(Control(row, control_ids))
-        elif rowtype == "statement":
+            currentControl = controls[-1] # track current control to pass to enhancements
+        if rowtype == "control_enhancement": 
+            controls.append(Control(row, control_ids, parent=currentControl))
+        if rowtype == "statement":
             controls[-1].add_statement(row)
-        elif rowtype == "substatement":
+        if rowtype == "substatement":
             controls[-1].add_substatement(row)
     
     # parse controls into stix
