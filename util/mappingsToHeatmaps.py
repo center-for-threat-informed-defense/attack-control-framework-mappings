@@ -210,14 +210,9 @@ if __name__ == "__main__":
     print("creating layers... ", end="", flush=True)
     
     layers = getFrameworkOverviewLayers(controls, mappings, attackdata, args.domain, args.framework)
-    for property in get_x_mitre(controls):
+    for property in get_x_mitre(controls): # iterate over all custom properties as potential layer-generation material
         if property == "x_mitre_family": continue
         layers += getLayersByProperty(controls, mappings, attackdata, args.domain, args.framework, property)
-
-    # layers = itertools.chain(*[
-    #     getLayersByProperty(controls, mappings, attackdata, args.domain, args.framework, "impact"),
-    #     getLayersByProperty(controls, mappings, attackdata, args.domain, args.framework, "priority")
-    # ])
 
     for layer in layers:
         # make path if it doesn't exist
