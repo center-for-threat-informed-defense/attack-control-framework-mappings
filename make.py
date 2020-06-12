@@ -23,7 +23,8 @@ def main():
         subprocess.run(["python3", "mappingsToHeatmaps.py", 
                        "-controls", os.path.join("..", frameworkfolder, "data", controlsFile),
                        "-mappings", os.path.join("..", frameworkfolder, "data", mappingsFile),
-                       "-output", os.path.join("..", frameworkfolder, "layers")
+                       "-output", os.path.join("..", frameworkfolder, "layers"),
+                       "-framework", framework
         ])
         subprocess.run(["python3", "substitute.py", 
                        "-controls", os.path.join("..", frameworkfolder, "data", controlsFile),
