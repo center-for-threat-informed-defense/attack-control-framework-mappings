@@ -1,6 +1,11 @@
 # ATT&CK Control Mappings
 This repository includes tools and data for mapping control frameworks to MITRE ATT&amp;CK. In addition to mapping the frameworks, it defines a common STIX2.0 representation for control frameworks &mdash; see [output data](#output-data), below.
 
+See also:
+- [USE-CASES](USE-CASES.md) for common use cases of the controls framework data
+- [CHANGELOG](CHANGELOG.md) to learn about recent changes to this repository
+- [CONTRIBUTING](CONTRIBUTING.md) for information about how to contribute controls, mappings, or other improvements
+
 # Usage
 
 This repository provides data representing control frameworks, and mappings from said frameworks to ATT&CK, in STIX2.0 JSON. You can find the data for those frameworks in the `/frameworks/` folder:
@@ -9,7 +14,6 @@ This repository provides data representing control frameworks, and mappings from
 
 Each framework folder includes the framework and mapping data in a `/data/` folder, and ATT&CK Navigator Layers in the `/layers/` folder. The [install](#install) section below explains how to set up this repository for local use if you intend to extend the defined mappings.
 
-Also see the [USE-CASES](USE-CASES.md) document for common use cases of the controls framework data.
 
 ## Input Data
 Each control framework has one input for the controls and one for the mappings. The controls input is generally supplied by the organization publishing the controls in the first place. The mappings were created as part of this project. 
