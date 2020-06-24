@@ -9,6 +9,8 @@ This repository provides data representing control frameworks, and mappings from
 
 Each framework folder includes the framework and mapping data in a `/data/` folder, and ATT&CK Navigator Layers in the `/layers/` folder. The [install](#install) section below explains how to set up this repository for local use if you intend to extend the defined mappings.
 
+Also see the [USE-CASES](USE-CASES.md) document for common use cases of the controls framework data.
+
 ## Input Data
 Each control framework has one input for the controls and one for the mappings. The controls input is generally supplied by the organization publishing the controls in the first place. The mappings were created as part of this project. 
 
