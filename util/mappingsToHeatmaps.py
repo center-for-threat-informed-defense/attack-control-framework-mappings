@@ -5,6 +5,7 @@ import os
 import json
 import requests
 import itertools
+import shutil
 
 def technique(attackID, mapped_controls):
     """create a technique for a layer"""
@@ -190,6 +191,9 @@ if __name__ == "__main__":
     parser.add_argument("-output",
                         help="folder to write output layers to",
                         default=os.path.join("..", "frameworks", "nist800-53-r4", "layers"))
+    parser.add_argument("--clear",
+                        action="store_true",
+                        help="if flag specified, will remove the contents the output folder before writing layers")
     
     args = parser.parse_args()
 
@@ -207,13 +211,20 @@ if __name__ == "__main__":
         mappings = stix2.MemoryStore(stix_data=json.load(f)["objects"])
     print("done")
 
-    print("creating layers... ", end="", flush=True)
     
+    print("generating layers... ", end="", flush=True)
     layers = getFrameworkOverviewLayers(controls, mappings, attackdata, args.domain, args.framework)
     for property in get_x_mitre(controls): # iterate over all custom properties as potential layer-generation material
         if property == "x_mitre_family": continue
         layers += getLayersByProperty(controls, mappings, attackdata, args.domain, args.framework, property)
+    print("done")
 
+    if args.clear:
+        print("clearing layers directory...", end="", flush=True)
+        shutil.rmtree(args.output)
+        print("done")
+    
+    print("writing layers... ", end="", flush=True)
     for layer in layers:
         # make path if it doesn't exist
         layerdir = os.path.dirname(os.path.join(args.output, layer["outfile"]))
