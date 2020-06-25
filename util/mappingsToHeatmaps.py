@@ -26,6 +26,11 @@ def layer(name, description, domain, techniques):
         min_mappings = 0 # set low end of gradient to 0
         gradient = ["#ffffff", "#66b1ff"]
 
+    domain = { # convert domain to navigator format
+        "enterprise-attack": "mitre-enterprise",
+        "mobile-attack": "mitre-mobile",
+    }[domain]
+
     return {
         "name": name,
         "version": "3.0",
@@ -185,7 +190,7 @@ if __name__ == "__main__":
                         help="filepath to the stix bundle mapping the controls to ATT&CK",
                         default=os.path.join("..", "frameworks", "nist800-53-r4", "data", "nist800-53-r4-mappings.json"))
     parser.add_argument("-domain",
-                        choices=["enterprise-attack", "mobile-attack", "pre-attack"],
+                        choices=["enterprise-attack", "mobile-attack"],
                         help="the domain of ATT&CK to visualize",
                         default="enterprise-attack")
     parser.add_argument("-output",
