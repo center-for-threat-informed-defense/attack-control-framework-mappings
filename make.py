@@ -24,7 +24,8 @@ def main():
                        "-controls", os.path.join("..", frameworkfolder, "data", controlsFile),
                        "-mappings", os.path.join("..", frameworkfolder, "data", mappingsFile),
                        "-output", os.path.join("..", frameworkfolder, "layers"),
-                       "-framework", framework
+                       "-framework", framework,
+                       "--clear"
         ])
         subprocess.run(["python3", "substitute.py", 
                        "-controls", os.path.join("..", frameworkfolder, "data", controlsFile),
