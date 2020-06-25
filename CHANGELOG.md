@@ -14,6 +14,11 @@
 <!--    ### Improvements                                                -->
 <!--    ### Fixes                                                       -->
 
+# 25 June 2020
+### Improvements
+- Added additional mappings to nist800-53-r4
+- Added flag to mappingsToHeatmaps to allow it to remove previously generated layers when run
+
 # 24 June 2020
 ### Improvements
 - Added pull request template
