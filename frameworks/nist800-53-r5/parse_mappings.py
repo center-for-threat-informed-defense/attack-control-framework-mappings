@@ -34,7 +34,7 @@ def parse_mappings(mappingspath, controls, domain, version, relationship_ids={})
 
     # load ATT&CK STIX data
     print("downloading ATT&CK data... ", end="", flush=True)
-    attackdata = requests.get(f"https://raw.githubusercontent.com/mitre/cti/ATT%26CK-v{version}/{domain}/{domain}.json", verify=False).json()
+    attackdata = requests.get(f"https://raw.githubusercontent.com/mitre/cti/ATT%26CK-v{version}/{domain}/{domain}.json", verify=False).json()["objects"]
     print("done")
 
     # build mapping of attack ID to stixID

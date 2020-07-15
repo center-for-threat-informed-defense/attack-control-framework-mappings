@@ -50,7 +50,7 @@ if __name__ == "__main__":
                         default="7.0-beta")
     parser.add_argument("-output",
                         help=f"filepath to write the output mappings to. Output format will be inferred from the extension. Allowed extensions: {allowedExtensionList}",
-                        default="output.md")
+                        default="mappings.csv")
 
     args = parser.parse_args()
 
