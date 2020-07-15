@@ -19,7 +19,8 @@ def main(incontrols=os.path.join("data", "nist800-53-r4-controls.tsv"),
          inmappings=os.path.join("data", "nist800-53-r4-mappings.tsv"),
          outcontrols=os.path.join("data", "nist800-53-r4-controls.json"),
          outmappings=os.path.join("data", "nist800-53-r4-controls.json"),
-         attackdata="https://raw.githubusercontent.com/mitre/cti/subtechniques/enterprise-attack/enterprise-attack.json"):
+         domain="enterprise-attack",
+         version="7.0-beta"):
     """
     parse the NIST 800-53 revision 4 controls and ATT&CK mappings into STIX2.0 bundles
     arguments:
@@ -27,7 +28,8 @@ def main(incontrols=os.path.join("data", "nist800-53-r4-controls.tsv"),
         inmappings - tsv file mapping NIST 800-53 revision 4 controls to ATT&CK
         outcontrols - output STIX bundle file for the controls. If this file already exists, the STIX IDs within will be reused in the replacing file so that they don't change between consecutive executions of this script.
         outmappings - output STIX bundle file for the mappings.
-        attackdata - URL of the attack STIX bundle to use when looking up mapping IDs
+        domain - the domain of ATT&CK to use
+        version - the version of ATT&CK to use
     returns (outcontrols, outmappings)
     """
 
@@ -70,7 +72,8 @@ def main(incontrols=os.path.join("data", "nist800-53-r4-controls.tsv"),
     mappings = parse_mappings(
         inmappings,
         controls,
-        attackdata,
+        domain, 
+        version,
         mapping_relationship_ids
     )
 
@@ -97,10 +100,14 @@ if __name__ == "__main__":
                          dest="outmappings",
                          help="output STIX bundle file for the mappings.",
                          default=os.path.join("data", "nist800-53-r4-mappings.json"))
-    parser.add_argument("-attack-data",
-                        dest="attackdata",
-                        help="URL of the attack STIX bundle to use when looking up mapping IDs",
-                        default="https://raw.githubusercontent.com/mitre/cti/subtechniques/enterprise-attack/enterprise-attack.json")
+    parser.add_argument("-domain",
+                        dest="domain",
+                        help="which ATT&CK domain to use",
+                        default="enterprise-attack")
+    parser.add_argument("-version",
+                        dest="version",
+                        help="which ATT&CK version to use",
+                        default="7.0-beta")
 
     args = parser.parse_args()
 

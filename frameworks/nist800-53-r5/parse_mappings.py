@@ -20,12 +20,13 @@ def dict_regex_lookup(thedict, regexstr):
         if regex.match(key): values.append(thedict[key])
     return values
 
-def parse_mappings(mappingspath, controls, attackdataurl, relationship_ids={}):
+def parse_mappings(mappingspath, controls, domain, version, relationship_ids={}):
     """parse the NIST800-53 revision 4 mappings and return a STIX bundle 
     of relationships mapping the controls to ATT&CK
     :param mappingspath the filepath to the mappings TSV file
     :param controls a stix2.Bundle represneting the controls framework
-    :param attackdataurl the URL of the attack STIX bundle to use when looking up mapping IDs
+    :param domain the domain of ATT&CK to use
+    :param version the version of ATT&CK to use
     :param relationship_ids is a dict of format {relationship-source-id---relationship-target-id: relationship-id} which maps relationships to desired STIX IDs
     """
 
@@ -33,7 +34,7 @@ def parse_mappings(mappingspath, controls, attackdataurl, relationship_ids={}):
 
     # load ATT&CK STIX data
     print("downloading ATT&CK data... ", end="", flush=True)
-    attackdata = requests.get("https://raw.githubusercontent.com/mitre/cti/subtechniques/enterprise-attack/enterprise-attack.json", verify=False).json()["objects"]
+    attackdata = requests.get(f"https://raw.githubusercontent.com/mitre/cti/ATT%26CK-v{version}/{domain}/{domain}.json", verify=False).json()
     print("done")
 
     # build mapping of attack ID to stixID

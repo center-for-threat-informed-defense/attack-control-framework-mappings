@@ -48,6 +48,10 @@ if __name__ == "__main__":
                         choices=["enterprise-attack", "mobile-attack", "pre-attack"],
                         help="the domain of ATT&CK to substitute",
                         default="enterprise-attack")
+    parser.add_argument("-version",
+                        dest="version",
+                        help="which ATT&CK version to use",
+                        default="7.0-beta")
     parser.add_argument("--allow-unmapped",
                         dest="allowunmapped",
                         action="store_true",
@@ -61,7 +65,7 @@ if __name__ == "__main__":
 
     print("downloading ATT&CK data... ", end="", flush=True)
     attackdata = stix2.Bundle(
-        requests.get(f"https://raw.githubusercontent.com/mitre/cti/subtechniques/{args.domain}/{args.domain}.json", verify=False).json()["objects"], 
+        requests.get(f"https://raw.githubusercontent.com/mitre/cti/ATT%26CK-v{args.version}/{args.domain}/{args.domain}.json", verify=False).json()["objects"], 
         spec_version="2.0",
         allow_custom=True)
     print("done")
