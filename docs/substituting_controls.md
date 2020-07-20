@@ -19,5 +19,5 @@ The ATT&CK Website can be constructed with controls as mitigations by following 
 The ATT&CK Navigator can be constructed with contols as mitigations by following the below methodology. Controls will be shown in the place of mitigations in the multi-select interface, allowing users to quickly select the techniques mapped to each control listed in that UI.
 1. Clone the [attack-navigator](https://github.com/mitre-attack/attack-navigator) github repository.
 2. Put the substituted STIX data in the `nav-app/src/assets` folder.
-3. in `nav-app/src/assets/config.json`, replace `enterprise_attack_url` with `assets/nist800-53-r4-enterprise-attack.json` for NIST 800-53 revision 4, or `assets/nist800-53-r5-enterprise-attack.json` for NIST 800-53 revision 5. 
+3. in `nav-app/src/assets/config.json`, replace the default `enterprise_attack_url` value with `"assets/[substituted-stix-bundle-name]"`.
 4. Following the [Install and Run](https://github.com/mitre-attack/attack-navigator#install-and-run) instructions of the ATT&CK Navigator documentation. 
