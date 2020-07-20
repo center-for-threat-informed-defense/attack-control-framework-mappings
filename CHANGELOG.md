@@ -13,6 +13,10 @@
 <!--    ### New Features                                                -->
 <!--    ### Improvements                                                -->
 <!--    ### Fixes                                                       -->
+# Changes staged on Develop
+### Improvements
+- [Added documentation](/docs/substituting_controls.md) on how to construct the ATT&CK Website and ATT&CK Navigator with controls taking the place of mitigations. See issue [#9](https://github.com/center-for-threat-informed-defense/attack-control-framework-mappings/issues/9).
+
 # 15 July 2020
 ### Improvements
 - Added additional mappings to [nist800-53-r4](frameworks/nist800-53-r4)

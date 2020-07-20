@@ -20,4 +20,4 @@ The ATT&CK Navigator can be constructed with contols as mitigations by following
 1. Clone the [attack-navigator](https://github.com/mitre-attack/attack-navigator) github repository.
 2. Put the substituted STIX data in the `nav-app/src/assets` folder.
 3. in `nav-app/src/assets/config.json`, replace the default `enterprise_attack_url` value with `"assets/[substituted-stix-bundle-name]"`.
-4. Following the [Install and Run](https://github.com/mitre-attack/attack-navigator#install-and-run) instructions of the ATT&CK Navigator documentation. 
+4. Follow the [Install and Run](https://github.com/mitre-attack/attack-navigator#install-and-run) instructions of the ATT&CK Navigator documentation. 
