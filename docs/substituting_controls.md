@@ -1,8 +1,8 @@
 # Substituting Controls for ATT&CK Mitigations
 
-The [substitute.py](util/substitute.py) utility script builds ATT&CK STIX bundles where controls and mappings take the place of ATT&CK mitigations, thereby enabling construction of the ATT&CK Website and ATT&CK Navigator with controls taking the place of mitigations. This document describes the usage of these specialty bundles, which can be found on this repo alongside their data in the framework `data` folders:
-- [NIST 800-53 Revision 4](frameworks/nist800-53-r4/data/nist800-53-r4-enterprise-attack.json)
-- [NIST 800-53 Revision 5](frameworks/nist800-53-r5/data/nist800-53-r5-enterprise-attack.json)
+The [substitute.py](/util/substitute.py) utility script builds ATT&CK STIX bundles where controls and mappings take the place of ATT&CK mitigations, thereby enabling construction of the ATT&CK Website and ATT&CK Navigator with controls taking the place of mitigations. This document describes the usage of these specialty bundles, which can be found on this repo alongside their data in the framework `data` folders:
+- [NIST 800-53 Revision 4](/frameworks/nist800-53-r4/data/nist800-53-r4-enterprise-attack.json)
+- [NIST 800-53 Revision 5](/frameworks/nist800-53-r5/data/nist800-53-r5-enterprise-attack.json)
 
 _Note: substitute.py is implemented such that only controls with mappings to ATT&CK Techniques are present in the substituted STIX bundle. If you want to build the substituted bundle with the full set of controls, run substitute.py with the `--allow-unmapped` flag._ 
 
