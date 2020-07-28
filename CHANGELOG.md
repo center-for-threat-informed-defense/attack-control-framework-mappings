@@ -13,6 +13,10 @@
 <!--    ### New Features                                                -->
 <!--    ### Improvements                                                -->
 <!--    ### Fixes                                                       -->
+# 28 July 2020
+### Improvements
+- Added additional mappings to [nist800-53-r4](frameworks/nist800-53-r4)
+
 # 15 July 2020
 ### Improvements
 - Added additional mappings to [nist800-53-r4](frameworks/nist800-53-r4)
