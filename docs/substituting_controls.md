@@ -17,7 +17,7 @@ The ATT&CK Navigator can be constructed with contols as mitigations by following
 The ATT&CK Website can be constructed with controls as mitigations by following the below methodology. The mitigation pages on the website will instead contain controls, and the mappings of mitigations to ATT&CK Techniques will be replaced with the control mappings.
 1. Clone the [attack-website](https://github.com/mitre-attack/attack-website) github repository.
 2. Replace `data/stix/enterprise-attack.json` with the substituted STIX data (renaming the substituted STIX file to be `enterprise-attack.json`).
-3. In `modules/config.py`, append the control framework identifier to the `source_names` array. The framework identifier can be found in the STIX data for the control framework inside of the `external_references` array's `source_name` field.
+3. In `modules/config.py`, append the control framework identifier to the `source_names` array. The framework identifier can be found in the `framework_id` field of the framework's `data/config.json` file.
     - For NIST 800-53 Revision 4, the source name to append is `"NIST 800-53 Revision 4"`
     - For NIST 800-53 Revision 5, the source name to append is `"NIST 800-53 Revision 5"`
 4. Follow the [Install and Build](https://github.com/mitre-attack/attack-website#install-and-build) instructions of the ATT&CK Website documentation.
