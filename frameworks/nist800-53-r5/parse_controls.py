@@ -5,6 +5,7 @@ import re
 import stix2
 import itertools
 import uuid
+import json
 
 id_formats = {
     "control": [                                                # CONTROL FORMATS:
@@ -68,14 +69,14 @@ class Control:
         """format and return the control description (statements, etc) as a markdown string"""
         return "\n\n".join([self.text, self.discussion])
 
-    def toStix(self):
+    def toStix(self, framework_id):
         """convert to a stix2 Course of Action"""
         return stix2.CourseOfAction(
             id = self.stix_id,
             name = self.name,
             description = self.format_description(),
             external_references = [ {
-                "source_name": "NIST 800-53 Revision 5",
+                "source_name": framework_id,
                 "external_id": self.external_id
             } ]
         )
@@ -87,6 +88,13 @@ def parse_controls(controlpath, control_ids={}, relationship_ids={}):
     :param control_ids is a dict of format {control_name: stixID} which maps control names (e.g AC-1) to desired STIX IDs
     :param relationship_ids is a dict of format {relationship-source-id---relationship-target-id: relationship-id}, same general purpose as control_ids
     """
+
+    print("reading framework config...", end="", flush=True)
+    # load the mapping config
+    with open(os.path.join("data", "config.json"), "r") as f:
+        config = json.load(f)
+        framework_id = config["framework_id"]
+    print("done")
 
     tqdmformat = "{desc}: {percentage:3.0f}% |{bar}| {elapsed}<{remaining}{postfix}"
 
@@ -114,7 +122,7 @@ def parse_controls(controlpath, control_ids={}, relationship_ids={}):
     # parse controls into stix
     stixcontrols = []
     for control in tqdm(controls, desc="creating controls", bar_format=tqdmformat):
-        stixcontrols.append(control.toStix())
+        stixcontrols.append(control.toStix(framework_id))
 
     # parse control relationships into stix
     relationships = []

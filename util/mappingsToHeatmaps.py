@@ -196,7 +196,7 @@ if __name__ == "__main__":
     parser.add_argument("-version",
                         dest="version",
                         help="which ATT&CK version to use",
-                        default="7.0-beta")
+                        default="v7.0-beta")
     parser.add_argument("-output",
                         help="folder to write output layers to",
                         default=os.path.join("..", "frameworks", "nist800-53-r4", "layers"))
@@ -207,7 +207,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     print("downloading ATT&CK data... ", end="", flush=True)
-    attackdata = stix2.MemoryStore(stix_data=requests.get(f"https://raw.githubusercontent.com/mitre/cti/ATT%26CK-v{args.version}/{args.domain}/{args.domain}.json", verify=False).json()["objects"])
+    attackdata = stix2.MemoryStore(stix_data=requests.get(f"https://raw.githubusercontent.com/mitre/cti/ATT%26CK-{args.version}/{args.domain}/{args.domain}.json", verify=False).json()["objects"])
     print("done")
 
     print("loading controls framework... ", end="", flush=True)

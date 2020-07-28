@@ -5,3 +5,4 @@
 | nist800-53-r5-mappings.json | STIX2.0 bundle of relationships between NIST 800-53 revision 5 controls and ATT&CK techniques. |
 | nist800-53-r5-mappings.tsv  | tab separated values expressing relationships between NIST 800-53 revision 5 controls and ATT&CK Techniques. The techniqueID and controlID columns are regular expressions, which allows for easier mapping to control families and sub-techniques. |
 | nist800-53-r5-enterprise-attack.json | Enterprise ATT&CK STIX2.0 bundle, but with mitigations substituted for NIST 800-53 revision 5 controls. |
+| config.json | Identifies the control framework, ATT&CK domain and version in a machine-readable way. |
