@@ -4,6 +4,8 @@ import requests
 import pandas as pd
 import re
 import itertools
+import json
+import os
 
 def dict_regex_lookup(thedict, regexstr):
     """return all values in the dict where the key matches the regex. Params are the dict, and a string to be used as regex"""
@@ -20,21 +22,27 @@ def dict_regex_lookup(thedict, regexstr):
         if regex.match(key): values.append(thedict[key])
     return values
 
-def parse_mappings(mappingspath, controls, domain, version, relationship_ids={}):
+def parse_mappings(mappingspath, controls, relationship_ids={}):
     """parse the NIST800-53 revision 4 mappings and return a STIX bundle 
     of relationships mapping the controls to ATT&CK
     :param mappingspath the filepath to the mappings TSV file
     :param controls a stix2.Bundle represneting the controls framework
-    :param domain the domain of ATT&CK to use
-    :param version the version of ATT&CK to use
     :param relationship_ids is a dict of format {relationship-source-id---relationship-target-id: relationship-id} which maps relationships to desired STIX IDs
     """
+
+    print("reading framework config...", end="", flush=True)
+    # load the mapping config
+    with open(os.path.join("data", "config.json"), "r") as f:
+        config = json.load(f)
+        version = config["attack_version"]
+        domain = config["attack_domain"]
+    print("done")
 
     tqdmformat = "{desc}: {percentage:3.0f}% |{bar}| {elapsed}<{remaining}{postfix}"
 
     # load ATT&CK STIX data
     print("downloading ATT&CK data... ", end="", flush=True)
-    attackdata = requests.get(f"https://raw.githubusercontent.com/mitre/cti/ATT%26CK-v{version}/{domain}/{domain}.json", verify=False).json()["objects"]
+    attackdata = requests.get(f"https://raw.githubusercontent.com/mitre/cti/ATT%26CK-{version}/{domain}/{domain}.json", verify=False).json()["objects"]
     print("done")
 
     # build mapping of attack ID to stixID
