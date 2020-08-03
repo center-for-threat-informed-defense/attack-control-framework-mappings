@@ -19,6 +19,7 @@
 - Updated [nist800-53-r4](frameworks/nist800-53-r4) to map to ATT&CK [v7.0](https://github.com/mitre/cti/releases/tag/ATT%26CK-v7.0). Previously it was mapping to [v7.0-beta](https://github.com/mitre/cti/releases/tag/ATT%26CK-v7.0-beta).
 - Added machine-readable `config.json` file to the framework data folders. This file identifies the control framework, ATT&CK domain and version for the parsers and allows `make.py` to support mixed domains and versions between different sets of mappings. See issue [#15](https://github.com/center-for-threat-informed-defense/attack-control-framework-mappings/issues/15).
 - [Added documentation](/docs/substituting_controls.md) on how to construct the ATT&CK Website and ATT&CK Navigator with controls taking the place of mitigations. See issue [#9](https://github.com/center-for-threat-informed-defense/attack-control-framework-mappings/issues/9).
+- This release contains mappings for the techniques and sub-techniques covered in the following mitigation families: Audit (M1047), Execution Prevention (M1038), Behavior Prevention on Endpoint (M1040), Boot Integrity (M1046), Environment Variable Permissions (M1039), Encrypt Sensitive Information (M1041), Code Signing (M1045), Disable or Remove Feature or Program (M1042), Data Backup (M1053), and Credential Access Protection (M1043).  
 
 # 15 July 2020
 ### Improvements
