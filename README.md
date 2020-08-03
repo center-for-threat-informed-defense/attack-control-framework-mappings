@@ -1,4 +1,4 @@
-# ATT&CK Control Mappings
+# ATT&CK Control Framework Mappings
 This repository includes tools and data for mapping control frameworks to MITRE ATT&amp;CK. In addition to mapping the frameworks, it defines a common STIX2.0 representation for control frameworks &mdash; see [output data](#output-data), below.
 
 See also:
@@ -15,10 +15,10 @@ This repository provides data representing control frameworks, and mappings from
 Each framework folder includes the framework and mapping data in a `/data/` folder, and ATT&CK Navigator Layers in the `/layers/` folder. The [install](#install) section below explains how to set up this repository for local use if you intend to extend the defined mappings.
 
 
-## Input Data
+## Input data
 Each control framework has one input for the controls and one for the mappings. The controls input is generally supplied by the organization publishing the controls in the first place. The mappings were created as part of this project. 
 
-## Framework Parser
+## Framework parser
 
 <img src="docs/parser_overview.png" width="720px">
 
@@ -28,7 +28,7 @@ The controls parser consists of two major parts, `parse_controls.py` and the `pa
 - `parse_controls.py` takes as input the controls spreadsheet and builds a STIX2.0 representation of the control framework. Because the representation of each control framework differs, this script will likely have to be rewritten for each additional control framework since the input data format is not standardized.
 - `parse_mappings.py` takes as input the mappings spreadsheet, and the STIX representation of the control framework and builds a STIX2.0 representation of the mappings to ATT&CK. Because the input mappings file format can be standardized, this parser can often be reused when adding additional control frameworks.
 
-## Output Data
+## Output data
 
 The controls parser system outlined above produces a series of STIX2.0 bundles representing the controls framework as well as mappings to ATT&CK. See the README of the data folder for a given framework for a description of each file:
 - [NIST 800-53 Revision 4](frameworks/nist800-53-r4/data/)
@@ -41,7 +41,7 @@ The general format is as follows:
 - `x_mitre_` properties are added to control `course-of-action` objects for additional properties depending on the control framework, such as the control family (`x_mitre_family`) or control priority (`x_mitre_priority`). These additional properties are not standardized across control frameworks, and are described in the README of each control framework.
 - Mappings from individual controls to ATT&CK techniques and sub-techniques are represented as [relationships](https://docs.oasis-open.org/cti/stix/v2.0/csprd01/part2-stix-objects/stix-v2.0-csprd01-part2-stix-objects.html#_Toc476230970) of type `mitigates`, where the `source_ref` is the `id` of the control and the `target_ref` is the `id` of the technique or sub-technique. The optional `description` field on the relationship is taken from the input spreadsheet if a description is given there, and is used to justify the mapping of the control.
 
-## Utility Scripts
+## Utility scripts
 
 The [/util/](util/) folder includes utility scripts designed to work with generic control frameworks and mappings that implement the format described [above](#output-data). Please see the readme in the util folder for more details of the functionality of these scripts.
 
@@ -50,7 +50,7 @@ The [/util/](util/) folder includes utility scripts designed to work with generi
 
 - [python](https://www.python.org/) 3.6 or greater
 
-## Environment Setup
+## Environment setup
 
 1. Create a virtual environment: 
     - macOS and Linux: `python3 -m venv env`
