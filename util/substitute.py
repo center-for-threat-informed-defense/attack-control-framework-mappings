@@ -1,4 +1,4 @@
-import stix2
+from stix2.v20 import Bundle
 import argparse
 import os
 import requests
@@ -32,7 +32,7 @@ def substitute(attackbundle, controlsbundle, mappingsbundle, allowunmapped=False
     # add mappings
     outobjects += mappingsbundle.objects
 
-    return stix2.Bundle(*outobjects, spec_version="2.0", allow_custom=True)
+    return Bundle(*outobjects, allow_custom=True)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="substitute the mitigations in ATT&CK with a controls framework")
@@ -64,20 +64,19 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     print("downloading ATT&CK data... ", end="", flush=True)
-    attackdata = stix2.Bundle(
+    attackdata = Bundle(
         requests.get(f"https://raw.githubusercontent.com/mitre/cti/ATT%26CK-{args.version}/{args.domain}/{args.domain}.json", verify=False).json()["objects"], 
-        spec_version="2.0",
         allow_custom=True)
     print("done")
     
     print("loading controls framework... ", end="", flush=True)
     with open(args.controls, "r") as f:
-        controls = stix2.Bundle(json.load(f)["objects"], spec_version="2.0", allow_custom=True)
+        controls = Bundle(json.load(f)["objects"], allow_custom=True)
     print("done")
 
     print("loading mappings... ", end="", flush=True)
     with open(args.mappings, "r") as f:
-        mappings = stix2.Bundle(json.load(f)["objects"], spec_version="2.0")
+        mappings = Bundle(json.load(f)["objects"])
     print("done")
 
     print("substituting... ", end="", flush=True)
