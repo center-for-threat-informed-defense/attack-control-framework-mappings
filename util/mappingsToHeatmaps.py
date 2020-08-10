@@ -1,6 +1,6 @@
 import argparse
 import re
-import stix2
+from stix2 import Filter, MemoryStore
 import os
 import json
 import requests
@@ -74,7 +74,7 @@ def getFrameworkOverviewLayers(controls, mappings, attackdata, domain, framework
     idToFamily = re.compile("(\w+)-.*")
     familyIDToControls = {} # family ID to control object
     familyIDToName = {}
-    for control in controls.query([stix2.Filter("type", "=", "course-of-action")]):
+    for control in controls.query([Filter("type", "=", "course-of-action")]):
         familyID = idToFamily.search(control["external_references"][0]["external_id"]).groups()[0]
         if familyID not in familyIDToControls:
             familyIDToControls[familyID] = [control]
@@ -97,7 +97,7 @@ def getFrameworkOverviewLayers(controls, mappings, attackdata, domain, framework
         }
     ]
     for familyID in familyIDToControls:
-        controlsInFamily = stix2.MemoryStore(stix_data=familyIDToControls[familyID])
+        controlsInFamily = MemoryStore(stix_data=familyIDToControls[familyID])
         techniquesInFamily = toTechniquelist(controlsInFamily, mappings, attackdata)
         if len(techniquesInFamily) > 0: # don't build heatmaps with no mappings
             # build family overview mapping
@@ -112,7 +112,7 @@ def getFrameworkOverviewLayers(controls, mappings, attackdata, domain, framework
             })
             # build layer for each control
             for control in familyIDToControls[familyID]:
-                controlMs = stix2.MemoryStore(stix_data=control)
+                controlMs = MemoryStore(stix_data=control)
                 control_id = control["external_references"][0]["external_id"]
                 techniquesMappedToControl = toTechniquelist(controlMs, mappings, attackdata)
                 if len(techniquesMappedToControl) > 0: # don't build heatmaps with no mappings
@@ -141,7 +141,7 @@ def getLayersByProperty(controls, mappings, attackdata, domain, frameworkname, x
             propertyValueToControls[value] = [control]
     # iterate through controls, grouping by property
     isListType = False
-    for control in controls.query([stix2.Filter("type", "=", "course-of-action")]):
+    for control in controls.query([Filter("type", "=", "course-of-action")]):
         value = control.get(x_mitre)
         if not value: continue
         if isinstance(value, list):
@@ -152,7 +152,7 @@ def getLayersByProperty(controls, mappings, attackdata, domain, frameworkname, x
     outlayers = []
     for value in propertyValueToControls:
         # controls for the corresponding values
-        controlsOfValue = stix2.MemoryStore(stix_data=propertyValueToControls[value])
+        controlsOfValue = MemoryStore(stix_data=propertyValueToControls[value])
         techniques = toTechniquelist(controlsOfValue, mappings, attackdata)
         if len(techniques) > 0:
             # build layer for this technique set
@@ -171,7 +171,7 @@ def getLayersByProperty(controls, mappings, attackdata, domain, frameworkname, x
 def get_x_mitre(ms, type="course-of-action"):
     """return a list of all x_mitre_ properties defined on the given type"""
     keys = set()
-    for obj in ms.query([stix2.Filter("type", "=", type)]):
+    for obj in ms.query([Filter("type", "=", type)]):
         for key in obj:
             if key.startswith("x_mitre_"): keys.add(key)
     return keys
@@ -207,17 +207,17 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     print("downloading ATT&CK data... ", end="", flush=True)
-    attackdata = stix2.MemoryStore(stix_data=requests.get(f"https://raw.githubusercontent.com/mitre/cti/ATT%26CK-{args.version}/{args.domain}/{args.domain}.json", verify=False).json()["objects"])
+    attackdata = MemoryStore(stix_data=requests.get(f"https://raw.githubusercontent.com/mitre/cti/ATT%26CK-{args.version}/{args.domain}/{args.domain}.json", verify=False).json()["objects"])
     print("done")
 
     print("loading controls framework... ", end="", flush=True)
     with open(args.controls, "r") as f:
-        controls = stix2.MemoryStore(stix_data=json.load(f)["objects"], allow_custom=True)
+        controls = MemoryStore(stix_data=json.load(f)["objects"], allow_custom=True)
     print("done")
 
     print("loading mappings... ", end="", flush=True)
     with open(args.mappings, "r") as f:
-        mappings = stix2.MemoryStore(stix_data=json.load(f)["objects"])
+        mappings = MemoryStore(stix_data=json.load(f)["objects"])
     print("done")
 
     

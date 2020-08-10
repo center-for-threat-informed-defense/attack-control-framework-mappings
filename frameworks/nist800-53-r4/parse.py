@@ -1,4 +1,3 @@
-import stix2
 import argparse
 import os
 import json
