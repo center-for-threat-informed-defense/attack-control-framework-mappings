@@ -15,7 +15,7 @@
 <!--    ### Fixes                                                       -->
 # 10 August 2020
 - Added additional mappings to [nist800-53-r4](frameworks/nist800-53-r4).
-- Updated parsers so that errors are colored terminal, making them more noticeable.
+- Updated parsers so that errors are colored in the terminal, making them more noticeable.
 - Updated imports to lock stix2 to use v2.0. This will make updating to STIX 2.1 easier in the future. See issue [#20](https://github.com/center-for-threat-informed-defense/attack-control-framework-mappings/issues/20).
 
 # 3 August 2020
