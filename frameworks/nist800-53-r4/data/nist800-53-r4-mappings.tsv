@@ -216,3 +216,24 @@ T1070\.003	AU-\d+	Audit	7/31/20
 T1070\.003	CM-(1|2|6)	"Configuring system settings, Configuration Management"	7/31/20
 T1070\.003	SI-4	System Monitoring	7/31/20
 T1548(\.004)?	CM-(1|2|6|7|8)	"Configuring system settings, Configuration Management, Application Control"	7/31/20
+T1189	(AU-\d+|AC-(4|6)|SC-(2|3|7|18|29|30|39)|CM-8|SI-(3|4))		8/5/20
+T1190	(AU-\d+|AC-(4|6)|SC-(2|3|7|18|29|30|39)|CM-8|SI-(3|4|10)|SA-8)		8/5/20
+T1203	(AU-\d+|AC-(4|6)|SC-(2|3|7|18|29|30|39)|CM-8|SI-(3|4))		8/5/20
+T1212	(AU-\d+|AC-(4|6)|SC-(2|3|7|18|29|30|39)|CM-8|SI-(2|3|4))		8/5/20
+T1211	(AU-\d+|AC-(4|6)|SC-(2|3|7|18|29|30|39)|CM-8|SI-(2|3|4))		8/5/20
+T1068	(AU-\d+|AC-(4|6)|SC-(2|3|7|18|29|30|39)|CM-8|SI-(2|3|4))		8/5/20
+T1210	(AU-\d+|AC-(4|6)|SC-(2|3|7|18|29|30|39)|CM-8|SI-(2|3|4))		8/5/20
+T1559(\.002|.001|.003)?	(AU-\d+|AC-(4|6)|SC-(3|7|18)|CM-(2|6)|SI-3)		8/5/20
+T1078	(AU-\d+|PL-8|SA-(3|4|8|10|11|12|15|16|17)|RA-5|CA-8|SC-28|IA-5)		8/5/20
+T1546\.(002|006|008|009|01)	AU-\d+	Audit	8/6/20
+T1546\.(002|006|008|009|01)	CM-(1|7)	"Configuration Management, Application Control"	8/6/20
+T1546\.(002|006|008|009|01)	SI-(7|10)	Information Validation	8/6/20
+T1564\.(003|006)	AU-\d+	Audit	8/6/20
+T1564\.(003|006)	CM-(1|7)	"Configuration Management, Application Control"	8/6/20
+T1564\.(003|006)	SI-(7|10)	Information Validation	8/6/20
+T1574(\.(009|007|008|001|006|012))?	AU-\d+	Audit	8/6/20
+T1574(\.(009|007|008|001|006|012))?	CM-(1|7)	"Configuration Management, Application Control"	8/6/20
+T1574(\.(009|007|008|001|006|012))?	SI-(7|10)	Information Validation	8/6/20
+T1036(\.005)?	AU-\d+	Audit	8/6/20
+T1036(\.005)?	CM-(1|2|7)	"Configuration Management, Application Control"	8/6/20
+T1036(\.005)?	SI-(4|7|10)	"System Monitoring, Information Validation"	8/6/20

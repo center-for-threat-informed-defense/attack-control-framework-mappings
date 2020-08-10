@@ -1,4 +1,4 @@
-import stix2
+from stix2.v20 import Bundle, Relationship
 from tqdm import tqdm
 import requests
 import pandas as pd
@@ -6,6 +6,7 @@ import re
 import itertools
 import json
 import os
+from colorama import Fore
 
 def dict_regex_lookup(thedict, regexstr):
     """return all values in the dict where the key matches the regex. Params are the dict, and a string to be used as regex"""
@@ -15,7 +16,7 @@ def dict_regex_lookup(thedict, regexstr):
     try:
         regex = re.compile(regexstr)
     except Exception as err: 
-        print("cannot compile regex", regexstr, "because of", err)
+        print(Fore.RED + "ERROR: cannot compile regex", regexstr, "because of", err, Fore.RESET)
         exit()
     values = []
     for key in thedict:
@@ -75,9 +76,9 @@ def parse_mappings(mappingspath, controls, relationship_ids={}):
         description = row["description"] if row["description"] else None
 
         if not fromIDs:
-            print("error looking up controlID", row["controlID"])
+            print(Fore.RED + "ERROR: cannot find controlID", row["controlID"], Fore.RESET)
         if not toIDs:
-            print("error looking up techniqueID", row["techniqueID"])
+            print(Fore.RED + "ERROR: cannot find techniqueID", row["techniqueID"], Fore.RESET)
         if not fromIDs or not toIDs:
             exit()
 
@@ -86,7 +87,7 @@ def parse_mappings(mappingspath, controls, relationship_ids={}):
             for toID in toIDs:
                 joined_id = f"{fromID}---{toID}"
                 # build the mapping relationship
-                relationships.append(stix2.Relationship(
+                relationships.append(Relationship(
                     id=relationship_ids[joined_id] if joined_id in relationship_ids else None,
                     source_ref=fromID,
                     target_ref=toID,
@@ -95,4 +96,4 @@ def parse_mappings(mappingspath, controls, relationship_ids={}):
                 ))
 
     # construct and return the bundle of relationships
-    return stix2.Bundle(relationships, spec_version="2.0")
+    return Bundle(relationships)

@@ -1,9 +1,10 @@
-import stix2
+from stix2.v20 import Bundle
 import pandas as pd
 import argparse
 import os
 import requests
 import json
+from colorama import Fore
 
 def mappingsToDF(attackbundle, controlsbundle, mappingsbundle):
     """Return a pandas dataframe listing the mappings in mappingsbundle"""
@@ -56,24 +57,23 @@ if __name__ == "__main__":
 
     extension = args.output.split(".")[-1]
     if extension not in extensionToPDExport:
-        print(f"ERROR: Unknown output extension \"{extension}\", please make sure your output extension is one of: {allowedExtensionList}")
+        print(Fore.RED + f"ERROR: Unknown output extension \"{extension}\", please make sure your output extension is one of: {allowedExtensionList}", Fore.reset)
         exit()
 
     print("downloading ATT&CK data... ", end="", flush=True)
-    attackdata = stix2.Bundle(
-        requests.get(f"https://raw.githubusercontent.com/mitre/cti/ATT%26CK-v{args.version}/{args.domain}/{args.domain}.json", verify=False).json()["objects"], 
-        spec_version="2.0",
+    attackdata = Bundle(
+        requests.get(f"https://raw.githubusercontent.com/mitre/cti/ATT%26CK-v{args.version}/{args.domain}/{args.domain}.json", verify=False).json()["objects"],
         allow_custom=True)
     print("done")
 
     print("loading controls framework... ", end="", flush=True)
     with open(args.controls, "r") as f:
-        controls = stix2.Bundle(json.load(f)["objects"], spec_version="2.0", allow_custom=True)
+        controls = Bundle(json.load(f)["objects"], allow_custom=True)
     print("done")
 
     print("loading mappings... ", end="", flush=True)
     with open(args.mappings, "r") as f:
-        mappings = stix2.Bundle(json.load(f)["objects"], spec_version="2.0")
+        mappings = Bundle(json.load(f)["objects"])
     df = mappingsToDF(attackdata, controls, mappings)
     print("done")
 

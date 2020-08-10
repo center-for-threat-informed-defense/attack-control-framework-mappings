@@ -2,7 +2,7 @@ import pandas as pd
 import os
 from tqdm import tqdm
 import re
-import stix2
+from stix2.v20 import Bundle, Relationship, CourseOfAction
 import itertools
 import uuid
 import json
@@ -71,7 +71,7 @@ class Control:
 
     def toStix(self, framework_id):
         """convert to a stix2 Course of Action"""
-        return stix2.CourseOfAction(
+        return CourseOfAction(
             id = self.stix_id,
             name = self.name,
             description = self.format_description(),
@@ -133,7 +133,7 @@ def parse_controls(controlpath, control_ids={}, relationship_ids={}):
             source_id = control.stix_id
             joined_id = f"{source_id}---{target_id}"
 
-            relationships.append(stix2.Relationship(
+            relationships.append(Relationship(
                 id=relationship_ids[joined_id] if joined_id in relationship_ids else None,
                 source_ref=source_id,
                 target_ref=target_id,
@@ -147,7 +147,7 @@ def parse_controls(controlpath, control_ids={}, relationship_ids={}):
                 source_id = control.stix_id
                 target_id = control_ids[related_id]
                 joined_id = f"{source_id}---{target_id}"
-                relationships.append(stix2.Relationship(
+                relationships.append(Relationship(
                     id=relationship_ids[joined_id] if joined_id in relationship_ids else None,
                     source_ref=source_id,
                     target_ref=target_id,
@@ -155,5 +155,5 @@ def parse_controls(controlpath, control_ids={}, relationship_ids={}):
                 ))
 
 
-    return stix2.Bundle(*itertools.chain(stixcontrols, relationships), spec_version="2.0")
+    return Bundle(*itertools.chain(stixcontrols, relationships))
 
