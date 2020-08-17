@@ -26,10 +26,18 @@ T1490	AU-\d+	Audit	5/29/20
 T1490	CM-(2|6)	Configuring system settings	5/29/20
 T1490	CP-(2|7|9|10)	"Data backup, disaster recovery, system hardening, off site backups"	5/29/20
 T1490	SI-(3|4|7|12)	"System Monitoring, malware"	5/29/20
+T1098\.004	AU-\d+	Audit	7/31/20
+T1098\.004	CM-(1|2|6|8)	"Configuring system settings, Configuration Management"	7/31/20
+T1098\.004	RA-5	Vulnerability Scanning	7/31/20
+T1098\.004	SI-(3|4)	"System Monitoring, malware"	7/31/20
 T1547\.007	AU-\d+	Audit	5/29/20
 T1547\.007	CM-(1|2|6|8)	"Configuring system settings, Configuration Management"	5/29/20
 T1547\.007	RA-5	Vulnerability Scanning	5/29/20
 T1547\.007	SI-(3|4)	"System Monitoring, malware"	5/29/20
+T1059(\.(001|005|007))?	AU-\d+	Audit	7/31/20
+T1059(\.(001|005|007))?	CM-(1|2|6|8)	"Configuring system settings, Configuration Management"	7/31/20
+T1059(\.(001|005|007))?	RA-5	Vulnerability Scanning	7/31/20
+T1059(\.(001|005|007))?	SI-(3|4)	"System Monitoring, malware"	7/31/20
 T1092	AU-\d+	Audit	5/29/20
 T1092	CM-(1|2|6|8)	"Configuring system settings, Configuration Management"	5/29/20
 T1092	RA-5	Vulnerability Scanning	5/29/20
@@ -55,6 +63,10 @@ T1133	AU-\d+	Audit	5/29/20
 T1133	CM-(1|2|6|8)	"Configuring system settings, Configuration Management"	5/29/20
 T1133	RA-5	Vulnerability Scanning	5/29/20
 T1133	SI-4	System Monitoring	5/29/20
+T1564\.006	AU-\d+	Audit	7/31/20
+T1564\.006	CM-(1|2|6|8)	"Configuring system settings, Configuration Management"	7/31/20
+T1564\.006	IR-5	Incident Monitoring	7/31/20
+T1564\.006	SI-4	System Monitoring	7/31/20
 T1559(\.002)?	AU-\d+	Audit	5/29/20
 T1559(\.002)?	CM-(1|2|6|8)	"Configuring system settings, Configuration Management"	5/29/20
 T1559(\.002)?	RA-5	Vulnerability Scanning	5/29/20
@@ -87,6 +99,7 @@ T1091	CM-(1|2|6|8)	"Configuring system settings, Configuration Management"	5/29/
 T1091	RA-5	Vulnerability Scanning	5/29/20
 T1091	SI-(3|4)	"System Monitoring, malware"	5/29/20
 T1218(\.(003|004|005|008|009))?	AU-\d+	Audit	5/29/20
+T1218(\.(003|004|005|008|009))?	CM-(1|2|6|7|8)	"Configuring system settings, Configuration Management, Application Control"	7/31/20
 T1218(\.(003|004|005|008|009))?	RA-5	Vulnerability Scanning	5/29/20
 T1218(\.(003|004|005|008|009))?	SI-4	System Monitoring	5/29/20
 T1221	AU-\d+	Audit	5/29/20
@@ -127,6 +140,11 @@ T1114(\.(001|002|003))?	AU-\d+	Audit	6/24/20
 T1114(\.(001|002|003))?	AC-(4|16|17|19|20)	Access Control	6/24/20
 T1114(\.(001|002|003))?	PM-11	Mission/business processes 	6/24/20
 T1114(\.(001|002|003))?	SI-(4|7|12)	System Monitoring	6/24/20
+T1070(\.(001|002))?	AU-\d+	Audit	7/31/20
+T1070(\.(001|002))?	AC-(16|17|18|19)	Access Control	7/31/20
+T1070(\.(001|002))?	SC-4	Off-system Storage	7/31/20
+T1070(\.(001|002))?	PM-11	Mission/business processes 	7/31/20
+T1070(\.(001|002))?	SI-(4|7|12)	System Monitoring	7/31/20
 T1040	AU-\d+	Audit	6/24/20
 T1040	AC-(16|17|18|19)	Access Control	6/24/20
 T1040	SC-4	Off-system Storage	6/24/20
@@ -154,12 +172,16 @@ T1550\.001	SI-(4|7|12)	System Monitoring	6/24/20
 T1562\.003	AU-\d+	Audit	6/24/20
 T1562\.003	CM-(1|2|6)	"Configuring system settings, Configuration Management"	6/24/20
 T1562\.003	SI-4	System Monitoring	6/24/20
+T1070\.003	AU-\d+	Audit	7/31/20
+T1070\.003	CM-(1|2|6)	"Configuring system settings, Configuration Management"	7/31/20
+T1070\.003	SI-4	System Monitoring	7/31/20
 T1495	(AU-\d+|CA-8|CM-(3|5|8)|SA-10|SA-11|SI-(2|7)|IA-7)		6/24/20
 T1542(\.001|.003)?	(AU-\d+|CA-8|CM-(3|5|8)|SA-10|SA-11|SI-(2|7)|IA-7|SC-34)		6/24/20
 T1195\.003	(AU-\d+|CA-8|CM-(3|5|8)|SA-10|SA-11|SI-(2|7)|IA-7|SC-34)		6/24/20
 T1559(\.002)?	(AU-\d+|AC-(4|6)|SI-(2|3|4)|CM-(2|6)|SC-(7|18))		6/24/20
 T1055(\.001|.002|.012|.003|.004|.005|.008|.009|.011|.013|.014)?	(AU-\d+|AC-6|SI-(2|3|4)|SC-(7|18))		6/24/20
 T1548(\.004)?	AU-\d+	Audit	7/10/20
+T1548(\.004)?	CM-(1|2|6|7|8)	"Configuring system settings, Configuration Management, Application Control"	7/31/20
 T1548(\.004)?	SC-(18|34)	Code execution	7/10/20
 T1548(\.004)?	SI-(3|4|7|12|16)	System Monitoring	7/10/20
 T1547(\.004|006)	AU-\d+	Audit	7/10/20
@@ -194,28 +216,6 @@ T1528	(AU-\d+|CA-8|RA-5|CM-(2|6)|SI-4|SA-(15|11)|AC-(2|6)|IA-(2|4))		7/20/20
 T1552(\.001|.002|.004|.006)?	(AU-\d+|CA-8|RA-5|SI-4|SA-(15|11)|AC-2|IA-(2|5))		7/20/20
 T1550	(AU-\d+|CA-8|RA-5|SI-4|SA-(15|11)|AC-(2|6)|IA-(2|4)|CM-(2|6))		7/20/20
 T1484	(AU-\d+|CA-8|RA-5|SI-4|AC-(2|3|4|6)|CM-(2|6|7|5))		7/21/20
-T1098\.004	AU-\d+	Audit	7/31/20
-T1098\.004	CM-(1|2|6|8)	"Configuring system settings, Configuration Management"	7/31/20
-T1098\.004	RA-5	Vulnerability Scanning	7/31/20
-T1098\.004	SI-(3|4)	"System Monitoring, malware"	7/31/20
-T1059(\.(001|005|007))?	AU-\d+	Audit	7/31/20
-T1059(\.(001|005|007))?	CM-(1|2|6|8)	"Configuring system settings, Configuration Management"	7/31/20
-T1059(\.(001|005|007))?	RA-5	Vulnerability Scanning	7/31/20
-T1059(\.(001|005|007))?	SI-(3|4)	"System Monitoring, malware"	7/31/20
-T1564\.006	AU-\d+	Audit	7/31/20
-T1564\.006	CM-(1|2|6|8)	"Configuring system settings, Configuration Management"	7/31/20
-T1564\.006	IR-5	Incident Monitoring	7/31/20
-T1564\.006	SI-4	System Monitoring	7/31/20
-T1218(\.(003|004|005|008|009))?	CM-(1|2|6|7|8)	"Configuring system settings, Configuration Management, Application Control"	7/31/20
-T1070(\.(001|002))?	AU-\d+	Audit	7/31/20
-T1070(\.(001|002))?	AC-(16|17|18|19)	Access Control	7/31/20
-T1070(\.(001|002))?	SC-4	Off-system Storage	7/31/20
-T1070(\.(001|002))?	PM-11	Mission/business processes 	7/31/20
-T1070(\.(001|002))?	SI-(4|7|12)	System Monitoring	7/31/20
-T1070\.003	AU-\d+	Audit	7/31/20
-T1070\.003	CM-(1|2|6)	"Configuring system settings, Configuration Management"	7/31/20
-T1070\.003	SI-4	System Monitoring	7/31/20
-T1548(\.004)?	CM-(1|2|6|7|8)	"Configuring system settings, Configuration Management, Application Control"	7/31/20
 T1189	(AU-\d+|AC-(4|6)|SC-(2|3|7|18|29|30|39)|CM-8|SI-(3|4))		8/5/20
 T1190	(AU-\d+|AC-(4|6)|SC-(2|3|7|18|29|30|39)|CM-8|SI-(3|4|10)|SA-8)		8/5/20
 T1203	(AU-\d+|AC-(4|6)|SC-(2|3|7|18|29|30|39)|CM-8|SI-(3|4))		8/5/20
@@ -237,3 +237,69 @@ T1574(\.(009|007|008|001|006|012))?	SI-(7|10)	Information Validation	8/6/20
 T1036(\.005)?	AU-\d+	Audit	8/6/20
 T1036(\.005)?	CM-(1|2|7)	"Configuration Management, Application Control"	8/6/20
 T1036(\.005)?	SI-(4|7|10)	"System Monitoring, Information Validation"	8/6/20
+T1219	AU-\d+	Audit	8/12/20
+T1219	CM-(1|2|7)	"Configuration Management, Application Control"	8/12/20
+T1219	SI-(4|7|10)	"System Monitoring, Information Validation"	8/12/20
+T1129	AU-\d+	Audit	8/12/20
+T1129	CM-(1|2|7)	"Configuration Management, Application Control"	8/12/20
+T1129	SI-(4|7|10)	"System Monitoring, Information Validation"	8/12/20
+T1218(\.(003|001|004|005|009|002|008))?	AU-\d+	Audit	8/12/20
+T1218(\.(003|001|004|005|009|002|008))?	CM-(1|2|6|7)	"Configuring system settings, Configuration Management, Application Control"	8/12/20
+T1218(\.(003|001|004|005|009|002|008))?	SI-(4|7|10)	"System Monitoring, Information Validation"	8/12/20
+T1216(\.001)?	AU-\d+	Audit	8/12/20
+T1216(\.001)?	CM-(1|2|6|7)	"Configuring system settings, Configuration Management, Application Control"	8/12/20
+T1216(\.001)?	SI-(4|7|10)	"System Monitoring, Information Validation"	8/12/20
+T1553(\.001|.003)?	AU-\d+	Audit	8/12/20
+T1553(\.001|.003)?	CM-(1|2|6|7)	"Configuring system settings, Configuration Management, Application Control"	8/12/20
+T1553(\.001|.003)?	SI-(4|7|10)	"System Monitoring, Information Validation"	8/12/20
+T1080	AU-\d+	Audit	8/12/20
+T1080	CM-(1|2|7)	"Configuration Management, Application Control"	8/12/20
+T1080	SI-(4|7|10)	"System Monitoring, Information Validation"	8/12/20
+T1127	AU-\d+	Audit	8/12/20
+T1127	CM-(1|2|6|7)	"Configuring system settings, Configuration Management, Application Control"	8/12/20
+T1127	SI-(4|7|10)	"System Monitoring, Information Validation"	8/12/20
+T1204(\.002)?	AU-\d+	Audit	8/12/20
+T1204(\.002)?	CM-(1|2|7)	"Configuration Management, Application Control"	8/12/20
+T1204(\.002)?	SI-(4|7|10)	"System Monitoring, Information Validation"	8/12/20
+T1220	AU-\d+	Audit	8/12/20
+T1220	CM-(1|2|6|7)	"Configuring system settings, Configuration Management, Application Control"	8/12/20
+T1220	SI-(4|7|10)	"System Monitoring, Information Validation"	8/12/20
+T1189	AU-\d+	Audit	8/12/20
+T1189	CA-7	Continuous Monitoring	8/12/20
+T1189	SI-(4|7)	System Monitoring	8/12/20
+T1190	AU-\d+	Audit	8/12/20
+T1190	CA-7	Continuous Monitoring	8/12/20
+T1190	SI-(4|7)	System Monitoring	8/12/20
+T1203	AU-\d+	Audit	8/12/20
+T1203	CA-7	Continuous Monitoring	8/12/20
+T1203	SI-(4|7)	System Monitoring	8/12/20
+T1212	AU-\d+	Audit	8/12/20
+T1212	CA-7	Continuous Monitoring	8/12/20
+T1212	SI-(4|7)	System Monitoring	8/12/20
+T1211	AU-\d+	Audit	8/12/20
+T1211	CA-7	Continuous Monitoring	8/12/20
+T1211	SI-(4|7)	System Monitoring	8/12/20
+T1068	AU-\d+	Audit	8/12/20
+T1068	CA-7	Continuous Monitoring	8/12/20
+T1068	SI-(4|7)	System Monitoring	8/12/20
+T1210	AU-\d+	Audit	8/12/20
+T1210	CA-7	Continuous Monitoring	8/12/20
+T1210	SI-(4|7)	System Monitoring	8/12/20
+T1218(\.011|.010)?	AU-\d+	Audit	8/12/20
+T1218(\.011|.010)?	CA-7	Continuous Monitoring	8/12/20
+T1218(\.011|.010)?	SI-(4|7|10)	"System Monitoring, Information Validation"	8/12/20
+T1080	AU-\d+	Audit	8/12/20
+T1080	CA-7	Continuous Monitoring	8/12/20
+T1080	SI-(4|7)	System Monitoring	8/12/20
+T1547(\.006)	(AU-\d+|SI-(2|3|4|7|10))		8/17/20
+T1059(\.005|.001|.006)?	(AU-\d+|SI-(2|3|4))		8/17/20
+T1027(\.002)?	(AU-\d+|SI-(2|3|4))		8/17/20
+T1027(\.002)?	SI-7		8/17/20
+T1566(\.001.|.003)?	(AU-\d+|SI-(2|3|4))		8/17/20
+T1221	(AU-\d+|SI-(2|3|4|7|10)|SC-7)		8/17/20
+T1134(\.005)	(AU-\d+|AC-(3|4|5|6|20)|SA-(4|8|11|17)|SC-3|CM-(2|6))		8/17/20
+T1003(\.006|.005)?	(AU-\d+|AC-(2|4|5|6)|IA-(2|4|5)|CM-(2|6))		8/17/20
+T1072	(AU-\d+|AC-(2|3|4|5|6)|CM-(2|6))		8/17/20
+T1558(\.001)?	(AU-\d+|AC-(2|5|6)|CM-(2|6)|IA-5)		8/17/20
+T1552(\.006)?	(AU-\d+|AC-(2|5|6)|CM-(2|6)|IA-5)		8/17/20
+T1550\.003	(AU-\d+|AC-(2|5|6)|CM-(2|6)|IA-5)		8/17/20
