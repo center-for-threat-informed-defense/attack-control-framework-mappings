@@ -13,11 +13,13 @@
 <!--    ### New Features                                                -->
 <!--    ### Improvements                                                -->
 <!--    ### Fixes                                                       -->
-# 10 August 2020
+# 17 August 2020
 - Added additional mappings to [nist800-53-r4](frameworks/nist800-53-r4).
+
+# 10 August 2020
+- Added additional mappings to [nist800-53-r4](frameworks/nist800-53-r4). This release contains mappings for the techniques and sub-techniques covered in the following mitigation families: Application Isolation and Sandboxing (M1048), Application Developer Guidance (M1013), and Execution Prevention (M1038).  
 - Updated parsers so that errors are colored in the terminal, making them more noticeable.
 - Updated imports to lock stix2 to use v2.0. This will make updating to STIX 2.1 easier in the future. See issue [#20](https://github.com/center-for-threat-informed-defense/attack-control-framework-mappings/issues/20).
-- This release contains mappings for the techniques and sub-techniques covered in the following mitigation families: Application Isolation and Sandboxing (M1048), Application Developer Guidance (M1013), and Execution Prevention (M1038).  
 
 # 3 August 2020
 ### Improvements
