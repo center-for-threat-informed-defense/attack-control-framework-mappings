@@ -10,8 +10,18 @@ def mappingsToDF(attackbundle, controlsbundle, mappingsbundle):
     """Return a pandas dataframe listing the mappings in mappingsbundle"""
     rows = []
     for mapping in mappingsbundle.objects:
-        control = controlsbundle.get(mapping.source_ref)[0]
-        technique = attackbundle.get(mapping.target_ref)[0]
+        control = controlsbundle.get(mapping.source_ref)
+        if not control:
+            print(Fore.RED + f"ERROR: cannot find object with ID {mapping.source_ref} in controls bundle" + Fore.RESET)
+            exit()
+        else: control = control[0]
+
+        technique = attackbundle.get(mapping.target_ref)
+        if not technique:
+            print(Fore.RED + f"ERROR: cannot find object with ID {mapping.target_ref} in ATT&CK bundle" + Fore.RESET)
+            exit()
+        else: technique = technique[0]
+
         rows.append({
             "control ID": control["external_references"][0]["external_id"],
             "control name": control["name"],
@@ -48,7 +58,7 @@ if __name__ == "__main__":
     parser.add_argument("-version",
                         dest="version",
                         help="which ATT&CK version to use",
-                        default="7.0-beta")
+                        default="7.0")
     parser.add_argument("-output",
                         help=f"filepath to write the output mappings to. Output format will be inferred from the extension. Allowed extensions: {allowedExtensionList}",
                         default="mappings.csv")
