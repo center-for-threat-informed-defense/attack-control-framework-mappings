@@ -13,13 +13,17 @@
 <!--    ### New Features                                                -->
 <!--    ### Improvements                                                -->
 <!--    ### Fixes                                                       -->
+# 24 August 2020
+### Improvements
+- Added additional mappings to [nist800-53-r4](frameworks/nist800-53-r4). 
+
 # 18 August 2020
 ### Fixes
 - Improved error clarity in [listMappings](util/listMappings.py) script, and changed the default `-version` argument to `v7.0` (previously it was `v7.0-beta`) so that it can be run sans arguments without crashing.
 
 # 17 August 2020
 ### Improvements
-- Added additional mappings to [nist800-53-r4](frameworks/nist800-53-r4).  This release contains mappings for the techniques and sub-techniques covered in the following mitigation families: Execution Prevention (M1038), Exploit Protection (M1050), and Antivirus/Antimalware (M1049), and Active Directory Configuration (M1015).  
+- Added additional mappings to [nist800-53-r4](frameworks/nist800-53-r4). This release contains mappings for the techniques and sub-techniques covered in the following mitigation families: Execution Prevention (M1038), Exploit Protection (M1050), and Antivirus/Antimalware (M1049), and Active Directory Configuration (M1015).  
 
 # 10 August 2020
 ### Improvements
