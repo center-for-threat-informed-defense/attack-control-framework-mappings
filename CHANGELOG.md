@@ -15,7 +15,7 @@
 <!--    ### Fixes                                                       -->
 # 24 August 2020
 ### Improvements
-- Added additional mappings to [nist800-53-r4](frameworks/nist800-53-r4). 
+- Added additional mappings to [nist800-53-r4](frameworks/nist800-53-r4). This release contains mappings for the techniques and sub-techniques covered in the following mitigation families: Account Use Policies (M1036), and Filter Network Traffic (M1037).  Freeze point for peer review.  
 
 # 18 August 2020
 ### Fixes
