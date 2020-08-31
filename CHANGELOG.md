@@ -13,6 +13,10 @@
 <!--    ### New Features                                                -->
 <!--    ### Improvements                                                -->
 <!--    ### Fixes                                                       -->
+# Changes staged on Develop
+### Improvements
+- Enabled SSL certificate verification for requests. See issue [#21](https://github.com/center-for-threat-informed-defense/attack-control-framework-mappings/issues/20).
+
 # 24 August 2020
 ### Improvements
 - Added additional mappings to [nist800-53-r4](frameworks/nist800-53-r4). This release contains mappings for the techniques and sub-techniques covered in the following mitigation families: Account Use Policies (M1036), and Filter Network Traffic (M1037).  Freeze point for peer review.  
