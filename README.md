@@ -12,7 +12,7 @@ This repository provides data representing control frameworks, and mappings from
 - [NIST 800-53 Revision 4](frameworks/nist800-53-r4/)
 - [NIST 800-53 Revision 5](frameworks/nist800-53-r5/)
 
-Each framework folder includes the framework and mapping data in a `/data/` folder, and ATT&CK Navigator Layers in the `/layers/` folder. The [install](#install) section below explains how to set up this repository for local use if you intend to extend the defined mappings.
+Each framework folder includes the framework and mapping STIX data in a `/stix/` folder, and ATT&CK Navigator Layers in the `/layers/` folder. An excel spreadsheet is also provided for easy perusal of the mappings. The [install](#install) section below explains how to set up this repository for local use if you intend to extend the defined mappings.
 
 
 ## Input data
