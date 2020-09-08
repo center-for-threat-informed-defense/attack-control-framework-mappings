@@ -6,6 +6,7 @@ import json
 import requests
 import itertools
 import shutil
+import urllib
 
 def technique(attackID, mapped_controls):
     """create a technique for a layer"""
@@ -248,10 +249,11 @@ if __name__ == "__main__":
             json.dump(layer["layer"], f)
     print("done")
     if args.buildDir:
-        print("writing layer directory markdown...", end="", flush=True)
+        print("writing layer directory markdown... ", end="", flush=True)
 
         mdfileLines = ["# Layers", ""] # "" is an empty line
         prefix = "https://raw.githubusercontent.com/center-for-threat-informed-defense/attack-control-framework-mappings/master/frameworks"
+        nav_prefix = f"https://mitre-attack.github.io/attack-navigator/{args.domain.split('-')[0]}/#layerURL="
         for layer in layers:
 
             if "/" in layer["outfile"]: # force URL delimiters even if local system uses "\"
@@ -263,7 +265,8 @@ if __name__ == "__main__":
             if layername.endswith("overview"): depth = max(0, depth - 1) # overviews get unindented
             path = [prefix] + pathParts
             path = "/".join(path)
-            mdfileLines.append(f"{'    ' * depth}- [{layername}]({path})")
+            encodedPath = urllib.parse.quote(path, safe='~()*!.\'') # encode the url for the query string
+            mdfileLines.append(f"{'    ' * depth}- {layername} ( [download]({path}) | [view]({nav_prefix}{encodedPath}) )")
         with open(os.path.join(args.output, "README.md"), "w") as f:
             f.write("\n".join(mdfileLines))
 
