@@ -184,11 +184,11 @@ if __name__ == "__main__":
     parser.add_argument("-controls",
                         dest="controls",
                         help="filepath to the stix bundle representing the control framework",
-                        default=os.path.join("..", "frameworks", "nist800-53-r4", "data", "nist800-53-r4-controls.json"))
+                        default=os.path.join("..", "frameworks", "nist800-53-r4", "stix", "nist800-53-r4-controls.json"))
     parser.add_argument("-mappings",
                         dest="mappings",
                         help="filepath to the stix bundle mapping the controls to ATT&CK",
-                        default=os.path.join("..", "frameworks", "nist800-53-r4", "data", "nist800-53-r4-mappings.json"))
+                        default=os.path.join("..", "frameworks", "nist800-53-r4", "stix", "nist800-53-r4-mappings.json"))
     parser.add_argument("-domain",
                         choices=["enterprise-attack", "mobile-attack"],
                         help="the domain of ATT&CK to visualize",
@@ -196,7 +196,7 @@ if __name__ == "__main__":
     parser.add_argument("-version",
                         dest="version",
                         help="which ATT&CK version to use",
-                        default="v7.0-beta")
+                        default="v7.0")
     parser.add_argument("-output",
                         help="folder to write output layers to",
                         default=os.path.join("..", "frameworks", "nist800-53-r4", "layers"))

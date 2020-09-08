@@ -46,11 +46,11 @@ if __name__ == "__main__":
     parser.add_argument("-controls",
                         dest="controls",
                         help="filepath to the stix bundle representing the control framework",
-                        default=os.path.join("..", "frameworks", "nist800-53-r4", "data", "nist800-53-r4-controls.json"))
+                        default=os.path.join("..", "frameworks", "nist800-53-r4", "stix", "nist800-53-r4-controls.json"))
     parser.add_argument("-mappings",
                         dest="mappings",
                         help="filepath to the stix bundle mapping the controls to ATT&CK",
-                        default=os.path.join("..", "frameworks", "nist800-53-r4", "data", "nist800-53-r4-mappings.json"))
+                        default=os.path.join("..", "frameworks", "nist800-53-r4", "stix", "nist800-53-r4-mappings.json"))
     parser.add_argument("-domain",
                         dest="domain",
                         help="which ATT&CK domain to use",
@@ -61,7 +61,7 @@ if __name__ == "__main__":
                         default="7.0")
     parser.add_argument("-output",
                         help=f"filepath to write the output mappings to. Output format will be inferred from the extension. Allowed extensions: {allowedExtensionList}",
-                        default="mappings.csv")
+                        default=os.path.join("..", "frameworks", "nist800-53-r4", "nist800-53-r4-mappings.xlsx"))
 
     args = parser.parse_args()
 
