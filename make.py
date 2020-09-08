@@ -41,7 +41,8 @@ def main():
                        "-domain", config["attack_domain"],
                        "-version", config["attack_version"],
                        "-framework", framework,
-                       "--clear"
+                       "--clear",
+                       "--build-directory"
         ])
         subprocess.run(["python3", "substitute.py", 
                        "-controls", os.path.join("..", frameworkfolder, "stix", controlsFile),
