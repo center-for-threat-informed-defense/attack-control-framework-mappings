@@ -50,6 +50,13 @@ def main():
                        "-domain", config["attack_domain"],
                        "-version", config["attack_version"]
         ])
+        subprocess.run(["python3", "listMappings.py", 
+                       "-controls", os.path.join("..", frameworkfolder, "stix", controlsFile),
+                       "-mappings", os.path.join("..", frameworkfolder, "stix", mappingsFile),
+                       "-output", os.path.join("..", frameworkfolder, f"{framework}-mappings.xlsx"),
+                       "-domain", config["attack_domain"],
+                       "-version", config["attack_version"]
+        ])
         # reset
         os.chdir("..")
 

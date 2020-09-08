@@ -58,7 +58,7 @@ if __name__ == "__main__":
     parser.add_argument("-version",
                         dest="version",
                         help="which ATT&CK version to use",
-                        default="7.0")
+                        default="v7.0")
     parser.add_argument("-output",
                         help=f"filepath to write the output mappings to. Output format will be inferred from the extension. Allowed extensions: {allowedExtensionList}",
                         default=os.path.join("..", "frameworks", "nist800-53-r4", "nist800-53-r4-mappings.xlsx"))
@@ -72,7 +72,7 @@ if __name__ == "__main__":
 
     print("downloading ATT&CK data... ", end="", flush=True)
     attackdata = Bundle(
-        requests.get(f"https://raw.githubusercontent.com/mitre/cti/ATT%26CK-v{args.version}/{args.domain}/{args.domain}.json", verify=False).json()["objects"],
+        requests.get(f"https://raw.githubusercontent.com/mitre/cti/ATT%26CK-{args.version}/{args.domain}/{args.domain}.json", verify=False).json()["objects"],
         allow_custom=True)
     print("done")
 
