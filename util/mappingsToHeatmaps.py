@@ -251,7 +251,7 @@ if __name__ == "__main__":
     if args.buildDir:
         print("writing layer directory markdown... ", end="", flush=True)
 
-        mdfileLines = ["# Layers", ""] # "" is an empty line
+        mdfileLines = ["# ATT&CK Navigator Layers", "", f"The following [ATT&CK Navigator](https://github.com/mitre-attack/attack-navigator/) layers represent the mappings from ATT&CK to {args.framework}:", ""] # "" is an empty line
         prefix = "https://raw.githubusercontent.com/center-for-threat-informed-defense/attack-control-framework-mappings/master/frameworks"
         nav_prefix = f"https://mitre-attack.github.io/attack-navigator/{args.domain.split('-')[0]}/#layerURL="
         for layer in layers:

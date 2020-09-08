@@ -1,4 +1,6 @@
-# Layers
+# ATT&CK Navigator Layers
+
+The following [ATT&CK Navigator](https://github.com/mitre-attack/attack-navigator/) layers represent the mappings from ATT&CK to nist800-53-r4:
 
 - nist800-53-r4 overview ( [download](https://raw.githubusercontent.com/center-for-threat-informed-defense/attack-control-framework-mappings/master/frameworks/nist800-53-r4-overview.json) | [view](https://mitre-attack.github.io/attack-navigator/enterprise/#layerURL=https%3A%2F%2Fraw.githubusercontent.com%2Fcenter-for-threat-informed-defense%2Fattack-control-framework-mappings%2Fmaster%2Fframeworks%2Fnist800-53-r4-overview.json) )
     - Access Control overview ( [download](https://raw.githubusercontent.com/center-for-threat-informed-defense/attack-control-framework-mappings/master/frameworks/by_family/Access_Control/AC-overview.json) | [view](https://mitre-attack.github.io/attack-navigator/enterprise/#layerURL=https%3A%2F%2Fraw.githubusercontent.com%2Fcenter-for-threat-informed-defense%2Fattack-control-framework-mappings%2Fmaster%2Fframeworks%2Fby_family%2FAccess_Control%2FAC-overview.json) )
