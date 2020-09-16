@@ -13,6 +13,10 @@
 <!--    ### New Features                                                -->
 <!--    ### Improvements                                                -->
 <!--    ### Fixes                                                       -->
+# Changes staged on develop
+### Improvements
+- Added additional user stories to [USE-CASES.md](USE-CASES.md) to capture the operational context of users/roles for consuming threat intelligence data into an operational environment to improve overall risk management activities. 
+
 # 24 August 2020
 ### Improvements
 - Added additional mappings to [nist800-53-r4](frameworks/nist800-53-r4). This release contains mappings for the techniques and sub-techniques covered in the following mitigation families: Account Use Policies (M1036), and Filter Network Traffic (M1037).  Freeze point for peer review.  
