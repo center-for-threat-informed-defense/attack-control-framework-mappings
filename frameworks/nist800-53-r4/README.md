@@ -31,6 +31,7 @@ The methodology consists of four main phases. Each phase is designed to apply th
 4. **Analyzing and identifying security controls** for mappings to ATT&CK techniques. 
 
 <img src="/docs/nist-800-53-r4-methodology.png" width="900px">
+
 *Above: Security Control Mapping Methodology*
 
 ### Understanding adversary objectives
