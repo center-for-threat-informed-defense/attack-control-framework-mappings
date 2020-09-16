@@ -16,6 +16,7 @@
 # Changes staged on develop
 ### Improvements
 - Added additional user stories to [USE-CASES.md](USE-CASES.md) to capture the operational context of users/roles for consuming threat intelligence data into an operational environment to improve overall risk management activities. 
+- Added methodology section to [nist800-53-r4](frameworks/nist800-53-r4).
 
 # 24 August 2020
 ### Improvements
