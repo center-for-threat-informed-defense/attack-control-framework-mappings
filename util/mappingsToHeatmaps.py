@@ -244,7 +244,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     print("downloading ATT&CK data... ", end="", flush=True)
-    attackdata = MemoryStore(stix_data=requests.get(f"https://raw.githubusercontent.com/mitre/cti/ATT%26CK-{args.version}/{args.domain}/{args.domain}.json", verify=False).json()["objects"])
+    attackdata = MemoryStore(stix_data=requests.get(f"https://raw.githubusercontent.com/mitre/cti/ATT%26CK-{args.version}/{args.domain}/{args.domain}.json").json()["objects"])
     print("done")
 
     print("loading controls framework... ", end="", flush=True)
