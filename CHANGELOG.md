@@ -13,9 +13,12 @@
 <!--    ### New Features                                                -->
 <!--    ### Improvements                                                -->
 <!--    ### Fixes                                                       -->
-# Changes staged on Develop
+# Changes staged on develop
 ### Improvements
 - Enabled SSL certificate verification for requests. See issue [#21](https://github.com/center-for-threat-informed-defense/attack-control-framework-mappings/issues/20).
+- Updated [mappingsToHeatmaps](util/mappingsToHeatmaps.py) so that output layers collapse control lists to the family name when all controls in the family are mapped. See [#27](https://github.com/center-for-threat-informed-defense/attack-control-framework-mappings/issues/27).
+### Fixes
+- Fixed regex typo leading to incorrect mappings for `T1053`, `T1053.002`, and `T1053.005`.
 
 # 24 August 2020
 ### Improvements
