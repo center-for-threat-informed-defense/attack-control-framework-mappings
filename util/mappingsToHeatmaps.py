@@ -6,6 +6,7 @@ import json
 import requests
 import itertools
 import shutil
+import urllib
 
 def technique(attackID, mapped_controls):
     """create a technique for a layer"""
@@ -136,7 +137,7 @@ def getFrameworkOverviewLayers(controls, mappings, attackdata, domain, framework
         if len(techniquesInFamily) > 0: # don't build heatmaps with no mappings
             # build family overview mapping
             outlayers.append({
-                "outfile": os.path.join("by family", familyIDToName[familyID], f"{familyID}-overview.json"),
+                "outfile": os.path.join("by_family", familyIDToName[familyID].replace(" ", "_"), f"{familyID}-overview.json"),
                 "layer": layer(
                     f"{familyIDToName[familyID]} overview",
                     f"{frameworkname} heatmap for controls in the {familyIDToName[familyID]} family, where scores are the number of associated controls",
@@ -151,7 +152,7 @@ def getFrameworkOverviewLayers(controls, mappings, attackdata, domain, framework
                 techniquesMappedToControl = toTechniquelist(controlMs, mappings, attackdata, familyIDToControls, familyIDToName, idToFamily)
                 if len(techniquesMappedToControl) > 0: # don't build heatmaps with no mappings
                     outlayers.append({
-                        "outfile": os.path.join("by family", familyIDToName[familyID], f"{'_'.join(control_id.split(' '))}.json"),
+                        "outfile": os.path.join("by_family", familyIDToName[familyID].replace(" ", "_"), f"{'_'.join(control_id.split(' '))}.json"),
                         "layer": layer(
                             f"{control_id} mappings",
                             f"{frameworkname} {control_id} mappings",
@@ -194,9 +195,9 @@ def getLayersByProperty(controls, mappings, attackdata, domain, frameworkname, x
         if len(techniques) > 0:
             # build layer for this technique set
             outlayers.append({
-                "outfile": os.path.join(f"by {propertyname}", f"{value}.json"),
+                "outfile": os.path.join(f"by_{propertyname}", f"{value}.json"),
                 "layer": layer(
-                    f"{propertyname}={value}",
+                    f"{propertyname}={value} mappings",
                     f"techniques where the {propertyname} of associated controls {'includes' if isListType else 'is'} {value}",
                     domain, 
                     techniques
@@ -221,11 +222,11 @@ if __name__ == "__main__":
     parser.add_argument("-controls",
                         dest="controls",
                         help="filepath to the stix bundle representing the control framework",
-                        default=os.path.join("..", "frameworks", "nist800-53-r4", "data", "nist800-53-r4-controls.json"))
+                        default=os.path.join("..", "frameworks", "nist800-53-r4", "stix", "nist800-53-r4-controls.json"))
     parser.add_argument("-mappings",
                         dest="mappings",
                         help="filepath to the stix bundle mapping the controls to ATT&CK",
-                        default=os.path.join("..", "frameworks", "nist800-53-r4", "data", "nist800-53-r4-mappings.json"))
+                        default=os.path.join("..", "frameworks", "nist800-53-r4", "stix", "nist800-53-r4-mappings.json"))
     parser.add_argument("-domain",
                         choices=["enterprise-attack", "mobile-attack"],
                         help="the domain of ATT&CK to visualize",
@@ -240,6 +241,10 @@ if __name__ == "__main__":
     parser.add_argument("--clear",
                         action="store_true",
                         help="if flag specified, will remove the contents the output folder before writing layers")
+    parser.add_argument("--build-directory",
+                        dest="buildDir",
+                        action="store_true",
+                        help="if flag specified, will build a markdown file listing the output files for easy access in the Navigator")
     
     args = parser.parse_args()
 
@@ -280,3 +285,26 @@ if __name__ == "__main__":
         with open(os.path.join(args.output, layer["outfile"]), "w") as f:
             json.dump(layer["layer"], f)
     print("done")
+    if args.buildDir:
+        print("writing layer directory markdown... ", end="", flush=True)
+
+        mdfileLines = ["# ATT&CK Navigator Layers", "", f"The following [ATT&CK Navigator](https://github.com/mitre-attack/attack-navigator/) layers represent the mappings from ATT&CK to {args.framework}:", ""] # "" is an empty line
+        prefix = "https://raw.githubusercontent.com/center-for-threat-informed-defense/attack-control-framework-mappings/master/frameworks"
+        nav_prefix = f"https://mitre-attack.github.io/attack-navigator/{args.domain.split('-')[0]}/#layerURL="
+        for layer in layers:
+
+            if "/" in layer["outfile"]: # force URL delimiters even if local system uses "\"
+                pathParts = layer["outfile"].split("/")
+            else:
+                pathParts = layer["outfile"].split("\\")
+            depth = len(pathParts) - 1 # how many subdirectories deep is it?
+            layername = layer['layer']['name']
+            if layername.endswith("overview"): depth = max(0, depth - 1) # overviews get unindented
+            path = [prefix] + pathParts
+            path = "/".join(path)
+            encodedPath = urllib.parse.quote(path, safe='~()*!.\'') # encode the url for the query string
+            mdfileLines.append(f"{'    ' * depth}- {layername} ( [download]({path}) | [view]({nav_prefix}{encodedPath}) )")
+        with open(os.path.join(args.output, "README.md"), "w") as f:
+            f.write("\n".join(mdfileLines))
+
+        print("done")

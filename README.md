@@ -12,7 +12,7 @@ This repository provides data representing control frameworks, and mappings from
 - [NIST 800-53 Revision 4](frameworks/nist800-53-r4/)
 - [NIST 800-53 Revision 5](frameworks/nist800-53-r5/)
 
-Each framework folder includes the framework and mapping data in a `/data/` folder, and ATT&CK Navigator Layers in the `/layers/` folder. The [install](#install) section below explains how to set up this repository for local use if you intend to extend the defined mappings.
+Each framework folder includes the framework and mapping STIX data in a `/stix/` folder, and ATT&CK Navigator Layers in the `/layers/` folder. An excel spreadsheet is also provided for easy perusal of the mappings. The [install](#install) section below explains how to set up this repository for local use if you intend to extend the defined mappings.
 
 
 ## Input data
@@ -30,9 +30,9 @@ The controls parser consists of two major parts, `parse_controls.py` and the `pa
 
 ## Output data
 
-The controls parser system outlined above produces a series of STIX2.0 bundles representing the controls framework as well as mappings to ATT&CK. See the README of the data folder for a given framework for a description of each file:
-- [NIST 800-53 Revision 4](frameworks/nist800-53-r4/data/)
-- [NIST 800-53 Revision 5](frameworks/nist800-53-r5/data/)
+The controls parser system outlined above produces a series of STIX2.0 bundles representing the controls framework as well as mappings to ATT&CK. See the README of the `stix` folder for a given framework for a description of each file:
+- [NIST 800-53 Revision 4](frameworks/nist800-53-r4/stix/)
+- [NIST 800-53 Revision 5](frameworks/nist800-53-r5/stix/)
 
 The general format is as follows:
 - Both controls and mappings are represented in STIX2.0 JSON.

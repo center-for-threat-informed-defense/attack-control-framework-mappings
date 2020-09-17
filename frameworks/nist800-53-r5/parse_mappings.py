@@ -33,7 +33,7 @@ def parse_mappings(mappingspath, controls, relationship_ids={}):
 
     print("reading framework config...", end="", flush=True)
     # load the mapping config
-    with open(os.path.join("data", "config.json"), "r") as f:
+    with open(os.path.join("input", "config.json"), "r") as f:
         config = json.load(f)
         version = config["attack_version"]
         domain = config["attack_domain"]

@@ -91,7 +91,7 @@ def parse_controls(controlpath, control_ids={}, relationship_ids={}):
 
     print("reading framework config...", end="", flush=True)
     # load the mapping config
-    with open(os.path.join("data", "config.json"), "r") as f:
+    with open(os.path.join("input", "config.json"), "r") as f:
         config = json.load(f)
         framework_id = config["framework_id"]
     print("done")
