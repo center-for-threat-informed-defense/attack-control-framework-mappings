@@ -29,3 +29,54 @@ Visualization of this indirect mapping should be undertaken with care. It should
 Groups and Software in ATT&CK are mapped to techniques. Therefore, this use case can be achieved in the exact manner as use case 3 (above) — determine the set of security controls that mitigate the techniques mapped to the group or software. 
 
 The visualization of such a use case could be implemented the same way as in [use case 3](#3-i-want-to-be-able-to-determine-what-security-controls-i-should-use-to-implement-a-given-attck-mitigation), except with Groups or Software as the “contextual grouping” instead of mitigations. Such a visualization could be implemented to give the user choice of what type to use for contextual grouping (mitigation, group, software, even tactic) and therefore achieve several use cases with a single implementation.
+
+---
+
+_The following use cases are intended to capture the operational context of users/roles for consuming threat intelligence data into an operational environment to improve overall risk management activities._
+
+### 5. As an ISSO, I want to (but not limited to)
+
+- Engage and provide input to system developers regarding security requirements and security engineering practices to incorporate into the information system to defend against adversary activity. 
+- Understand what security controls to select for securing information systems.
+- Assess risk by understanding security control coverage in mitigating techniques associated with adversarial behavior. 
+- Perform continuous monitoring activities to check the security posture on endpoints.
+
+#### So that I can
+
+- Support the Security Engineer, system developers, and information system owner’s selection and implementation of security controls most appropriate in mitigating cyber attacks.
+- Support the CISO/ISSM in reviewing the adequacy of risk and gaps in overall threat defense; and identify which additional security controls are needed to mitigate cyber attacks.  
+- Determine security control suitability and participate in the selection of security controls for securing information systems against cyber attacks.
+- Validate NIST 800-53 compliance and maintain/achieve ongoing ATO .
+
+### 6. As a Security Engineer, I want to (but not limited to)
+
+- Understand what mitigations are covered by implementing a given set of security controls.
+- Understand what techniques are mitigated by implementing a given set of security controls.
+
+#### So that I can
+
+- Select and tailor the security controls for an information system to provide suitable protections and improved threat defense.
+- Review the information system’s implemented security controls periodically and update the security control selection/tailoring as needed, as well as identify cyber security solutions needed to mitigate cyber attacks.  
+- Work the ISSO in understanding residual risk in security control coverage to better align cyber defense to address adversarial behavior.
+
+### 7. As a CISO or ISSM, I want to (but not limited to)
+
+- Understand gaps that exist in mitigation strategies to better assess enterprise risk for the organization.  
+- Understand risk associated with specific threats/techniques.
+
+#### So that I can
+
+- I can determine which mitigation strategies are most effective against techniques associated with adversarial activities, and which security controls or cyber solutions are needed to improve cyber defense.   
+- I can implement/improve continuous monitoring activities commensurate to address the gaps and risks in security control coverage, as well as identify residual risks and develop/implement compensating controls to mitigate most damaging attacks.  
+
+### 8. As the Blue Team, I want to (but not limited to)
+
+- Understand gaps in cyber defense and entry points where attackers may exploit system. 
+- Understand how well my cyber defenses perform against adversarial activity to assess cyber resiliency. 
+- Understand what security solutions are needed to improve cyber defense. 
+
+#### So that I can
+
+- Design, build and implement appropriate cyber defenses.
+- Measure cyber resiliency and determine what additional coverage is needed to mitigate threats. 
+- Develop a comprehensive cyber defense strategy to address adversaries evolving capabilities. 
