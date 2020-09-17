@@ -1,1 +1,0 @@
-{"name": "SA-19 mappings", "version": "3.0", "sorting": 3, "description": "nist800-53-r4 SA-19 mappings", "domain": "mitre-enterprise", "techniques": [{"techniqueID": "T1554", "score": 1, "comment": "Mitigated by SA-19"}], "gradient": {"colors": ["#ffffff", "#66b1ff"], "minValue": 0, "maxValue": 1}}

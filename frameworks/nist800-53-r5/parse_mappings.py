@@ -33,7 +33,7 @@ def parse_mappings(mappingspath, controls, relationship_ids={}):
 
     print("reading framework config...", end="", flush=True)
     # load the mapping config
-    with open(os.path.join("data", "config.json"), "r") as f:
+    with open(os.path.join("input", "config.json"), "r") as f:
         config = json.load(f)
         version = config["attack_version"]
         domain = config["attack_domain"]
@@ -43,7 +43,7 @@ def parse_mappings(mappingspath, controls, relationship_ids={}):
 
     # load ATT&CK STIX data
     print("downloading ATT&CK data... ", end="", flush=True)
-    attackdata = requests.get(f"https://raw.githubusercontent.com/mitre/cti/ATT%26CK-{version}/{domain}/{domain}.json", verify=False).json()["objects"]
+    attackdata = requests.get(f"https://raw.githubusercontent.com/mitre/cti/ATT%26CK-{version}/{domain}/{domain}.json").json()["objects"]
     print("done")
 
     # build mapping of attack ID to stixID
