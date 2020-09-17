@@ -72,7 +72,7 @@ if __name__ == "__main__":
 
     print("downloading ATT&CK data... ", end="", flush=True)
     attackdata = Bundle(
-        requests.get(f"https://raw.githubusercontent.com/mitre/cti/ATT%26CK-v{args.version}/{args.domain}/{args.domain}.json", verify=False).json()["objects"],
+        requests.get(f"https://raw.githubusercontent.com/mitre/cti/ATT%26CK-v{args.version}/{args.domain}/{args.domain}.json").json()["objects"],
         allow_custom=True)
     print("done")
 
