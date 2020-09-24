@@ -12,8 +12,8 @@ This repository provides data representing control frameworks, and mappings from
 - [NIST 800-53 Revision 4](frameworks/nist800-53-r4/)
 - [NIST 800-53 Revision 5](frameworks/nist800-53-r5/)
 
-Each framework older includes the following data:
-- STIX bundles representing the control framework and mappings in the `/stix/` folder. See [output data](#output-data), below, for more on the representation of the data in STIX.
+Each framework folder includes the following data:
+- STIX bundles representing the control framework and mappings to ATT&CK in the `/stix/` folder. See [output data](#output-data), below, for more on the representation of the data in STIX.
 - ATT&CK Navigator Layers in the `/layers/` folder. See the [ATT&CK Navigator](https://oasis-open.github.io/cti-documentation/stix/intro) project for more about the use of this tool.
 - An Excel spreadsheet is also provided in the framework directory for easy perusal of the mappings.
 
@@ -40,7 +40,7 @@ The controls parser system outlined above produces a series of STIX2.0 bundles r
 - [NIST 800-53 Revision 4](frameworks/nist800-53-r4/stix/)
 - [NIST 800-53 Revision 5](frameworks/nist800-53-r5/stix/)
 
-The general format is as follows:
+The general format for STIX data is as follows:
 - Both controls and mappings are represented in STIX2.0 JSON.
 - Controls are represented as [course-of-actions](https://docs.oasis-open.org/cti/stix/v2.0/csprd01/part2-stix-objects/stix-v2.0-csprd01-part2-stix-objects.html#_Toc476230929).
 - The hierarchy of the control framework is also represented in the STIX. Relationships of type `subcontrol-of` map sub-controls to their parent controls for frameworks which have hierarchical controls. 
