@@ -300,7 +300,7 @@ if __name__ == "__main__":
             depth = len(pathParts) - 1 # how many subdirectories deep is it?
             layername = layer['layer']['name']
             if layername.endswith("overview"): depth = max(0, depth - 1) # overviews get unindented
-            path = [prefix] + pathParts
+            path = [prefix] + [args.framework, "layers"] + pathParts
             path = "/".join(path)
             encodedPath = urllib.parse.quote(path, safe='~()*!.\'') # encode the url for the query string
             mdfileLines.append(f"{'    ' * depth}- {layername} ( [download]({path}) | [view]({nav_prefix}{encodedPath}) )")
