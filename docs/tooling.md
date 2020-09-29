@@ -1,8 +1,38 @@
 # Tooling
 This document describes the python tools supplied to support the creation of new mappings or the customization of existing mappings. The scripts in this repository are provided in case users want to extend the mappings locally and need to rebuild the artifacts. If you are simply ingesting the data from this repository, you likely will not need to install or run any scripts.
 
+## Install
+
+### Requirements
+
+- [python](https://www.python.org/) 3.6 or greater
+
+### Environment setup
+
+From the root directory of this repository:
+1. Create a virtual environment: 
+    - macOS and Linux: `python3 -m venv env`
+    - Windows: `py -m venv env`
+2. Activate the virtual environment: 
+    - macOS and Linux: `source env/bin/activate`
+    - Windows: `env/Scripts/activate.bat`
+3. Install requirement packages: `pip3 install -r requirements.txt`
+
 ## Usage
 
+## Rebuilding the STIX data
+
+To rebuild all the data in the repository based on the most up-to-date input data, run `python3 make.py` within the root directory of the repository.
+
+To rebuild the STIX data for a specific control framework:
+1. run `python3 parser.py` from within the folder of the given control framework. This will rebuild the raw STIX data from the input spreadsheets.
+2. Then use the scripts in [util](util/) to regenerate the ancillary control data such as ATT&CK Navigator layers.
+
+## Utility scripts
+
+The [/util/](/util/) folder includes utility scripts designed to work with generic control frameworks and mappings that implement the format described in [the STIX format document](STIX_format.md). Please see the readme in the util folder for more details of the functionality of these scripts. The output of these scripts is already present within the framework folders; the scripts are provided for users who wish to extend or otherwise modify the defined mappings and need to rebuild the artifacts provided by this repository.
+
+## Tooling Architecture 
 If you wish to extend or otherwise modify the mappings provided in this repository, the data in the `/input/` folder of the framework may be modified. The python scripts provided in this repository transform this input data into the various output formats listed above. Please see the [install](#install) section for more on how to set up this repository for local use if you intend to extend the defined mappings. 
 
 ### Input Data
@@ -26,35 +56,6 @@ The controls parser system outlined above produces a series of STIX2.0 bundles r
 - [NIST 800-53 Revision 5](frameworks/nist800-53-r5/stix/)
 
 See also the [STIX Format](STIX_format.md) document for more information about the representation of controls and mappings in STIX.
-
-## Rebuilding the STIX data
-
-To rebuild all the data in the repository based on the most up-to-date input data, run `python3 make.py` within the root directory of the repository.
-
-To rebuild the STIX data for a specific control framework:
-1. run `python3 parser.py` from within the folder of the given control framework. This will rebuild the raw STIX data from the input spreadsheets.
-2. Then use the scripts in [util](util/) to regenerate the ancillary control data such as ATT&CK Navigator layers.
-
-## Utility scripts
-
-The [/util/](/util/) folder includes utility scripts designed to work with generic control frameworks and mappings that implement the format described in [the STIX format document](STIX_format.md). Please see the readme in the util folder for more details of the functionality of these scripts. The output of these scripts is already present within the framework folders; the scripts are provided for users who wish to extend or otherwise modify the defined mappings and need to rebuild the artifacts provided by this repository.
-
-## Install
-
-### Requirements
-
-- [python](https://www.python.org/) 3.6 or greater
-
-### Environment setup
-
-From the root directory of this repository:
-1. Create a virtual environment: 
-    - macOS and Linux: `python3 -m venv env`
-    - Windows: `py -m venv env`
-2. Activate the virtual environment: 
-    - macOS and Linux: `source env/bin/activate`
-    - Windows: `env/Scripts/activate.bat`
-3. Install requirement packages: `pip3 install -r requirements.txt`
 
 ## See also
 - [STIX Format](STIX_format.md) for more information about the STIX representation of the controls and mappings.
