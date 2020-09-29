@@ -26,11 +26,11 @@ To rebuild all the data in the repository based on the most up-to-date input dat
 
 To rebuild the STIX data for a specific control framework:
 1. run `python3 parser.py` from within the folder of the given control framework. This will rebuild the raw STIX data from the input spreadsheets.
-2. Then use the scripts in [util](util/) to regenerate the ancillary control data such as ATT&CK Navigator layers.
+2. Then use the scripts in [util](/util/) to regenerate the ancillary control data such as ATT&CK Navigator layers.
 
 ## Utility scripts
 
-The [/util/](/util/) folder includes utility scripts designed to work with generic control frameworks and mappings that implement the format described in [the STIX format document](STIX_format.md). Please see the readme in the util folder for more details of the functionality of these scripts. The output of these scripts is already present within the framework folders; the scripts are provided for users who wish to extend or otherwise modify the defined mappings and need to rebuild the artifacts provided by this repository.
+The [/util/](/util/) folder includes utility scripts designed to work with generic control frameworks and mappings that implement the format described in [the STIX format document](/docs/STIX_format.md). Please see the readme in the util folder for more details of the functionality of these scripts. The output of these scripts is already present within the framework folders; the scripts are provided for users who wish to extend or otherwise modify the defined mappings and need to rebuild the artifacts provided by this repository.
 
 ## Tooling Architecture 
 If you wish to extend or otherwise modify the mappings provided in this repository, the data in the `/input/` folder of the framework may be modified. The python scripts provided in this repository transform this input data into the various output formats listed above. Please see the [install](#install) section for more on how to set up this repository for local use if you intend to extend the defined mappings. 
@@ -52,11 +52,11 @@ The framework parser consists of two major parts, `parse_controls.py` and the `p
 ### Output data
 
 The controls parser system outlined above produces a series of STIX2.0 bundles representing the control framework as well as mappings to ATT&CK. See the README of the `stix` folder for a given framework for a description of each file:
-- [NIST 800-53 Revision 4](frameworks/nist800-53-r4/stix/)
-- [NIST 800-53 Revision 5](frameworks/nist800-53-r5/stix/)
+- [NIST 800-53 Revision 4](/frameworks/nist800-53-r4/stix/)
+- [NIST 800-53 Revision 5](/frameworks/nist800-53-r5/stix/)
 
 See also the [STIX Format](STIX_format.md) document for more information about the representation of controls and mappings in STIX.
 
 ## See also
-- [STIX Format](STIX_format.md) for more information about the STIX representation of the controls and mappings.
-- [Visualization](visualization.md) for more information about how to visualize the mappings.
+- [STIX Format](/docs/STIX_format.md) for more information about the STIX representation of the controls and mappings.
+- [Visualization](/docs/visualization.md) for more information about how to visualize the mappings.

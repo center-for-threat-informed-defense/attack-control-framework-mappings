@@ -17,5 +17,5 @@ The control and mapping data in this repository follows the STIX 2.0 format as f
 - Mappings from individual controls to ATT&CK techniques and sub-techniques are represented as [relationships](https://docs.oasis-open.org/cti/stix/v2.0/csprd01/part2-stix-objects/stix-v2.0-csprd01-part2-stix-objects.html#_Toc476230970) of type `mitigates`, where the `source_ref` is the `id` of the control and the `target_ref` is the `id` of the technique or sub-technique. The optional `description` field on the relationship is taken from the input spreadsheet if a description is given there, and is used to justify the mapping.
 
 ## See also
-- [Tooling](tooling.md) for more information about how the STIX data was created.
-- [Visualization](visualization.md) for more information about how to visualize the mappings.
+- [Tooling](/docs/tooling.md) for more information about how the STIX data was created.
+- [Visualization](/docs/visualization.md) for more information about how to visualize the mappings.

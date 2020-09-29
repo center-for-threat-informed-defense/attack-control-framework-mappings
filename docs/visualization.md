@@ -44,5 +44,5 @@ The ATT&CK Website can be constructed with controls as mitigations by following 
 4. Follow the [Install and Build](https://github.com/mitre-attack/attack-website#install-and-build) instructions of the ATT&CK Website documentation.
 
 ## See also
-- [Methodology](methodology.md) for a description of the general process used to create the control mappings.
-- [STIX Format](STIX_format.md) for more information about the STIX representation of the controls and mappings.
+- [Mapping Methodology](/docs/mapping_methodology.md) for a description of the general process used to create the control mappings.
+- [STIX Format](/docs/STIX_format.md) for more information about the STIX representation of the controls and mappings.
