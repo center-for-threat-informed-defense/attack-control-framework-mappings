@@ -5,13 +5,13 @@ These mappings provide the means for organizations to see their security control
 
 ## Repository Contents
 - [Frameworks](frameworks) — this directory contains the security control frameworks and their mappings to ATT&CK techniques
-- Methodology — Processes and procedures for developing and editing mappings
-    - [Mapping Procedures](docs/methodology.md) — A description of the general process used to create the control mappings
-    - [Tooling](docs/tooling.md) — A set of python tools to support the creation of new mappings and the customization of existing mappings
-- [STIX Format](docs/STIX_format.md) — Information regarding the STIX representation of the control frameworks and the mappings to ATT&CK
-- [Visualization](docs/visualization.md) — This document describes some ways the mappings data can be visualized. 
+- Methodology — processes and procedures for developing and editing mappings
+    - [Mapping Methodology](docs/methodology.md) — a description of the general process used to create the control mappings
+    - [Tooling](docs/tooling.md) — a set of python tools to support the creation of new mappings and the customization of existing mappings
+- [STIX Format](docs/STIX_format.md) — information regarding the STIX representation of the control frameworks and the mappings to ATT&CK
+- [Visualization](docs/visualization.md) — this document describes some ways the mappings data can be visualized. 
 - [Contributing](CONTRIBUTING.md) — information about how to contribute controls, mappings, or other improvements to this repository
-- [Changelog](CHANGELOG.md) — List of updates to this repository
+- [Changelog](CHANGELOG.md) — list of updates to this repository
 
 ## Liability / Responsible Usage 
 
