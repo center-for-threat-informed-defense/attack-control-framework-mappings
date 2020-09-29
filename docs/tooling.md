@@ -55,7 +55,7 @@ The controls parser system outlined above produces a series of STIX2.0 bundles r
 - [NIST 800-53 Revision 4 STIX data](/frameworks/nist800-53-r4/stix/)
 - [NIST 800-53 Revision 5 STIX data](/frameworks/nist800-53-r5/stix/)
 
-See also the [STIX Format](STIX_format.md) document for more information about the representation of controls and mappings in STIX.
+See also the [STIX Format](/docs/STIX_format.md) document for more information about the representation of controls and mappings in STIX.
 
 ## See also
 - [STIX Format](/docs/STIX_format.md) for more information about the STIX representation of the controls and mappings.
