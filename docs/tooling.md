@@ -52,8 +52,8 @@ The framework parser consists of two major parts, `parse_controls.py` and the `p
 ### Output data
 
 The controls parser system outlined above produces a series of STIX2.0 bundles representing the control framework as well as mappings to ATT&CK. See the README of the `stix` folder for a given framework for a description of each file:
-- [NIST 800-53 Revision 4](/frameworks/nist800-53-r4/stix/)
-- [NIST 800-53 Revision 5](/frameworks/nist800-53-r5/stix/)
+- [NIST 800-53 Revision 4 STIX data](/frameworks/nist800-53-r4/stix/)
+- [NIST 800-53 Revision 5 STIX data](/frameworks/nist800-53-r5/stix/)
 
 See also the [STIX Format](STIX_format.md) document for more information about the representation of controls and mappings in STIX.
 
