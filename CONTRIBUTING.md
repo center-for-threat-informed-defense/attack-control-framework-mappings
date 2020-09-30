@@ -28,11 +28,11 @@ You're welcome to contribute improvements to the existing framework parsers. Suc
 
 ### New mappings to an existing framework
 
-_TODO_
+Please contact ctid@mitre-engenuity.org directly if you wish to contribute additional mappings to a security control framework that is already included in this project.  
 
 ### Feedback on the methodology
 
-Users wishing to submit feedback on the methodology mappings should contact _(TODO)_
+Users wishing to submit feedback on the methodology mappings should contact ctid@mitre-engenuity.org
 
 ## Developer's Certificate of Origin v1.1
 If you contribute any source code, we need you to agree to the following Developer's Certificate of Origin below.
