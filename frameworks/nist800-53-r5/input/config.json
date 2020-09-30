@@ -1,5 +1,6 @@
 {
     "framework_id": "NIST 800-53 Revision 5",
     "attack_domain": "enterprise-attack",
-    "attack_version": "v7.0-beta"
+    "attack_version": "v7.0-beta",
+    "mappings_version": "v0.1"
 }
