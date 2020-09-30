@@ -17,6 +17,7 @@
 ### Improvements
 - Revised documentation into more organized structure to better cater to varied use cases. See issue [#34](https://github.com/center-for-threat-informed-defense/attack-control-framework-mappings/issues/34).
 - Added [NOTICE](/NOTICE.txt).
+- Removed mappings from _Audit and Accountability_ controls in [nist800-53-r4](/frameworks/nist800-53-r4).
 ### Fixes
 - Fixed a bug with the layer directory generator creating broken links.
 

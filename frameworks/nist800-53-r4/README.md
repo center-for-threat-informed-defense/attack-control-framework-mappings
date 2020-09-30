@@ -1,7 +1,9 @@
 # NIST 800-53 Revision 4 Control Mappings
+| Mappings Version | Last Updated      | Scope    | ATT&CK Version | ATT&CK Domain |
+|------------------|-------------------|----------|----------------|---------------|
+| 1.0              | 30 September 2020 | Complete | [ATT&CK v7](https://attack.mitre.org/resources/versions/) | Enterprise |
 
 This folder contains data and parsers for the NIST 800-53 Revision 4 control framework, and the mappings of that framework to ATT&CK.
-
 
 | Data ||
 |------|------|
@@ -10,9 +12,10 @@ This folder contains data and parsers for the NIST 800-53 Revision 4 control fra
 | [stix](stix) | Output STIX 2.0 json data. See the README in that folder for more information. |
 | [input](input) | Input spreadsheets from which the STIX is built. To rebuild the STIX data from the input spreadsheets, run `python3 parse.py`.See the README in that folder for more information. |
 
+
 ## Extended Fields
 
-The NIST 800-53 Revision 4 STIX data extends the controls format with the following properties:
+The NIST 800-53 Revision 4 STIX data extends the [general controls format](/docs/stix_format.md) with the following properties:
 
 | STIX field | type | description |
 |:-----------|:-----|:------------|
