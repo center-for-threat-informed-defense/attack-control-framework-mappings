@@ -1,69 +1,34 @@
-# ATT&CK Control Framework Mappings
-This repository includes tools and data for mapping control frameworks to MITRE ATT&amp;CK. In addition to mapping the frameworks, it defines a common STIX2.0 representation for control frameworks &mdash; see [output data](#output-data), below.
+# Security Control Framework Mappings to ATT&CK
+This repository contains the materials developed by the [Center for Threat Informed Defense](https://mitre-engenuity.org/center-for-threat-informed-defense/) in cooperation with our participants. The goal of this effort was to develop a framework for mappings between security control frameworks and the MITRE ATT&CK® knowledge base.
 
-See also:
-- [USE-CASES](USE-CASES.md) for common use cases of the controls framework data
-- [CHANGELOG](CHANGELOG.md) to learn about recent changes to this repository
-- [CONTRIBUTING](CONTRIBUTING.md) for information about how to contribute controls, mappings, or other improvements
+These mappings provide the means for organizations to see their security control coverage against associated ATT&CK techniques and to integrate ATT&CK-based threat information within the risk management process. For example, users can employ the mappings to evaluate their cybersecurity readiness, identify gaps and deficiencies in their security posture, improve continuous monitoring activities, and assist in selecting the most appropriate security controls to mitigate the most damaging attacks. A more thorough consideration of use cases to which these mappings might be applied can be found in [our use-cases document](/docs/use-cases.md). 
 
-# Usage
+## Repository Contents
 
-This repository provides data representing control frameworks, and mappings from said frameworks to ATT&CK, in STIX2.0 JSON. You can find the data for those frameworks in the `/frameworks/` folder:
-- [NIST 800-53 Revision 4](frameworks/nist800-53-r4/)
-- [NIST 800-53 Revision 5](frameworks/nist800-53-r5/)
+- [Frameworks](/frameworks) — this directory contains the security control frameworks and their mappings to ATT&CK techniques
+    - | Data ||||
+      |------|------|------|--|
+      | [NIST 800-53 Revision 4](/frameworks/nist800-53-r4/) | [Spreadsheet](/frameworks/nist800-53-r4/nist800-53-r4-mappings.xlsx) | [Navigator Layers](/frameworks/nist800-53-r4/layers) | [STIX](/frameworks/nist800-53-r4/stix) |
+      | [NIST 800-53 Revision 5](/frameworks/nist800-53-r5/) | [Spreadsheet](/frameworks/nist800-53-r5/nist800-53-r5-mappings.xlsx) | [Navigator Layers](/frameworks/nist800-53-r5/layers) | [STIX](/frameworks/nist800-53-r5/stix) |
+    
+- Methodology — processes and procedures for developing and editing mappings
+    - [Mapping Methodology](/docs/mapping_methodology.md) — a description of the general process used to create the control mappings
+    - [Tooling](/docs/tooling.md) — a set of python tools to support the creation of new mappings and the customization of existing mappings
+- [STIX Format](/docs/STIX_format.md) — information regarding the STIX representation of the control frameworks and the mappings to ATT&CK
+- [Visualization](/docs/visualization.md) — this document describes some ways the mappings data can be visualized. 
+- [Contributing](/CONTRIBUTING.md) — information about how to contribute controls, mappings, or other improvements to this repository
+- [Changelog](/CHANGELOG.md) — list of updates to this repository
 
-Each framework folder includes the framework and mapping STIX data in a `/stix/` folder, and ATT&CK Navigator Layers in the `/layers/` folder. An excel spreadsheet is also provided for easy perusal of the mappings. The [install](#install) section below explains how to set up this repository for local use if you intend to extend the defined mappings.
+## Notice 
 
+Copyright 2020 MITRE Engenuity. Approved for public release. 
 
-## Input data
-Each control framework has one input for the controls and one for the mappings. The controls input is generally supplied by the organization publishing the controls in the first place. The mappings were created as part of this project. 
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at 
 
-## Framework parser
+http://www.apache.org/licenses/LICENSE-2.0 
 
-<img src="docs/parser_overview.png" width="720px">
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License. 
 
-*Above: overview of the parser structure*
+This project makes use of ATT&CK®
 
-The controls parser consists of two major parts, `parse_controls.py` and the `parse_mappings.py`. These are coupled together with `parse.py` which performs both operations sequentially. 
-- `parse_controls.py` takes as input the controls spreadsheet and builds a STIX2.0 representation of the control framework. Because the representation of each control framework differs, this script will likely have to be rewritten for each additional control framework since the input data format is not standardized.
-- `parse_mappings.py` takes as input the mappings spreadsheet, and the STIX representation of the control framework and builds a STIX2.0 representation of the mappings to ATT&CK. Because the input mappings file format can be standardized, this parser can often be reused when adding additional control frameworks.
-
-## Output data
-
-The controls parser system outlined above produces a series of STIX2.0 bundles representing the controls framework as well as mappings to ATT&CK. See the README of the `stix` folder for a given framework for a description of each file:
-- [NIST 800-53 Revision 4](frameworks/nist800-53-r4/stix/)
-- [NIST 800-53 Revision 5](frameworks/nist800-53-r5/stix/)
-
-The general format is as follows:
-- Both controls and mappings are represented in STIX2.0 JSON.
-- Controls are represented as [course-of-actions](https://docs.oasis-open.org/cti/stix/v2.0/csprd01/part2-stix-objects/stix-v2.0-csprd01-part2-stix-objects.html#_Toc476230929).
-- The hierarchy of the control framework is also represented in the STIX. Relationships of type `subcontrol-of` map sub-controls to their parent controls for frameworks which have hierarchical controls. 
-- `x_mitre_` properties are added to control `course-of-action` objects for additional properties depending on the control framework, such as the control family (`x_mitre_family`) or control priority (`x_mitre_priority`). These additional properties are not standardized across control frameworks, and are described in the README of each control framework.
-- Mappings from individual controls to ATT&CK techniques and sub-techniques are represented as [relationships](https://docs.oasis-open.org/cti/stix/v2.0/csprd01/part2-stix-objects/stix-v2.0-csprd01-part2-stix-objects.html#_Toc476230970) of type `mitigates`, where the `source_ref` is the `id` of the control and the `target_ref` is the `id` of the technique or sub-technique. The optional `description` field on the relationship is taken from the input spreadsheet if a description is given there, and is used to justify the mapping of the control.
-
-## Utility scripts
-
-The [/util/](util/) folder includes utility scripts designed to work with generic control frameworks and mappings that implement the format described [above](#output-data). Please see the readme in the util folder for more details of the functionality of these scripts.
-
-# Install
-## Requirements
-
-- [python](https://www.python.org/) 3.6 or greater
-
-## Environment setup
-
-1. Create a virtual environment: 
-    - macOS and Linux: `python3 -m venv env`
-    - Windows: `py -m venv env`
-2. Activate the virtual environment: 
-    - macOS and Linux: `source env/bin/activate`
-    - Windows: `env/Scripts/activate.bat`
-3. Install requirement packages: `pip3 install -r requirements.txt`
-
-## Rebuild the STIX data
-
-To rebuild all the data in the repository based on the most up-to-date input data, run `python3 make.py`.
-
-To rebuild the STIX data for a specific control framework:
-1. run `python3 parser.py` from within the folder of the given control framework. This will rebuild the raw STIX data from the input spreadsheets.
-2. Then use the scripts in [util](util/) to regenerate the ancillary control data such as ATT&CK Navigator layers.
+[ATT&CK Terms of Use](https://attack.mitre.org/resources/terms-of-use/)
