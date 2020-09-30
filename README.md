@@ -13,10 +13,6 @@ These mappings provide the means for organizations to see their security control
 - [Contributing](/CONTRIBUTING.md) — information about how to contribute controls, mappings, or other improvements to this repository
 - [Changelog](/CHANGELOG.md) — list of updates to this repository
 
-## Liability / Responsible Usage 
-
-This content is only to be used with appropriate prior, explicit authorization for the purposes of assessing security posture and/or research. 
-
 ## Notice 
 
 Copyright 2020 MITRE Engenuity. Approved for public release. 
