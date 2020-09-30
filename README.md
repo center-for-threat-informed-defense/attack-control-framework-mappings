@@ -4,7 +4,13 @@ This repository contains the materials developed by the [Center for Threat Infor
 These mappings provide the means for organizations to see their security control coverage against associated ATT&CK techniques and to integrate ATT&CK-based threat information within the risk management process. For example, users can employ the mappings to evaluate their cybersecurity readiness, identify gaps and deficiencies in their security posture, improve continuous monitoring activities, and assist in selecting the most appropriate security controls to mitigate the most damaging attacks. A more thorough consideration of use cases to which these mappings might be applied can be found in [our use-cases document](/docs/use-cases.md). 
 
 ## Repository Contents
+
 - [Frameworks](/frameworks) — this directory contains the security control frameworks and their mappings to ATT&CK techniques
+    - | Data ||||
+      |------|------|------|--|
+      | [NIST 800-53 Revision 4](/frameworks/nist800-53-r4/) | [Spreadsheet](/frameworks/nist800-53-r4/nist800-53-r4-mappings.xlsx) | [Navigator Layers](/frameworks/nist800-53-r4/layers) | [STIX](/frameworks/nist800-53-r4/stix) |
+      | [NIST 800-53 Revision 5](/frameworks/nist800-53-r5/) | [Spreadsheet](/frameworks/nist800-53-r5/nist800-53-r5-mappings.xlsx) | [Navigator Layers](/frameworks/nist800-53-r5/layers) | [STIX](/frameworks/nist800-53-r5/stix) |
+    
 - Methodology — processes and procedures for developing and editing mappings
     - [Mapping Methodology](/docs/mapping_methodology.md) — a description of the general process used to create the control mappings
     - [Tooling](/docs/tooling.md) — a set of python tools to support the creation of new mappings and the customization of existing mappings
