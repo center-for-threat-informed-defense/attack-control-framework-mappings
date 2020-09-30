@@ -11,7 +11,7 @@ To build the framework from the input data, run `python3 parse.py`.
 
 ## Extended Fields
 
-The Nist 800-53 Revision 4 STIX data extends the controls format with the following properties:
+The NIST 800-53 Revision 4 STIX data extends the controls format with the following properties:
 
 | STIX field | type | description |
 |:-----------|:-----|:------------|
