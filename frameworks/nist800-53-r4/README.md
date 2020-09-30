@@ -3,8 +3,8 @@
 This folder contains data and parsers for the NIST 800-53 Revision 4 control framework, and the mappings of that framework to ATT&CK.
 
 
-| Data ||||
-|------|------|------|--|
+| Data ||
+|------|------|
 | [spreadsheet](nist800-53-r4-mappings.xlsx) | Lists all of the mappings for this control framework.
 | [layers](layers) | [ATT&CK Navigator](https://github.com/mitre-attack/attack-navigator) layers showing the mappings in the context of the ATT&CK Matrix. |
 | [stix](stix) | Output STIX 2.0 json data. See the README in that folder for more information. |
