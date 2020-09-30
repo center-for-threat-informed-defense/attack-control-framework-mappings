@@ -11,7 +11,7 @@ To build the framework from the input data, run `python3 parse.py`.
 
 ## Extended Fields
 
-The Nist 800-53 Revision 5 STIX data does not extend the controls format with any additional properties.
+The NIST 800-53 Revision 5 STIX data does not extend the controls format with any additional properties.
 
 ## Mappings Methodology
 
