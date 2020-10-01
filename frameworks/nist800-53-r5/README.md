@@ -16,6 +16,6 @@ This folder contains data and parsers for the NIST 800-53 Revision 5 control fra
 
 The NIST 800-53 Revision 5 STIX data does not extend the [general controls format](/docs/stix_format.md) with any additional properties.
 
-## Mappings Methodology
+## Mapping NIST 800-53 revision 5 to ATT&CK
 
 Section TODO
