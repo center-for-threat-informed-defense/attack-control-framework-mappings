@@ -93,15 +93,6 @@ if __name__ == "__main__":
                          dest="outmappings",
                          help="output STIX bundle file for the mappings.",
                          default=os.path.join("stix", "nist800-53-r4-mappings.json"))
-    # these are now inherited from config.json
-    # parser.add_argument("-domain",
-    #                     dest="domain",
-    #                     help="which ATT&CK domain to use",
-    #                     default="enterprise-attack")
-    # parser.add_argument("-version",
-    #                     dest="version",
-    #                     help="which ATT&CK version to use",
-    #                     default="7.0-beta")
 
     args = parser.parse_args()
 
