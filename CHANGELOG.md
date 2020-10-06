@@ -13,6 +13,10 @@
 <!--    ### New Features                                                -->
 <!--    ### Improvements                                                -->
 <!--    ### Fixes                                                       -->
+# Changes staged on develop
+### Improvements
+- Updated Revision 5 controls to use final release (no longer Final Public Draft). 
+
 # 30 September 2020
 ### Improvements
 - Revised documentation into more organized structure to better cater to varied use cases. See issue [#34](https://github.com/center-for-threat-informed-defense/attack-control-framework-mappings/issues/34).
