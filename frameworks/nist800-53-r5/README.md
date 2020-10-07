@@ -18,7 +18,7 @@ The NIST 800-53 Revision 5 STIX data does not extend the [general controls forma
 
 ## Mapping NIST 800-53 revision 5 to ATT&CK
 
-During the analysis and mapping of ATT&CK techniques and sub-techniques to NIST 800-53 revision 4 controls, several decision points were made regarding applicability and relevance. Specifically, the following was considered as part of the decision points:
+During the analysis and mapping of ATT&CK techniques and sub-techniques to NIST 800-53 revision 5 controls, several decision points were made regarding applicability and relevance. Specifically, the following was considered as part of the decision points:
 
 - A threat-based approach was used to determine the functionality of security controls in mitigating an adversary technical objective and goal.
 - This effort is focused on the technical and operational elements of NIST 800-53 and did not take into account the management elements that are often focused on organization specific policies and procedures.  This decision was made because management specific controls are policy-based, and the intent of this effort was focusing on technical and operation controls that correlate to ATT&CK mitigations, techniques, and sub-techniques.   
