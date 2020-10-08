@@ -18,6 +18,7 @@
 - Updated Revision 5 controls to use final release (no longer Final Public Draft). 
 - Added mappings for [nist800-53-r5](/frameworks/nist800-53-r5). This constitutes version 1.0 of the Revision 5 mappings.
 - Updated some mappings for [nist800-53-r4](/frameworks/nist800-53-r4). This constitutes version 1.1 of the Revision 4 mappings.
+- Updated [mapping methodology document](/docs/mapping_methodology.md), and updated [nist800-53-r4](/frameworks/nist800-53-r4) and [nist800-53-r5](/frameworks/nist800-53-r5) methodology sections.
 
 # 30 September 2020
 ### Improvements

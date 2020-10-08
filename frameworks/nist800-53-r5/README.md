@@ -12,11 +12,10 @@ This folder contains data and parsers for the NIST 800-53 Revision 5 control fra
 | [stix](stix) | Output STIX 2.0 json data. See the README in that folder for more information. |
 | [input](input) | Input spreadsheets from which the STIX is built. To rebuild the STIX data from the input spreadsheets, run `python3 parse.py`.See the README in that folder for more information. |
 
-
 ## Extended Fields
 
 The NIST 800-53 Revision 5 STIX data does not extend the [general controls format](/docs/stix_format.md) with any additional properties.
 
-## Mappings Methodology
+## Mapping NIST 800-53 revision 5 to ATT&CK
 
 Section TODO
