@@ -13,7 +13,7 @@
 <!--    ### New Features                                                -->
 <!--    ### Improvements                                                -->
 <!--    ### Fixes                                                       -->
-# Changes staged on develop
+# 8 October 2020
 ### Improvements
 - Updated Revision 5 controls to use final release (no longer Final Public Draft). 
 - Added mappings for [nist800-53-r5](/frameworks/nist800-53-r5). This constitutes version 1.0 of the Revision 5 mappings.
