@@ -13,6 +13,13 @@
 <!--    ### New Features                                                -->
 <!--    ### Improvements                                                -->
 <!--    ### Fixes                                                       -->
+# 8 October 2020
+### Improvements
+- Updated Revision 5 controls to use final release (no longer Final Public Draft). 
+- Added mappings for [nist800-53-r5](/frameworks/nist800-53-r5). This constitutes version 1.0 of the Revision 5 mappings.
+- Updated some mappings for [nist800-53-r4](/frameworks/nist800-53-r4). This constitutes version 1.1 of the Revision 4 mappings.
+- Updated [mapping methodology document](/docs/mapping_methodology.md), and updated [nist800-53-r4](/frameworks/nist800-53-r4) and [nist800-53-r5](/frameworks/nist800-53-r5) methodology sections.
+
 # 30 September 2020
 ### Improvements
 - Revised documentation into more organized structure to better cater to varied use cases. See issue [#34](https://github.com/center-for-threat-informed-defense/attack-control-framework-mappings/issues/34).

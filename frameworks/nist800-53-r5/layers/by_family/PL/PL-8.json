@@ -1,0 +1,1 @@
+{"name": "PL-8 mappings", "version": "3.0", "sorting": 3, "description": "nist800-53-r5 PL-8 mappings", "domain": "mitre-enterprise", "techniques": [{"techniqueID": "T1482", "score": 1, "comment": "Mitigated by PL-8"}, {"techniqueID": "T1078", "score": 1, "comment": "Mitigated by PL-8"}], "gradient": {"colors": ["#ffffff", "#66b1ff"], "minValue": 0, "maxValue": 1}}
