@@ -43,15 +43,15 @@ class Control:
             except:
                 return None # column doesn't exist for row 
         
-        self.external_id = get_column("identifier")
+        self.external_id = get_column("Control Identifier")
         # print("id:", self.external_id)
-        self.name = get_column("name")
+        self.name = get_column("Control (or Control Enhancement) Name")
         # print("name:", self.name)
-        self.text = get_column("control_text")
+        self.text = get_column("Control (or Control Enhancement)")
         # print("text:", self.text)
-        self.discussion = get_column("discussion")
+        self.discussion = get_column("Discussion")
         # print("discussion:", self.discussion)
-        self.related = get_column("related").split(", ") if get_column("related") else []
+        self.related = get_column("Related Controls").split(", ") if get_column("related") else []
         # print("related:", self.related)
 
         # try to manually set the STIX ID from the control_ids mapping, if not present it will randomly generate
@@ -67,7 +67,10 @@ class Control:
 
     def format_description(self):
         """format and return the control description (statements, etc) as a markdown string"""
-        return "\n\n".join([self.text, self.discussion])
+        descr = []
+        if self.text: descr.append(self.text)
+        if self.discussion: descr.append(self.discussion)
+        return "\n\n".join(descr)
 
     def toStix(self, framework_id):
         """convert to a stix2 Course of Action"""
