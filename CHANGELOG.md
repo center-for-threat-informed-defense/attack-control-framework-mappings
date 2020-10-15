@@ -13,6 +13,10 @@
 <!--    ### New Features                                                -->
 <!--    ### Improvements                                                -->
 <!--    ### Fixes                                                       -->
+# 15 October 2020
+- Added documentation about scope of mappings to [nist800-53-r4](/frameworks/nist800-53-r4) and [nist800-53-r5](/frameworks/nist800-53-r5).
+- Added note about the reason [nist800-53-r5](/frameworks/nist800-53-r5) doesn't have any additional fields in the STIX.
+
 # 8 October 2020
 ### Improvements
 - Updated Revision 5 controls to use final release (no longer Final Public Draft). 
