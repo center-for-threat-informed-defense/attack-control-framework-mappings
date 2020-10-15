@@ -1,9 +1,11 @@
 # NIST 800-53 Revision 4 Control Mappings
+This folder contains data and parsers for the NIST 800-53 Revision 4 control framework, and the mappings of that framework to ATT&CK.
+
 | Mappings Version | Last Updated      | Scope    | ATT&CK Version | ATT&CK Domain |
 |------------------|-------------------|----------|----------------|---------------|
-| 1.1              | 8 October 2020    | Complete | [ATT&CK v7](https://attack.mitre.org/resources/versions/) | Enterprise |
+| 1.1              | 8 October 2020    | Partial<sup>[1]</sup> | [ATT&CK v7](https://attack.mitre.org/resources/versions/) | Enterprise |
 
-This folder contains data and parsers for the NIST 800-53 Revision 4 control framework, and the mappings of that framework to ATT&CK.
+[1] This initial release of security control mappings include all the techniques and sub-techniques associated with the following mitigation families: M1036, M1015, M1049, M1013, M1048, M1047, M1040, M1046, M1045, M1043, M1053, M1042, M1041,  M1039, M1038, M1050 and M1037.
 
 | Data ||
 |------|------|

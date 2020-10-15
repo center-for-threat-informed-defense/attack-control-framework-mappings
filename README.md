@@ -10,8 +10,6 @@ These mappings provide the means for organizations to see their security control
       |------|------|------|--|
       | [NIST 800-53 Revision 4](/frameworks/nist800-53-r4/) | [Spreadsheet](/frameworks/nist800-53-r4/nist800-53-r4-mappings.xlsx) | [Navigator Layers](/frameworks/nist800-53-r4/layers) | [STIX](/frameworks/nist800-53-r4/stix) |
       | [NIST 800-53 Revision 5](/frameworks/nist800-53-r5/) | [Spreadsheet](/frameworks/nist800-53-r5/nist800-53-r5-mappings.xlsx) | [Navigator Layers](/frameworks/nist800-53-r5/layers) | [STIX](/frameworks/nist800-53-r5/stix) |
-    This initial release of security control mappings include all the techniques and sub-techniques associated with the following mitigation families; M1036, M1015, M1049, M1013, M1048, M1047, M1040, M1046, M1045, M1043, M1053, M1042, M1041,  M1039, M1038, M1050 and M1037 (for both Revision 4 and Revision 5).
-    
 - Methodology — processes and procedures for developing and editing mappings
     - [Mapping Methodology](/docs/mapping_methodology.md) — a description of the general process used to create the control mappings
     - [Tooling](/docs/tooling.md) — a set of python tools to support the creation of new mappings and the customization of existing mappings
