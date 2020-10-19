@@ -27,11 +27,6 @@ def layer(name, description, domain, techniques, version):
         min_mappings = 0 # set low end of gradient to 0
         gradient = ["#ffffff", "#66b1ff"]
 
-    domain = { # convert domain to navigator format
-        "enterprise-attack": "mitre-enterprise",
-        "mobile-attack": "mitre-mobile",
-    }[domain]
-
     # convert version to just major version
     if version.startswith("v"):
         version = version[1:]
