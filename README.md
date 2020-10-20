@@ -10,7 +10,6 @@ These mappings provide the means for organizations to see their security control
       |------|------|------|--|
       | [NIST 800-53 Revision 4](/frameworks/nist800-53-r4/) | [Spreadsheet](/frameworks/nist800-53-r4/nist800-53-r4-mappings.xlsx) | [Navigator Layers](/frameworks/nist800-53-r4/layers) | [STIX](/frameworks/nist800-53-r4/stix) |
       | [NIST 800-53 Revision 5](/frameworks/nist800-53-r5/) | [Spreadsheet](/frameworks/nist800-53-r5/nist800-53-r5-mappings.xlsx) | [Navigator Layers](/frameworks/nist800-53-r5/layers) | [STIX](/frameworks/nist800-53-r5/stix) |
-    
 - Methodology — processes and procedures for developing and editing mappings
     - [Mapping Methodology](/docs/mapping_methodology.md) — a description of the general process used to create the control mappings
     - [Tooling](/docs/tooling.md) — a set of python tools to support the creation of new mappings and the customization of existing mappings
