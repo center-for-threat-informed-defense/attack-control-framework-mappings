@@ -30,24 +30,24 @@ The NIST 800-53 Revision 4 STIX data extends the [general controls format](/docs
 During the analysis and mapping of ATT&CK techniques and sub-techniques to NIST 800-53 revision 4 controls, several decision points were made regarding applicability and relevance. Specifically, the following was considered as part of the decision points:
 
 ### Control Families
-- AC - [Access Control]('https://nvd.nist.gov/800-53/Rev4/family/Access Control')
-- AU - [Audit and Accountability]
-- AT - [Awareness and Training]
-- CM - [Configuration Management]
-- CP - [Contingency Planning]
-- IA - [Identification and Authentication]
-- IR - [Incident Response]
-- MA - [Maintenance]
-- MP - [Media Protection]
-- PS - [Personnel Security]
-- PE - [Physical and Environmental Protection]
-- PL - [Planning]
-- PM - [Program Management]
-- RA - [Risk Assessment]
-- CA - [Security Assessment and Authorization]
-- SC - [System and Communications Protection]
-- SI - [System and Information Integrity]
-- SA - [System and Services Acquisition]
+- AC - [Access Control](https://nvd.nist.gov/800-53/Rev4/family/Access Control)
+- AU - [Audit and Accountability](https://nvd.nist.gov/800-53/Rev4/family/Audit and Accountability)
+- AT - [Awareness and Training](https://nvd.nist.gov/800-53/Rev4/family/Awareness and Training)
+- CM - [Configuration Management](https://nvd.nist.gov/800-53/Rev4/family/Configuration Management)
+- CP - [Contingency Planning](https://nvd.nist.gov/800-53/Rev4/family/Contingency Planning)
+- IA - [Identification and Authentication](https://nvd.nist.gov/800-53/Rev4/family/Identification and Authentication)
+- IR - [Incident Response](https://nvd.nist.gov/800-53/Rev4/family/Incident Response)
+- MA - [Maintenance](https://nvd.nist.gov/800-53/Rev4/family/Maintenance)
+- MP - [Media Protection](https://nvd.nist.gov/800-53/Rev4/family/Media Protection)
+- PS - [Personnel Security](https://nvd.nist.gov/800-53/Rev4/family/Personnel Security)
+- PE - [Physical and Environmental Protection](https://nvd.nist.gov/800-53/Rev4/family/Physical and Environmental Protection)
+- PL - [Planning](https://nvd.nist.gov/800-53/Rev4/family/Planning)
+- PM - [Program Management](https://nvd.nist.gov/800-53/Rev4/family/Program Management)
+- RA - [Risk Assessment](https://nvd.nist.gov/800-53/Rev4/family/Risk Assessment)
+- CA - [Security Assessment and Authorization](https://nvd.nist.gov/800-53/Rev4/family/Security Assessment and Authorization)
+- SC - [System and Communications Protection](https://nvd.nist.gov/800-53/Rev4/family/System and Communications Protection)
+- SI - [System and Information Integrity](https://nvd.nist.gov/800-53/Rev4/family/System and Information Integrity)
+- SA - [System and Services Acquisition](https://nvd.nist.gov/800-53/Rev4/family/System and Services Acquisition)
 
 
 
