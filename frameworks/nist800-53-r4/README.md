@@ -29,5 +29,8 @@ The NIST 800-53 Revision 4 STIX data extends the [general controls format](/docs
 
 During the analysis and mapping of ATT&CK techniques and sub-techniques to NIST 800-53 revision 4 controls, several decision points were made regarding applicability and relevance. Specifically, the following was considered as part of the decision points:
 
+
+** DOCUMENT SCOPE HERE
+
 - This effort is focused on the technical and operational elements of NIST 800-53 and did not take into account the management elements that are often focused on organization specific policies and procedures.  This decision was made because management specific controls are policy-based, and the intent of this effort was focusing on technical and operation controls that correlate to ATT&CK mitigations, techniques, and sub-techniques.   
 - During the NIST 800-53 control analysis, the context of the prescribed mitigation for a given technique or sub-technique was important to refine and select specific controls within a given control family.  This helped narrow the search space during security control analysis as each control family contains specific security controls related to the broader general security topic of the family.  
