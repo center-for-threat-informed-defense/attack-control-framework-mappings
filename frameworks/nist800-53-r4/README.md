@@ -42,7 +42,7 @@ NIST 800-53 revision 4 control families are listed below with links to the contr
 - CM - [Configuration Management](https://nvd.nist.gov/800-53/Rev4/family/Configuration%20Management)
 - CP - [Contingency Planning](https://nvd.nist.gov/800-53/Rev4/family/Contingency%20Planning)
 - IA - [Identification and Authentication](https://nvd.nist.gov/800-53/Rev4/family/Identification%20and%20Authentication)
-- IR - [Incident Response](https://nvd.nist.gov/800-53/Rev4/family/Incident%20Response) - (out of scope) - pending discusssion with Tiffany
+- IR - [Incident Response](https://nvd.nist.gov/800-53/Rev4/family/Incident%20Response) - (out of scope) - 
 - MA - [Maintenance](https://nvd.nist.gov/800-53/Rev4/family/Maintenance) - (out of scope) - 
 - MP - [Media Protection](https://nvd.nist.gov/800-53/Rev4/family/Media%20Protection)
 - PS - [Personnel Security](https://nvd.nist.gov/800-53/Rev4/family/Personnel%20Security) - (out of scope) - 
