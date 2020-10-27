@@ -13,7 +13,7 @@
 <!--    ### New Features                                                -->
 <!--    ### Improvements                                                -->
 <!--    ### Fixes                                                       -->
-# Changes staged on develop
+# 27 October 2020
 ### Improvements
 - Updated [mappingsToHeatmaps](/util/mappingsToHeatmaps.py) so that output layers use version 4.0 of the Navigator layer format.
 
