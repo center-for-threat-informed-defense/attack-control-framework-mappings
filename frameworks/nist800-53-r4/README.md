@@ -27,9 +27,15 @@ The NIST 800-53 Revision 4 STIX data extends the [general controls format](/docs
 
 ## Mapping NIST 800-53 revision 4 to ATT&CK
 
-During the analysis and mapping of ATT&CK techniques and sub-techniques to NIST 800-53 revision 4 controls, several decision points were made regarding applicability and relevance. Specifically, the following was considered as part of the decision points:
+Scoping decisions and mapping methodology for NIST 800-53 revision 4 controls are decoumented below. The mapping methodology for NIST 800-53 revision 4 controls builds upon and refines the overall [security control framework mapping methodology](/docs/mapping_methodology.md).
 
-### Control Families
+### General Scoping Decisions
+- Opperational vs. Policy and Prodedural Controls - This effort is focused on the technical and operational elements of NIST 800-53 and did not take into account the management elements that are often focused on organization specific policies and procedures.  This decision was made because management specific controls are policy-based, and the intent of this effort was focusing on technical and operation controls that correlate to ATT&CK mitigations, techniques, and sub-techniques. 
+- Mitigation vs. Montioring - 
+- 
+
+### Control Family Scoping Decisions
+NIST 800-53 revision 4 contolr families are listed below with links to the control family on the NIST web site and our rational for a given control family being in or out of scope: 
 - AC - [Access Control](https://nvd.nist.gov/800-53/Rev4/family/Access%20Control)
 - AU - [Audit and Accountability](https://nvd.nist.gov/800-53/Rev4/family/Audit%20and%20Accountability) - (out of scope) - Audit controls are not applicable as they do not provide mitigations of specific threats, but instead detect successful attacks.
 - AT - [Awareness and Training](https://nvd.nist.gov/800-53/Rev4/family/Awarenessand%20Training) - (out of scope) - 
@@ -48,12 +54,3 @@ During the analysis and mapping of ATT&CK techniques and sub-techniques to NIST 
 - SC - [System and Communications Protection](https://nvd.nist.gov/800-53/Rev4/family/System%20and%20Communications%20Protection)
 - SI - [System and Information Integrity](https://nvd.nist.gov/800-53/Rev4/family/System%20and%20Information%20Integrity)
 - SA - [System and Services Acquisition](https://nvd.nist.gov/800-53/Rev4/family/System%20and%20Services%20Acquisition)
-
-
-
-
-
---- OLD DOCS BELOW HERE ---
-
-- This effort is focused on the technical and operational elements of NIST 800-53 and did not take into account the management elements that are often focused on organization specific policies and procedures.  This decision was made because management specific controls are policy-based, and the intent of this effort was focusing on technical and operation controls that correlate to ATT&CK mitigations, techniques, and sub-techniques.   
-- During the NIST 800-53 control analysis, the context of the prescribed mitigation for a given technique or sub-technique was important to refine and select specific controls within a given control family.  This helped narrow the search space during security control analysis as each control family contains specific security controls related to the broader general security topic of the family.  
