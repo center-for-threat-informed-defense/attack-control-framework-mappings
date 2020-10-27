@@ -13,6 +13,11 @@
 <!--    ### New Features                                                -->
 <!--    ### Improvements                                                -->
 <!--    ### Fixes                                                       -->
+
+# 27 October 2020
+### Improvements
+- Updated [mappingsToHeatmaps](/util/mappingsToHeatmaps.py) so that output layers use version 4.0 of the Navigator layer format.
+
 # 20 October 2020
 ### Improvements
 - Added documentation about scope of mappings to [nist800-53-r4](/frameworks/nist800-53-r4) and [nist800-53-r5](/frameworks/nist800-53-r5).
