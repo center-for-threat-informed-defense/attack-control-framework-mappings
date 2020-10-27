@@ -47,8 +47,8 @@ NIST 800-53 revision 4 control families are listed below with links to the contr
 - MP - [Media Protection](https://nvd.nist.gov/800-53/Rev4/family/Media%20Protection)
 - PS - [Personnel Security](https://nvd.nist.gov/800-53/Rev4/family/Personnel%20Security) - (out of scope) - 
 - PE - [Physical and Environmental Protection](https://nvd.nist.gov/800-53/Rev4/family/Physical%20and%20Environmental%20Protection) - (out of scope) - 
-- PL - [Planning](https://nvd.nist.gov/800-53/Rev4/family/Planning) - (out of scope) - pending discussion with Tiffany
-- PM - [Program Management](https://nvd.nist.gov/800-53/Rev4/family/Program%20Management) - (out of scope) - pending discussion with Tiffany
+- PL - [Planning](https://nvd.nist.gov/800-53/Rev4/family/Planning) - (out of scope) - 
+- PM - [Program Management](https://nvd.nist.gov/800-53/Rev4/family/Program%20Management) - (out of scope) - 
 - RA - [Risk Assessment](https://nvd.nist.gov/800-53/Rev4/family/Risk%20Assessment)
 - CA - [Security Assessment and Authorization](https://nvd.nist.gov/800-53/Rev4/family/Security%20Assessment%20and%20Authorization)
 - SC - [System and Communications Protection](https://nvd.nist.gov/800-53/Rev4/family/System%20and%20Communications%20Protection)
