@@ -31,18 +31,18 @@ During the analysis and mapping of ATT&CK techniques and sub-techniques to NIST 
 
 ### Control Families
 - AC - [Access Control](https://nvd.nist.gov/800-53/Rev4/family/Access%20Control)
-- AU - [Audit and Accountability](https://nvd.nist.gov/800-53/Rev4/family/Audit%20and%20Accountability)
-- AT - [Awareness and Training](https://nvd.nist.gov/800-53/Rev4/family/Awarenessand%20Training)
+- AU - [Audit and Accountability](https://nvd.nist.gov/800-53/Rev4/family/Audit%20and%20Accountability) - (out of scope) - Audit controls are not applicable as they do not provide mitigations of specific threats, but instead detect successful attacks.
+- AT - [Awareness and Training](https://nvd.nist.gov/800-53/Rev4/family/Awarenessand%20Training) - (out of scope) - 
 - CM - [Configuration Management](https://nvd.nist.gov/800-53/Rev4/family/Configuration%20Management)
 - CP - [Contingency Planning](https://nvd.nist.gov/800-53/Rev4/family/Contingency%20Planning)
 - IA - [Identification and Authentication](https://nvd.nist.gov/800-53/Rev4/family/Identification%20and%20Authentication)
-- IR - [Incident Response](https://nvd.nist.gov/800-53/Rev4/family/Incident%20Response)
-- MA - [Maintenance](https://nvd.nist.gov/800-53/Rev4/family/Maintenance)
+- IR - [Incident Response](https://nvd.nist.gov/800-53/Rev4/family/Incident%20Response) - (out of scope) - pending discusssion with Tiffany
+- MA - [Maintenance](https://nvd.nist.gov/800-53/Rev4/family/Maintenance) - (out of scope) - 
 - MP - [Media Protection](https://nvd.nist.gov/800-53/Rev4/family/Media%20Protection)
-- PS - [Personnel Security](https://nvd.nist.gov/800-53/Rev4/family/Personnel%20Security)
-- PE - [Physical and Environmental Protection](https://nvd.nist.gov/800-53/Rev4/family/Physical%20and%20Environmental%20Protection)
-- PL - [Planning](https://nvd.nist.gov/800-53/Rev4/family/Planning)
-- PM - [Program Management](https://nvd.nist.gov/800-53/Rev4/family/Program%20Management)
+- PS - [Personnel Security](https://nvd.nist.gov/800-53/Rev4/family/Personnel%20Security) - (out of scope) - 
+- PE - [Physical and Environmental Protection](https://nvd.nist.gov/800-53/Rev4/family/Physical%20and%20Environmental%20Protection) - (out of scope) - 
+- PL - [Planning](https://nvd.nist.gov/800-53/Rev4/family/Planning) - (out of scope) - pending discussion with Tiffany
+- PM - [Program Management](https://nvd.nist.gov/800-53/Rev4/family/Program%20Management) - (out of scope) - pending discussion wiht Tiffany
 - RA - [Risk Assessment](https://nvd.nist.gov/800-53/Rev4/family/Risk%20Assessment)
 - CA - [Security Assessment and Authorization](https://nvd.nist.gov/800-53/Rev4/family/Security%20Assessment%20and%20Authorization)
 - SC - [System and Communications Protection](https://nvd.nist.gov/800-53/Rev4/family/System%20and%20Communications%20Protection)
