@@ -17,7 +17,7 @@ def technique(attackID, mapped_controls):
     }
 
 
-def layer(name, description, domain, techniques):
+def layer(name, description, domain, techniques, version):
     """create a Layer"""
     min_mappings = min(map(lambda t: t["score"], techniques)) if len(techniques) > 0 else 0
     max_mappings = max(map(lambda t: t["score"], techniques)) if len(techniques) > 0 else 100
@@ -27,14 +27,18 @@ def layer(name, description, domain, techniques):
         min_mappings = 0 # set low end of gradient to 0
         gradient = ["#ffffff", "#66b1ff"]
 
-    domain = { # convert domain to navigator format
-        "enterprise-attack": "mitre-enterprise",
-        "mobile-attack": "mitre-mobile",
-    }[domain]
+    # convert version to just major version
+    if version.startswith("v"):
+        version = version[1:]
+    version = version.split(".")[0]
 
     return {
         "name": name,
-        "version": "3.0",
+        "versions": {
+            "navigator": "4.0",
+            "layer": "4.0",
+            "attack": version
+        },
         "sorting": 3, # descending order of score
         "description": description,
         "domain": domain,
@@ -115,7 +119,7 @@ def toTechniquelist(controls, mappings, attackdata, familyIDToControls, familyID
     # transform to techniques
     return [technique(id, techniqueToMappedControls[id]) for id in techniqueToMappedControls]
 
-def getFrameworkOverviewLayers(controls, mappings, attackdata, domain, frameworkname):
+def getFrameworkOverviewLayers(controls, mappings, attackdata, domain, frameworkname, version):
     """ingest mappings and controls and attackdata, and return an array of layer jsons for layers according to control family"""
     # build list of control families
     familyIDToControls, familyIDToName, idToFamily = parseFamilyData(controls)
@@ -127,7 +131,8 @@ def getFrameworkOverviewLayers(controls, mappings, attackdata, domain, framework
                 f"{frameworkname} overview", 
                 f"{frameworkname} heatmap overview of control mappings, where scores are the number of associated controls",
                 domain, 
-                toTechniquelist(controls, mappings, attackdata, familyIDToControls, familyIDToName, idToFamily)
+                toTechniquelist(controls, mappings, attackdata, familyIDToControls, familyIDToName, idToFamily),
+                version
             )
         }
     ]
@@ -142,7 +147,8 @@ def getFrameworkOverviewLayers(controls, mappings, attackdata, domain, framework
                     f"{familyIDToName[familyID]} overview",
                     f"{frameworkname} heatmap for controls in the {familyIDToName[familyID]} family, where scores are the number of associated controls",
                     domain,
-                    techniquesInFamily
+                    techniquesInFamily,
+                    version
                 )
             })
             # build layer for each control
@@ -157,13 +163,14 @@ def getFrameworkOverviewLayers(controls, mappings, attackdata, domain, framework
                             f"{control_id} mappings",
                             f"{frameworkname} {control_id} mappings",
                             domain,
-                            techniquesMappedToControl
+                            techniquesMappedToControl,
+                            version
                         )
                     })
     
     return outlayers
 
-def getLayersByProperty(controls, mappings, attackdata, domain, frameworkname, x_mitre):
+def getLayersByProperty(controls, mappings, attackdata, domain, frameworkname, x_mitre, version):
     """get layers grouping the mappings according to values of the given property"""
     propertyname = x_mitre.split("x_mitre_")[1] # remove prefix
 
@@ -200,7 +207,8 @@ def getLayersByProperty(controls, mappings, attackdata, domain, frameworkname, x
                     f"{propertyname}={value} mappings",
                     f"techniques where the {propertyname} of associated controls {'includes' if isListType else 'is'} {value}",
                     domain, 
-                    techniques
+                    techniques,
+                    version
                 )
             })
 
@@ -264,10 +272,10 @@ if __name__ == "__main__":
 
     
     print("generating layers... ", end="", flush=True)
-    layers = getFrameworkOverviewLayers(controls, mappings, attackdata, args.domain, args.framework)
-    for property in get_x_mitre(controls): # iterate over all custom properties as potential layer-generation material
-        if property == "x_mitre_family": continue
-        layers += getLayersByProperty(controls, mappings, attackdata, args.domain, args.framework, property)
+    layers = getFrameworkOverviewLayers(controls, mappings, attackdata, args.domain, args.framework, args.version)
+    for p in get_x_mitre(controls): # iterate over all custom properties as potential layer-generation material
+        if p == "x_mitre_family": continue
+        layers += getLayersByProperty(controls, mappings, attackdata, args.domain, args.framework, p, args.version)
     print("done")
 
     if args.clear:
