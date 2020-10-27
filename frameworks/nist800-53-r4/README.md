@@ -31,7 +31,7 @@ Scoping decisions and mapping methodology for NIST 800-53 revision 4 controls ar
 
 ### General Scoping Decisions
 - Opperational vs. Policy and Prodedural Controls - This effort is focused on the technical and operational elements of NIST 800-53 and did not take into account the management elements that are often focused on organization specific policies and procedures.  This decision was made because management specific controls are policy-based, and the intent of this effort was focusing on technical and operation controls that correlate to ATT&CK mitigations, techniques, and sub-techniques. 
-- Mitigation vs. Monitoring - Controls that may only monitor adversary behaviors are out of scope. Our focus is on technical controls that mitigate techniwues and sub-techniques
+- Mitigation vs. Monitoring - Controls that may only monitor adversary behaviors are out of scope. Our focus is on technical controls that mitigate techniques and sub-techniques
 - Controls vs. Control Enhancements - This effort maps controls and does not map to specific control enhancements. 
 
 ### Control Family Scoping Decisions
