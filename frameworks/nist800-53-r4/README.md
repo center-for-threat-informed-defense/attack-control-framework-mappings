@@ -32,7 +32,7 @@ Scoping decisions and mapping methodology for NIST 800-53 revision 4 controls ar
 ### General Scoping Decisions
 - Operational vs. Policy and Procedural Controls - This effort is focused on the technical and operational elements of NIST 800-53 and did not take into account the management elements that are often focused on organization specific policies and procedures.  This decision was made because management specific controls are policy-based, and the intent of this effort was focusing on technical and operation controls that correlate to ATT&CK mitigations, techniques, and sub-techniques. 
 - Mitigation vs. Monitoring - Controls that may only monitor adversary behaviors are out of scope. The focus of this effort is on technical controls that mitigate adversary techniques and sub-techniques. For example, IR-5 Incident Monitoring would be out-of-scope as this does not serve as a mitigation, but rather detection of security incident occurrence. However, RA-4 Vulnerability Scanning is in scope as it can lead to findings which allow for remediation prior to exploitation (e.g., apply patches, remove vulnerable software) thereby mitigating attacks.
-- Controls vs. Control Enhancements - This effort maps controls and does not map to specific control enhancements. 
+- Controls vs. Control Enhancements - This effort maps at the control level and does not map to specific control enhancements. 
 - Implicit vs. Explicit Mitigation - This effort focuses on system-specific technical mitigations (e.g., block USB devices, perform data backups) and controls that support those mitigations rather than other, non-technical methods of mitigation (e.g., put system in a locked room, write a backup policy).
 
 ### Control Family Scoping Decisions
