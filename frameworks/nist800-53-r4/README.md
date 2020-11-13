@@ -35,7 +35,8 @@ Scoping decisions and mapping methodology for NIST 800-53 revision 4 controls ar
 - Controls vs. Control Enhancements - This effort maps at the control level and does not map to specific control enhancements. 
 - Implicit vs. Explicit Mitigation - This effort focuses on system-specific technical mitigations (e.g., block USB devices, perform data backups) and controls that support those mitigations rather than other, non-technical methods of mitigation (e.g., put system in a locked room, write a backup policy).
 - Cloud Technologies: Cloud technologies are not fully covered.
-- ATT&CKv8 release: ATT&CKv8 released on October 27, 2020, introduces techniques for adversary behavior on Network Infrastructure Devices. These have not been included in the control mappings.
+- ATT&CKv8 release: ATT&CKv8 released on October 27, 2020, introduces techniques for adversary behavior on Network Infrastructure Devices, such as switches and routers. These have not been included in the control mappings. 
+- Pre-compromise Mitigation: Those techniques only associated with the Pre-compromise Mitigation are excluded. These apply to techniques occurring before an adversary gains Initial Access, such as Reconnaissance and Resource Development techniques, and are considered out of scope.
 
 ### Control Family Scoping Decisions
 NIST 800-53 revision 4 control families are listed below with links to the control family on the NIST web site and our rational for a given control family being in or out of scope: 
