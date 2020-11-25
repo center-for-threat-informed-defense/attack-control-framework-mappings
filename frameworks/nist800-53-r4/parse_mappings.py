@@ -11,6 +11,7 @@ from colorama import Fore
 def dict_regex_lookup(thedict, regexstr):
     """return all values in the dict where the key matches the regex. Params are the dict, and a string to be used as regex"""
     # add anchor characters if they're not explicitly specified to prevent T1001 from matching T1001.001
+    regexstr = regexstr.strip()
     if not regexstr.endswith("$"): regexstr = regexstr + "$"
     if not regexstr.startswith("^"): regexstr = "^" + regexstr
     try:

@@ -27,7 +27,34 @@ The NIST 800-53 Revision 4 STIX data extends the [general controls format](/docs
 
 ## Mapping NIST 800-53 revision 4 to ATT&CK
 
-During the analysis and mapping of ATT&CK techniques and sub-techniques to NIST 800-53 revision 4 controls, several decision points were made regarding applicability and relevance. Specifically, the following was considered as part of the decision points:
+Scoping decisions and mapping methodology for NIST 800-53 revision 4 controls are decoumented below. The mapping methodology for NIST 800-53 revision 4 controls builds upon and refines the overall [security control framework mapping methodology](/docs/mapping_methodology.md).
 
-- This effort is focused on the technical and operational elements of NIST 800-53 and did not take into account the management elements that are often focused on organization specific policies and procedures.  This decision was made because management specific controls are policy-based, and the intent of this effort was focusing on technical and operation controls that correlate to ATT&CK mitigations, techniques, and sub-techniques.   
-- During the NIST 800-53 control analysis, the context of the prescribed mitigation for a given technique or sub-technique was important to refine and select specific controls within a given control family.  This helped narrow the search space during security control analysis as each control family contains specific security controls related to the broader general security topic of the family.  
+### General Scoping Decisions
+- Operational vs. Policy and Procedural Controls - This effort is focused on the technical and operational elements of NIST 800-53 and did not take into account the management elements that are often focused on organization specific policies and procedures.  This decision was made because management specific controls are policy-based, and the intent of this effort was focusing on technical and operation controls that correlate to ATT&CK mitigations, techniques, and sub-techniques. 
+- Mitigation vs. Monitoring - Controls that may only monitor adversary behaviors are out of scope. The focus of this effort is on technical controls that mitigate adversary techniques and sub-techniques. For example, IR-5 Incident Monitoring would be out-of-scope as this does not serve as a mitigation, but rather detection of security incident occurrence. However, RA-4 Vulnerability Scanning is in scope as it can lead to findings which allow for remediation prior to exploitation (e.g., apply patches, remove vulnerable software) thereby mitigating attacks. Consideration is not given for the potential that an adversary might be dissuaded or change their tactics to try and avoid detection if they thought activity was being monitored. 
+- Controls vs. Control Enhancements - This effort maps at the control level and does not map to specific control enhancements. 
+- Implicit vs. Explicit Mitigation - This effort focuses on system-specific technical mitigations (e.g., block USB devices, perform data backups) and controls that support those mitigations rather than other, non-technical methods of mitigation (e.g., put system in a locked room, write a backup policy).
+- Cloud Technologies: Cloud technologies are not fully covered.
+- ATT&CKv8 release: ATT&CKv8 released on October 27, 2020, introduces techniques for adversary behavior on Network Infrastructure Devices, such as switches and routers. These have not been included in the control mappings. 
+- Pre-compromise Mitigation: Those techniques only associated with the Pre-compromise Mitigation are excluded. These apply to techniques occurring before an adversary gains Initial Access, such as Reconnaissance and Resource Development techniques, and are considered out of scope.
+
+### Control Family Scoping Decisions
+NIST 800-53 revision 4 control families are listed below with links to the control family on the NIST web site and our rational for a given control family being in or out of scope: 
+- AC - [Access Control](https://nvd.nist.gov/800-53/Rev4/family/Access%20Control)
+- AU - [Audit and Accountability](https://nvd.nist.gov/800-53/Rev4/family/Audit%20and%20Accountability) - (out of scope) - Audit controls are not applicable as they do not provide mitigations of specific threats, but instead detect successful attacks.
+- AT - [Awareness and Training](https://nvd.nist.gov/800-53/Rev4/family/Awarenessand%20Training) - (out of scope) - 
+- CM - [Configuration Management](https://nvd.nist.gov/800-53/Rev4/family/Configuration%20Management)
+- CP - [Contingency Planning](https://nvd.nist.gov/800-53/Rev4/family/Contingency%20Planning)
+- IA - [Identification and Authentication](https://nvd.nist.gov/800-53/Rev4/family/Identification%20and%20Authentication)
+- IR - [Incident Response](https://nvd.nist.gov/800-53/Rev4/family/Incident%20Response) - (out of scope) - 
+- MA - [Maintenance](https://nvd.nist.gov/800-53/Rev4/family/Maintenance) - (out of scope) - 
+- MP - [Media Protection](https://nvd.nist.gov/800-53/Rev4/family/Media%20Protection)
+- PS - [Personnel Security](https://nvd.nist.gov/800-53/Rev4/family/Personnel%20Security) - (out of scope) - 
+- PE - [Physical and Environmental Protection](https://nvd.nist.gov/800-53/Rev4/family/Physical%20and%20Environmental%20Protection) - (out of scope) - 
+- PL - [Planning](https://nvd.nist.gov/800-53/Rev4/family/Planning) - (out of scope) - 
+- PM - [Program Management](https://nvd.nist.gov/800-53/Rev4/family/Program%20Management) - (out of scope) - 
+- RA - [Risk Assessment](https://nvd.nist.gov/800-53/Rev4/family/Risk%20Assessment)
+- CA - [Security Assessment and Authorization](https://nvd.nist.gov/800-53/Rev4/family/Security%20Assessment%20and%20Authorization)
+- SC - [System and Communications Protection](https://nvd.nist.gov/800-53/Rev4/family/System%20and%20Communications%20Protection)
+- SI - [System and Information Integrity](https://nvd.nist.gov/800-53/Rev4/family/System%20and%20Information%20Integrity)
+- SA - [System and Services Acquisition](https://nvd.nist.gov/800-53/Rev4/family/System%20and%20Services%20Acquisition)
