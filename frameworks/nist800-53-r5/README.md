@@ -43,24 +43,24 @@ Scoping decisions and mapping methodology for NIST 800-53 revision 4 controls ar
 
 NIST 800-53 revision 5 control families are listed below with out of scope control families identified:
 
-•	AC - Access Control
-•	AT - Awareness and Training - (out of scope) -
-•	AU - Audit and Accountability - (out of scope) - Audit controls are not applicable as they do not provide mitigations of specific threats, but instead detect successful attacks.
-•	CA - Security Assessment and Authorization
-•	CM - Configuration Management
-•	CP - Contingency Planning
-•	IA - Identification and Authentication
-•	IR - Incident Response - (out of scope) -
-•	MA - Maintenance - (out of scope) -
-•	MP - Media Protection
-•	PE - Physical and Environmental Protection - (out of scope) -
-•	PL - Planning - (out of scope) -
-•	PM - Program Management - (out of scope) -
-•	PS - Personnel Security - (out of scope) -
-•	PT - PII Processing and Transparency 
-•	RA - Risk Assessment
-•	SA - System and Services Acquisition
-•	SC - System and Communications Protection
-•	SI - System and Information Integrity
-•	SR - Supply Chain Risk Management
+•	AC - Access Control  
+•	AT - Awareness and Training - (out of scope) -  
+•	AU - Audit and Accountability - (out of scope) - Audit controls are not applicable as they do not provide mitigations of specific threats, but instead detect successful attacks.  
+•	CA - Security Assessment and Authorization  
+•	CM - Configuration Management  
+•	CP - Contingency Planning  
+•	IA - Identification and Authentication  
+•	IR - Incident Response - (out of scope) -  
+•	MA - Maintenance - (out of scope) -  
+•	MP - Media Protection  
+•	PE - Physical and Environmental Protection - (out of scope) -  
+•	PL - Planning - (out of scope) -  
+•	PM - Program Management - (out of scope) -  
+•	PS - Personnel Security - (out of scope) -  
+•	PT - PII Processing and Transparency   
+•	RA - Risk Assessment  
+•	SA - System and Services Acquisition  
+•	SC - System and Communications Protection  
+•	SI - System and Information Integrity  
+•	SR - Supply Chain Risk Management  
 
