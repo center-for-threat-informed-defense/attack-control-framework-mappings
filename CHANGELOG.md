@@ -12,7 +12,13 @@
 <!--    # Changes staged on develop                                     -->
 <!--    ### New Features                                                -->
 <!--    ### Improvements                                                -->
-<!--    ### Fixes                                                       -->
+<!--    ### Fixes -->
+
+# 24 November 2020
+### Improvements
+- README Updates
+### Fixes
+- Allow processing mappings with trailing whitespace.
 
 # 27 October 2020
 ### Improvements
