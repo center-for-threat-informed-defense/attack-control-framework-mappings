@@ -17,6 +17,10 @@
 # 24 November 2020
 ### Improvements
 - README Updates
+- 800-53r4 Mappings Updated
+- 800-53r5 Mappings Updated
+- 800-53r4 now targets ATT&CK v8.1
+- 800-53r5 now targets ATT&CK v8.1 
 ### Fixes
 - Allow processing mappings with trailing whitespace.
 
