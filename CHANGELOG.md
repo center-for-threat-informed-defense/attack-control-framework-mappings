@@ -14,6 +14,11 @@
 <!--    ### Improvements                                                -->
 <!--    ### Fixes -->
 
+# 1 December 2020
+### Improvements
+- 800-53r4 Mappings Updated
+- 800-53r5 Mappings Updated
+
 # 24 November 2020
 ### Improvements
 - README Updates
