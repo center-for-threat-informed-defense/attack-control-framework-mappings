@@ -18,8 +18,8 @@ date delivered	mitigationID	techniqueID	controlID	description
 10/27/20	M1017	T1003(\.(001|002|003|004|005))?	SI-(3|4)	"Malicious Code Protection, Information System Monitoring"	
 10/27/20	M1017	T1003(\.(001|002|003|004|005))?	IA-(2|5)	"Identification and Authentication (Organizational Users), Authenticator Management"	
 10/27/20	M1017	T1003(\.(001|002|003|004|005))?	AC-(2|6)	"Account Management, Least Privilege"	
-10/27/20	M1017	T1056(\.002)?	SI-(3|4|7)	"Malicious Code Protection, Information System Monitoring, Software, Firmware, and Information Integrity"	
-10/27/20	M1017	T1056(\.002)?	CA-7	Continuous Monitoring	
+12/1/20	M1017	T1056\.002	SI-(3|4|7)	"Malicious Code Protection, Information System Monitoring, Software, Firmware, and Information Integrity"	
+12/1/20	M1017	T1056\.002	CA-7	Continuous Monitoring	
 10/27/20	M1017	T1072	AC-(2|3|4|5|6)	"Account Management, Access Enforcement, Information Flow Enforcement, Separation of Duties,  Least Privilege"	
 10/27/20	M1017	T1072	CM-(2|6|8)	"Baseline Configuration, Configuration Settings, Information System Component Inventory "	
 10/27/20	M1017	T1111	CM-(2|6)	"Baseline Configuration, Configuration Settings"	
@@ -68,6 +68,10 @@ date delivered	mitigationID	techniqueID	controlID	description
 10/27/20	M1017	T1566(\.(001|002|003))?	CA-7	Continous Monitoring	
 10/27/20	M1017	T1566(\.(001|002|003))?	SC-(7|44)	"Boundary Protection, Detonation Chambers"	
 10/27/20	M1017	T1566(\.(001|002|003))?	AC-4	Information Flow Enforcement	
+12/1/20	M1017	T1598(\.(001|002|003))?	SI-(3|4|8)	"Malicious Code Protection, Information System Monitoring, Spam Protection"	
+12/1/20	M1017	T1598(\.(001|002|003))?	CA-7	Continous Monitoring	
+12/1/20	M1017	T1598(\.(001|002|003))?	SC-(7|44)	"Boundary Protection, Detonation Chambers"	
+12/1/20	M1017	T1598(\.(001|002|003))?	AC-4	Information Flow Enforcement	
 11/13/20	M1018	T1021(\.001|\.004)?	AC-(2|3|5|6|17)	"Account Management, Access Enforcement, Separation of Duties, Least Privilege, Remote Access Permissions"	
 11/13/20	M1018	T1021(\.001|\.004)?	CM-5	Information System Change Restrictions	
 11/13/20	M1018	T1021(\.001|\.004)?	IA-2	User Access Permissions	
@@ -319,9 +323,9 @@ date delivered	mitigationID	techniqueID	controlID	description
 11/13/20	M1026	T1003(\.006|\.001|\.002|\.007|\.008|\.005|\.004|\.003)?	AC-(2|3|5|6)	"Account Management, Access Enforcement, Separation of Duties, Least Privilege"	
 11/13/20	M1026	T1003(\.006|\.001|\.002|\.007|\.008|\.005|\.004|\.003)?	CM-(5|6)	"Information System Change Restrictions, Configuration Settings"	
 11/13/20	M1026	T1003(\.006|\.001|\.002|\.007|\.008|\.005|\.004|\.003)?	IA-2	User Access Permissions	
-11/13/20	M1026	T1021\.(001|002|003|006)?	AC-(2|3|5|6|17)	"Account Management, Access Enforcement, Separation of Duties, Least Privilege, Remote Access Permissions"	
-11/13/20	M1026	T1021\.(001|002|003|006)?	CM-(5|6)	"Information System Change Restrictions, Configuration Settings"	
-11/13/20	M1026	T1021\.(001|002|003|006)?	IA-2	User Access Permissions	
+12/1/20	M1026	T1021(\.(001|002|003|006))?	AC-(2|3|5|6|17)	"Account Management, Access Enforcement, Separation of Duties, Least Privilege, Remote Access Permissions"	
+12/1/20	M1026	T1021(\.(001|002|003|006))?	CM-(5|6)	"Information System Change Restrictions, Configuration Settings"	
+12/1/20	M1026	T1021(\.(001|002|003|006))?	IA-2	User Access Permissions	
 11/13/20	M1026	T1047	AC-(2|3|5|6)	"Account Management, Access Enforcement, Separation of Duties, Least Privilege"	
 11/13/20	M1026	T1047	CM-(5|6)	"Information System Change Restrictions, Configuration Settings"	
 11/13/20	M1026	T1047	IA-2	User Access Permissions	
@@ -699,10 +703,10 @@ date delivered	mitigationID	techniqueID	controlID	description
 10/29/20	M1031	T1566(\.001)?	AC-4	Information Flow Enforcement	
 10/29/20	M1031	T1566(\.001)?	SI-(3|4|8)	"Malicious Code Protection, Information System Monitoring, Spam Protection"	
 10/29/20	M1031	T1566(\.001)?	SC-(7|44)	"Boundary Protection, Detonation Chambers"	
-10/29/20	M1031	T1568(\.001|\.002)?	CA-7	Continuous Monitoring	
-10/29/20	M1031	T1568(\.001|\.002)?	AC-4	Information Flow Enforcement	
-10/29/20	M1031	T1568(\.001|\.002)?	SI-(3|4)	"Malicious Code Protection, Information System Monitoring"	
-10/29/20	M1031	T1568(\.001|\.002)?	SC-7	Boundary Protection	
+12/1/20	M1031	T1568(\.002)?	CA-7	Continuous Monitoring	
+12/1/20	M1031	T1568(\.002)?	AC-4	Information Flow Enforcement	
+12/1/20	M1031	T1568(\.002)?	SI-(3|4)	"Malicious Code Protection, Information System Monitoring"	
+12/1/20	M1031	T1568(\.002)?	SC-7	Boundary Protection	
 10/29/20	M1031	T1570	CA-7	Continuous Monitoring	
 10/29/20	M1031	T1570	AC-4	Information Flow Enforcement	
 10/29/20	M1031	T1570	SI-(3|4)	"Malicious Code Protection, Information System Monitoring"	
@@ -1079,9 +1083,9 @@ date delivered	mitigationID	techniqueID	controlID	description
 5/29/20	M1045	T1036(\.001|\.005)?	(CM-(2|6)|SI-7|IA-9)		
 5/29/20	M1045	T1059(\.001|\.002)?	(CM-(2|6)|SI-7|IA-9)		
 5/29/20	M1045	T1059\.002	SA-12		
-5/29/20	M1045	T1505(\.001|.002)?	(CM-(2|6)|SI-7|IA-9|SA-12)		
+12/1/20	M1045	T1505(\.(001|002))?	(CM-(2|6)|SI-7|IA-9|SA-12)		
 5/29/20	M1045	T1525	(SI-7|IA-9)		
-5/29/20	M1045	T1546(\.006|.013)?	(CM-(2|6)|SI-7|IA-9)		
+12/1/20	M1045	T1546(\.(006|013))?	(CM-(2|6)|SI-7|IA-9)		
 5/29/20	M1045	T1546\.006	SA-12		
 5/29/20	M1045	T1554	(CM-(2|6)|SI-7|IA-9|CA-8|SA-12|SA-19)		
 11/13/20	M1045	T1601(\.(001|002))?	CM-(2|6|7)	"Configuring system settings, Application Control"	
@@ -1092,7 +1096,7 @@ date delivered	mitigationID	techniqueID	controlID	description
 11/13/20	M1046	T1542(\.(001|003|004|005))?	(CA-8|CM-(3|5|8)|SA-10|SA-11|SA-14|SI-(2|7)|IA-7|SC-34)		
 11/13/20	M1046	T1601(\.(001|002))?	(CA-8|CM-(3|5|8)|SA-10|SA-11|SA-14|SI-(2|7)|IA-7|SC-34)		
 7/20/20	M1047	T1021(\.005|\.001)	(CA-8|RA-5|AC-(2|6|17)|IA-(2|4|6)|SI-4)		
-7/20/20	M1047	T1053(\.(001|.004|.003))	(CA-8|RA-5|SI-4)		
+12/1/20	M1047	T1053(\.001|\.004|\.003)	(CA-8|RA-5|SI-4)		
 7/20/20	M1047	T1053(\.002|\.005)?	(CA-8|RA-5|AC-(2|6)|IA-(2|4)|SI-4)|CM-(2|6|7|8)		
 7/20/20	M1047	T1059	(CA-8|CM-(2|6|7|8|11)|RA-5|SI-4)		
 7/20/20	M1047	T1114(\.003)?	(AC-4|SC-7|SI-4)		
@@ -1217,3 +1221,15 @@ date delivered	mitigationID	techniqueID	controlID	description
 10/26/20	M1054	T1559	CM-(6|7|10)	"Configuration settings, least functionality, software usage restrictions"	
 10/26/20	M1054	T1559(\.002)	AC-6|CM-(6|7|10)	"least privilege, Configuration settings, least functionality, software usage restrictions"	
 10/26/20	M1054	T1562(\.006)	SC-8	Transmission Confidentiality and Integrity	
+12/1/20	M1031	T1573(\.(001|002))?	CA-7	Continuous Monitoring	
+12/1/20	M1031	T1573(\.(001|002))?	AC-4	Information Flow Enforcement	
+12/1/20	M1031	T1573(\.(001|002))?	SI-(3|4)	"Malicious Code Protection, Information System Monitoring"	
+12/1/20	M1031	T1573(\.(001|002))?	SC-(7|12|16|23)	"Boundary Protection, Cyptographic Key establishment and management, transmission of security attributes, session authenticity"	
+12/1/20	M1031	T1573(\.(001|002))?	CM-(2|6|7)	"Baseline Configuration, Configuration Settings, Least Functionality"	
+12/1/20	M1042	T1552(\.005)?	AC-(3|4|16|20)		
+12/1/20	M1042	T1552(\.005)?	CA-7		
+12/1/20	M1042	T1552(\.005)?	CM-(6|7)		
+12/1/20	M1042	T1552(\.005)?	IA-(3|4)		
+12/1/20	M1042	T1552(\.005)?	SC-7		
+12/1/20	M1047	T1552\.001	AC-2		
+12/1/20	M1038	T1106	CM-7		
