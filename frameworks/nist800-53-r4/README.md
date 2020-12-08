@@ -1,5 +1,5 @@
-# NIST 800-53 Revision 4 Control Mappings
-This folder contains data and parsers for the NIST 800-53 Revision 4 control framework, and the mappings of that framework to  MITRE ATT&CK.
+# NIST Special Publication 800-53 Revision 4 Control Mappings
+This folder contains data and parsers for the NIST Special Publication (SP) 800-53 Revision 4 control framework, and the mappings of that framework to  MITRE ATT&CK.
 
 | Mappings Version | Last Updated      | ATT&CK Version | ATT&CK Domain |
 |------------------|-------------------|----------------|---------------|
@@ -15,7 +15,7 @@ This folder contains data and parsers for the NIST 800-53 Revision 4 control fra
 
 ## Extended Fields
 
-The NIST 800-53 Revision 4 STIX data extends the [general controls format](/docs/stix_format.md) with the following properties:
+The NIST SP 800-53 Revision 4 STIX data extends the [general controls format](/docs/stix_format.md) with the following properties:
 
 | STIX field | type | description |
 |:-----------|:-----|:------------|
@@ -25,7 +25,7 @@ The NIST 800-53 Revision 4 STIX data extends the [general controls format](/docs
 
 ## Mapping NIST 800-53 Revision 4 to ATT&CK
 
-Scoping decisions and mapping methodology for NIST 800-53 revision 4 controls are decoumented below. The mapping methodology for NIST 800-53 revision 4 controls builds upon and refines the overall [security control framework mapping methodology](/docs/mapping_methodology.md).
+Scoping decisions and mapping methodology for NIST 800-53 revision 4 controls are documented below. The mapping methodology for NIST 800-53 revision 4 controls builds upon and refines the overall [security control framework mapping methodology](/docs/mapping_methodology.md).
 
 ### General Scoping Decisions
 | Item | Scoping Decision |
