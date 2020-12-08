@@ -39,23 +39,23 @@ Scoping decisions and mapping methodology for NIST 800-53 revision 4 controls ar
 ### Control Family Scoping Decisions
 NIST 800-53 revision 4 control families are listed below with links to the control family on the NIST web site and our rational for a given control family being in or out of scope: 
 
-| Control Family | Rationale if Out of Scope |
+| Control Family | Scoping Decision |
 |------|------|
-| AC - [Access Control](https://nvd.nist.gov/800-53/Rev4/family/Access%20Control)| |
+| AC - [Access Control](https://nvd.nist.gov/800-53/Rev4/family/Access%20Control)| Access Control family is in scope. |
 | AU - [Audit and Accountability](https://nvd.nist.gov/800-53/Rev4/family/Audit%20and%20Accountability) | Audit and Accountability controls are not applicable as they do not provide mitigations of specific threats, but instead detect successful attacks. |
 | AT - [Awareness and Training](https://nvd.nist.gov/800-53/Rev4/family/Awarenessand%20Training) | Awareness and Training controls are not applicable as they are for general security awareness training and not specific threat mitigations.|
-| CM - [Configuration Management](https://nvd.nist.gov/800-53/Rev4/family/Configuration%20Management)| |
-| CP - [Contingency Planning](https://nvd.nist.gov/800-53/Rev4/family/Contingency%20Planning)| |
-| IA - [Identification and Authentication](https://nvd.nist.gov/800-53/Rev4/family/Identification%20and%20Authentication)
+| CM - [Configuration Management](https://nvd.nist.gov/800-53/Rev4/family/Configuration%20Management)| Configuration Management controls are in scope. |
+| CP - [Contingency Planning](https://nvd.nist.gov/800-53/Rev4/family/Contingency%20Planning)| Contingency Planning controls are in scope.|
+| IA - [Identification and Authentication](https://nvd.nist.gov/800-53/Rev4/family/Identification%20and%20Authentication)| Identification and Authentication controls are in scope.|
 | IR - [Incident Response](https://nvd.nist.gov/800-53/Rev4/family/Incident%20Response) | Incident Response controls are not applicable as they do not provide mitigations of specific threats but rather provide detection of security incident occurrences. |
 | MA - [Maintenance](https://nvd.nist.gov/800-53/Rev4/family/Maintenance) |  Maintenance controls are not applicable as they are related to the procedural management of information system maintenance and are not threat-specific. |
-| MP - [Media Protection](https://nvd.nist.gov/800-53/Rev4/family/Media%20Protection)
+| MP - [Media Protection](https://nvd.nist.gov/800-53/Rev4/family/Media%20Protection)| Media Protection controls are in scope.|
 | PS - [Personnel Security](https://nvd.nist.gov/800-53/Rev4/family/Personnel%20Security) | Personnel security controls are not applicable as they are related to the procedural management of individuals. |
 | PE - [Physical and Environmental Protection](https://nvd.nist.gov/800-53/Rev4/family/Physical%20and%20Environmental%20Protection) | Physical and Environmental Protection controls are not applicable as they are related to the management and protection of physical space. |
 | PL - [Planning](https://nvd.nist.gov/800-53/Rev4/family/Planning) | Planning controls are not applicable as they focus on high-level system security plans and are not threat-specific.|
 | PM - [Program Management](https://nvd.nist.gov/800-53/Rev4/family/Program%20Management) | Program Management controls are not applicable as they focus on programmatic, organization-wide information security requirements for managing information security programs.|
-| RA - [Risk Assessment](https://nvd.nist.gov/800-53/Rev4/family/Risk%20Assessment)| |
-| CA - [Security Assessment and Authorization](https://nvd.nist.gov/800-53/Rev4/family/Security%20Assessment%20and%20Authorization)| |
-| SC - [System and Communications Protection](https://nvd.nist.gov/800-53/Rev4/family/System%20and%20Communications%20Protection)| |
-| SI - [System and Information Integrity](https://nvd.nist.gov/800-53/Rev4/family/System%20and%20Information%20Integrity)| |
-| SA - [System and Services Acquisition](https://nvd.nist.gov/800-53/Rev4/family/System%20and%20Services%20Acquisition)| |
+| RA - [Risk Assessment](https://nvd.nist.gov/800-53/Rev4/family/Risk%20Assessment)| Risk Assessment controls are in scope. |
+| CA - [Security Assessment and Authorization](https://nvd.nist.gov/800-53/Rev4/family/Security%20Assessment%20and%20Authorization)| Security Assessment and Authorization controls are in scope. |
+| SC - [System and Communications Protection](https://nvd.nist.gov/800-53/Rev4/family/System%20and%20Communications%20Protection)| System and Communications Protection controls are in scope. |
+| SI - [System and Information Integrity](https://nvd.nist.gov/800-53/Rev4/family/System%20and%20Information%20Integrity)| System and Information Integrity controls are in scope. |
+| SA - [System and Services Acquisition](https://nvd.nist.gov/800-53/Rev4/family/System%20and%20Services%20Acquisition)| System and Services Acquisition are in scope. |
