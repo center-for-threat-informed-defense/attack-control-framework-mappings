@@ -13,6 +13,11 @@
 <!--    ### New Features                                                -->
 <!--    ### Improvements                                                -->
 <!--    ### Fixes                                                       -->
+
+# 12 December 2020
+### Fixes
+- Fixes make.py to allow OS agnostic execution.
+
 # 3 August 2020
 ### Improvements
 - Added additional mappings to [nist800-53-r4](frameworks/nist800-53-r4)
