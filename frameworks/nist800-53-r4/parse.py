@@ -1,4 +1,3 @@
-import stix2
 import argparse
 import os
 import json
@@ -15,10 +14,10 @@ def save_bundle(bundle, path):
         json.dump(json.loads(strbundle), outfile, indent=4, sort_keys=True)
     print("done!")
 
-def main(incontrols=os.path.join("data", "nist800-53-r4-controls.tsv"), 
-         inmappings=os.path.join("data", "nist800-53-r4-mappings.tsv"),
-         outcontrols=os.path.join("data", "nist800-53-r4-controls.json"),
-         outmappings=os.path.join("data", "nist800-53-r4-controls.json")):
+def main(incontrols=os.path.join("input", "nist800-53-r4-controls.tsv"), 
+         inmappings=os.path.join("input", "nist800-53-r4-mappings.tsv"),
+         outcontrols=os.path.join("stix", "nist800-53-r4-controls.json"),
+         outmappings=os.path.join("stix", "nist800-53-r4-controls.json")):
     """
     parse the NIST 800-53 revision 4 controls and ATT&CK mappings into STIX2.0 bundles
     arguments:
@@ -81,28 +80,19 @@ if __name__ == "__main__":
     parser.add_argument("-input-controls",
                         dest="incontrols",
                         help="tsv file of NIST 800-53 revision 4 controls",
-                        default=os.path.join("data", "nist800-53-r4-controls.tsv"))
+                        default=os.path.join("input", "nist800-53-r4-controls.tsv"))
     parser.add_argument("-input-mappings",
                         dest="inmappings",
                         help="tsv file mapping NIST 800-53 revision 4 controls to ATT&CK",
-                        default=os.path.join("data", "nist800-53-r4-mappings.tsv"))
+                        default=os.path.join("input", "nist800-53-r4-mappings.tsv"))
     parser.add_argument("-output-controls",
                          dest="outcontrols",
                          help="output STIX bundle file for the controls. If this file already exists, the STIX IDs within will be reused in the replacing file so that they don't change between consecutive executions of this script.",
-                         default=os.path.join("data", "nist800-53-r4-controls.json"))
+                         default=os.path.join("stix", "nist800-53-r4-controls.json"))
     parser.add_argument("-output-mappings",
                          dest="outmappings",
                          help="output STIX bundle file for the mappings.",
-                         default=os.path.join("data", "nist800-53-r4-mappings.json"))
-    # these are now inherited from config.json
-    # parser.add_argument("-domain",
-    #                     dest="domain",
-    #                     help="which ATT&CK domain to use",
-    #                     default="enterprise-attack")
-    # parser.add_argument("-version",
-    #                     dest="version",
-    #                     help="which ATT&CK version to use",
-    #                     default="7.0-beta")
+                         default=os.path.join("stix", "nist800-53-r4-mappings.json"))
 
     args = parser.parse_args()
 

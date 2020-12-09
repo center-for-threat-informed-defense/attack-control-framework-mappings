@@ -2,7 +2,7 @@ import pandas as pd
 import os
 from tqdm import tqdm
 import re
-import stix2
+from stix2.v20 import Bundle, Relationship, CourseOfAction
 import itertools
 import uuid
 import json
@@ -43,15 +43,15 @@ class Control:
             except:
                 return None # column doesn't exist for row 
         
-        self.external_id = get_column("identifier")
+        self.external_id = get_column("Control Identifier")
         # print("id:", self.external_id)
-        self.name = get_column("name")
+        self.name = get_column("Control (or Control Enhancement) Name")
         # print("name:", self.name)
-        self.text = get_column("control_text")
+        self.text = get_column("Control (or Control Enhancement)")
         # print("text:", self.text)
-        self.discussion = get_column("discussion")
+        self.discussion = get_column("Discussion")
         # print("discussion:", self.discussion)
-        self.related = get_column("related").split(", ") if get_column("related") else []
+        self.related = get_column("Related Controls").split(", ") if get_column("related") else []
         # print("related:", self.related)
 
         # try to manually set the STIX ID from the control_ids mapping, if not present it will randomly generate
@@ -67,11 +67,14 @@ class Control:
 
     def format_description(self):
         """format and return the control description (statements, etc) as a markdown string"""
-        return "\n\n".join([self.text, self.discussion])
+        descr = []
+        if self.text: descr.append(self.text)
+        if self.discussion: descr.append(self.discussion)
+        return "\n\n".join(descr)
 
     def toStix(self, framework_id):
         """convert to a stix2 Course of Action"""
-        return stix2.CourseOfAction(
+        return CourseOfAction(
             id = self.stix_id,
             name = self.name,
             description = self.format_description(),
@@ -91,7 +94,7 @@ def parse_controls(controlpath, control_ids={}, relationship_ids={}):
 
     print("reading framework config...", end="", flush=True)
     # load the mapping config
-    with open(os.path.join("data", "config.json"), "r") as f:
+    with open(os.path.join("input", "config.json"), "r") as f:
         config = json.load(f)
         framework_id = config["framework_id"]
     print("done")
@@ -133,7 +136,7 @@ def parse_controls(controlpath, control_ids={}, relationship_ids={}):
             source_id = control.stix_id
             joined_id = f"{source_id}---{target_id}"
 
-            relationships.append(stix2.Relationship(
+            relationships.append(Relationship(
                 id=relationship_ids[joined_id] if joined_id in relationship_ids else None,
                 source_ref=source_id,
                 target_ref=target_id,
@@ -147,7 +150,7 @@ def parse_controls(controlpath, control_ids={}, relationship_ids={}):
                 source_id = control.stix_id
                 target_id = control_ids[related_id]
                 joined_id = f"{source_id}---{target_id}"
-                relationships.append(stix2.Relationship(
+                relationships.append(Relationship(
                     id=relationship_ids[joined_id] if joined_id in relationship_ids else None,
                     source_ref=source_id,
                     target_ref=target_id,
@@ -155,5 +158,5 @@ def parse_controls(controlpath, control_ids={}, relationship_ids={}):
                 ))
 
 
-    return stix2.Bundle(*itertools.chain(stixcontrols, relationships), spec_version="2.0")
+    return Bundle(*itertools.chain(stixcontrols, relationships))
 

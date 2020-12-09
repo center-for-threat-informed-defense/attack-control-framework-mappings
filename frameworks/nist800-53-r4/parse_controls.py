@@ -2,7 +2,7 @@ import pandas as pd
 import os
 from tqdm import tqdm
 import re
-import stix2
+from stix2.v20 import CourseOfAction, Relationship, Bundle
 import itertools
 import uuid
 import json
@@ -94,7 +94,7 @@ class Control:
         if self.priority: custom_properties["x_mitre_priority"] = self.priority
         if self.family: custom_properties["x_mitre_family"] = self.family
 
-        return stix2.CourseOfAction(
+        return CourseOfAction(
             id = self.stix_id,
             name = self.name,
             description = self.format_description(),
@@ -115,7 +115,7 @@ def parse_controls(controlpath, control_ids={}, relationship_ids={}):
 
     print("reading framework config...", end="", flush=True)
     # load the mapping config
-    with open(os.path.join("data", "config.json"), "r") as f:
+    with open(os.path.join("input", "config.json"), "r") as f:
         config = json.load(f)
         framework_id = config["framework_id"]
     print("done")
@@ -153,7 +153,7 @@ def parse_controls(controlpath, control_ids={}, relationship_ids={}):
             source_id = control.stix_id
             joined_id = f"{source_id}---{target_id}"
 
-            relationships.append(stix2.Relationship(
+            relationships.append(Relationship(
                 id=relationship_ids[joined_id] if joined_id in relationship_ids else None,
                 source_ref=source_id,
                 target_ref=target_id,
@@ -167,7 +167,7 @@ def parse_controls(controlpath, control_ids={}, relationship_ids={}):
                 source_id = control.stix_id
                 target_id = control_ids[related_id]
                 joined_id = f"{source_id}---{target_id}"
-                relationships.append(stix2.Relationship(
+                relationships.append(Relationship(
                     id=relationship_ids[joined_id] if joined_id in relationship_ids else None,
                     source_ref=source_id,
                     target_ref=target_id,
@@ -175,5 +175,5 @@ def parse_controls(controlpath, control_ids={}, relationship_ids={}):
                 ))
 
 
-    return stix2.Bundle(*itertools.chain(stixcontrols, relationships), spec_version="2.0")
+    return Bundle(*itertools.chain(stixcontrols, relationships))
 

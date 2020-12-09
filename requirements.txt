@@ -1,6 +1,7 @@
 antlr4-python3-runtime==4.8
 certifi==2020.4.5.1
 chardet==3.0.4
+colorama==0.4.3
 et-xmlfile==1.0.1
 idna==2.9
 importlib-metadata==1.6.0

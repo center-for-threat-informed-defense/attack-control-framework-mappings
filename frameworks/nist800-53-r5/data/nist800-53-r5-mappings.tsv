@@ -1,4 +1,0 @@
-techniqueID	controlID	description
-T1123	AC-1	this is an example description of why this technique maps to the given control
-T1560\.(001|002)	AC-1	this row maps both T1560.001 and T1560.002 to AC-1
-T1011	AC-.*	this row maps T1011 to everything in the access control category. 

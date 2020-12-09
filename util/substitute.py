@@ -1,4 +1,4 @@
-import stix2
+from stix2.v20 import Bundle
 import argparse
 import os
 import requests
@@ -32,18 +32,18 @@ def substitute(attackbundle, controlsbundle, mappingsbundle, allowunmapped=False
     # add mappings
     outobjects += mappingsbundle.objects
 
-    return stix2.Bundle(*outobjects, spec_version="2.0", allow_custom=True)
+    return Bundle(*outobjects, allow_custom=True)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="substitute the mitigations in ATT&CK with a controls framework")
     parser.add_argument("-controls",
                         dest="controls",
                         help="filepath to the stix bundle representing the control framework",
-                        default=os.path.join("..", "frameworks", "nist800-53-r5", "data", "nist800-53-r5-controls.json"))
+                        default=os.path.join("..", "frameworks", "nist800-53-r5", "stix", "nist800-53-r5-controls.json"))
     parser.add_argument("-mappings",
                         dest="mappings",
                         help="filepath to the stix bundle mapping the controls to ATT&CK",
-                        default=os.path.join("..", "frameworks", "nist800-53-r5", "data", "nist800-53-r5-mappings.json"))
+                        default=os.path.join("..", "frameworks", "nist800-53-r5", "stix", "nist800-53-r5-mappings.json"))
     parser.add_argument("-domain",
                         choices=["enterprise-attack", "mobile-attack", "pre-attack"],
                         help="the domain of ATT&CK to substitute",
@@ -51,7 +51,7 @@ if __name__ == "__main__":
     parser.add_argument("-version",
                         dest="version",
                         help="which ATT&CK version to use",
-                        default="v7.0-beta")
+                        default="v7.0")
     parser.add_argument("--allow-unmapped",
                         dest="allowunmapped",
                         action="store_true",
@@ -59,25 +59,24 @@ if __name__ == "__main__":
                         default=False)
     parser.add_argument("-output",
                         help="filepath to write the output stix bundle to",
-                        default=os.path.join("..", "frameworks", "nist800-53-r5", "data", "nist800-53-r5-enterprise-attack.json"))
+                        default=os.path.join("..", "frameworks", "nist800-53-r5", "stix", "nist800-53-r5-enterprise-attack.json"))
 
     args = parser.parse_args()
 
     print("downloading ATT&CK data... ", end="", flush=True)
-    attackdata = stix2.Bundle(
-        requests.get(f"https://raw.githubusercontent.com/mitre/cti/ATT%26CK-{args.version}/{args.domain}/{args.domain}.json", verify=False).json()["objects"], 
-        spec_version="2.0",
+    attackdata = Bundle(
+        requests.get(f"https://raw.githubusercontent.com/mitre/cti/ATT%26CK-{args.version}/{args.domain}/{args.domain}.json").json()["objects"], 
         allow_custom=True)
     print("done")
     
     print("loading controls framework... ", end="", flush=True)
     with open(args.controls, "r") as f:
-        controls = stix2.Bundle(json.load(f)["objects"], spec_version="2.0", allow_custom=True)
+        controls = Bundle(json.load(f)["objects"], allow_custom=True)
     print("done")
 
     print("loading mappings... ", end="", flush=True)
     with open(args.mappings, "r") as f:
-        mappings = stix2.Bundle(json.load(f)["objects"], spec_version="2.0")
+        mappings = Bundle(json.load(f)["objects"])
     print("done")
 
     print("substituting... ", end="", flush=True)
