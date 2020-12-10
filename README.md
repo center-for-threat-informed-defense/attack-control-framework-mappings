@@ -1,7 +1,9 @@
 # Security Control Framework Mappings to ATT&CK
-This repository contains the materials developed by the [Center for Threat Informed Defense](https://mitre-engenuity.org/center-for-threat-informed-defense/) in cooperation with our participants. The goal of this effort was to develop a framework for mappings between security control frameworks and the MITRE ATT&CK® knowledge base.
+This repository contains security control framework mappings to MITRE ATT&CK® with supporting documentation and resources. These mappings provide a critically important resource for organizations to assess their security control coverage against real-world threats as described in the ATT&CK knowledge base and provide a foundation for integrating ATT&CK-based threat information into the risk management process. This work was developed by the [Center for Threat Informed Defense](https://mitre-engenuity.org/center-for-threat-informed-defense/) in collaboration with our participants.
 
-These mappings provide the means for organizations to see their security control coverage against associated ATT&CK techniques and to integrate ATT&CK-based threat information within the risk management process. For example, users can employ the mappings to evaluate their cybersecurity readiness, identify gaps and deficiencies in their security posture, improve continuous monitoring activities, and assist in selecting the most appropriate security controls to mitigate the most damaging attacks. A more thorough consideration of use cases to which these mappings might be applied can be found in [our use-cases document](/docs/use-cases.md). 
+Mapping security control frameworks to ATT&CK is a labor intensive and often subjective undertaking. Furthermore, due to the large number of security controls in any given framework and the evolving nature of cyber adversaries, these mappings are often error prone and difficult to maintain. We recognized that there was an opportunity to work collaboratively and advance threat-informed defense with the global community by creating a venue for developing and sharing these security control framework mappings.
+
+< TODO >  
 
 | Security Control Framework | Mappings as XLSX | ATT&CK Navigator Layers | STIX Data |
 |------|------|------|--|
@@ -14,6 +16,7 @@ These mappings provide the means for organizations to see their security control
 - Methodology — processes and procedures for developing and editing mappings
     - [Mapping Methodology](/docs/mapping_methodology.md) — a description of the general process used to create the control mappings
     - [Tooling](/docs/tooling.md) — a set of python tools to support the creation of new mappings and the customization of existing mappings
+- [Use Cases] (/docs/use-cases.md) - TODO
 - [STIX Format](/docs/STIX_format.md) — information regarding the STIX representation of the control frameworks and the mappings to ATT&CK
 - [Visualization](/docs/visualization.md) — this document describes some ways the mappings data can be visualized. 
 - [Contributing](/CONTRIBUTING.md) — information about how to contribute controls, mappings, or other improvements to this repository
