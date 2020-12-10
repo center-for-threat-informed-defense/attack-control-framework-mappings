@@ -22,6 +22,21 @@ Mapping security control frameworks to ATT&CK is a labor intensive and often sub
 - [Contributing](/CONTRIBUTING.md) — information about how to contribute controls, mappings, or other improvements to this repository
 - [Changelog](/CHANGELOG.md) — list of updates to this repository
 
+
+## Future Work
+
+<TODO> 
+    
+The threat landscape changes every day, as new groups/malware emerge and known adversaries adapt and evolve. The Center will continue to populate and maintain this library to match this growth curve through dedicated research efforts that aim to either create or update plans based on a specific adversary.
+
+## Questions and Feedback
+
+<TODO>
+    
+Please submit issues for any technical questions/concerns or contact ctid@mitre-engenuity.org directly for more general inquiries.
+
+Also see the guidance for contributors if are interested in [contributing.](/CONTRIBUTING.md)
+
 ## Notice 
 
 Copyright 2020 MITRE Engenuity. Approved for public release. Document number CT0011
