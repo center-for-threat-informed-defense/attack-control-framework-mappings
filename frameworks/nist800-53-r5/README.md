@@ -19,47 +19,43 @@ The NIST 800-53 Revision 5 STIX data does not extend the [general controls forma
 
 ## Mapping NIST 800-53 revision 5 to ATT&CK
 
-Scoping decisions and mapping methodology for NIST 800-53 revision 4 controls are decoumented below. The mapping methodology for NIST 800-53 revision 4 controls builds upon and refines the overall security control framework mapping methodology.
+Scoping decisions and mapping methodology for NIST 800-53 revision 4 controls are decoumented below. The mapping methodology for NIST 800-53 revision 5 controls builds upon and refines the overall [security control framework mapping methodology](/docs/mapping_methodology.md).
 
 ### General Scoping Decisions
 
-• Operational vs. Policy and Procedural Controls - This effort is focused on the technical and operational elements of NIST 800-53 and did not take into account the management elements that are often focused on organization specific policies and procedures. This decision was made because management specific controls are policy-based, and the intent of this effort was focusing on technical and operation controls that correlate to ATT&CK mitigations, techniques, and sub-techniques.
-
-• Mitigation vs. Monitoring - Controls that may only monitor adversary behaviors are out of scope. The focus of this effort is on technical controls that mitigate adversary techniques and sub-techniques. For example, IR-5 Incident Monitoring would be out-of-scope as this does not serve as a mitigation, but rather detection of security incident occurrence. However, RA-4 Vulnerability Scanning is in scope as it can lead to findings which allow for remediation prior to exploitation (e.g., apply patches, remove vulnerable software) thereby mitigating attacks. Consideration is not given for the potential that an adversary might be dissuaded or change their tactics to try and avoid detection if they thought activity was being monitored.
-
-• Controls vs. Control Enhancements - This effort maps at the control level and does not map to specific control enhancements.
-
-• Implicit vs. Explicit Mitigation - This effort focuses on system-specific technical mitigations (e.g., block USB devices, perform data backups) and controls that support those mitigations rather than other, non-technical methods of mitigation (e.g., put system in a locked room, write a backup policy).
-
-• Cloud Technologies: Cloud technologies are not fully covered.
-
-• ATT&CKv8 release: ATT&CKv8 released on October 27, 2020, introduces techniques for adversary behavior on Network Infrastructure Devices, such as switches and routers. These have not been included in the control mappings.
-
-• Pre-compromise Mitigation: Those techniques only associated with the Pre-compromise Mitigation are excluded. These apply to techniques occurring before an adversary gains Initial Access, such as Reconnaissance and Resource Development techniques, and are considered out of scope.
-
+| Item | Scoping Decision |
+|------|------|
+| Operational vs. Policy and Procedural Controls | This effort is focused on the technical and operational elements of NIST 800-53 and did not take into account the management elements that are often focused on organization specific policies and procedures.  This decision was made because management specific controls are policy-based, and the intent of this effort was focusing on technical and operation controls that correlate to ATT&CK mitigations, techniques, and sub-techniques. |
+| Mitigation vs. Monitoring | Controls that may only monitor adversary behaviors are out of scope. The focus of this effort is on technical controls that mitigate adversary techniques and sub-techniques. For example, IR-5 Incident Monitoring would be out-of-scope as this does not serve as a mitigation, but rather detection of security incident occurrence. However, RA-4 Vulnerability Scanning is in scope as it can lead to findings which allow for remediation prior to exploitation (e.g., apply patches, remove vulnerable software) thereby mitigating attacks. Consideration is not given for the potential that an adversary might be dissuaded or change their tactics to try and avoid detection if they thought activity was being monitored. |
+| Controls vs. Control Enhancements | This effort maps at the control level and does not map to specific control enhancements. |
+| Implicit vs. Explicit Mitigation | This effort focuses on system-specific technical mitigations (e.g., block USB devices, perform data backups) and controls that support those mitigations rather than other, non-technical methods of mitigation (e.g., put system in a locked room, write a backup policy).|
+| Cloud Technologies | Cloud technologies are not fully covered. This work is focused on Enterprise ATT&CK techniques. |
+| Network Infrastructure Devices | [ATT&CK v8](https://attack.mitre.org/resources/versions/) released on October 27, 2020, introduces techniques for adversary behavior on Network Infrastructure Devices, such as switches and routers. These have not been included in the control mappings. |
+| [Pre-compromise Mitigation](https://attack.mitre.org/mitigations/M1056/) | Those techniques only associated with the Pre-compromise Mitigation are excluded. These apply to techniques occurring before an adversary gains Initial Access, such as Reconnaissance and Resource Development techniques, and are considered out of scope. |
 
 ### Control Family Scoping Decisions
 
 NIST 800-53 revision 5 control families are listed below with out of scope control families identified:
 
-•	AC - Access Control  
-•	AT - Awareness and Training - (out of scope) -  
-•	AU - Audit and Accountability - (out of scope) - Audit controls are not applicable as they do not provide mitigations of specific threats, but instead detect successful attacks.  
-•	CA - Security Assessment and Authorization  
-•	CM - Configuration Management  
-•	CP - Contingency Planning  
-•	IA - Identification and Authentication  
-•	IR - Incident Response - (out of scope) -  
-•	MA - Maintenance - (out of scope) -  
-•	MP - Media Protection  
-•	PE - Physical and Environmental Protection - (out of scope) -  
-•	PL - Planning - (out of scope) -  
-•	PM - Program Management - (out of scope) -  
-•	PS - Personnel Security - (out of scope) -  
-•	PT - PII Processing and Transparency   
-•	RA - Risk Assessment  
-•	SA - System and Services Acquisition  
-•	SC - System and Communications Protection  
-•	SI - System and Information Integrity  
-•	SR - Supply Chain Risk Management  
-
+| Control Family | Scoping Decision |
+|------|------|
+| AC - Access Control | Access Control family is in scope. |
+| AU - Audit and Accountability | Audit and Accountability controls are not applicable as they do not provide mitigations of specific threats, but instead detect successful attacks. |
+| AT - Awareness and Training | Awareness and Training controls are not applicable as they are for general security awareness training and not specific threat mitigations.|
+| CM - Configuration Management | Configuration Management controls are in scope. |
+| CP - Contingency Planning | Contingency Planning controls are in scope.|
+| IA - Identification and Authentication | Identification and Authentication controls are in scope.|
+| IR - Incident Response | Incident Response controls are not applicable as they do not provide mitigations of specific threats but rather provide detection of security incident occurrences. |
+| MA - Maintenance |  Maintenance controls are not applicable as they are related to the procedural management of information system maintenance and are not threat-specific. |
+| MP - Media Protection | Media Protection controls are in scope.|
+| PS - Personnel Security | Personnel security controls are not applicable as they are related to the procedural management of individuals. |
+| PE - Physical and Environmental Protection | Physical and Environmental Protection controls are not applicable as they are related to the management and protection of physical space. |
+| PL - Planning | Planning controls are not applicable as they focus on high-level system security plans and are not threat-specific.|
+| PM - Program Management | Program Management controls are not applicable as they focus on programmatic, organization-wide information security requirements for managing information security programs.|
+| PT - PII Processing and Transparency | PII Processing and Transparency controls are not applicable as they are procedural in nature.|
+| RA - Risk Assessment | Risk Assessment controls are in scope. |
+| CA - Security Assessment and Authorization| Security Assessment and Authorization controls are in scope. |
+| SC - System and Communications Protection| System and Communications Protection controls are in scope. |
+| SI - System and Information Integrity| System and Information Integrity controls are in scope. |
+| SA - System and Services Acquisition| System and Services Acquisition are in scope. |
+| SR - Supply Chain Risk Management | Supply Chain Risk Management is in scope. |
