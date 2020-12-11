@@ -40,8 +40,8 @@ The previous three steps of the methodology provide the analytical context to id
 To continue with the example, further review and analysis confirms the identified control selection and the mappings can be created for the technique T1003 OS Credential Dumping and sub-technique T1003.001 LSASS Memory. The resultant mappings in the form of regular expressions (regex) are: 
 | Techniques | Controls |
 | ---------- | -------- |
-| T1003(\.001)?	| AC-(3|4) |
-| T1003(\.001)?	| CM-(2|6) |
+| T1003(\.001)?	| AC-(3\|4) |
+| T1003(\.001)?	| CM-(2\|6) |
 | T1003(\.001)?	| RA-5 |
 | T1003(\.001)?	| SI-4 |
 
