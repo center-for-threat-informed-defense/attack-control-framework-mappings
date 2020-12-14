@@ -16,7 +16,7 @@ Users wishing to submit feedback or questions on the methodology mappings should
 
 ### New mappings to an existing framework
 
-Please submit new issues if you wish to contribute additional mappings to a security control framework that is already included in this project. This will increase transparency for the proejct as we review your controbutions. 
+Please submit new issues if you wish to contribute additional mappings to a security control framework that is already included in this project. This will increase transparency for the proejct as we review your contributions. 
 
 ### New Control Frameworks
 
