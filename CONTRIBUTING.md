@@ -16,11 +16,11 @@ Users wishing to submit feedback or questions on the methodology mappings should
 
 ### New mappings to an existing framework
 
-Please submit new issues if you wish to contribute additional mappings to a security control framework that is already included in this project. This will increase transparency for the proejct as we review your contributions. 
+Please submit new issues if you wish to contribute additional mappings to a security control framework that is already included in this project. This will increase transparency for the project as we review your contributions. 
 
 ### New Control Frameworks
 
-- Coordinate - Mapping a control frameworks takes significant time and effort. Email us at ctid@mitre-engenuity.org to help us ensure that our control framework mapping work is well cordinated. 
+- Coordinate - Mapping a control frameworks takes significant time and effort. Email us at ctid@mitre-engenuity.org to help us ensure that our control framework mapping work is well coordinated. 
 - Location - You may contribute new control frameworks within the `frameworks/` folder. 
 - Format - Contributions of control frameworks and associated mappings should follow the format outlined in the [README](README.md#output-data), extended with additional `x_mitre_` properties when relevant. 
 - Reuse - We encourage you to reuse the existing mappings parser if possible.
