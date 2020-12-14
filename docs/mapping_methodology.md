@@ -25,7 +25,7 @@ As an example, consider the ATT&CK mitigation for Credential Access Protection [
 
 The next step of the security control mapping methodology involves examining each technique and sub-technique that the mitigation under review applies to. Understanding what the adversary's goal (tactic) and how (technique) they achieve that goal helps to refine our understanding of the mitigation and builds context as we prepare to study relevant security controls. ATT&CK techniques and sub-techniques provide relevant information such as domain specific and platform specific information, configuration concepts, and tools.
 
-For example, a specific technique addressed by M1043 Credential Access Protection is OS Credential Dumping is [ID: T1003])(https://attack.mitre.org/techniques/T1003). This technique is used by adversaries attempting to dump credentials to obtain account login and credential material, normally in the form of a hash or a clear text password, from the operating system and software. There is also a more specific behavior under this technique related to M1043, the sub-technique LSASS Memory [ID: T1003.001](https://attack.mitre.org/techniques/T1003/001). This sub-technique involves adversary attempts to access credential material stored in the process memory of the Local Security Authority Subsystem Service (LSASS). 
+For example, a specific technique addressed by M1043 Credential Access Protection is OS Credential Dumping is [ID: T1003](https://attack.mitre.org/techniques/T1003). This technique is used by adversaries attempting to dump credentials to obtain account login and credential material, normally in the form of a hash or a clear text password, from the operating system and software. There is also a more specific behavior under this technique related to M1043, the sub-technique LSASS Memory [ID: T1003.001](https://attack.mitre.org/techniques/T1003/001). This sub-technique involves adversary attempts to access credential material stored in the process memory of the Local Security Authority Subsystem Service (LSASS). 
 
 ## Security Control Review: Examining security controls and deconstructing techniques (Step 3)
 
@@ -52,7 +52,7 @@ To continue with the example, further review and analysis confirms the identifie
 
 ## Applying the Methodology
 
-This methodology is designed to be tailored as it is applied to security control frameworks. We anticipate that each framework will require its own unique mapping and scoping decisions. These framework specific decisions should be documented in the ReadMe for the framework. As an example, see the [Mapping NIST 800-53 revision 4 to ATT&CK] (/frameworks/nist800-53-r4#mapping-nist-800-53-revision-4-to-attck) section of the NIST 800-53 R4 mapping documentation. 
+This methodology is designed to be tailored as it is applied to security control frameworks. We anticipate that each framework will require its own unique mapping and scoping decisions. These framework specific decisions should be documented in the ReadMe for the framework. As an example, see the [Mapping NIST 800-53 revision 4 to ATT&CK](/frameworks/nist800-53-r4#mapping-nist-800-53-revision-4-to-attck) section of the NIST 800-53 R4 mapping documentation. 
 
 ## References
 
