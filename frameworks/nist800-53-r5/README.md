@@ -1,6 +1,6 @@
 # NIST 800-53 Revision 5 Control Mappings
 
-This folder contains mappings of NIST Special Publication (SP) 800-53 Revision 5 to MITRE ATT&CK along with parsers and supporting data. NIST 800-53 R5 was mapped to ATT&CK based on its initial publication on September 2020. NIST published an [update on December 10, 2020](https://csrc.nist.gov/publications/detail/sp/800-53/rev-5/final) to 800-53 R5 that has not yet been evaluated. 
+This folder contains mappings of NIST Special Publication (SP) 800-53 Revision 5 to MITRE ATT&CK along with parsers and supporting data. NIST 800-53 Rev. 5 was mapped to ATT&CK based on its initial publication in September 2020. NIST published an [update on December 10, 2020](https://csrc.nist.gov/publications/detail/sp/800-53/rev-5/final) to 800-53 Rev. 5 that has not yet been evaluated. 
 
 | Mappings Version | Last Updated      | ATT&CK Version | ATT&CK Domain |
 |------------------|-------------------|----------------|---------------|
@@ -16,11 +16,11 @@ This folder contains mappings of NIST Special Publication (SP) 800-53 Revision 5
 
 ## Extended Fields
 
-The NIST 800-53 Revision 5 STIX data does not extend the [general controls format](/docs/stix_format.md) with any additional properties. This is because the input control data does not include any properties other than the control text.
+The NIST 800-53 Rev. 5 STIX data does not extend the [general controls format](/docs/stix_format.md) with any additional properties. This is because the input control data does not include any properties other than the control text.
 
 ## Mapping NIST 800-53 revision 5 to ATT&CK
 
-Scoping decisions and mapping methodology for NIST 800-53 revision 5 controls are decoumented below. The mapping methodology for NIST 800-53 revision 5 controls builds upon and refines the overall [security control framework mapping methodology](/docs/mapping_methodology.md).
+Scoping decisions and mapping methodology for NIST 800-53 Rev. 5 controls are decoumented below. The mapping methodology for NIST 800-53 Rev. 5 controls builds upon and refines the overall [security control framework mapping methodology](/docs/mapping_methodology.md).
 
 ### General Scoping Decisions
 
@@ -36,27 +36,27 @@ Scoping decisions and mapping methodology for NIST 800-53 revision 5 controls ar
 
 ### Control Family Scoping Decisions
 
-NIST 800-53 revision 5 control families are listed below with out of scope control families identified:
+NIST 800-53 Rev. 5 control families are listed below with our rational for a given control family being in or out of scope:
 
-| Control Family | Scoping Decision |
-|------|------|
-| AC - Access Control | Access Control family is in scope. |
-| AU - Audit and Accountability | Audit and Accountability controls are not applicable as they do not provide mitigations of specific threats, but instead detect successful attacks. |
-| AT - Awareness and Training | Awareness and Training controls are not applicable as they are for general security awareness training and not specific threat mitigations.|
-| CM - Configuration Management | Configuration Management controls are in scope. |
-| CP - Contingency Planning | Contingency Planning controls are in scope.|
-| IA - Identification and Authentication | Identification and Authentication controls are in scope.|
-| IR - Incident Response | Incident Response controls are not applicable as they do not provide mitigations of specific threats but rather provide detection of security incident occurrences. |
-| MA - Maintenance |  Maintenance controls are not applicable as they are related to the procedural management of information system maintenance and are not threat-specific. |
-| MP - Media Protection | Media Protection controls are in scope.|
-| PS - Personnel Security | Personnel security controls are not applicable as they are related to the procedural management of individuals. |
-| PE - Physical and Environmental Protection | Physical and Environmental Protection controls are not applicable as they are related to the management and protection of physical space. |
-| PL - Planning | Planning controls are not applicable as they focus on high-level system security plans and are not threat-specific.|
-| PM - Program Management | Program Management controls are not applicable as they focus on programmatic, organization-wide information security requirements for managing information security programs.|
-| PT - PII Processing and Transparency | PII Processing and Transparency controls are not applicable as they are procedural in nature.|
-| RA - Risk Assessment | Risk Assessment controls are in scope. |
-| CA - Security Assessment and Authorization| Security Assessment and Authorization controls are in scope. |
-| SC - System and Communications Protection| System and Communications Protection controls are in scope. |
-| SI - System and Information Integrity| System and Information Integrity controls are in scope. |
-| SA - System and Services Acquisition| System and Services Acquisition are in scope. |
-| SR - Supply Chain Risk Management | Supply Chain Risk Management is in scope. |
+| Control Family | In Scope | Rationale |
+|------|------|------|
+| AC - Access Control | Yes | Access Control family is in scope as it provides technical and operational controls for the control and enforcement of system access, accounts, and information. |
+| AU - Audit and Accountability | No | Audit and Accountability controls are not applicable as they do not provide mitigations of specific threats, but instead detect successful attacks. |
+| AT - Awareness and Training | No | Awareness and Training controls are not applicable as they are for general security awareness training and not specific threat mitigations.|
+| CM - Configuration Management | Yes | Configuration Management controls are in scope as they maintain technical and operational controls for maintaining secure configuration of information systems. |
+| CP - Contingency Planning | Yes | Contingency Planning controls are in scope as they provide operational and technical controls for information protection at the system level.|
+| IA - Identification and Authentication | Yes | Identification and Authentication controls are in scope as they provide operational and technical controls for managing and enforcing identification and authentication of network and system users and devices. |
+| IR - Incident Response | No | Incident Response controls are not applicable as they do not provide mitigations of specific threats but rather provide detection of security incident occurrences. |
+| MA - Maintenance |  No | Maintenance controls are not applicable as they are related to the procedural management of information system maintenance and are not threat-specific. |
+| MP - Media Protection | Yes | Media Protection family is in scope as it provides technical and operational controls for the control and access of digital system media. |
+| PS - Personnel Security | No | Personnel security controls are not applicable as they are related to the procedural management of individuals. |
+| PE - Physical and Environmental Protection | No | Physical and Environmental Protection controls are not applicable as they are related to the management and protection of physical space. |
+| PL - Planning | No | Planning controls are not applicable as they focus on high-level system security plans and are not threat-specific.|
+| PM - Program Management | No | Program Management controls are not applicable as they focus on programmatic, organization-wide information security requirements for managing information security programs.|
+| PT - PII Processing and Transparency | No | PII Processing and Transparency controls are not applicable as they are procedural in nature.|
+| RA - Risk Assessment | Yes | Risk Assessment controls are in scope as they provide technical and operational controls and techniques for risk and vulnerability management and maintaining security at the system level. |
+| CA - Security Assessment and Authorization| Yes | Security Assessment and Authorization controls are in scope as they provide technical and operational controls and techniques for monitoring and assessing security at the system level. |
+| SC - System and Communications Protection| Yes | System and Communications Protection controls are in scope as they provide technical and operational controls for the separation and protection of systems and information. |
+| SI - System and Information Integrity| Yes | System and Information Integrity controls are in scope as they provide technical and operational controls and techniques for protecting and analyzing the integrity of software, firmware, and information. |
+| SA - System and Services Acquisition| Yes | System and Services Acquisition are in scope as they provide technical and operational controls for security testing and evaluation of the system development life cycle. |
+| SR - Supply Chain Risk Management | Yes | Supply Chain Risk Management is in scope as they provide technical and operational controls for security testing and evaluation of supply chain processes and elements. |
