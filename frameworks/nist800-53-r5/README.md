@@ -20,7 +20,7 @@ The NIST 800-53 Revision 5 STIX data does not extend the [general controls forma
 
 ## Mapping NIST 800-53 revision 5 to ATT&CK
 
-Scoping decisions and mapping methodology for NIST 800-53 revision 4 controls are decoumented below. The mapping methodology for NIST 800-53 revision 5 controls builds upon and refines the overall [security control framework mapping methodology](/docs/mapping_methodology.md).
+Scoping decisions and mapping methodology for NIST 800-53 revision 5 controls are decoumented below. The mapping methodology for NIST 800-53 revision 5 controls builds upon and refines the overall [security control framework mapping methodology](/docs/mapping_methodology.md).
 
 ### General Scoping Decisions
 
