@@ -1,6 +1,6 @@
 # NIST 800-53 Revision 5 Control Mappings
 
-This folder contains mappings of NIST Special Publication (SP) 800-53 Revision 5 to MITRE ATT&CK along with parsers and supporting data.
+This folder contains mappings of NIST Special Publication (SP) 800-53 Revision 5 to MITRE ATT&CK along with parsers and supporting data. NIST 800-53 R5 was mapped to ATT&CK based on its initial publication on September 2020. NIST published an [update](https://csrc.nist.gov/publications/detail/sp/800-53/rev-5/final) to 800-53 R5 that has not yet been evaluated. 
 
 | Mappings Version | Last Updated      | ATT&CK Version | ATT&CK Domain |
 |------------------|-------------------|----------------|---------------|
