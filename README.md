@@ -23,19 +23,21 @@ Mapping NIST 800-53, or any security control framework, to ATT&CK is a labor int
 - [Changelog](/CHANGELOG.md) — list of updates to this repository
 
 
-## Future Work
+## Getting Involved
 
-<TODO> 
-    
-The threat landscape changes every day, as new groups/malware emerge and known adversaries adapt and evolve. The Center will continue to populate and maintain this library to match this growth curve through dedicated research efforts that aim to either create or update plans based on a specific adversary.
+There are several ways that you can get involved with this project and help advance threat-informed defense. 
+
+First, review the mappings, use them, and tell us what you think. We welcome your review and feedback on the NIST 800-53 mappings, our methodology, and resources. 
+
+Second, we are interested in applying our methodology to other security control frameworks. Let us know what frameworks you would like to see mapped to ATT&CK. Your input will help us prioritize how we expand our mappings. 
+
+Finally, we are interested developing additional tools and resources to help the community understand and make threat-informed decisions in their risk management programs. Share your ideas and we will consider them as we explore additional research projects.  
 
 ## Questions and Feedback
-
-<TODO>
-    
+   
 Please submit issues for any technical questions/concerns or contact ctid@mitre-engenuity.org directly for more general inquiries.
 
-Also see the guidance for contributors if are interested in [contributing.](/CONTRIBUTING.md)
+Also see the guidance for contributors if are interested in [contributing or simply reporting issues.](/CONTRIBUTING.md)
 
 ## Notice 
 
