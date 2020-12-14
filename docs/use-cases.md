@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This document is intended to express some hypothetical use cases of the ATT&CK Control Framework Mappings. These use cases are expressed as user stories, and a short exploration of how a user story may be achieved follows each story.
+This document describes basic use cases for Security Control Framework Mappings to MITRE ATT&CK. These use cases are expressed as user stories, and a short exploration of how a user story may be achieved follows each story.
 
 ## Use Cases — as a user of the ATT&CK Security Control Framework Mappings...
 
