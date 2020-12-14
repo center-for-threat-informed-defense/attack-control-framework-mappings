@@ -1,8 +1,8 @@
 # Use Cases
 
-This document describes basic use cases for Security Control Framework Mappings to MITRE ATT&CK. These use cases are expressed as user stories, and a short exploration of how a user story may be achieved follows each story.
-
 ## Use Cases — as a user of the Security Control Framework Mappings to ATT&CK...
+
+This document describes basic use cases for Security Control Framework Mappings to MITRE ATT&CK. These use cases are expressed as user stories, and a short exploration of how a user story may be achieved follows each story.
 
 ### 1. I want to determine the technique coverage of a control or set of controls
 

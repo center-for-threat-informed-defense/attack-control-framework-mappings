@@ -1,6 +1,6 @@
 # Utility Scripts
 
-This folder contains framework-agnostic utility scripts for ATT&CK Control Framework Mappings. 
+This folder contains framework-agnostic utility scripts for Security Control Framework Mappings to ATT&CK. 
 
 | Script | Purpose |
 |:-------|:--------|
