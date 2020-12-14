@@ -1,12 +1,12 @@
 # Mapping Methodology
 
-This document outlines the methodology used for this project, but it is not the only way such mappings might be created, as other control frameworks may not align well with this process. As such, the methodology described in this document has been shown to be an effective means of creating mappings between security control frameworks, such as NIST 800-53 and MITRE ATT&CK®. Mapping security control frameworks to ATT&CK provides a powerful way for organizations to see their security control coverage against associated ATT&CK techniques and establishes a means to integrate ATT&CK-based threat information within the risk management process.  
+This document describes the methodology used to map security control frameworks to MITRE ATT&CK®. While the methodology is based upon our experience mapping NIST Special Publication 800-53 to ATT&CK, the methodology was designed to be easily tailored and applied to other security control frameworks. Mapping security control frameworks to ATT&CK provides a powerful way for organizations to see their security control coverage against associated ATT&CK techniques and establishes a means to integrate ATT&CK-based threat information within the risk management process.  
 
-The ATT&CK knowledge base and model for cyber adversary behavior reflects the various phases of an adversary’s attack lifecycle and the platforms they are known to target. The basis of ATT&CK is the set of techniques and sub-techniques that represent actions that adversaries can perform to accomplish objectives and goals. Those objectives and goals are represented by the tactic categories that techniques and sub-techniques fall under.<sup>[[1]](https://attack.mitre.org/docs/ATTACK_Design_and_Philosophy_March_2020.pdf)</sup> The methodology described below leverages the information in the ATT&CK knowledge base and its underlying data model to create context that is then used to select security controls to map to a given technique or sub-technique.
+MITRE ATT&CK is a globally-accessible knowledge base of adversary tactics and techniques based on real-world observations. The ATT&CK knowledge base represents adversary goals as tactics and the specific behaviors to achieve those goals (how) as techniques and sub-techniques. ATT&CK's Mitigation structure represents security concepts and classes of tools that may prevent successful execution of a set of techniques or sub-techniques. <sup>[[1]](https://attack.mitre.org/docs/ATTACK_Design_and_Philosophy_March_2020.pdf)</sup> The methodology described below leverages the information in the ATT&CK knowledge base and its underlying data model to create context that is then used to select security controls to map to a given technique or sub-technique.
 
-ATT&CK’s mitigations are at the core of this methodology and act as a bridge helping to connect adversary behavior (tactics and techniques) to the security controls that mitigate those behaviors. The methodology is an iterative process that consists of four main steps. Each step is designed to apply threat specific information from an adversarial perspective to help align ATT&CK mitigations with a set of relevant security controls to mitigate a given technique or sub-technique. The four steps are:
+ATT&CK’s mitigations are at the core of this methodology and act as a bridge helping to connect adversary behavior (tactics and techniques) to the security controls that mitigate those behaviors. The methodology defines an iterative process that consists of four main steps. Each step is designed to apply threat specific information from an adversarial perspective to help align ATT&CK mitigations with a set of relevant security controls to mitigate a given technique or sub-technique. The four steps are:
 
-1. **ATT&CK Mitigation Review** - Analyzing ATT&CK mitigations in relation to the specific techniques and sub-techniques.
+1. **ATT&CK Mitigation Review** - Reviewing and analyzing each mitigation.
 2. **ATT&CK Technique Review** - Understanding adversary objectives and goals a technique or sub-technique is designed to carry out.
 3. **Security Control Review** - Examining security controls in the context of the mitigation and specific techniques.
 4. **Create a Mapping** - Identifying and creating security control mappings to ATT&CK techniques and sub-techniques. 
@@ -45,6 +45,9 @@ To continue with the example, further review and analysis confirms the identifie
 | T1003(\.001)?	| RA-5 |
 | T1003(\.001)?	| SI-4 |
 
+## Applying the Methodology
+
+This methodlogy is designed to be tailored as it is applied to security control frameworks. We anticipate that each framework will require its own unique mapping and scoping decisions. These framework specific decisions should be docmented in the ReadMe for the framework. As example, see the [Mapping NIST 800-53 revision 4 to ATT&CK] (/frameworks/nist800-53-r4#mapping-nist-800-53-revision-4-to-attck) section of the NIST 800-53 R4 mappping documentation. 
 
 ## References
 
