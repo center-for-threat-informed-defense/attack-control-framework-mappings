@@ -13,10 +13,9 @@ Mapping NIST 800-53, or any security control framework, to ATT&CK is a labor int
 ## Repository Contents
 
 - [Frameworks](/frameworks) — this directory contains the security control frameworks and their mappings to ATT&CK techniques. Each security control framework has its own directory of documentation and resources. 
-- Methodology — processes and procedures for developing and editing mappings
-    - [Mapping Methodology](/docs/mapping_methodology.md) — a description of the general process used to create the control mappings
-    - [Tooling](/docs/tooling.md) — a set of python tools to support the creation of new mappings and the customization of existing mappings
-- [Use Cases] (/docs/use-cases.md) - TODO
+- [Mapping Methodology](/docs/mapping_methodology.md) — a description of the general process used to create the control mappings
+- [Tooling](/docs/tooling.md) — a set of python tools to support the creation of new mappings and the customization of existing mappings
+- [Use Cases](/docs/use-cases.md) - use cases for security control framework mappings to ATT&CK
 - [STIX Format](/docs/STIX_format.md) — information regarding the STIX representation of the control frameworks and the mappings to ATT&CK
 - [Visualization](/docs/visualization.md) — this document describes some ways the mappings data can be visualized. 
 - [Contributing](/CONTRIBUTING.md) — information about how to contribute controls, mappings, or other improvements to this repository
