@@ -36,7 +36,7 @@ Finally, we are interested developing additional tools and resources to help the
    
 Please submit issues for any technical questions/concerns or contact ctid@mitre-engenuity.org directly for more general inquiries.
 
-Also see the guidance for contributors if are interested in [contributing or simply reporting issues.](/CONTRIBUTING.md)
+Also see the guidance for contributors if are you interested in [contributing or simply reporting issues.](/CONTRIBUTING.md)
 
 ## Notice 
 
