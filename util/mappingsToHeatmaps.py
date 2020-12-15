@@ -35,8 +35,8 @@ def layer(name, description, domain, techniques, version):
     return {
         "name": name,
         "versions": {
-            "navigator": "4.0",
-            "layer": "4.0",
+            "navigator": "4.1",
+            "layer": "4.1",
             "attack": version
         },
         "sorting": 3, # descending order of score
@@ -298,7 +298,7 @@ if __name__ == "__main__":
 
         mdfileLines = ["# ATT&CK Navigator Layers", "", f"The following [ATT&CK Navigator](https://github.com/mitre-attack/attack-navigator/) layers represent the mappings from ATT&CK to {args.framework}:", ""] # "" is an empty line
         prefix = "https://raw.githubusercontent.com/center-for-threat-informed-defense/attack-control-framework-mappings/master/frameworks"
-        nav_prefix = f"https://mitre-attack.github.io/attack-navigator/{args.domain.split('-')[0]}/#layerURL="
+        nav_prefix = f"https://mitre-attack.github.io/attack-navigator/#layerURL="
         for layer in layers:
 
             if "/" in layer["outfile"]: # force URL delimiters even if local system uses "\"
