@@ -8,7 +8,7 @@ This repository contains security control framework mappings to MITRE ATT&CK® w
 
 ## A Collaborative Approach
 
-Mapping NIST 800-53, or any security control framework, to ATT&CK is a labor intensive and often subjective undertaking. Furthermore, due to the large number of security controls in any given framework and the evolving nature of cyber adversaries, these mappings are often error prone and difficult to maintain. We recognized that there was not only a need for mappings NIST 800-53, but an opportunity to work collaboratively and advance threat-informed defense with the global community. With over 6,300 individual mappings between NIST 800-53 and ATT&CK, we believe that this work will greatly reduce the burden on the community – allowing organizations to focus their limited time and resources on understanding how controls map to threats in their environment.
+Mapping NIST Special Publication 800-53, or any security control framework, to ATT&CK is a labor intensive and often subjective undertaking. Furthermore, due to the large number of security controls in any given framework and the evolving nature of cyber adversaries, these mappings are often error prone and difficult to maintain. We recognized that there was not only a need for mappings NIST 800-53, but an opportunity to work collaboratively and advance threat-informed defense with the global community. With over 6,300 individual mappings between NIST 800-53 and ATT&CK, we believe that this work will greatly reduce the burden on the community – allowing organizations to focus their limited time and resources on understanding how controls map to threats in their environment.
 
 ## Repository Contents
 
