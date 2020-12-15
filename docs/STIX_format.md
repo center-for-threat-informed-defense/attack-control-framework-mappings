@@ -6,6 +6,8 @@ This document describes the formatting of the control frameworks and mappings in
 ## STIX
 Structured Threat Information Expression (STIX&trade;) is a language and serialization format used to exchange cyber threat intelligence (CTI). STIX enables organizations to share CTI with one another in a consistent and machine readable manner, allowing security communities to better understand what computer-based attacks they are most likely to see and to anticipate and/or respond to those attacks faster and more effectively. To find out more about STIX, please see [the STIX 2.0 website](https://oasis-open.github.io/cti-documentation/stix/intro). 
 
+<img src="/docs/controls_in_stixv4.png" width="900px">
+
 ## Format
 The control and mapping data in this repository follows the STIX 2.0 format as follows:
 - Both controls and mappings are represented in STIX2.0 JSON.
