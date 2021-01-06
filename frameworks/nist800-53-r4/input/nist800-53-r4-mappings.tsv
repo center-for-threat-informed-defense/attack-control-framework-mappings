@@ -1223,7 +1223,7 @@ date delivered	mitigationID	techniqueID	controlID	description
 11/4/20	M1024	T1112	(AC-6|CM-7)	"Least privilege, Least funtionality"
 11/24/20	M1024	T1553\.003	(AC-6|SI-7)	"Least privilege, software firmware and information integrity"
 11/4/20	M1024	T1489	(AC-6|CM-5)	"Least privilege, Access Restrictions for Change"
-11/4/20	M1024	T1547(\.003)	(AC-(3|4)|CM-5	
+11/4/20	M1024	T1547(\.003)	(AC-(3|4)|CM-5)	
 11/4/20	M1024	T1553	(AC-6|SI-7)	"Least privilege, software firmware and information integrity"
 11/4/20	M1024	T1562	(AC-6|CM-(5|7))	"Least privilege, Access Restrictions for Change, Least funtionality"
 11/4/20	M1024	T1562(\.001)	(AC-6|CM-(5|7))	"Least privilege, Access Restrictions for Change, Least funtionality"
