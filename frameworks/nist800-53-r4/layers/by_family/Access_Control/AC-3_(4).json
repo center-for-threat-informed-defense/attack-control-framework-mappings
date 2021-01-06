@@ -1,1 +1,0 @@
-{"name": "AC-3 (4) mappings", "versions": {"navigator": "4.1", "layer": "4.1", "attack": "8"}, "sorting": 3, "description": "nist800-53-r4 AC-3 (4) mappings", "domain": "enterprise-attack", "techniques": [{"techniqueID": "T1547.003", "score": 1, "comment": "Mitigated by AC-3 (4)"}], "gradient": {"colors": ["#ffffff", "#66b1ff"], "minValue": 0, "maxValue": 1}}
