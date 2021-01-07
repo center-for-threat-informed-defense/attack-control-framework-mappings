@@ -1065,7 +1065,7 @@ date delivered	mitigationID	techniqueID	controlID	description
 11/13/20	M1046	T1601(\.(001|002))?	(CA-8|CM-(3|5|8)|SA-10|SA-11|SA-14|SI-(2|7)|IA-7|SC-34)	
 7/20/20	M1047	T1021(\.005|\.001)	(CA-8|RA-5|AC-(2|6|17)|IA-(2|4|6)|SI-4)	
 7/20/20	M1047	T1053(\.001|\.004|\.003)	(CA-8|RA-5|SI-4)	
-7/20/20	M1047	T1053(\.002|\.005)?	(CA-8|RA-5|AC-(2|6)|IA-(2|4)|SI-4)|CM-(2|6|7|8)	
+7/20/20	M1047	T1053(\.002|\.005)?	(CA-8|RA-5|AC-(2|6)|IA-(2|4)|SI-4|CM-(2|6|7|8))	
 7/20/20	M1047	T1059	(CA-8|CM-(2|6|7|8|11)|RA-5|SI-4)	
 7/20/20	M1047	T1114(\.003)?	(AC-4|SC-7|SI-4)	
 7/20/20	M1047	T1176	(CA-8|SC-7|CM-2|RA-5|SI-(3|4))	
@@ -1202,8 +1202,8 @@ date delivered	mitigationID	techniqueID	controlID	description
 10/30/20	M1052	T1548(\.002)	IA-2	Identification and authentication (organizational users)
 10/30/20	M1052	T1550(\.002)	CM-6	Configuration settings
 10/30/20	M1052	T1574	AC-4	Information flow enforcement
-11/2/20	M1052	T1574(\.005)	CM-2|AC-4	"baseline configuration, information flow enforcement"
-11/2/20	M1052	T1574(\.010)	CM-2|AC-4	"baseline configuration, information flow enforcement"
+11/2/20	M1052	T1574(\.005)	(CM-2|AC-4)	"baseline configuration, information flow enforcement"
+11/2/20	M1052	T1574(\.010)	(CM-2|AC-4)	"baseline configuration, information flow enforcement"
 10/27/20	M1054	T1137	AC-(10|17)	"concurrent session control, remote access"
 10/27/20	M1054	T1137	CM-2	baseline configuration
 10/27/20	M1054	T1137(\.002)	AC-(6|10|14|17)	"least privilege, concurrent session control, permitted actions without identification or authentication, remote access"
@@ -1211,24 +1211,24 @@ date delivered	mitigationID	techniqueID	controlID	description
 10/27/20	M1054	T1535	SC-23	session authenticity
 10/27/20	M1054	T1539	CM-6	configuration settings
 10/26/20	M1054	T1546(\.013)	CM-10	User-installed software
-10/27/20	M1054	T1550(\.004)	SI-7|SC-(8|23)	"software firmware and information integrity, transmission confidentiality and integrity, session authenticity"
+10/27/20	M1054	T1550(\.004)	(SI-7|SC-(8|23))	"software firmware and information integrity, transmission confidentiality and integrity, session authenticity"
 10/27/20	M1054	T1553	CM-10	Software usage restrictions
 10/27/20	M1054	T1553	IA-9	Service identification and authentication
-10/27/20	M1054	T1553(\.004)	IA-9|SC-20|CM-10	"Service identification and authentication, Secure name/address resolution service (authoritative source), software usage restrictions"
+10/27/20	M1054	T1553(\.004)	(IA-9|SC-20|CM-10)	"Service identification and authentication, Secure name/address resolution service (authoritative source), software usage restrictions"
 10/26/20	M1054	T1559	CM-(6|7|10)	"Configuration settings, least functionality, software usage restrictions"
-10/26/20	M1054	T1559(\.002)	AC-6|CM-(6|7|10)	"least privilege, Configuration settings, least functionality, software usage restrictions"
+10/26/20	M1054	T1559(\.002)	(AC-6|CM-(6|7|10))	"least privilege, Configuration settings, least functionality, software usage restrictions"
 10/26/20	M1054	T1562(\.006)	SC-8	Transmission Confidentiality and Integrity
-11/4/20	M1024	T1037	AC-17|CM-7	"Remote Access, Least funtionality"
-11/4/20	M1024	T1037(\.001)	AC-17|CM-7	"Remote Access, Least funtionality"
-11/4/20	M1024	T1112	AC-6|CM-7	"Least privilege, Least funtionality"
-11/24/20	M1024	T1553\.003	AC-6|SI-7	"Least privilege, software firmware and information integrity"
-11/4/20	M1024	T1489	AC-6|CM-5	"Least privilege, Access Restrictions for Change"
-11/4/20	M1024	T1547(\.003)	AC-(3|4)|CM-5	
-11/4/20	M1024	T1553	AC-6|SI-7	"Least privilege, software firmware and information integrity"
-11/4/20	M1024	T1562	AC-6|CM-(5|7)	"Least privilege, Access Restrictions for Change, Least funtionality"
-11/4/20	M1024	T1562(\.001)	AC-6|CM-(5|7)	"Least privilege, Access Restrictions for Change, Least funtionality"
-11/4/20	M1024	T1562(\.002)	AC-6|CM-(5|7)	"Least privilege, Access Restrictions for Change, Least funtionality"
-11/4/20	M1024	T1562(\.004)	AC-6|CM-(5|7)	"Least privilege, Access Restrictions for Change, Least funtionality"
+11/4/20	M1024	T1037	(AC-17|CM-7)	"Remote Access, Least funtionality"
+11/4/20	M1024	T1037(\.001)	(AC-17|CM-7)	"Remote Access, Least funtionality"
+11/4/20	M1024	T1112	(AC-6|CM-7)	"Least privilege, Least funtionality"
+11/24/20	M1024	T1553\.003	(AC-6|SI-7)	"Least privilege, software firmware and information integrity"
+11/4/20	M1024	T1489	(AC-6|CM-5)	"Least privilege, Access Restrictions for Change"
+11/4/20	M1024	T1547(\.003)	(AC-(3|4)|CM-5)	
+11/4/20	M1024	T1553	(AC-6|SI-7)	"Least privilege, software firmware and information integrity"
+11/4/20	M1024	T1562	(AC-6|CM-(5|7))	"Least privilege, Access Restrictions for Change, Least funtionality"
+11/4/20	M1024	T1562(\.001)	(AC-6|CM-(5|7))	"Least privilege, Access Restrictions for Change, Least funtionality"
+11/4/20	M1024	T1562(\.002)	(AC-6|CM-(5|7))	"Least privilege, Access Restrictions for Change, Least funtionality"
+11/4/20	M1024	T1562(\.004)	(AC-6|CM-(5|7))	"Least privilege, Access Restrictions for Change, Least funtionality"
 11/4/20	M1024	T1574	AC-(4|6)	"Information flow enforcement, Least privilege"
-11/4/20	M1024	T1574(\.011)	AC-6|CM-5	"Least privilege, Access Restrictions for Change"
-11/4/20	M1024	T1574(\.012)	AC-6|CM-5	"Least privilege, Access Restrictions for Change"
+11/4/20	M1024	T1574(\.011)	(AC-6|CM-5)	"Least privilege, Access Restrictions for Change"
+11/4/20	M1024	T1574(\.012)	(AC-6|CM-5)	"Least privilege, Access Restrictions for Change"
