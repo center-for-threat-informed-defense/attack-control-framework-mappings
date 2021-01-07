@@ -4,7 +4,7 @@ This folder contains mappings of NIST Special Publication (SP) 800-53 Revision 4
 
 | Mappings Version | Last Updated      | ATT&CK Version | ATT&CK Domain |
 |------------------|-------------------|----------------|---------------|
-| 1.1              | 6 January 2021  | [ATT&CK v8](https://attack.mitre.org/resources/versions/) | Enterprise |
+| 1.1              | 7 January 2021  | [ATT&CK v8](https://attack.mitre.org/resources/versions/) | Enterprise |
 
 | Data ||
 |------|------|

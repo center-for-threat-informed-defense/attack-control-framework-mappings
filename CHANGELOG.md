@@ -13,7 +13,7 @@
 <!--    ### New Features                                                -->
 <!--    ### Improvements                                                -->
 <!--    ### Fixes                                                       -->
-# Changes staged on Develop
+# 7 January 2021
 ## nist800-53-r4 v1.1 and nist800-53-r5 v1.1
 ### Fixes
 - Fixed broken regex which was leading to erroneous mappings, in particular mappings to control enhancements. See issue [#56](https://github.com/center-for-threat-informed-defense/attack-control-framework-mappings/issues/56).
