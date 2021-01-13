@@ -52,7 +52,7 @@ def parse_mappings(mappingspath, controls, relationship_ids={}):
     for attackobject in tqdm(attackdata, desc="parsing ATT&CK data", bar_format=tqdmformat):
         if not attackobject["type"] == "relationship":
             # skip objects without IDs
-            if not "external_references" in attackobject: continue
+            if "external_references" not in attackobject: continue
             # skip deprecated and revoked objects
             if "revoked" in attackobject and attackobject["revoked"]: continue
             if "x_mitre_deprecated" in attackobject and attackobject["x_mitre_deprecated"]: continue
@@ -66,7 +66,7 @@ def parse_mappings(mappingspath, controls, relationship_ids={}):
             controlID_to_stixID[sdo["external_references"][0]["external_id"]] = sdo["id"]
 
     # build mapping relationships
-    relationships = []
+    relationships = {}
     mappings_df = pd.read_csv(mappingspath, sep="\t", keep_default_na=False, header=0)
     for index, row in tqdm(list(mappings_df.iterrows()), desc="parsing mappings", bar_format=tqdmformat):
         # create list of control STIX IDs matching this row
@@ -74,8 +74,8 @@ def parse_mappings(mappingspath, controls, relationship_ids={}):
         # create list of technique STIX IDs matching this row
         toIDs = dict_regex_lookup(attackID_to_stixID, row["techniqueID"])
         # only have a description if the row does
-        description = row["description"] if row["description"] else None
-        
+        # description = row["description"] if row["description"] else None
+
         if not fromIDs:
             print(Fore.RED + "ERROR: cannot find controlID", row["controlID"], Fore.RESET)
         if not toIDs:
@@ -88,13 +88,14 @@ def parse_mappings(mappingspath, controls, relationship_ids={}):
             for toID in toIDs:
                 joined_id = f"{fromID}---{toID}"
                 # build the mapping relationship
-                relationships.append(Relationship(
+                r = Relationship(
                     id=relationship_ids[joined_id] if joined_id in relationship_ids else None,
                     source_ref=fromID,
                     target_ref=toID,
                     relationship_type="mitigates",
-                    description=description
-                ))
+                )
+                if joined_id not in relationships:
+                    relationships[joined_id] = r
 
     # construct and return the bundle of relationships
-    return Bundle(relationships)
+    return Bundle(*relationships.values())
