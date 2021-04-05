@@ -13,7 +13,14 @@
 <!--    ### New Features                                                -->
 <!--    ### Improvements                                                -->
 <!--    ### Fixes                                                       -->
-# 03 February 2021
+
+# 5 April 2021
+## nist800-53-r5 v1.3
+### Fixes
+- Fixed a bug where subcontrol-of relationships were not being created between controls and enhancements in nist-800-53-r5. See issue [#61](https://github.com/center-for-threat-informed-defense/attack-control-framework-mappings/issues/61).
+- Updates to mappings in nist-800-53-r5 to address withdrawn controls (SA family) and to remove policy control (XX-1) mappings.
+
+# 3 February 2021
 ## nist800-53-r4 v1.2 and nist800-53-r5 v1.2
 ### Fixes
 - Fixes parse_mappings.py for nist800-53-r4 and nist800-53-r5 to remove duplicate mappings. See issue [#58](https://github.com/center-for-threat-informed-defense/attack-control-framework-mappings/issues/58).
