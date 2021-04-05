@@ -51,7 +51,7 @@ class Control:
         # print("text:", self.text)
         self.discussion = get_column("Discussion")
         # print("discussion:", self.discussion)
-        self.related = get_column("Related Controls").split(", ") if get_column("related") else []
+        self.related = get_column("Related Controls").split(", ") if get_column("Related Controls") else []
         # print("related:", self.related)
 
         # try to manually set the STIX ID from the control_ids mapping, if not present it will randomly generate
