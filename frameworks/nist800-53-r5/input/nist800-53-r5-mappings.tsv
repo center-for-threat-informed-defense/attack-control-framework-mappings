@@ -471,7 +471,6 @@ date delivered	mitigationID	techniqueID	controlID	description
 11/12/20	M1027	T1552(\.004)	CA-7	Continuous Monitoring	
 11/12/20	M1027	T1552(\.004)	SI-4	Information System Monitoring	
 11/12/20	M1027	T1552(\.004)	IA-(2|5)	"Identification and Authentication (Organizational Users), Authenticator Management"	
-10/29/20	M1027	T1555(\.001|\.002)?	AC-1	Access Control Policy and Procedures	
 10/29/20	M1027	T1555(\.001|\.002)?	CA-7	Continuous Monitoring	
 10/29/20	M1027	T1555(\.001|\.002)?	SI-4	Information System Monitoring	
 10/29/20	M1027	T1555(\.001|\.002)?	IA-5	Authenticator Management	
