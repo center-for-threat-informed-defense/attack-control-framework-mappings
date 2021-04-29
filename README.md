@@ -1,5 +1,5 @@
 # Security Control Framework Mappings to ATT&CK
-This repository contains security control framework mappings to MITRE ATT&CK® with supporting documentation and resources. These mappings provide a critically important resource for organizations to assess their security control coverage against real-world threats as described in the ATT&CK knowledge base and provide a foundation for integrating ATT&CK-based threat information into the risk management process. This work was developed by the [Center for Threat Informed Defense](https://mitre-engenuity.org/center-for-threat-informed-defense/) in collaboration with our participants.
+This repository contains security control framework mappings to MITRE ATT&CK® with supporting documentation and resources. These mappings provide a critically important resource for organizations to assess their security control coverage against real-world threats as described in the ATT&CK knowledge base and provide a foundation for integrating ATT&CK-based threat information into the risk management process. This work was developed by the [Center for Threat-Informed Defense](https://mitre-engenuity.org/center-for-threat-informed-defense/) in collaboration with our participants.
 
 | Security Control Framework | Mappings as XLSX | ATT&CK Navigator Layers | STIX Data |
 |------|------|------|--|
