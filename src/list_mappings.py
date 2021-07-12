@@ -6,17 +6,19 @@ import requests
 import json
 from colorama import Fore
 
-def mappingsToDF(attackbundle, controlsbundle, mappingsbundle):
+
+def mappings_to_df(attack_bundle, controls_bundle, mappings_bundle):
     """Return a pandas dataframe listing the mappings in mappingsbundle"""
     rows = []
-    for mapping in mappingsbundle.objects:
-        control = controlsbundle.get(mapping.source_ref)
+    for mapping in mappings_bundle.objects:
+        control = controls_bundle.get(mapping.source_ref)
         if not control:
             print(Fore.RED + f"ERROR: cannot find object with ID {mapping.source_ref} in controls bundle" + Fore.RESET)
             exit()
-        else: control = control[0]
+        else:
+            control = control[0]
 
-        technique = attackbundle.get(mapping.target_ref)
+        technique = attack_bundle.get(mapping.target_ref)
         if not technique:
             print(Fore.RED + f"ERROR: cannot find object with ID {mapping.target_ref} in ATT&CK bundle" + Fore.RESET)
             exit()
@@ -36,10 +38,10 @@ def mappingsToDF(attackbundle, controlsbundle, mappingsbundle):
 
 if __name__ == "__main__":
     extensionToPDExport = {
-        "xlsx": "to_excel", # extension to df export function name
+        "xlsx": "to_excel",  # extension to df export function name
         "csv": "to_csv",
         "html": "to_html",
-        "md": "to_markdown"
+        "md": "to_markdown",
     }
     allowedExtensionList = ", ".join(extensionToPDExport.keys())
     parser = argparse.ArgumentParser(description="List mappings in human readable formats")
@@ -60,20 +62,25 @@ if __name__ == "__main__":
                         help="which ATT&CK version to use",
                         default="v7.0")
     parser.add_argument("-output",
-                        help=f"filepath to write the output mappings to. Output format will be inferred from the extension. Allowed extensions: {allowedExtensionList}",
+                        help=f"filepath to write the output mappings to. Output format will be "
+                             f"inferred from the extension. Allowed extensions: {allowedExtensionList}",
                         default=os.path.join("..", "frameworks", "nist800-53-r4", "nist800-53-r4-mappings.xlsx"))
 
     args = parser.parse_args()
 
     extension = args.output.split(".")[-1]
     if extension not in extensionToPDExport:
-        print(Fore.RED + f"ERROR: Unknown output extension \"{extension}\", please make sure your output extension is one of: {allowedExtensionList}", Fore.reset)
+        msg = (f"ERROR: Unknown output extension \"{extension}\", please make "
+               f"sure your output extension is one of: {allowedExtensionList}")
+        print(Fore.RED + msg, Fore.reset)
         exit()
 
     print("downloading ATT&CK data... ", end="", flush=True)
-    attackdata = Bundle(
-        requests.get(f"https://raw.githubusercontent.com/mitre/cti/ATT%26CK-{args.version}/{args.domain}/{args.domain}.json").json()["objects"],
-        allow_custom=True)
+    url = f"https://raw.githubusercontent.com/mitre/cti/ATT%26CK-{args.version}/{args.domain}/{args.domain}.json"
+    attack_data = Bundle(
+        requests.get(url).json()["objects"],
+        allow_custom=True
+    )
     print("done")
 
     print("loading controls framework... ", end="", flush=True)
@@ -84,11 +91,11 @@ if __name__ == "__main__":
     print("loading mappings... ", end="", flush=True)
     with open(args.mappings, "r") as f:
         mappings = Bundle(json.load(f)["objects"])
-    df = mappingsToDF(attackdata, controls, mappings)
+    df = mappings_to_df(attack_data, controls, mappings)
     print("done")
 
     print(f"writing {args.output}...", end="", flush=True)
-    if extension in ["md"]: # md doesn't support index=False and requires a stream and not a path
+    if extension in ["md"]:  # md doesn't support index=False and requires a stream and not a path
         with open(args.output, "w") as f:
             getattr(df, extensionToPDExport[extension])(f)
     else:
