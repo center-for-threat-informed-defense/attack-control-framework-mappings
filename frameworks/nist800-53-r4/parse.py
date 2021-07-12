@@ -1,98 +1,105 @@
 import argparse
-import os
 import json
+import os
+
 from parse_controls import parse_controls
 from parse_mappings import parse_mappings
 
-def save_bundle(bundle, path):
-    """helper function to write a STIX bundle to a file
-    faster than memorystore util function"""
 
+def save_bundle(bundle, path):
+    """helper function to write a STIX bundle to file"""
     print(f"{'overwriting' if os.path.exists(path) else 'writing'} {path}... ", end="", flush=True)
-    strbundle = bundle.serialize(pretty=False, include_optional_defaults=False, ensure_ascii=False)
-    with open(path, "w") as outfile:
-        json.dump(json.loads(strbundle), outfile, indent=4, sort_keys=True)
+    with open(path, "w", encoding="utf-8") as outfile:
+        json.dump(outfile, bundle.serialize(indent=4, sort_keys=True, ensure_ascii=False))
     print("done!")
 
-def main(incontrols=os.path.join("input", "nist800-53-r4-controls.tsv"), 
-         inmappings=os.path.join("input", "nist800-53-r4-mappings.tsv"),
-         outcontrols=os.path.join("stix", "nist800-53-r4-controls.json"),
-         outmappings=os.path.join("stix", "nist800-53-r4-controls.json")):
+
+def main(in_controls=os.path.join("input", "nist800-53-r4-controls.tsv"),
+         in_mappings=os.path.join("input", "nist800-53-r4-mappings.tsv"),
+         out_controls=os.path.join("stix", "nist800-53-r4-controls.json"),
+         out_mappings=os.path.join("stix", "nist800-53-r4-controls.json")):
     """
     parse the NIST 800-53 revision 4 controls and ATT&CK mappings into STIX2.0 bundles
-    arguments:
-        incontrols - tsv file of NIST 800-53 revision 4 controls
-        inmappings - tsv file mapping NIST 800-53 revision 4 controls to ATT&CK
-        outcontrols - output STIX bundle file for the controls. If this file already exists, the STIX IDs within will be reused in the replacing file so that they don't change between consecutive executions of this script.
-        outmappings - output STIX bundle file for the mappings.
-    returns (outcontrols, outmappings)
+    :param in_controls: tsv file of NIST 800-53 revision 4 controls
+    :param in_mappings: tsv file mapping NIST 800-53 revision 4 controls to ATT&CK
+    :param out_controls: output STIX bundle file for the controls. If this file already exists,
+                         the STIX IDs within will be reused in the replacing file so that they
+                         don't change between consecutive executions of this script.
+    :param out_mappings: output STIX bundle file for the mappings.
+
+    :returns tuple: containing the output controls and mappings (out_controls, out_mappings)
     """
 
     # build control ID helper lookups so that STIX IDs don't get replaced on each rebuild
     control_ids = {}
     control_relationship_ids = {}
-    if os.path.exists(outcontrols):
+    if os.path.exists(out_controls):
         # parse idMappings from existing output so that IDs don't change when regenerated
-        with open(outcontrols, "r") as f:
+        with open(out_controls, "r") as f:
             bundle = json.load(f)
         for sdo in bundle["objects"]:
             if not sdo["type"] == "relationship":
-                fromID = sdo["external_references"][0]["external_id"]
-                toID = sdo["id"]
-                control_ids[fromID] = toID
+                from_id = sdo["external_references"][0]["external_id"]
+                to_id = sdo["id"]
+                control_ids[from_id] = to_id
             else:
                 # parse relationships
-                fromIDs = f"{sdo['source_ref']}---{sdo['target_ref']}"
-                toID = sdo["id"]
-                control_relationship_ids[fromIDs] = toID
+                from_ids = f"{sdo['source_ref']}---{sdo['target_ref']}"
+                to_id = sdo["id"]
+                control_relationship_ids[from_ids] = to_id
     
     # build controls in STIX
     controls = parse_controls(
-        incontrols,
+        in_controls,
         control_ids,
         control_relationship_ids
     )
 
     # build mapping ID helper lookup so that STIX IDs don't get replaced on each rebuild
     mapping_relationship_ids = {}
-    if os.path.exists(outmappings):
-        with open(outmappings, "r") as f:
+    if os.path.exists(out_mappings):
+        with open(out_mappings, "r") as f:
             bundle = json.load(f)
         for sdo in bundle["objects"]:
-            fromIDs = f"{sdo['source_ref']}---{sdo['target_ref']}"
-            toID = sdo["id"]
-            mapping_relationship_ids[fromIDs] = toID
+            from_ids = f"{sdo['source_ref']}---{sdo['target_ref']}"
+            to_id = sdo["id"]
+            mapping_relationship_ids[from_ids] = to_id
     
     # build mappings in STIX
     mappings = parse_mappings(
-        inmappings,
+        in_mappings,
         controls,
         mapping_relationship_ids
     )
 
-    save_bundle(controls, outcontrols)
-    save_bundle(mappings, outmappings)
+    save_bundle(controls, out_controls)
+    save_bundle(mappings, out_mappings)
 
-    return outcontrols, outmappings
+    return out_controls, out_mappings
+
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="parse the NIST 800-53 revision 4 controls and ATT&CK mappings into STIX2.0 bundles")
+    parser = argparse.ArgumentParser(
+        description="parse the NIST 800-53 revision 4 controls and ATT&CK mappings into STIX2.0 bundles"
+    )
     parser.add_argument("-input-controls",
-                        dest="incontrols",
+                        dest="in_controls",
                         help="tsv file of NIST 800-53 revision 4 controls",
                         default=os.path.join("input", "nist800-53-r4-controls.tsv"))
     parser.add_argument("-input-mappings",
-                        dest="inmappings",
+                        dest="in_mappings",
                         help="tsv file mapping NIST 800-53 revision 4 controls to ATT&CK",
                         default=os.path.join("input", "nist800-53-r4-mappings.tsv"))
     parser.add_argument("-output-controls",
-                         dest="outcontrols",
-                         help="output STIX bundle file for the controls. If this file already exists, the STIX IDs within will be reused in the replacing file so that they don't change between consecutive executions of this script.",
-                         default=os.path.join("stix", "nist800-53-r4-controls.json"))
+                        dest="out_controls",
+                        help="output STIX bundle file for the controls. If this file already exists, "
+                             "the STIX IDs within will be reused in the replacing file so that they "
+                             "don't change between consecutive executions of this script.",
+                        default=os.path.join("stix", "nist800-53-r4-controls.json"))
     parser.add_argument("-output-mappings",
-                         dest="outmappings",
-                         help="output STIX bundle file for the mappings.",
-                         default=os.path.join("stix", "nist800-53-r4-mappings.json"))
+                        dest="out_mappings",
+                        help="output STIX bundle file for the mappings.",
+                        default=os.path.join("stix", "nist800-53-r4-mappings.json"))
 
     args = parser.parse_args()
 
