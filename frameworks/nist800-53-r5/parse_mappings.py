@@ -1,5 +1,4 @@
 import json
-import os
 import re
 
 from colorama import Fore
@@ -30,7 +29,7 @@ def dict_regex_lookup(the_dict, regex_str):
     return values
 
 
-def parse_mappings(mappingspath, controls, relationship_ids):
+def parse_mappings(mappingspath, controls, relationship_ids, config_location):
     """parse the NIST800-53 revision 4 mappings and return a STIX bundle
     of relationships mapping the controls to ATT&CK
 
@@ -38,10 +37,11 @@ def parse_mappings(mappingspath, controls, relationship_ids):
     :param controls: a stix2.Bundle represneting the controls framework
     :param relationship_ids: is a dict of format {relationship-source-id---relationship-target-id: relationship-id}
                              which maps relationships to desired STIX IDs
+    :param config_location: the filepath to the configuration JSON file.
     """
     print("reading framework config...", end="", flush=True)
     # load the mapping config
-    with open(os.path.join("input", "config.json"), "r") as f:
+    with open(config_location, "r") as f:
         config = json.load(f)
         version = config["attack_version"]
         domain = config["attack_domain"]

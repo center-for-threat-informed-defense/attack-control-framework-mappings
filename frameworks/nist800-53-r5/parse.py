@@ -17,7 +17,8 @@ def save_bundle(bundle, path):
 def main(in_controls=os.path.join("input", "nist800-53-r5-controls.tsv"),
          in_mappings=os.path.join("input", "nist800-53-r5-mappings.tsv"),
          out_controls=os.path.join("stix", "nist800-53-r5-controls.json"),
-         out_mappings=os.path.join("stix", "nist800-53-r5-mappings.json")):
+         out_mappings=os.path.join("stix", "nist800-53-r5-mappings.json"),
+         config_location=os.path.join("input", "config.json")):
     """
     parse the NIST 800-53 revision 5 controls and ATT&CK mappings into STIX2.0 bundles
     :param in_controls: tsv file of NIST 800-53 revision 4 controls
@@ -26,6 +27,7 @@ def main(in_controls=os.path.join("input", "nist800-53-r5-controls.tsv"),
                          the STIX IDs within will be reused in the replacing file so that they
                          don't change between consecutive executions of this script.
     :param out_mappings: output STIX bundle file for the mappings.
+    :param config_location: the filepath to the configuration JSON file.
 
     :returns tuple: containing the output controls and mappings (out_controls, out_mappings)
     """
@@ -52,7 +54,8 @@ def main(in_controls=os.path.join("input", "nist800-53-r5-controls.tsv"),
     controls = parse_controls(
         in_controls,
         control_ids,
-        control_relationship_ids
+        control_relationship_ids,
+        config_location,
     )
 
     # build mapping ID helper lookup so that STIX IDs don't get replaced on each rebuild
@@ -69,7 +72,8 @@ def main(in_controls=os.path.join("input", "nist800-53-r5-controls.tsv"),
     mappings = parse_mappings(
         in_mappings,
         controls,
-        mapping_relationship_ids
+        mapping_relationship_ids,
+        config_location,
     )
 
     save_bundle(controls, out_controls)
@@ -100,6 +104,10 @@ if __name__ == "__main__":
                         dest="out_mappings",
                         help="output STIX bundle file for the mappings.",
                         default=os.path.join("stix", "nist800-53-r5-mappings.json"))
+    parser.add_argument("-config-location",
+                        dest="config_location",
+                        help="filepath to the configuration for the framework",
+                        default=os.path.join("input", "config.json"))
 
     args = parser.parse_args()
 
