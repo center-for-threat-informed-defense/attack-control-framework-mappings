@@ -37,8 +37,8 @@ def create_layer(name, description, domain, techniques, version):
     return {
         "name": name,
         "versions": {
-            "navigator": "4.1",
-            "layer": "4.1",
+            "navigator": "4.3",
+            "layer": "4.2",
             "attack": version
         },
         "sorting": 3,  # descending order of score
