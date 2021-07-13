@@ -19,13 +19,13 @@ def technique(attack_id, mapped_controls):
     }
 
 
-def layer(name, description, domain, techniques, version):
+def create_layer(name, description, domain, techniques, version):
     """create a Layer"""
     min_mappings = min(map(lambda t: t["score"], techniques)) if len(techniques) > 0 else 0
     max_mappings = max(map(lambda t: t["score"], techniques)) if len(techniques) > 0 else 100
     gradient = ["#ACD0E6", "#08336E"]
     # check if all the same count of mappings
-    if max_mappings - min_mappings == 0: 
+    if max_mappings - min_mappings == 0:
         min_mappings = 0  # set low end of gradient to 0
         gradient = ["#ffffff", "#66b1ff"]
 
@@ -135,11 +135,11 @@ def get_framework_overview_layers(controls, mappings, attackdata, domain, framew
     out_layers = [
         {
             "outfile": f"{framework_name}-overview.json",
-            "layer": layer(
+            "layer": create_layer(
                 f"{framework_name} overview",
                 f"{framework_name} heatmap overview of control mappings, where scores are "
                 f"the number of associated controls",
-                domain, 
+                domain,
                 to_technique_list(controls, mappings, attackdata, family_id_to_controls,
                                   family_id_to_name, id_to_family),
                 version
@@ -150,13 +150,13 @@ def get_framework_overview_layers(controls, mappings, attackdata, domain, framew
         controls_in_family = MemoryStore(stix_data=family_id_to_controls[familyID])
         techniques_in_family = to_technique_list(controls_in_family, mappings, attackdata,
                                                  family_id_to_controls, family_id_to_name, id_to_family)
-        if len(techniques_in_family) > 0: # don't build heatmaps with no mappings
+        if len(techniques_in_family) > 0:  # don't build heatmaps with no mappings
             # build family overview mapping
             out_layers.append({
                 "outfile": os.path.join("by_family",
                                         family_id_to_name[familyID].replace(" ", "_"),
                                         f"{familyID}-overview.json"),
-                "layer": layer(
+                "layer": create_layer(
                     f"{family_id_to_name[familyID]} overview",
                     f"{framework_name} heatmap for controls in the {family_id_to_name[familyID]} family, "
                     f"where scores are the number of associated controls",
@@ -176,7 +176,7 @@ def get_framework_overview_layers(controls, mappings, attackdata, domain, framew
                         "outfile": os.path.join("by_family",
                                                 family_id_to_name[familyID].replace(" ", "_"),
                                                 f"{'_'.join(control_id.split(' '))}.json"),
-                        "layer": layer(
+                        "layer": create_layer(
                             f"{control_id} mappings",
                             f"{framework_name} {control_id} mappings",
                             domain,
@@ -225,11 +225,11 @@ def get_layers_by_property(controls, mappings, attackdata, domain, framework_nam
             # build layer for this technique set
             out_layers.append({
                 "outfile": os.path.join(f"by_{property_name}", f"{value}.json"),
-                "layer": layer(
+                "layer": create_layer(
                     f"{property_name}={value} mappings",
                     f"techniques where the {property_name} of associated controls "
                     f"{'includes' if is_list_type else 'is'} {value}",
-                    domain, 
+                    domain,
                     techniques,
                     version
                 )
@@ -256,11 +256,13 @@ if __name__ == "__main__":
     parser.add_argument("-controls",
                         dest="controls",
                         help="filepath to the stix bundle representing the control framework",
-                        default=os.path.join("..", "frameworks", "nist800-53-r4", "stix", "nist800-53-r4-controls.json"))
+                        default=os.path.join("..", "frameworks", "nist800-53-r4",
+                                             "stix", "nist800-53-r4-controls.json"))
     parser.add_argument("-mappings",
                         dest="mappings",
                         help="filepath to the stix bundle mapping the controls to ATT&CK",
-                        default=os.path.join("..", "frameworks", "nist800-53-r4", "stix", "nist800-53-r4-mappings.json"))
+                        default=os.path.join("..", "frameworks", "nist800-53-r4",
+                                             "stix", "nist800-53-r4-mappings.json"))
     parser.add_argument("-domain",
                         choices=["enterprise-attack", "mobile-attack"],
                         help="the domain of ATT&CK to visualize",
@@ -285,7 +287,7 @@ if __name__ == "__main__":
 
     print("downloading ATT&CK data... ", end="", flush=True)
     url = f"https://raw.githubusercontent.com/mitre/cti/ATT%26CK-{args.version}/{args.domain}/{args.domain}.json"
-    attack_data = MemoryStore(stix_data=requests.get(url).json()["objects"])
+    attack_data = MemoryStore(stix_data=requests.get(url, verify=True).json()["objects"])
     print("done")
 
     print("loading controls framework... ", end="", flush=True)
@@ -333,7 +335,7 @@ if __name__ == "__main__":
         ]
         prefix = ("https://raw.githubusercontent.com/center-for-threat-informed-defense/"
                   "attack-control-framework-mappings/master/frameworks")
-        nav_prefix = f"https://mitre-attack.github.io/attack-navigator/#layerURL="
+        nav_prefix = "https://mitre-attack.github.io/attack-navigator/#layerURL="
         for layer in layers:
             if "/" in layer["outfile"]:  # force URL delimiters even if local system uses "\"
                 pathParts = layer["outfile"].split("/")

@@ -20,7 +20,7 @@ def dict_regex_lookup(the_dict, regex_str):
         regex_str = "^" + regex_str
     try:
         regex = re.compile(regex_str)
-    except Exception as err: 
+    except Exception as err:
         print(Fore.RED + "ERROR: cannot compile regex", regex_str, "because of", err, Fore.RESET)
         exit()
     values = []
@@ -31,8 +31,9 @@ def dict_regex_lookup(the_dict, regex_str):
 
 
 def parse_mappings(mappings_path, controls, relationship_ids):
-    """parse the NIST800-53 revision 4 mappings and return a STIX bundle 
+    """parse the NIST800-53 revision 4 mappings and return a STIX bundle
     of relationships mapping the controls to ATT&CK
+
     :param mappings_path: the filepath to the mappings TSV file
     :param controls: a stix2.Bundle representing the controls framework
     :param relationship_ids: is a dict of format {relationship-source-id---relationship-target-id: relationship-id}
@@ -51,7 +52,7 @@ def parse_mappings(mappings_path, controls, relationship_ids):
     # load ATT&CK STIX data
     print("downloading ATT&CK data... ", end="", flush=True)
     url = f"https://raw.githubusercontent.com/mitre/cti/ATT%26CK-{version}/{domain}/{domain}.json"
-    attack_data = requests.get(url).json()["objects"]
+    attack_data = requests.get(url, verify=True).json()["objects"]
     print("done")
 
     # build mapping of attack ID to stixID

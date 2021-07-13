@@ -132,7 +132,7 @@ def parse_controls(control_path, control_ids, relationship_ids):
             current_control = [row]  # start a new control
         else:
             current_control.append(row)  # append line to current control
-        
+
     # finish last control
     controls.append(Control("\n".join(current_control), columns, control_ids))
 
@@ -146,7 +146,7 @@ def parse_controls(control_path, control_ids, relationship_ids):
     for control in tqdm(list(filter(lambda c: control.parent_id or len(control.related) > 0, controls)),
                         desc="creating control relationships",
                         bar_format=tqdmformat):
-        if control.parent_id: 
+        if control.parent_id:
             # build subcontrol-of relationships
             target_id = control_ids[control.parent_id]
             source_id = control.stix_id

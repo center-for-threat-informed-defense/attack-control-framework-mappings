@@ -7,12 +7,10 @@ import requests
 
 
 def save_bundle(bundle, path):
-    """helper function to write a STIX bundle to a file
-    faster than memorystore util function"""
-
+    """helper function to write a STIX bundle to file"""
     print(f"{'overwriting' if os.path.exists(path) else 'writing'} {path}... ", end="", flush=True)
     with open(path, "w", encoding="utf-8") as outfile:
-        json.dump(outfile, bundle.serialize(indent=4, sort_keys=True, ensure_ascii=False))
+        outfile.write(bundle.serialize(indent=4, sort_keys=True, ensure_ascii=False))
     print("done!")
 
 
@@ -46,11 +44,13 @@ if __name__ == "__main__":
     parser.add_argument("-controls",
                         dest="controls",
                         help="filepath to the stix bundle representing the control framework",
-                        default=os.path.join("..", "frameworks", "nist800-53-r5", "stix", "nist800-53-r5-controls.json"))
+                        default=os.path.join("..", "frameworks", "nist800-53-r5",
+                                             "stix", "nist800-53-r5-controls.json"))
     parser.add_argument("-mappings",
                         dest="mappings",
                         help="filepath to the stix bundle mapping the controls to ATT&CK",
-                        default=os.path.join("..", "frameworks", "nist800-53-r5", "stix", "nist800-53-r5-mappings.json"))
+                        default=os.path.join("..", "frameworks", "nist800-53-r5",
+                                             "stix", "nist800-53-r5-mappings.json"))
     parser.add_argument("-domain",
                         choices=["enterprise-attack", "mobile-attack", "pre-attack"],
                         help="the domain of ATT&CK to substitute",
@@ -67,14 +67,15 @@ if __name__ == "__main__":
                         default=False)
     parser.add_argument("-output",
                         help="filepath to write the output stix bundle to",
-                        default=os.path.join("..", "frameworks", "nist800-53-r5", "stix", "nist800-53-r5-enterprise-attack.json"))
+                        default=os.path.join("..", "frameworks", "nist800-53-r5",
+                                             "stix", "nist800-53-r5-enterprise-attack.json"))
 
     args = parser.parse_args()
 
     print("downloading ATT&CK data... ", end="", flush=True)
     url = f"https://raw.githubusercontent.com/mitre/cti/ATT%26CK-{args.version}/{args.domain}/{args.domain}.json"
     attack_data = Bundle(
-        requests.get(url).json()["objects"],
+        requests.get(url, verify=True).json()["objects"],
         allow_custom=True
     )
     print("done")
@@ -90,7 +91,7 @@ if __name__ == "__main__":
     print("done")
 
     print("substituting... ", end="", flush=True)
-    out_bundle = substitute(attack_data, controls, mappings, args.allowunmapped)
+    out_bundle = substitute(attack_data, controls, mappings, args.allow_unmapped)
     print("done")
 
     save_bundle(out_bundle, args.output)

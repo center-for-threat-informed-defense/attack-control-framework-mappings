@@ -146,10 +146,10 @@ def parse_controls(control_path, control_ids, relationship_ids):
     for index, row in tqdm(list(controls_df.iterrows()), desc="parsing NIST 800-53 revision 4", bar_format=tqdmformat):
         rowtype = row_type(row)
 
-        if rowtype == "control": 
+        if rowtype == "control":
             controls.append(Control(row, control_ids))
             current_control = controls[-1]  # track current control to pass to enhancements
-        if rowtype == "control_enhancement": 
+        if rowtype == "control_enhancement":
             controls.append(Control(row, control_ids, parent=current_control))
         if rowtype == "statement":
             controls[-1].add_statement(row)
@@ -166,7 +166,7 @@ def parse_controls(control_path, control_ids, relationship_ids):
     for control in tqdm(list(filter(lambda c: control.parent_id or len(control.related) > 0, controls)),
                         desc="creating control relationships",
                         bar_format=tqdmformat):
-        if control.parent_id: 
+        if control.parent_id:
             # build subcontrol-of relationships
             target_id = control_ids[control.parent_id]
             source_id = control.stix_id

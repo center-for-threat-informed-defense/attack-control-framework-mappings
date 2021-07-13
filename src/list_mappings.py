@@ -22,7 +22,8 @@ def mappings_to_df(attack_bundle, controls_bundle, mappings_bundle):
         if not technique:
             print(Fore.RED + f"ERROR: cannot find object with ID {mapping.target_ref} in ATT&CK bundle" + Fore.RESET)
             exit()
-        else: technique = technique[0]
+        else:
+            technique = technique[0]
 
         rows.append({
             "control ID": control["external_references"][0]["external_id"],
@@ -48,11 +49,13 @@ if __name__ == "__main__":
     parser.add_argument("-controls",
                         dest="controls",
                         help="filepath to the stix bundle representing the control framework",
-                        default=os.path.join("..", "frameworks", "nist800-53-r4", "stix", "nist800-53-r4-controls.json"))
+                        default=os.path.join("..", "frameworks", "nist800-53-r4",
+                                             "stix", "nist800-53-r4-controls.json"))
     parser.add_argument("-mappings",
                         dest="mappings",
                         help="filepath to the stix bundle mapping the controls to ATT&CK",
-                        default=os.path.join("..", "frameworks", "nist800-53-r4", "stix", "nist800-53-r4-mappings.json"))
+                        default=os.path.join("..", "frameworks", "nist800-53-r4",
+                                             "stix", "nist800-53-r4-mappings.json"))
     parser.add_argument("-domain",
                         dest="domain",
                         help="which ATT&CK domain to use",
@@ -78,7 +81,7 @@ if __name__ == "__main__":
     print("downloading ATT&CK data... ", end="", flush=True)
     url = f"https://raw.githubusercontent.com/mitre/cti/ATT%26CK-{args.version}/{args.domain}/{args.domain}.json"
     attack_data = Bundle(
-        requests.get(url).json()["objects"],
+        requests.get(url, verify=True).json()["objects"],
         allow_custom=True
     )
     print("done")

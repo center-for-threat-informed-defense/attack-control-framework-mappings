@@ -1,5 +1,6 @@
 bandit==1.7.0
 pytest
+tox
 pytest-cov==2.11.1
 pytest-flake8==1.0.7
 flake8>=3.5

@@ -10,7 +10,7 @@ def save_bundle(bundle, path):
     """helper function to write a STIX bundle to file"""
     print(f"{'overwriting' if os.path.exists(path) else 'writing'} {path}... ", end="", flush=True)
     with open(path, "w", encoding="utf-8") as outfile:
-        json.dump(outfile, bundle.serialize(indent=4, sort_keys=True, ensure_ascii=False))
+        outfile.write(bundle.serialize(indent=4, sort_keys=True, ensure_ascii=False))
     print("done!")
 
 
@@ -47,7 +47,7 @@ def main(in_controls=os.path.join("input", "nist800-53-r4-controls.tsv"),
                 from_ids = f"{sdo['source_ref']}---{sdo['target_ref']}"
                 to_id = sdo["id"]
                 control_relationship_ids[from_ids] = to_id
-    
+
     # build controls in STIX
     controls = parse_controls(
         in_controls,
@@ -64,7 +64,7 @@ def main(in_controls=os.path.join("input", "nist800-53-r4-controls.tsv"),
             from_ids = f"{sdo['source_ref']}---{sdo['target_ref']}"
             to_id = sdo["id"]
             mapping_relationship_ids[from_ids] = to_id
-    
+
     # build mappings in STIX
     mappings = parse_mappings(
         in_mappings,
