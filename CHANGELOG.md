@@ -14,6 +14,12 @@
 <!--    ### Improvements                                                -->
 <!--    ### Fixes                                                       -->
 
+# 18 May 2021
+### Fixes
+- NIST 800-53 R4 layers updated with attack-navigator 4.3. See issue [#65](https://github.com/center-for-threat-informed-defense/attack-control-framework-mappings/issues/65).
+- NIST 800-53 R5 layers updated with attack-navigator 4.3. See issue [#65](https://github.com/center-for-threat-informed-defense/attack-control-framework-mappings/issues/65).
+- mappingsToHeatmaps.py also updated to indicate attack-navigator version 4.3.
+
 # 5 April 2021
 ## nist800-53-r5 v1.3
 ### Fixes
