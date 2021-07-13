@@ -3,13 +3,13 @@
 
 This folder contains mappings of NIST Special Publication (SP) 800-53 Revision 5 to MITRE ATT&CK along with parsers and supporting data. NIST 800-53 Rev. 5 was mapped to ATT&CK based on its initial publication in September 2020. NIST published an [update on December 10, 2020](https://csrc.nist.gov/publications/detail/sp/800-53/rev-5/final) to 800-53 Rev. 5 that has not yet been evaluated. 
 
-| Mappings Version | Last Updated      | ATT&CK Version | ATT&CK Domain |
-|------------------|-------------------|----------------|---------------|
-| 1.2              | 3 February 2021   | [ATT&CK v8.1](https://attack.mitre.org/resources/versions/) | Enterprise |
+| Mappings Version | Last Updated | ATT&CK Version | ATT&CK Domain |
+|---|---|---|---|
+| 1.2 | 3 February 2021 | [ATT&CK v8.1](https://attack.mitre.org/resources/versions/) | Enterprise |
 
 
 | Data ||
-|------|------|
+|---|---|
 | [spreadsheet](nist800-53-r5-mappings.xlsx) | Lists all of the mappings for this control framework.
 | [layers](layers) | [ATT&CK Navigator](https://github.com/mitre-attack/attack-navigator) layers showing the mappings in the context of the ATT&CK Matrix. |
 | [stix](stix) | Output STIX 2.0 json data. See the README in that folder for more information. |
@@ -26,7 +26,7 @@ Scoping decisions and mapping methodology for NIST 800-53 Rev. 5 controls are do
 ### General Scoping Decisions
 
 | Item | Scoping Decision |
-|------|------|
+|---|---|
 | Operational vs. Policy and Procedural Controls | This effort is focused on the technical and operational elements of NIST 800-53 and did not take into account the management elements that are often focused on organization specific policies and procedures.  This decision was made because management specific controls are policy-based, and the intent of this effort was focusing on technical and operation controls that correlate to ATT&CK mitigations, techniques, and sub-techniques. |
 | Mitigation vs. Monitoring | Controls that may only monitor adversary behaviors are out of scope. The focus of this effort is on technical controls that mitigate adversary techniques and sub-techniques. For example, IR-5 Incident Monitoring would be out-of-scope as this does not serve as a mitigation, but rather detection of security incident occurrence. However, RA-4 Vulnerability Scanning is in scope as it can lead to findings which allow for remediation prior to exploitation (e.g., apply patches, remove vulnerable software) thereby mitigating attacks. Consideration is not given for the potential that an adversary might be dissuaded or change their tactics to try and avoid detection if they thought activity was being monitored. |
 | Controls vs. Control Enhancements | This effort maps at the control level and does not map to specific control enhancements. |
@@ -39,7 +39,7 @@ Scoping decisions and mapping methodology for NIST 800-53 Rev. 5 controls are do
 NIST 800-53 Rev. 5 control families are listed below with our rational for a given control family being in or out of scope:
 
 | Control Family | In Scope | Rationale |
-|------|------|------|
+|---|---|---|
 | AC - Access Control | Yes | Access Control family is in scope as it provides technical and operational controls for the control and enforcement of system access, accounts, and information. |
 | AU - Audit and Accountability | No | Audit and Accountability controls are not applicable as they do not provide mitigations of specific threats, but instead detect successful attacks. |
 | AT - Awareness and Training | No | Awareness and Training controls are not applicable as they are for general security awareness training and not specific threat mitigations.|

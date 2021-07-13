@@ -16,7 +16,7 @@ From the root directory of this repository:
 2. Activate the virtual environment: 
     - macOS and Linux: `source env/bin/activate`
     - Windows: `env/Scripts/activate.bat`
-3. Install requirement packages: `pip install -r requirements.txt`
+3. Install requirement packages: `pip install -r requirements/requirements.txt`
 
 ## Usage
 
