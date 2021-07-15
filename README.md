@@ -5,9 +5,7 @@ This repository contains security control framework mappings to MITRE ATT&CK® w
 
 | Security Control Framework | Mappings as XLSX | ATT&CK Navigator Layers | STIX Data |
 |---|---|---|---|
-| [NIST 800-53 Revision 4](/frameworks/nist800-53-r4/) | [ATT&CKv8.1](/frameworks/nist800-53-r4/nist800-53-r4-mappings.xlsx) | [Navigator Layers](/frameworks/nist800-53-r4/layers) | [STIX](/frameworks/nist800-53-r4/stix) |
 | [NIST 800-53 Revision 4](/frameworks/nist800-53-r4/) | [ATT&CKv9.0](/frameworks/nist800-53-r4/nist800-53-r4-mappings.xlsx) | [Navigator Layers](/frameworks/nist800-53-r4/layers) | [STIX](/frameworks/nist800-53-r4/stix) |
-| [NIST 800-53 Revision 5](/frameworks/nist800-53-r5/) | [ATT&CKv8.1](/frameworks/nist800-53-r5/nist800-53-r5-mappings.xlsx) | [Navigator Layers](/frameworks/nist800-53-r5/layers) | [STIX](/frameworks/nist800-53-r5/stix) |
 | [NIST 800-53 Revision 5](/frameworks/nist800-53-r5/) | [ATT&CKv9.0](/frameworks/nist800-53-r5/nist800-53-r5-mappings.xlsx) | [Navigator Layers](/frameworks/nist800-53-r5/layers) | [STIX](/frameworks/nist800-53-r5/stix) |
 
 ## A Collaborative Approach
