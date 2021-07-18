@@ -29,12 +29,12 @@ def dict_regex_lookup(the_dict, regex_str):
     return values
 
 
-def parse_mappings(mappingspath, controls, relationship_ids, config_location):
+def parse_mappings(mappings_path, controls, relationship_ids, config_location):
     """parse the NIST800-53 revision 4 mappings and return a STIX bundle
     of relationships mapping the controls to ATT&CK
 
-    :param mappingspath: the filepath to the mappings TSV file
-    :param controls: a stix2.Bundle represneting the controls framework
+    :param mappings_path: the filepath to the mappings TSV file
+    :param controls: a stix2.Bundle representing the controls framework
     :param relationship_ids: is a dict of format {relationship-source-id---relationship-target-id: relationship-id}
                              which maps relationships to desired STIX IDs
     :param config_location: the filepath to the configuration JSON file.
@@ -78,7 +78,7 @@ def parse_mappings(mappingspath, controls, relationship_ids, config_location):
 
     # build mapping relationships
     relationships = {}
-    mappings_df = pd.read_csv(mappingspath, sep="\t", keep_default_na=False, header=0)
+    mappings_df = pd.read_csv(mappings_path, sep="\t", keep_default_na=False, header=0)
     for index, row in tqdm(list(mappings_df.iterrows()), desc="parsing mappings", bar_format=tqdm_format):
         # create list of control STIX IDs matching this row
         from_ids = dict_regex_lookup(control_id_to_stix_id, row["controlID"])

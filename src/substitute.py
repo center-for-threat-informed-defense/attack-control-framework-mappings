@@ -58,7 +58,7 @@ if __name__ == "__main__":
     parser.add_argument("-version",
                         dest="version",
                         help="which ATT&CK version to use",
-                        default="v7.0")
+                        default="v9.0")
     parser.add_argument("--allow-unmapped",
                         dest="allow_unmapped",
                         action="store_true",

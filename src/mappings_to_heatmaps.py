@@ -270,7 +270,7 @@ if __name__ == "__main__":
     parser.add_argument("-version",
                         dest="version",
                         help="which ATT&CK version to use",
-                        default="v7.0")
+                        default="v9.0")
     parser.add_argument("-output",
                         help="folder to write output layers to",
                         default=os.path.join("..", "frameworks", "nist800-53-r4", "layers"))
