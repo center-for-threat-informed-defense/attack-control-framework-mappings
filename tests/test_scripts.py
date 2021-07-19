@@ -12,11 +12,6 @@ def attack_domain():
 
 
 @pytest.fixture()
-def attack_version():
-    return "v8.2"
-
-
-@pytest.fixture()
 def dir_location():
     cwd = os.getcwd()
     if "tests" in cwd:
@@ -25,12 +20,16 @@ def dir_location():
         return cwd
 
 
+@pytest.mark.parametrize("attack_version", ["v8.2", "v9.0"])
 @pytest.mark.parametrize("rev", ["nist800-53-r4", "nist800-53-r5"])
 def test_list_mappings(dir_location, attack_domain, attack_version, rev):
     """Tests list_mappings.py with both framework entries"""
-    rx_controls = pathlib.Path(dir_location, "frameworks", rev, "stix", f"{rev}-controls.json")
-    rx_mappings = pathlib.Path(dir_location, "frameworks", rev, "stix", f"{rev}-mappings.json")
-    output_location = pathlib.Path(dir_location, "frameworks", rev, f"{rev}-mappings.xlsx")
+    rx_controls = pathlib.Path(dir_location, "frameworks", f"ATT&CK-{attack_version}", rev,
+                               "stix", f"{rev}-controls.json")
+    rx_mappings = pathlib.Path(dir_location, "frameworks", f"ATT&CK-{attack_version}", rev,
+                               "stix", f"{rev}-mappings.json")
+    output_location = pathlib.Path(dir_location, "frameworks", f"ATT&CK-{attack_version}", rev,
+                                   f"{rev}-mappings.xlsx")
     script_location = f"{dir_location}/src/list_mappings.py"
     child_process = subprocess.Popen([
         sys.executable, script_location,
@@ -40,16 +39,20 @@ def test_list_mappings(dir_location, attack_domain, attack_version, rev):
         "-version", attack_version,
         "-output", str(output_location),
     ])
-    child_process.wait(timeout=90)
+    child_process.wait(timeout=240)
     assert child_process.returncode == 0
 
 
+@pytest.mark.parametrize("attack_version", ["v8.2", "v9.0"])
 @pytest.mark.parametrize("rev", ["nist800-53-r4", "nist800-53-r5"])
 def test_mappings_to_heatmaps(dir_location, attack_domain, attack_version, rev):
     """Tests mappings_to_heatmaps.py with both framework entries"""
-    rx_controls = pathlib.Path(dir_location, "frameworks", rev, "stix", f"{rev}-controls.json")
-    rx_mappings = pathlib.Path(dir_location, "frameworks", rev, "stix", f"{rev}-mappings.json")
-    output_location = pathlib.Path(dir_location, "frameworks", rev, "layers")
+    rx_controls = pathlib.Path(dir_location, "frameworks", f"ATT&CK-{attack_version}", rev,
+                               "stix", f"{rev}-controls.json")
+    rx_mappings = pathlib.Path(dir_location, "frameworks", f"ATT&CK-{attack_version}", rev,
+                               "stix", f"{rev}-mappings.json")
+    output_location = pathlib.Path(dir_location, "frameworks", f"ATT&CK-{attack_version}", rev,
+                                   "layers")
     script_location = f"{dir_location}/src/mappings_to_heatmaps.py"
     child_process = subprocess.Popen([
         sys.executable, script_location,
@@ -66,12 +69,16 @@ def test_mappings_to_heatmaps(dir_location, attack_domain, attack_version, rev):
     assert child_process.returncode == 0
 
 
+@pytest.mark.parametrize("attack_version", ["v8.2", "v9.0"])
 @pytest.mark.parametrize("rev", ["nist800-53-r4", "nist800-53-r5"])
 def test_substitute(dir_location, attack_domain, attack_version, rev):
     """Tests substitute.py with both frameworks"""
-    rx_controls = pathlib.Path(dir_location, "frameworks", rev, "stix", f"{rev}-controls.json")
-    rx_mappings = pathlib.Path(dir_location, "frameworks", rev, "stix", f"{rev}-mappings.json")
-    output_location = pathlib.Path(dir_location, "frameworks", rev, "stix", f"{rev}-enterprise-attack.json")
+    rx_controls = pathlib.Path(dir_location, "frameworks", f"ATT&CK-{attack_version}", rev,
+                               "stix", f"{rev}-controls.json")
+    rx_mappings = pathlib.Path(dir_location, "frameworks", f"ATT&CK-{attack_version}", rev,
+                               "stix", f"{rev}-mappings.json")
+    output_location = pathlib.Path(dir_location, "frameworks", f"ATT&CK-{attack_version}", rev,
+                                   "stix", f"{rev}-enterprise-attack.json")
     script_location = f"{dir_location}/src/substitute.py"
     child_process = subprocess.Popen([
         sys.executable, script_location,
@@ -92,19 +99,25 @@ def test_make(dir_location):
     child_process = subprocess.Popen([
         sys.executable, script_location,
     ])
-    child_process.wait(timeout=360)
+    child_process.wait(timeout=1080)
     assert child_process.returncode == 0
 
 
+@pytest.mark.parametrize("attack_version", ["v8.2", "v9.0"])
 @pytest.mark.parametrize("rev", ["nist800-53-r4", "nist800-53-r5"])
-def test_parse_framework(dir_location, rev):
+def test_parse_framework(dir_location, attack_version, rev):
     """Tests parse.py with both frameworks"""
-    rx_input_controls = pathlib.Path(dir_location, "frameworks", rev, "input", f"{rev}-controls.tsv")
-    rx_input_mappings = pathlib.Path(dir_location, "frameworks", rev, "input", f"{rev}-mappings.tsv")
-    rx_output_controls = pathlib.Path(dir_location, "frameworks", rev, "stix", f"{rev}-controls.json")
-    rx_output_mappings = pathlib.Path(dir_location, "frameworks", rev, "stix", f"{rev}-mappings.json")
-    config_location = pathlib.Path(dir_location, "frameworks", rev, "input", "config.json")
-    script_location = f"{dir_location}/frameworks/{rev}/parse.py"
+    rx_input_controls = pathlib.Path(dir_location, "frameworks", f"ATT&CK-{attack_version}", rev,
+                                     "input", f"{rev}-controls.tsv")
+    rx_input_mappings = pathlib.Path(dir_location, "frameworks", f"ATT&CK-{attack_version}", rev,
+                                     "input", f"{rev}-mappings.tsv")
+    rx_output_controls = pathlib.Path(dir_location, "frameworks", f"ATT&CK-{attack_version}", rev,
+                                      "stix", f"{rev}-controls.json")
+    rx_output_mappings = pathlib.Path(dir_location, "frameworks", f"ATT&CK-{attack_version}", rev,
+                                      "stix", f"{rev}-mappings.json")
+    config_location = pathlib.Path(dir_location, "frameworks", f"ATT&CK-{attack_version}", rev,
+                                   "input", "config.json")
+    script_location = f"{dir_location}/frameworks/ATT&CK-{attack_version}/{rev}/parse.py"
     child_process = subprocess.Popen([
         sys.executable, script_location,
         "-input-controls", str(rx_input_controls),
