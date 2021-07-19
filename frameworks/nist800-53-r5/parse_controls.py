@@ -3,7 +3,7 @@ import json
 import re
 import uuid
 
-from stix2.v20 import Bundle, Relationship, CourseOfAction
+from stix2.v20 import Bundle, CourseOfAction, Relationship
 from tqdm import tqdm
 
 
@@ -102,10 +102,9 @@ def parse_controls(control_path, control_ids, relationship_ids, config_location)
     :param control_ids: is a dict of format {control_name: stixID} which maps
                         control names (e.g AC-1) to desired STIX IDs
     :param relationship_ids: is a dict of format {relationship-source-id---relationship-target-id: relationship-id},
-                             same general purpose as control_ids
+                        same general purpose as control_ids
     :param config_location: the filepath to the configuration JSON file.
     """
-
     print("reading framework config...", end="", flush=True)
     # load the mapping config
     with open(config_location, "r") as f:
@@ -137,9 +136,9 @@ def parse_controls(control_path, control_ids, relationship_ids, config_location)
     controls.append(Control("\n".join(current_control), columns, control_ids))
 
     # parse controls into stix
-    stixcontrols = []
+    stix_controls = []
     for control in tqdm(controls, desc="creating controls", bar_format=tqdmformat):
-        stixcontrols.append(control.to_stix(framework_id))
+        stix_controls.append(control.to_stix(framework_id))
 
     # parse control relationships into stix
     relationships = []
@@ -174,4 +173,4 @@ def parse_controls(control_path, control_ids, relationship_ids, config_location)
                     relationship_type="related-to"
                 ))
 
-    return Bundle(*itertools.chain(stixcontrols, relationships))
+    return Bundle(*itertools.chain(stix_controls, relationships))

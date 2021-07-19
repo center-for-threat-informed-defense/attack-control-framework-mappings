@@ -17,7 +17,7 @@ def save_bundle(bundle, path):
 def main(in_controls=os.path.join("input", "nist800-53-r4-controls.tsv"),
          in_mappings=os.path.join("input", "nist800-53-r4-mappings.tsv"),
          out_controls=os.path.join("stix", "nist800-53-r4-controls.json"),
-         out_mappings=os.path.join("stix", "nist800-53-r4-controls.json"),
+         out_mappings=os.path.join("stix", "nist800-53-r4-mappings.json"),
          config_location=os.path.join("input", "config.json")):
     """
     parse the NIST 800-53 revision 4 controls and ATT&CK mappings into STIX2.0 bundles

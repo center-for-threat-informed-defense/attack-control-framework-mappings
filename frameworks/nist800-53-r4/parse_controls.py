@@ -3,7 +3,7 @@ import json
 import re
 import uuid
 
-from stix2.v20 import CourseOfAction, Relationship, Bundle
+from stix2.v20 import Bundle, CourseOfAction, Relationship
 from tqdm import tqdm
 import pandas as pd
 
