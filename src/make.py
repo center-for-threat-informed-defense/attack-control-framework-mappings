@@ -26,14 +26,14 @@ def main():
         config_path = os.path.join("input", "config.json")
         if not os.path.exists(config_path):
             print("WARNING: framework has no config file, skipping")
-            os.chdir(os.path.join("..", "..", "src"))
+            os.chdir(os.path.join("..", "..", "..", "src"))
             continue
         with open(config_path, "r") as f:
             config = json.load(f)
 
         # build the controls and mappings STIX
         subprocess.run([sys.executable, "parse.py"])
-        os.chdir(os.path.join("..", "..", "src"))
+        os.chdir(os.path.join("..", "..", "..", "src"))
 
         # find the mapping and control files that were generated
         controls_file = find_file_with_suffix("-controls.json", os.path.join(framework_folder, "stix"))

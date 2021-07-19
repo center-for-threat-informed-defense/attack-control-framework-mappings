@@ -194,4 +194,4 @@ def parse_controls(control_path, control_ids, relationship_ids, config_location)
                     relationship_type="related-to"
                 ))
 
-    return Bundle(*itertools.chain(stix_controls, relationships))
+    return Bundle(*itertools.chain(stix_controls, relationships), allow_custom=True)

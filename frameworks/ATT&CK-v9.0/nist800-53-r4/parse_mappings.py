@@ -25,6 +25,8 @@ def dict_regex_lookup(the_dict, regex_str):
     values = []
     for key in the_dict:
         if regex.match(key):
+            if "(" in key or ")" in key:
+                continue
             values.append(the_dict[key])
     return values
 
@@ -95,14 +97,14 @@ def parse_mappings(mappings_path, controls, relationship_ids, config_location):
             exit()
 
         # combinatorics of every from to every to
-        for fromID in from_ids:
-            for toID in to_ids:
-                joined_id = f"{fromID}---{toID}"
+        for from_id in from_ids:
+            for to_id in to_ids:
+                joined_id = f"{from_id}---{to_id}"
                 # build the mapping relationship
                 r = Relationship(
                     id=relationship_ids[joined_id] if joined_id in relationship_ids else None,
-                    source_ref=fromID,
-                    target_ref=toID,
+                    source_ref=from_id,
+                    target_ref=to_id,
                     relationship_type="mitigates",
                 )
                 if joined_id not in relationships:

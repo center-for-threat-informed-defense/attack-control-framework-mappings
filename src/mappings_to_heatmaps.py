@@ -14,7 +14,7 @@ def technique(attack_id, mapped_controls):
     return {
         "techniqueID": attack_id,
         "score": len(mapped_controls),  # count of mapped controls
-        "comment": "Mitigated by " + ", ".join(sorted(mapped_controls)),  # list of mapped controls
+        "comment": f"Mitigated by {', '.join(sorted(mapped_controls))}",  # list of mapped controls
     }
 
 
@@ -75,7 +75,7 @@ def parse_family_data(controls):
 
 
 def to_technique_list(controls, mappings, attackdata, family_id_to_controls, family_id_to_name, id_to_family):
-    """take a controls ms, a mappings ms, and attackdata ms
+    """take a controls ms, a mappings ms, and attack_data ms
     return a list of Techniques where the score is the number of controls that map to the technique"""
     technique_to_mapped_controls = {}
     for mapping in mappings.query():
@@ -83,7 +83,7 @@ def to_technique_list(controls, mappings, attackdata, family_id_to_controls, fam
         if not controls.get(mapping["source_ref"]):
             continue  # mapping not relevant to this list of controls
         control_id = controls.get(mapping["source_ref"])["external_references"][0]["external_id"]
-        # target_ref is the technique in attackdata
+        # target_ref is the technique in attack_data
         attack_id = attackdata.get(mapping["target_ref"])["external_references"][0]["external_id"]
         # build the mapping
         if attack_id in technique_to_mapped_controls:
@@ -125,8 +125,8 @@ def to_technique_list(controls, mappings, attackdata, family_id_to_controls, fam
             for attack_id in technique_to_mapped_controls]
 
 
-def get_framework_overview_layers(controls, mappings, attackdata, domain, framework_name, version):
-    """ingest mappings and controls and attackdata, and return an array of layer jsons for layers
+def get_framework_overview_layers(controls, mappings, attack_data, domain, framework_name, version):
+    """ingest mappings and controls and attack_data, and return an array of layer jsons for layers
      according to control family"""
     # build list of control families
     family_id_to_controls, family_id_to_name, id_to_family = parse_family_data(controls)
@@ -139,25 +139,25 @@ def get_framework_overview_layers(controls, mappings, attackdata, domain, framew
                 f"{framework_name} heatmap overview of control mappings, where scores are "
                 f"the number of associated controls",
                 domain,
-                to_technique_list(controls, mappings, attackdata, family_id_to_controls,
+                to_technique_list(controls, mappings, attack_data, family_id_to_controls,
                                   family_id_to_name, id_to_family),
                 version
             )
         }
     ]
-    for familyID in family_id_to_controls:
-        controls_in_family = MemoryStore(stix_data=family_id_to_controls[familyID])
-        techniques_in_family = to_technique_list(controls_in_family, mappings, attackdata,
+    for family_id in family_id_to_controls:
+        controls_in_family = MemoryStore(stix_data=family_id_to_controls[family_id])
+        techniques_in_family = to_technique_list(controls_in_family, mappings, attack_data,
                                                  family_id_to_controls, family_id_to_name, id_to_family)
         if len(techniques_in_family) > 0:  # don't build heatmaps with no mappings
             # build family overview mapping
             out_layers.append({
                 "outfile": os.path.join("by_family",
-                                        family_id_to_name[familyID].replace(" ", "_"),
-                                        f"{familyID}-overview.json"),
+                                        family_id_to_name[family_id].replace(" ", "_"),
+                                        f"{family_id}-overview.json"),
                 "layer": create_layer(
-                    f"{family_id_to_name[familyID]} overview",
-                    f"{framework_name} heatmap for controls in the {family_id_to_name[familyID]} family, "
+                    f"{family_id_to_name[family_id]} overview",
+                    f"{framework_name} heatmap for controls in the {family_id_to_name[family_id]} family, "
                     f"where scores are the number of associated controls",
                     domain,
                     techniques_in_family,
@@ -165,15 +165,15 @@ def get_framework_overview_layers(controls, mappings, attackdata, domain, framew
                 )
             })
             # build layer for each control
-            for control in family_id_to_controls[familyID]:
+            for control in family_id_to_controls[family_id]:
                 control_ms = MemoryStore(stix_data=control)
                 control_id = control["external_references"][0]["external_id"]
-                techniques_mapped_to_control = to_technique_list(control_ms, mappings, attackdata,
+                techniques_mapped_to_control = to_technique_list(control_ms, mappings, attack_data,
                                                                  family_id_to_controls, family_id_to_name, id_to_family)
                 if len(techniques_mapped_to_control) > 0:  # don't build heatmaps with no mappings
                     out_layers.append({
                         "outfile": os.path.join("by_family",
-                                                family_id_to_name[familyID].replace(" ", "_"),
+                                                family_id_to_name[family_id].replace(" ", "_"),
                                                 f"{'_'.join(control_id.split(' '))}.json"),
                         "layer": create_layer(
                             f"{control_id} mappings",
@@ -187,7 +187,7 @@ def get_framework_overview_layers(controls, mappings, attackdata, domain, framew
     return out_layers
 
 
-def get_layers_by_property(controls, mappings, attackdata, domain, framework_name, x_mitre, version):
+def get_layers_by_property(controls, mappings, attack_data, domain, framework_name, x_mitre, version):
     """get layers grouping the mappings according to values of the given property"""
     property_name = x_mitre.split("x_mitre_")[1]  # remove prefix
     family_id_to_controls, family_id_to_name, id_to_family = parse_family_data(controls)
@@ -218,7 +218,7 @@ def get_layers_by_property(controls, mappings, attackdata, domain, framework_nam
     for value in property_value_to_controls:
         # controls for the corresponding values
         controls_of_value = MemoryStore(stix_data=property_value_to_controls[value])
-        techniques = to_technique_list(controls_of_value, mappings, attackdata,
+        techniques = to_technique_list(controls_of_value, mappings, attack_data,
                                        family_id_to_controls, family_id_to_name, id_to_family)
         if len(techniques) > 0:
             # build layer for this technique set
@@ -340,6 +340,7 @@ if __name__ == "__main__":
         prefix = ("https://raw.githubusercontent.com/center-for-threat-informed-defense/"
                   "attack-control-framework-mappings/master/frameworks")
         nav_prefix = "https://mitre-attack.github.io/attack-navigator/#layerURL="
+
         for layer in layers:
             if "/" in layer["outfile"]:  # force URL delimiters even if local system uses "\"
                 pathParts = layer["outfile"].split("/")
@@ -355,6 +356,7 @@ if __name__ == "__main__":
             encodedPath = urllib.parse.quote(path, safe='~()*!.\'')  # encode the url for the query string
             md_line = f"{'    ' * depth}- {layer_name} ( [download]({path}) | [view]({nav_prefix}{encodedPath}) )"
             mdfile_lines.append(md_line)
+
         with open(os.path.join(args.output, "README.md"), "w") as f:
             f.write("\n".join(mdfile_lines))
 
