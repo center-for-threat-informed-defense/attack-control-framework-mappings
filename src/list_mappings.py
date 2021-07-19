@@ -1,14 +1,15 @@
+import argparse
+import json
+import os
+
+from colorama import Fore
 from stix2.v20 import Bundle
 import pandas as pd
-import argparse
-import os
 import requests
-import json
-from colorama import Fore
 
 
 def mappings_to_df(attack_bundle, controls_bundle, mappings_bundle):
-    """Return a pandas dataframe listing the mappings in mappingsbundle"""
+    """Return a pandas dataframe listing the mappings in mappings_bundle"""
     rows = []
     for mapping in mappings_bundle.objects:
         control = controls_bundle.get(mapping.source_ref)
@@ -49,12 +50,12 @@ if __name__ == "__main__":
     parser.add_argument("-controls",
                         dest="controls",
                         help="filepath to the stix bundle representing the control framework",
-                        default=os.path.join("..", "frameworks", "nist800-53-r4",
+                        default=os.path.join("..", "frameworks", "ATT&CK-v9.0", "nist800-53-r4",
                                              "stix", "nist800-53-r4-controls.json"))
     parser.add_argument("-mappings",
                         dest="mappings",
                         help="filepath to the stix bundle mapping the controls to ATT&CK",
-                        default=os.path.join("..", "frameworks", "nist800-53-r4",
+                        default=os.path.join("..", "frameworks", "ATT&CK-v9.0", "nist800-53-r4",
                                              "stix", "nist800-53-r4-mappings.json"))
     parser.add_argument("-domain",
                         dest="domain",
@@ -67,9 +68,15 @@ if __name__ == "__main__":
     parser.add_argument("-output",
                         help=f"filepath to write the output mappings to. Output format will be "
                              f"inferred from the extension. Allowed extensions: {allowedExtensionList}",
-                        default=os.path.join("..", "frameworks", "nist800-53-r4", "nist800-53-r4-mappings.xlsx"))
+                        default=os.path.join("..", "frameworks", "ATT&CK-v9.0", "nist800-53-r4",
+                                             "nist800-53-r4-mappings.xlsx"))
 
     args = parser.parse_args()
+
+    if args.version != "v9.0":
+        args.controls = args.controls.replace("ATT&CK-v9.0", f"ATT&CK-{args.version}")
+        args.mappings = args.mappings.replace("ATT&CK-v9.0", f"ATT&CK-{args.version}")
+        args.output = args.output.replace("ATT&CK-v9.0", f"ATT&CK-{args.version}")
 
     extension = args.output.split(".")[-1]
     if extension not in extensionToPDExport:

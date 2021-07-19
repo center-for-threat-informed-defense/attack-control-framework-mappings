@@ -14,9 +14,12 @@ def find_file_with_suffix(suffix, folder):
 
 def main():
     """rebuild all control frameworks from the input data"""
+    attack_version = "v9.0"  # modify this variable to run against a different ATT&CK version
     for framework in ["nist800-53-r4", "nist800-53-r5"]:
         # move to the framework folder
-        framework_folder = os.path.join(os.path.dirname(os.path.dirname(__file__)), "frameworks", framework)
+        versioned_folder = f"ATT&CK-{attack_version}"
+        framework_folder = os.path.join(os.path.dirname(os.path.dirname(__file__)), "frameworks",
+                                        versioned_folder, framework)
         os.chdir(framework_folder)
 
         # read the framework config

@@ -5,7 +5,6 @@ import re
 import shutil
 import urllib.parse
 
-
 from stix2 import Filter, MemoryStore
 import requests
 
@@ -256,12 +255,12 @@ if __name__ == "__main__":
     parser.add_argument("-controls",
                         dest="controls",
                         help="filepath to the stix bundle representing the control framework",
-                        default=os.path.join("..", "frameworks", "nist800-53-r4",
+                        default=os.path.join("..", "frameworks", "ATT&CK-v9.0", "nist800-53-r4",
                                              "stix", "nist800-53-r4-controls.json"))
     parser.add_argument("-mappings",
                         dest="mappings",
                         help="filepath to the stix bundle mapping the controls to ATT&CK",
-                        default=os.path.join("..", "frameworks", "nist800-53-r4",
+                        default=os.path.join("..", "frameworks", "ATT&CK-v9.0", "nist800-53-r4",
                                              "stix", "nist800-53-r4-mappings.json"))
     parser.add_argument("-domain",
                         choices=["enterprise-attack", "mobile-attack"],
@@ -273,17 +272,22 @@ if __name__ == "__main__":
                         default="v9.0")
     parser.add_argument("-output",
                         help="folder to write output layers to",
-                        default=os.path.join("..", "frameworks", "nist800-53-r4", "layers"))
+                        default=os.path.join("..", "frameworks", "ATT&CK-v9.0", "nist800-53-r4", "layers"))
     parser.add_argument("--clear",
                         action="store_true",
                         help="if flag specified, will remove the contents the output folder before writing layers")
     parser.add_argument("--build-directory",
-                        dest="buildDir",
+                        dest="build_dir",
                         action="store_true",
                         help="if flag specified, will build a markdown file listing the output files for easy "
                              "access in the Navigator")
 
     args = parser.parse_args()
+
+    if args.version != "v9.0":
+        args.controls = args.controls.replace("ATT&CK-v9.0", f"ATT&CK-{args.version}")
+        args.mappings = args.mappings.replace("ATT&CK-v9.0", f"ATT&CK-{args.version}")
+        args.output = args.output.replace("ATT&CK-v9.0", f"ATT&CK-{args.version}")
 
     print("downloading ATT&CK data... ", end="", flush=True)
     url = f"https://raw.githubusercontent.com/mitre/cti/ATT%26CK-{args.version}/{args.domain}/{args.domain}.json"
@@ -323,7 +327,7 @@ if __name__ == "__main__":
         with open(os.path.join(args.output, layer["outfile"]), "w") as f:
             json.dump(layer["layer"], f)
     print("done")
-    if args.buildDir:
+    if args.build_dir:
         print("writing layer directory markdown... ", end="", flush=True)
 
         mdfile_lines = [
