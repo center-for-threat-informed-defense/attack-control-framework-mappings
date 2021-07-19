@@ -41,22 +41,22 @@ NIST 800-53 Rev. 5 control families are listed below with our rational for a giv
 | Control Family | In Scope | Rationale |
 |---|---|---|
 | AC - Access Control | Yes | Access Control family is in scope as it provides technical and operational controls for the control and enforcement of system access, accounts, and information. |
-| AU - Audit and Accountability | No | Audit and Accountability controls are not applicable as they do not provide mitigations of specific threats, but instead detect successful attacks. |
 | AT - Awareness and Training | No | Awareness and Training controls are not applicable as they are for general security awareness training and not specific threat mitigations.|
+| AU - Audit and Accountability | No | Audit and Accountability controls are not applicable as they do not provide mitigations of specific threats, but instead detect successful attacks. |
 | CM - Configuration Management | Yes | Configuration Management controls are in scope as they maintain technical and operational controls for maintaining secure configuration of information systems. |
 | CP - Contingency Planning | Yes | Contingency Planning controls are in scope as they provide operational and technical controls for information protection at the system level.|
 | IA - Identification and Authentication | Yes | Identification and Authentication controls are in scope as they provide operational and technical controls for managing and enforcing identification and authentication of network and system users and devices. |
 | IR - Incident Response | No | Incident Response controls are not applicable as they do not provide mitigations of specific threats but rather provide detection of security incident occurrences. |
 | MA - Maintenance |  No | Maintenance controls are not applicable as they are related to the procedural management of information system maintenance and are not threat-specific. |
 | MP - Media Protection | Yes | Media Protection family is in scope as it provides technical and operational controls for the control and access of digital system media. |
-| PS - Personnel Security | No | Personnel security controls are not applicable as they are related to the procedural management of individuals. |
 | PE - Physical and Environmental Protection | No | Physical and Environmental Protection controls are not applicable as they are related to the management and protection of physical space. |
 | PL - Planning | No | Planning controls are not applicable as they focus on high-level system security plans and are not threat-specific.|
 | PM - Program Management | No | Program Management controls are not applicable as they focus on programmatic, organization-wide information security requirements for managing information security programs.|
+| PS - Personnel Security | No | Personnel security controls are not applicable as they are related to the procedural management of individuals. |
 | PT - PII Processing and Transparency | No | PII Processing and Transparency controls are not applicable as they are procedural in nature.|
 | RA - Risk Assessment | Yes | Risk Assessment controls are in scope as they provide technical and operational controls and techniques for risk and vulnerability management and maintaining security at the system level. |
-| CA - Security Assessment and Authorization| Yes | Security Assessment and Authorization controls are in scope as they provide technical and operational controls and techniques for monitoring and assessing security at the system level. |
-| SC - System and Communications Protection| Yes | System and Communications Protection controls are in scope as they provide technical and operational controls for the separation and protection of systems and information. |
-| SI - System and Information Integrity| Yes | System and Information Integrity controls are in scope as they provide technical and operational controls and techniques for protecting and analyzing the integrity of software, firmware, and information. |
-| SA - System and Services Acquisition| Yes | System and Services Acquisition are in scope as they provide technical and operational controls for security testing and evaluation of the system development life cycle. |
+| CA - Security Assessment and Authorization | Yes | Security Assessment and Authorization controls are in scope as they provide technical and operational controls and techniques for monitoring and assessing security at the system level. |
+| SC - System and Communications Protection | Yes | System and Communications Protection controls are in scope as they provide technical and operational controls for the separation and protection of systems and information. |
+| SI - System and Information Integrity | Yes | System and Information Integrity controls are in scope as they provide technical and operational controls and techniques for protecting and analyzing the integrity of software, firmware, and information. |
+| SA - System and Services Acquisition | Yes | System and Services Acquisition are in scope as they provide technical and operational controls for security testing and evaluation of the system development life cycle. |
 | SR - Supply Chain Risk Management | Yes | Supply Chain Risk Management is in scope as they provide technical and operational controls for security testing and evaluation of supply chain processes and elements. |
