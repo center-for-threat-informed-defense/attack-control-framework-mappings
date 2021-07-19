@@ -337,8 +337,8 @@ if __name__ == "__main__":
             f"represent the mappings from ATT&CK to {args.framework}:",
             "",
         ]
-        prefix = ("https://raw.githubusercontent.com/center-for-threat-informed-defense/"
-                  "attack-control-framework-mappings/master/frameworks")
+        prefix = (f"https://raw.githubusercontent.com/center-for-threat-informed-defense/"
+                  f"attack-control-framework-mappings/master/frameworks/ATT&CK-{args.version}")
         nav_prefix = "https://mitre-attack.github.io/attack-navigator/#layerURL="
 
         for layer in layers:

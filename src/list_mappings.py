@@ -4,7 +4,9 @@ import os
 
 from colorama import Fore
 from stix2.v20 import Bundle
-import pandas as pd
+import openpyxl
+import openpyxl.utils
+import pandas
 import requests
 
 
@@ -27,15 +29,51 @@ def mappings_to_df(attack_bundle, controls_bundle, mappings_bundle):
             technique = technique[0]
 
         rows.append({
-            "control ID": control["external_references"][0]["external_id"],
-            "control name": control["name"],
-            "mapping type": mapping["relationship_type"],
-            "technique ID": technique["external_references"][0]["external_id"],
-            "technique name": technique["name"],
-            "mapping description": mapping["description"] if "description" in mapping else ""
+            "Control ID": control["external_references"][0]["external_id"],
+            "Control Name": control["name"],
+            "Mapping Type": mapping["relationship_type"],
+            "Technique ID": technique["external_references"][0]["external_id"],
+            "Technique Name": technique["name"],
         })
 
-    return pd.DataFrame(rows)
+    data_frame = pandas.DataFrame(rows)
+    data_frame.sort_values(['Control ID', 'Technique ID'], ascending=[True, True], inplace=True)
+
+    return data_frame
+
+
+def workbook_changes(filename):
+    """Changes spreadsheet format width, freezes first row, and sets
+    filtering reference"""
+    sheet_name = 'Sheet1'
+    freeze_row = 'A2'  # freezes the first row of the document
+
+    control_id_width = 14
+    control_name_width = 69
+    mapping_type_width = 18
+    technique_id_width = 18
+    technique_name_width = 58
+
+    column_widths = [
+        control_id_width,
+        control_name_width,
+        mapping_type_width,
+        technique_id_width,
+        technique_name_width,
+    ]
+
+    workbook = openpyxl.load_workbook(filename)
+    worksheet = workbook[sheet_name]
+    worksheet.freeze_panes = worksheet[freeze_row]
+
+    # establishes filtering references in document
+    auto_filter_section = f'A1:E{len(list(worksheet.rows))}'
+    worksheet.auto_filter.ref = auto_filter_section
+
+    for i, column_width in enumerate(column_widths):
+        worksheet.column_dimensions[openpyxl.utils.get_column_letter(i + 1)].width = column_width
+
+    workbook.save(filename)
 
 
 if __name__ == "__main__":
@@ -110,4 +148,8 @@ if __name__ == "__main__":
             getattr(df, extensionToPDExport[extension])(f)
     else:
         getattr(df, extensionToPDExport[extension])(args.output, index=False)
+
+        if extension in ["xlsx"]:
+            workbook_changes(args.output)
+
         print("done")
