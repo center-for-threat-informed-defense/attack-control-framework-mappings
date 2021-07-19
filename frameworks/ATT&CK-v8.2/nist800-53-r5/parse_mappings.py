@@ -4,7 +4,6 @@ import requests
 import pandas as pd
 import re
 import json
-import os
 from colorama import Fore
 
 

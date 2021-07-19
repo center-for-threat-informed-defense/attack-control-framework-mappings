@@ -1,4 +1,3 @@
-import os
 from tqdm import tqdm
 import re
 from stix2.v20 import Bundle, Relationship, CourseOfAction

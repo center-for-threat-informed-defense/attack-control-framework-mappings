@@ -1,5 +1,4 @@
 import pandas as pd
-import os
 from tqdm import tqdm
 import re
 from stix2.v20 import CourseOfAction, Relationship, Bundle
