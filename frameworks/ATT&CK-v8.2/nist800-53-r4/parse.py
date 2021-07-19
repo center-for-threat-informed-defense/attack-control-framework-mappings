@@ -4,6 +4,7 @@ import json
 from parse_controls import parse_controls
 from parse_mappings import parse_mappings
 
+
 def save_bundle(bundle, path):
     """helper function to write a STIX bundle to a file
     faster than memorystore util function"""
@@ -14,7 +15,8 @@ def save_bundle(bundle, path):
         json.dump(json.loads(strbundle), outfile, indent=4, sort_keys=True)
     print("done!")
 
-def main(incontrols=os.path.join("input", "nist800-53-r4-controls.tsv"), 
+
+def main(incontrols=os.path.join("input", "nist800-53-r4-controls.tsv"),
          inmappings=os.path.join("input", "nist800-53-r4-mappings.tsv"),
          outcontrols=os.path.join("stix", "nist800-53-r4-controls.json"),
          outmappings=os.path.join("stix", "nist800-53-r4-controls.json")):
@@ -23,7 +25,9 @@ def main(incontrols=os.path.join("input", "nist800-53-r4-controls.tsv"),
     arguments:
         incontrols - tsv file of NIST 800-53 revision 4 controls
         inmappings - tsv file mapping NIST 800-53 revision 4 controls to ATT&CK
-        outcontrols - output STIX bundle file for the controls. If this file already exists, the STIX IDs within will be reused in the replacing file so that they don't change between consecutive executions of this script.
+        outcontrols - output STIX bundle file for the controls. If this file already
+            exists, the STIX IDs within will be reused in the replacing file so that
+            they don't change between consecutive executions of this script.
         outmappings - output STIX bundle file for the mappings.
     returns (outcontrols, outmappings)
     """
@@ -45,7 +49,7 @@ def main(incontrols=os.path.join("input", "nist800-53-r4-controls.tsv"),
                 fromIDs = f"{sdo['source_ref']}---{sdo['target_ref']}"
                 toID = sdo["id"]
                 control_relationship_ids[fromIDs] = toID
-    
+
     # build controls in STIX
     controls = parse_controls(
         incontrols,
@@ -62,7 +66,7 @@ def main(incontrols=os.path.join("input", "nist800-53-r4-controls.tsv"),
             fromIDs = f"{sdo['source_ref']}---{sdo['target_ref']}"
             toID = sdo["id"]
             mapping_relationship_ids[fromIDs] = toID
-    
+
     # build mappings in STIX
     mappings = parse_mappings(
         inmappings,
@@ -75,8 +79,10 @@ def main(incontrols=os.path.join("input", "nist800-53-r4-controls.tsv"),
 
     return outcontrols, outmappings
 
+
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="parse the NIST 800-53 revision 4 controls and ATT&CK mappings into STIX2.0 bundles")
+    parser = argparse.ArgumentParser(
+        description="parse the NIST 800-53 revision 4 controls and ATT&CK mappings into STIX2.0 bundles")
     parser.add_argument("-input-controls",
                         dest="incontrols",
                         help="tsv file of NIST 800-53 revision 4 controls",
@@ -86,13 +92,15 @@ if __name__ == "__main__":
                         help="tsv file mapping NIST 800-53 revision 4 controls to ATT&CK",
                         default=os.path.join("input", "nist800-53-r4-mappings.tsv"))
     parser.add_argument("-output-controls",
-                         dest="outcontrols",
-                         help="output STIX bundle file for the controls. If this file already exists, the STIX IDs within will be reused in the replacing file so that they don't change between consecutive executions of this script.",
-                         default=os.path.join("stix", "nist800-53-r4-controls.json"))
+                        dest="outcontrols",
+                        help="output STIX bundle file for the controls. If this file already exists, "
+                             "the STIX IDs within will be reused in the replacing file so that they "
+                             "don't change between consecutive executions of this script.",
+                        default=os.path.join("stix", "nist800-53-r4-controls.json"))
     parser.add_argument("-output-mappings",
-                         dest="outmappings",
-                         help="output STIX bundle file for the mappings.",
-                         default=os.path.join("stix", "nist800-53-r4-mappings.json"))
+                        dest="outmappings",
+                        help="output STIX bundle file for the mappings.",
+                        default=os.path.join("stix", "nist800-53-r4-mappings.json"))
 
     args = parser.parse_args()
 

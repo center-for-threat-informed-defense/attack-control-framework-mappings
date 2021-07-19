@@ -3,33 +3,40 @@ from tqdm import tqdm
 import requests
 import pandas as pd
 import re
-import itertools
 import json
 import os
 from colorama import Fore
 
+
 def dict_regex_lookup(thedict, regexstr):
-    """return all values in the dict where the key matches the regex. Params are the dict, and a string to be used as regex"""
+    """return all values in the dict where the key matches the regex.
+    Params are the dict, and a string to be used as regex"""
     # add anchor characters if they're not explicitly specified to prevent T1001 from matching T1001.001
     regexstr = regexstr.strip()
-    if not regexstr.endswith("$"): regexstr = regexstr + "$"
-    if not regexstr.startswith("^"): regexstr = "^" + regexstr
+    if not regexstr.endswith("$"):
+        regexstr = regexstr + "$"
+    if not regexstr.startswith("^"):
+        regexstr = "^" + regexstr
     try:
         regex = re.compile(regexstr)
-    except Exception as err: 
+    except Exception as err:
         print(Fore.RED + "ERROR: cannot compile regex", regexstr, "because of", err, Fore.RESET)
         exit()
     values = []
     for key in thedict:
-        if regex.match(key): values.append(thedict[key])
+        if regex.match(key):
+            values.append(thedict[key])
     return values
 
+
 def parse_mappings(mappingspath, controls, relationship_ids={}):
-    """parse the NIST800-53 revision 4 mappings and return a STIX bundle 
+    """parse the NIST800-53 revision 4 mappings and return a STIX bundle
     of relationships mapping the controls to ATT&CK
-    :param mappingspath the filepath to the mappings TSV file
-    :param controls a stix2.Bundle represneting the controls framework
-    :param relationship_ids is a dict of format {relationship-source-id---relationship-target-id: relationship-id} which maps relationships to desired STIX IDs
+    :param mappingspath: the filepath to the mappings TSV file
+    :param controls: a stix2.Bundle representing the controls framework
+    :param relationship_ids: is a dict of format
+        {relationship-source-id---relationship-target-id: relationship-id}
+        which maps relationships to desired STIX IDs
     """
 
     print("reading framework config...", end="", flush=True)
@@ -44,7 +51,8 @@ def parse_mappings(mappingspath, controls, relationship_ids={}):
 
     # load ATT&CK STIX data
     print("downloading ATT&CK data... ", end="", flush=True)
-    attackdata = requests.get(f"https://raw.githubusercontent.com/mitre/cti/ATT%26CK-{version}/{domain}/{domain}.json").json()["objects"]
+    url = f"https://raw.githubusercontent.com/mitre/cti/ATT%26CK-{version}/{domain}/{domain}.json"
+    attackdata = requests.get(url).json()["objects"]
     print("done")
 
     # build mapping of attack ID to stixID
@@ -52,17 +60,20 @@ def parse_mappings(mappingspath, controls, relationship_ids={}):
     for attackobject in tqdm(attackdata, desc="parsing ATT&CK data", bar_format=tqdmformat):
         if not attackobject["type"] == "relationship":
             # skip objects without IDs
-            if "external_references" not in attackobject: continue
+            if "external_references" not in attackobject:
+                continue
             # skip deprecated and revoked objects
-            if "revoked" in attackobject and attackobject["revoked"]: continue
-            if "x_mitre_deprecated" in attackobject and attackobject["x_mitre_deprecated"]: continue
+            if "revoked" in attackobject and attackobject["revoked"]:
+                continue
+            if "x_mitre_deprecated" in attackobject and attackobject["x_mitre_deprecated"]:
+                continue
             # map attackID to stixID
             attackID_to_stixID[attackobject["external_references"][0]["external_id"]] = attackobject["id"]
 
     # build mapping of control ID to stixID
     controlID_to_stixID = {}
     for sdo in tqdm(controls.objects, desc="parsing controls", bar_format=tqdmformat):
-        if sdo.type == "course-of-action": # only do mitigations
+        if sdo.type == "course-of-action":  # only do mitigations
             controlID_to_stixID[sdo["external_references"][0]["external_id"]] = sdo["id"]
 
     # build mapping relationships
