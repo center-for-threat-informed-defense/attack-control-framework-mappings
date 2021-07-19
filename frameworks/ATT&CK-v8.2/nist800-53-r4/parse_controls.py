@@ -117,18 +117,18 @@ class Control:
         )
 
 
-def parse_controls(controlpath, control_ids={}, relationship_ids={}):
+def parse_controls(controlpath, control_ids, relationship_ids, config_location):
     """parse the NIST800-53 revision 4 controls and return a STIX bundle
     :param controlpath: the filepath to the controls TSV file
     :param control_ids is: a dict of format {control_name: stixID} which
         maps control names (e.g AC-1) to desired STIX IDs
     :param relationship_ids: is a dict of format {relationship-source-id---relationship-target-id: relationship-id},
         same general purpose as control_ids
+    :param config_location: the filepath to the configuration JSON file.
     """
-
     print("reading framework config...", end="", flush=True)
     # load the mapping config
-    with open(os.path.join("input", "config.json"), "r") as f:
+    with open(config_location, "r") as f:
         config = json.load(f)
         framework_id = config["framework_id"]
     print("done")

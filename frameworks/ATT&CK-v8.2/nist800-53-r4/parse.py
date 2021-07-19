@@ -19,7 +19,8 @@ def save_bundle(bundle, path):
 def main(incontrols=os.path.join("input", "nist800-53-r4-controls.tsv"),
          inmappings=os.path.join("input", "nist800-53-r4-mappings.tsv"),
          outcontrols=os.path.join("stix", "nist800-53-r4-controls.json"),
-         outmappings=os.path.join("stix", "nist800-53-r4-controls.json")):
+         outmappings=os.path.join("stix", "nist800-53-r4-controls.json"),
+         config_location=os.path.join("input", "config.json")):
     """
     parse the NIST 800-53 revision 4 controls and ATT&CK mappings into STIX2.0 bundles
     arguments:
@@ -54,7 +55,8 @@ def main(incontrols=os.path.join("input", "nist800-53-r4-controls.tsv"),
     controls = parse_controls(
         incontrols,
         control_ids,
-        control_relationship_ids
+        control_relationship_ids,
+        config_location,
     )
 
     # build mapping ID helper lookup so that STIX IDs don't get replaced on each rebuild
@@ -71,7 +73,8 @@ def main(incontrols=os.path.join("input", "nist800-53-r4-controls.tsv"),
     mappings = parse_mappings(
         inmappings,
         controls,
-        mapping_relationship_ids
+        mapping_relationship_ids,
+        config_location,
     )
 
     save_bundle(controls, outcontrols)
@@ -101,6 +104,10 @@ if __name__ == "__main__":
                         dest="outmappings",
                         help="output STIX bundle file for the mappings.",
                         default=os.path.join("stix", "nist800-53-r4-mappings.json"))
+    parser.add_argument("-config-location",
+                        dest="config_location",
+                        help="filepath to the configuration for the framework",
+                        default=os.path.join("input", "config.json"))
 
     args = parser.parse_args()
 

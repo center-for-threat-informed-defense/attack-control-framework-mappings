@@ -29,7 +29,7 @@ def dict_regex_lookup(thedict, regexstr):
     return values
 
 
-def parse_mappings(mappingspath, controls, relationship_ids={}):
+def parse_mappings(mappingspath, controls, relationship_ids, config_location):
     """parse the NIST800-53 revision 4 mappings and return a STIX bundle
     of relationships mapping the controls to ATT&CK
     :param mappingspath: the filepath to the mappings TSV file
@@ -40,7 +40,7 @@ def parse_mappings(mappingspath, controls, relationship_ids={}):
     """
     print("reading framework config...", end="", flush=True)
     # load the mapping config
-    with open(os.path.join("input", "config.json"), "r") as f:
+    with open(config_location, "r") as f:
         config = json.load(f)
         version = config["attack_version"]
         domain = config["attack_domain"]
