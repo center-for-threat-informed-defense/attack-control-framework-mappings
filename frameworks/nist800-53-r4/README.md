@@ -1,6 +1,6 @@
 # NIST Special Publication 800-53 Revision 4 Control Mappings
 
-This folder contains mappings of NIST Special Publication (SP) 800-53 Revision 4 to MITRE ATT&CK along with parsers and supporting data.
+This folder contains mappings of NIST Special Publication (SP) 800-53 Revision 4 to MITRE ATT&CK v9 along with parsers and supporting data.
 
 | Mappings Version | Last Updated | ATT&CK Version | ATT&CK Domain |
 |---|---|---|---|
