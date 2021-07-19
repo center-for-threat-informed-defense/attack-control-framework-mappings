@@ -411,9 +411,9 @@ date delivered	mitigationID	techniqueID	controlID	description
 11/13/2020	M1026	T1550(\.002|\.003)?	AC-(2|3|5|6)	"Account Management, Access Enforcement, Separation of Duties, Least Privilege"
 11/13/2020	M1026	T1550(\.002|\.003)?	CM-(5|6)	"Information System Change Restrictions, Configuration Settings"
 11/13/2020	M1026	T1550(\.002|\.003)?	IA-2	User Access Permissions
-7/14/2021	M1026	T1552(\.002|\.007))?	AC-(2|3|5|6|17)	"Account Management, Access Enforcement, Separation of Duties, Least Privilege, Remote Access Permissions"
-6/14/2021	M1026	T1552(\.002|\.007))?	CM-(5|6)	"Information System Change Restrictions, Configuration Settings"
-6/14/2021	M1026	T1552(\.002|\.007))?	IA-2	User Access Permissions
+7/14/2021	M1026	T1552(\.002|\.007)?	AC-(2|3|5|6|17)	"Account Management, Access Enforcement, Separation of Duties, Least Privilege, Remote Access Permissions"
+6/14/2021	M1026	T1552(\.002|\.007)?	CM-(5|6)	"Information System Change Restrictions, Configuration Settings"
+6/14/2021	M1026	T1552(\.002|\.007)?	IA-2	User Access Permissions
 6/10/2021	M1026	T1553(\.006)?	(AC-(2|3|5|6)|CM-(5|6)|IA-2)
 11/13/2020	M1026	T1556(\.001|\.003|\.004)?	AC-(2|3|5|6)	"Account Management, Access Enforcement, Separation of Duties, Least Privilege"
 11/13/2020	M1026	T1556(\.001|\.003|\.004)?	CM-(5|6)	"Information System Change Restrictions, Configuration Settings"
