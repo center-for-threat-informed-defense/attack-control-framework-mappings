@@ -1,10 +1,21 @@
-# Security Control Framework Mappings to ATT&CK
-This repository contains security control framework mappings to MITRE ATT&CK® with supporting documentation and resources. These mappings provide a critically important resource for organizations to assess their security control coverage against real-world threats as described in the ATT&CK knowledge base and provide a foundation for integrating ATT&CK-based threat information into the risk management process. This work was developed by the [Center for Threat Informed Defense](https://mitre-engenuity.org/center-for-threat-informed-defense/) in collaboration with our participants.
+[![codecov](https://codecov.io/gh/center-for-threat-informed-defense/attack-control-framework-mappings/branch/master/graph/badge.svg?token=PLVBGOUWMC)](https://codecov.io/gh/center-for-threat-informed-defense/attack-control-framework-mappings)
 
-| Security Control Framework | Mappings as XLSX | ATT&CK Navigator Layers | STIX Data |
-|------|------|------|--|
-| [NIST 800-53 Revision 4](/frameworks/nist800-53-r4/) | [Spreadsheet](/frameworks/nist800-53-r4/nist800-53-r4-mappings.xlsx) | [Navigator Layers](/frameworks/nist800-53-r4/layers) | [STIX](/frameworks/nist800-53-r4/stix) |
-| [NIST 800-53 Revision 5](/frameworks/nist800-53-r5/) | [Spreadsheet](/frameworks/nist800-53-r5/nist800-53-r5-mappings.xlsx) | [Navigator Layers](/frameworks/nist800-53-r5/layers) | [STIX](/frameworks/nist800-53-r5/stix) |
+# Security Control Framework Mappings to ATT&CK
+This repository contains security control framework mappings to MITRE ATT&CK® with supporting documentation and resources. These mappings provide a critically important resource for organizations to assess their security control coverage against real-world threats as described in the ATT&CK knowledge base and provide a foundation for integrating ATT&CK-based threat information into the risk management process. This work was developed by the [Center for Threat-Informed Defense](https://mitre-engenuity.org/center-for-threat-informed-defense/) in collaboration with our participants.
+
+**NIST 800-53 Revision 4 Security Control Mappings**
+
+| ATT&CK Version | Mappings as XLSX (download) | ATT&CK Navigator Layers | STIX Data |
+|---|---|---|---|
+| [ATT&CK-v9.0](/frameworks/ATT&CK-v9.0/nist800-53-r4/) | [Spreadsheet](https://github.com/center-for-threat-informed-defense/attack-control-framework-mappings/raw/attackv9_update/frameworks/ATT%26CK-v9.0/nist800-53-r4/nist800-53-r4-mappings.xlsx) | [Navigator Layers](/frameworks/ATT&CK-v9.0/nist800-53-r4/layers) | [STIX](/frameworks/ATT&CK-v9.0/nist800-53-r4/stix) |
+| [ATT&CK-v8.2](/frameworks/ATT&CK-v8.2/nist800-53-r4/) | [Spreadsheet](https://github.com/center-for-threat-informed-defense/attack-control-framework-mappings/raw/attackv9_update/frameworks/ATT%26CK-v8.2/nist800-53-r4/nist800-53-r4-mappings.xlsx) | [Navigator Layers](/frameworks/ATT&CK-v8.2/nist800-53-r4/layers) | [STIX](/frameworks/ATT&CK-v8.2/nist800-53-r4/stix) |
+
+**NIST 800-53 Revision 5 Security Control Mappings**
+
+| ATT&CK Version | Mappings as XLSX (download) | ATT&CK Navigator Layers | STIX Data |
+|---|---|---|---|
+| [ATT&CK-v9.0](/frameworks/ATT&CK-v9.0/nist800-53-r5/) | [Spreadsheet](https://github.com/center-for-threat-informed-defense/attack-control-framework-mappings/raw/attackv9_update/frameworks/ATT%26CK-v9.0/nist800-53-r5/nist800-53-r5-mappings.xlsx) | [Navigator Layers](/frameworks/ATT&CK-v9.0/nist800-53-r5/layers) | [STIX](/frameworks/ATT&CK-v9.0/nist800-53-r5/stix) |
+| [ATT&CK-v8.2](/frameworks/ATT&CK-v8.2/nist800-53-r5/) | [Spreadsheet](https://github.com/center-for-threat-informed-defense/attack-control-framework-mappings/raw/attackv9_update/frameworks/ATT%26CK-v8.2/nist800-53-r5/nist800-53-r5-mappings.xlsx) | [Navigator Layers](/frameworks/ATT&CK-v8.2/nist800-53-r5/layers) | [STIX](/frameworks/ATT&CK-v8.2/nist800-53-r5/stix) |
 
 ## A Collaborative Approach
 

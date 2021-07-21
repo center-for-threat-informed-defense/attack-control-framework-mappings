@@ -1,0 +1,9 @@
+bandit==1.7.0
+pytest
+tox
+pytest-cov==2.11.1
+pytest-flake8==1.0.7
+flake8>=3.5
+pytest-pythonpath
+pytest-mock==3.5.1
+safety==1.10.3

@@ -18,7 +18,7 @@ Because techniques can map to multiple controls, it is likely that there will be
 
 ### 3. I want to determine what security controls I should use to implement a given ATT&CK mitigation
 
-Mitigations in ATT&CK are mapped to techniques, and this proejct maps techniques to security controls. One possible interpretation of “implementing” a mitigation may be finding the set of security controls that mitigates the techniques that are mapped to the mitigation. This then resolves to an extension of [use case 2](#2-i-want-to-know-what-security-controls-to-selectimplement-in-order-to-mitigate-a-specific-set-of-techniques), where the set of techniques is those associated with the ATT&CK Mitigation. 
+Mitigations in ATT&CK are mapped to techniques, and this project maps techniques to security controls. One possible interpretation of “implementing” a mitigation may be finding the set of security controls that mitigates the techniques that are mapped to the mitigation. This then resolves to an extension of [use case 2](#2-i-want-to-know-what-security-controls-to-selectimplement-in-order-to-mitigate-a-specific-set-of-techniques), where the set of techniques is those associated with the ATT&CK Mitigation. 
 
 Visualization of this indirect mapping should be undertaken with care. It should not be implied that a security control maps directly to a mitigation or vice versa, since that is firstly inaccurate to the data model and some of those derived “mappings” could be confusing in certain cases. The intermediate step of the technique must therefore always be shown in visualizations of these two-step mappings. ATT&CK Mitigations should be interpreted as a “contextual grouping” of techniques, and the visualization should convey that the actual mappings happen with the contextually-grouped techniques, not the mitigation or other grouping object.
 
@@ -44,7 +44,7 @@ _The following use cases are intended to capture the operational context of user
 - Support the Security Engineer, system developers, and information system owner’s selection and implementation of security controls most appropriate in mitigating cyber attacks.
 - Support the CISO/ISSM in reviewing the adequacy of risk and gaps in overall threat defense; and identify which additional security controls are needed to mitigate cyber attacks.  
 - Determine security control suitability and participate in the selection of security controls for securing information systems against cyber attacks.
-- Validate NIST 800-53 (or other framework) compliance and maintain/achieve ongoing Approval to Opperate (ATO).
+- Validate NIST 800-53 (or other framework) compliance and maintain/achieve ongoing Approval to Operate (ATO).
 
 ### 6. As a Security Engineer, I want to (but not limited to)
 

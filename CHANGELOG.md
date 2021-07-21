@@ -14,6 +14,14 @@
 <!--    ### Improvements                                                -->
 <!--    ### Fixes                                                       -->
 
+# 19 July 2021
+## nist800-53-r4 v2.0 and nist800-53-r5 v2.0
+### Fixes
+- Release of the security control mappings and tools updated with ATT&CK-v9.0, including layers and stix data
+- Update project structure to hold prior mappings created for this repo (ATT&CK-v8.2)
+- Update project structure and scripts, code quality updates, tests, coverage
+
+
 # 18 May 2021
 ### Fixes
 - NIST 800-53 R4 layers updated with attack-navigator 4.3. See issue [#65](https://github.com/center-for-threat-informed-defense/attack-control-framework-mappings/issues/65).

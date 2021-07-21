@@ -42,7 +42,7 @@ The previous three steps of the methodology provide the analytical context to id
 To continue with the example, further review and analysis confirms the identified control selection and the mappings can be created for the technique T1003 OS Credential Dumping and sub-technique T1003.001 LSASS Memory. The resultant mappings are listed below: 
 
 | Technique | Control(s) |
-| ---------- | -------- |
+|---|---|
 | T1003 | AC-3, AC-4 |
 | T1003	| CM-2, CM-6 |
 | T1003	| RA-5 |

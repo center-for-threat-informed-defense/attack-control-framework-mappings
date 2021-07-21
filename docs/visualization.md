@@ -13,7 +13,7 @@ An excel spreadsheet is provided listing all of the mappings for each framework 
 - [NIST 800-53 Revision 4 Mappings Spreadsheet](/frameworks/nist800-53-r4/nist800-53-r4-mappings.xlsx)
 - [NIST 800-53 Revision 5 Mappings Spreadsheet](/frameworks/nist800-53-r5/nist800-53-r5-mappings.xlsx)
 
-The [listMappings](/util/) script can be used to generate this same information in additional formats:
+The [listMappings](/src/) script can be used to generate this same information in additional formats:
 - Excel spreadsheet
 - CSV
 - HTML table
@@ -21,7 +21,7 @@ The [listMappings](/util/) script can be used to generate this same information 
 
 ## Substituting Controls for ATT&CK Mitigations
 
-The [substitute.py](/util/substitute.py) utility script builds ATT&CK STIX bundles where controls and mappings take the place of ATT&CK mitigations, thereby enabling construction of the ATT&CK Website and ATT&CK Navigator with controls taking the place of mitigations. This section describes the usage of these specialty bundles, which can be found on this repo alongside their data in the framework `stix` folders:
+The [substitute.py](/src/substitute.py) utility script builds ATT&CK STIX bundles where controls and mappings take the place of ATT&CK mitigations, thereby enabling construction of the ATT&CK Website and ATT&CK Navigator with controls taking the place of mitigations. This section describes the usage of these specialty bundles, which can be found on this repo alongside their data in the framework `stix` folders:
 - [NIST 800-53 Revision 4 Substituted STIX bundle](/frameworks/nist800-53-r4/stix/nist800-53-r4-enterprise-attack.json)
 - [NIST 800-53 Revision 5 Substituted STIX bundle](/frameworks/nist800-53-r5/stix/nist800-53-r5-enterprise-attack.json)
 
