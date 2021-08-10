@@ -44,7 +44,7 @@ _The following use cases are intended to capture the operational context of user
 - Support the Security Engineer, system developers, and information system owner’s selection and implementation of security controls most appropriate in mitigating cyber attacks.
 - Support the CISO/ISSM in reviewing the adequacy of risk and gaps in overall threat defense; and identify which additional security controls are needed to mitigate cyber attacks.  
 - Determine security control suitability and participate in the selection of security controls for securing information systems against cyber attacks.
-- Validate NIST 800-53 (or other framework) compliance and maintain/achieve ongoing Approval to Opperate (ATO).
+- Validate NIST 800-53 (or other framework) compliance and maintain/achieve ongoing Approval to Operate (ATO).
 
 ### 6. As a Security Engineer, I want to (but not limited to)
 

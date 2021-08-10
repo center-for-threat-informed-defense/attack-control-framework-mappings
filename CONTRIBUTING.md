@@ -33,7 +33,7 @@ You're welcome to contribute improvements to the existing framework parsers. Suc
 
 ### New Framework-Agnostic Tools or Utilities
 
-Framework-agnostic tools and utilities may be added within the `util/` folder. 
+Framework-agnostic tools and utilities may be added within the `src/` folder. 
 - Such contributions should be framework agnostic: avoid hardcoded assumptions about which `x_mitre_` fields exist on the input framework since new frameworks may be added which don't implement common fields such as `x_mitre_family`.
 - If your utility is only relevant to certain control frameworks, you should instead put it in the framework directory next to the parser for the framework.
 
