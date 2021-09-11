@@ -54,7 +54,7 @@ To continue with the example, further review and analysis confirms the identifie
 
 ## Applying the Methodology
 
-This methodology is designed to be tailored as it is applied to security control frameworks. We anticipate that each framework will require its own unique mapping and scoping decisions. These framework specific decisions should be documented in the ReadMe for the framework. As an example, see the [Mapping NIST 800-53 revision 4 to ATT&CK](/frameworks/nist800-53-r4#mapping-nist-800-53-revision-4-to-attck) section of the NIST 800-53 Rev. 4 mapping documentation. 
+This methodology is designed to be tailored as it is applied to security control frameworks. We anticipate that each framework will require its own unique mapping and scoping decisions. These framework specific decisions should be documented in the ReadMe for the framework. As an example, see the [Mapping NIST 800-53 revision 4 to ATT&CK](/frameworks/ATT%26CK-v8.2/nist800-53-r4#mapping-nist-800-53-revision-4-to-attck) section of the NIST 800-53 Rev. 4 mapping documentation. 
 
 ## References
 
