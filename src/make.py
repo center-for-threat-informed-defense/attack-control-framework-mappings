@@ -9,13 +9,13 @@ def find_file_with_suffix(suffix, folder):
     for f in os.listdir(folder):
         if f.endswith(suffix):
             return f
-    return None
+    raise ValueError(f"Could not locate file with suffix of {suffix} in {folder}")
 
 
 def main():
     """rebuild all control frameworks from the input data"""
 
-    for attack_version in ["v8.2", "v9.0"]:
+    for attack_version in ["v8.2", "v9.0", "v10.1"]:
         for framework in ["nist800-53-r4", "nist800-53-r5"]:
             # move to the framework folder
             versioned_folder = f"ATT&CK-{attack_version}"
@@ -34,7 +34,7 @@ def main():
 
             # build the controls and mappings STIX
             subprocess.run([sys.executable, "parse.py"])
-            os.chdir(os.path.join("..", "..", "..", "src"))
+            os.chdir(os.path.join("..", "..", ".."))
 
             # find the mapping and control files that were generated
             controls_file = find_file_with_suffix("-controls.json", os.path.join(framework_folder, "stix"))
@@ -42,7 +42,7 @@ def main():
 
             # run the utility scripts
             subprocess.run([
-                sys.executable, "mappings_to_heatmaps.py",
+                sys.executable, "src/mappings_to_heatmaps.py",
                 "-controls", os.path.join(framework_folder, "stix", controls_file),
                 "-mappings", os.path.join(framework_folder, "stix", mappings_file),
                 "-output", os.path.join(framework_folder, "layers"),
@@ -53,7 +53,7 @@ def main():
                 "--build-directory"
             ])
             subprocess.run([
-                sys.executable, "substitute.py",
+                sys.executable, "src/substitute.py",
                 "-controls", os.path.join(framework_folder, "stix", controls_file),
                 "-mappings", os.path.join(framework_folder, "stix", mappings_file),
                 "-output", os.path.join(framework_folder, "stix", f"{framework}-enterprise-attack.json"),
@@ -61,7 +61,7 @@ def main():
                 "-version", config["attack_version"]
             ])
             subprocess.run([
-                sys.executable, "list_mappings.py",
+                sys.executable, "src/list_mappings.py",
                 "-controls", os.path.join(framework_folder, "stix", controls_file),
                 "-mappings", os.path.join(framework_folder, "stix", mappings_file),
                 "-output", os.path.join(framework_folder, f"{framework}-mappings.xlsx"),
