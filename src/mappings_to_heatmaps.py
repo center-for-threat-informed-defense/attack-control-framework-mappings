@@ -246,99 +246,63 @@ def get_x_mitre(ms, object_type="course-of-action"):
                 keys.add(key)
     return keys
 
+def main(framework, controls, mappings, domain, version, output, clear, build_dir):
 
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Create ATT&CK Navigator layers from control mappings")
-    parser.add_argument("-framework",
-                        help="the name of the control framework",
-                        default="nist800_53_r4")
-    parser.add_argument("-controls",
-                        dest="controls",
-                        help="filepath to the stix bundle representing the control framework",
-                        default=os.path.join("..", "frameworks", "attack_9_0", "nist800_53_r4",
-                                             "stix", "nist800_53_r4-controls.json"))
-    parser.add_argument("-mappings",
-                        dest="mappings",
-                        help="filepath to the stix bundle mapping the controls to ATT&CK",
-                        default=os.path.join("..", "frameworks", "attack_9_0", "nist800_53_r4",
-                                             "stix", "nist800_53_r4-mappings.json"))
-    parser.add_argument("-domain",
-                        choices=["enterprise-attack", "mobile-attack"],
-                        help="the domain of ATT&CK to visualize",
-                        default="enterprise-attack")
-    parser.add_argument("-version",
-                        dest="version",
-                        help="which ATT&CK version to use",
-                        default="v9.0")
-    parser.add_argument("-output",
-                        help="folder to write output layers to",
-                        default=os.path.join("..", "frameworks", "attack_9_0", "nist800_53_r4", "layers"))
-    parser.add_argument("--clear",
-                        action="store_true",
-                        help="if flag specified, will remove the contents the output folder before writing layers")
-    parser.add_argument("--build-directory",
-                        dest="build_dir",
-                        action="store_true",
-                        help="if flag specified, will build a markdown file listing the output files for easy "
-                             "access in the Navigator")
-
-    args = parser.parse_args()
-
-    if args.version != "v9.0":
-        args.controls = args.controls.replace("attack_9_0", f"ATT&CK-{args.version}")
-        args.mappings = args.mappings.replace("attack_9_0", f"ATT&CK-{args.version}")
-        args.output = args.output.replace("attack_9_0", f"ATT&CK-{args.version}")
+    if version != "v9.0":
+        controls = controls.replace("attack_9_0", f"ATT&CK-{version}")
+        mappings = mappings.replace("attack_9_0", f"ATT&CK-{version}")
+        output = output.replace("attack_9_0", f"ATT&CK-{version}")
 
     print("downloading ATT&CK data... ", end="", flush=True)
-    url = f"https://raw.githubusercontent.com/mitre/cti/ATT%26CK-{args.version}/{args.domain}/{args.domain}.json"
+    url = f"https://raw.githubusercontent.com/mitre/cti/ATT%26CK-{version}/{domain}/{domain}.json"
     attack_data = MemoryStore(stix_data=requests.get(url, verify=True).json()["objects"])
     print("done")
 
     print("loading controls framework... ", end="", flush=True)
-    with open(args.controls, "r") as f:
+    with open(controls, "r") as f:
         controls = MemoryStore(stix_data=json.load(f)["objects"], allow_custom=True)
     print("done")
 
     print("loading mappings... ", end="", flush=True)
-    with open(args.mappings, "r") as f:
+    with open(mappings, "r") as f:
         mappings = MemoryStore(stix_data=json.load(f)["objects"])
     print("done")
 
     print("generating layers... ", end="", flush=True)
-    layers = get_framework_overview_layers(controls, mappings, attack_data, args.domain, args.framework, args.version)
+    layers = get_framework_overview_layers(controls, mappings, attack_data, domain, framework, version)
     for p in get_x_mitre(controls):  # iterate over all custom properties as potential layer-generation material
         if p == "x_mitre_family":
             continue
-        layers += get_layers_by_property(controls, mappings, attack_data, args.domain, args.framework, p, args.version)
+        layers += get_layers_by_property(controls, mappings, attack_data, domain, framework, p, version)
     print("done")
 
-    if args.clear:
+    if clear:
         print("clearing layers directory...", end="", flush=True)
-        shutil.rmtree(args.output)
+        shutil.rmtree(output)
         print("done")
 
     print("writing layers... ", end="", flush=True)
     for layer in layers:
         # make path if it doesn't exist
-        layerdir = os.path.dirname(os.path.join(args.output, layer["outfile"]))
+        layerdir = os.path.dirname(os.path.join(output, layer["outfile"]))
         if not os.path.exists(layerdir):
             os.makedirs(layerdir)
         # write layer
-        with open(os.path.join(args.output, layer["outfile"]), "w") as f:
+        with open(os.path.join(output, layer["outfile"]), "w") as f:
             json.dump(layer["layer"], f)
     print("done")
-    if args.build_dir:
+    if build_dir:
         print("writing layer directory markdown... ", end="", flush=True)
 
         mdfile_lines = [
             "# ATT&CK Navigator Layers",
             "",  # "" is an empty line
             f"The following [ATT&CK Navigator](https://github.com/mitre-attack/attack-navigator/) layers "
-            f"represent the mappings from ATT&CK to {args.framework}:",
+            f"represent the mappings from ATT&CK to {framework}:",
             "",
         ]
         prefix = (f"https://raw.githubusercontent.com/center-for-threat-informed-defense/"
-                  f"attack-control-framework-mappings/main/frameworks/ATT&CK-{args.version}")
+                  f"attack-control-framework-mappings/main/frameworks/ATT&CK-{version}")
         nav_prefix = "https://mitre-attack.github.io/attack-navigator/#layerURL="
 
         for layer in layers:
@@ -351,13 +315,13 @@ if __name__ == "__main__":
             layer_name = layer['layer']['name']
             if layer_name.endswith("overview"):
                 depth = max(0, depth - 1)  # overviews get un-indented
-            path = [prefix] + [args.framework, "layers"] + pathParts
+            path = [prefix] + [framework, "layers"] + pathParts
             path = "/".join(path)
             encodedPath = urllib.parse.quote(path, safe='~()*!.\'')  # encode the url for the query string
             md_line = f"{'    ' * depth}- {layer_name} ( [download]({path}) | [view]({nav_prefix}{encodedPath}) )"
             mdfile_lines.append(md_line)
 
-        with open(os.path.join(args.output, "README.md"), "w") as f:
+        with open(os.path.join(output, "README.md"), "w") as f:
             f.write("\n".join(mdfile_lines))
 
         print("done")

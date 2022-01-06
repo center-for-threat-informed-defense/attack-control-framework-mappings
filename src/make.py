@@ -44,7 +44,7 @@ def find_file_with_suffix(suffix, folder):
 def main():
     """rebuild all control frameworks from the input data"""
 
-    for attack_version in [ATTACK_10_1, ]:  # [ATTACK_8_2, ATTACK_9_0, ATTACK_10_1]:
+    for attack_version in [ATTACK_8_2, ATTACK_9_0, ATTACK_10_1]:
         for framework in [R4, R5]:
             # move to the framework folder
             versioned_folder = f"attack_{attack_version}"
@@ -79,33 +79,33 @@ def main():
             mappings_file = find_file_with_suffix("-mappings.json", os.path.join(framework_folder, "stix"))
 
             # run the utility scripts
-            subprocess.run([   # TODO: Refactor
-                sys.executable, "src/mappings_to_heatmaps.py",
-                "-controls", os.path.join(framework_folder, "stix", controls_file),
-                "-mappings", os.path.join(framework_folder, "stix", mappings_file),
-                "-output", os.path.join(framework_folder, "layers"),
-                "-domain", config["attack_domain"],
-                "-version", config["attack_version"],
-                "-framework", framework,
-                "--clear",
-                "--build-directory"
-            ])
-            subprocess.run([   # TODO: Refactor
-                sys.executable, "src/substitute.py",
-                "-controls", os.path.join(framework_folder, "stix", controls_file),
-                "-mappings", os.path.join(framework_folder, "stix", mappings_file),
-                "-output", os.path.join(framework_folder, "stix", f"{dashed_framework}-enterprise-attack.json"),
-                "-domain", config["attack_domain"],
-                "-version", config["attack_version"]
-            ])
-            subprocess.run([  # TODO: Refactor
-                sys.executable, "src/list_mappings.py",
-                "-controls", os.path.join(framework_folder, "stix", controls_file),
-                "-mappings", os.path.join(framework_folder, "stix", mappings_file),
-                "-output", os.path.join(framework_folder, f"{dashed_framework}-mappings.xlsx"),
-                "-domain", config["attack_domain"],
-                "-version", config["attack_version"]
-            ])
+            mappings_to_heatmaps.main(
+                framework=framework,
+                controls=os.path.join(framework_folder, "stix", controls_file),
+                mappings=os.path.join(framework_folder, "stix", mappings_file),
+                domain=config["attack_domain"],
+                version=config["attack_version"],
+                output=os.path.join(framework_folder, "layers"),
+                clear=True,
+                build_dir=True
+            )
+
+            substitute.main(
+                controls=os.path.join(framework_folder, "stix", controls_file),
+                mappings=os.path.join(framework_folder, "stix", mappings_file),
+                domain=config["attack_domain"],
+                version=config["attack_version"],
+                allow_unmapped=False,
+                output=os.path.join(framework_folder, "stix", f"{dashed_framework}-enterprise-attack.json"),
+            )
+
+            list_mappings.main(
+                controls=os.path.join(framework_folder, "stix", controls_file),
+                mappings=os.path.join(framework_folder, "stix", mappings_file),
+                domain=config["attack_domain"],
+                version=config["attack_version"],
+                output=os.path.join(framework_folder, f"{dashed_framework}-mappings.xlsx")
+            )
 
 
 if __name__ == "__main__":

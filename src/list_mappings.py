@@ -76,7 +76,7 @@ def workbook_changes(filename):
     workbook.save(filename)
 
 
-if __name__ == "__main__":
+def main(controls, mappings, domain, version, output):
     extensionToPDExport = {
         "xlsx": "to_excel",  # extension to df export function name
         "csv": "to_csv",
@@ -84,39 +84,13 @@ if __name__ == "__main__":
         "md": "to_markdown",
     }
     allowedExtensionList = ", ".join(extensionToPDExport.keys())
-    parser = argparse.ArgumentParser(description="List mappings in human readable formats")
-    parser.add_argument("-controls",
-                        dest="controls",
-                        help="filepath to the stix bundle representing the control framework",
-                        default=os.path.join("..", "frameworks", "attack_9_0", "nist800_53_r4",
-                                             "stix", "nist800-53-r4-controls.json"))
-    parser.add_argument("-mappings",
-                        dest="mappings",
-                        help="filepath to the stix bundle mapping the controls to ATT&CK",
-                        default=os.path.join("..", "frameworks", "attack_9_0", "nist800_53_r4",
-                                             "stix", "nist800-53-r4-mappings.json"))
-    parser.add_argument("-domain",
-                        dest="domain",
-                        help="which ATT&CK domain to use",
-                        default="enterprise-attack")
-    parser.add_argument("-version",
-                        dest="version",
-                        help="which ATT&CK version to use",
-                        default="v9.0")
-    parser.add_argument("-output",
-                        help=f"filepath to write the output mappings to. Output format will be "
-                             f"inferred from the extension. Allowed extensions: {allowedExtensionList}",
-                        default=os.path.join("..", "frameworks", "attack_9_0", "nist800_53_r4",
-                                             "nist800-53-r4-mappings.xlsx"))
 
-    args = parser.parse_args()
+    if version != "v9.0":
+        controls = controls.replace("attack_9_0", f"ATT&CK-{version}")
+        mappings = mappings.replace("attack_9_0", f"ATT&CK-{version}")
+        output = output.replace("attack_9_0", f"ATT&CK-{version}")
 
-    if args.version != "v9.0":
-        args.controls = args.controls.replace("attack_9_0", f"ATT&CK-{args.version}")
-        args.mappings = args.mappings.replace("attack_9_0", f"ATT&CK-{args.version}")
-        args.output = args.output.replace("attack_9_0", f"ATT&CK-{args.version}")
-
-    extension = args.output.split(".")[-1]
+    extension = output.split(".")[-1]
     if extension not in extensionToPDExport:
         msg = (f"ERROR: Unknown output extension \"{extension}\", please make "
                f"sure your output extension is one of: {allowedExtensionList}")
@@ -124,7 +98,7 @@ if __name__ == "__main__":
         exit()
 
     print("downloading ATT&CK data... ", end="", flush=True)
-    url = f"https://raw.githubusercontent.com/mitre/cti/ATT%26CK-{args.version}/{args.domain}/{args.domain}.json"
+    url = f"https://raw.githubusercontent.com/mitre/cti/ATT%26CK-{version}/{domain}/{domain}.json"
     attack_data = Bundle(
         requests.get(url, verify=True).json()["objects"],
         allow_custom=True
@@ -132,24 +106,24 @@ if __name__ == "__main__":
     print("done")
 
     print("loading controls framework... ", end="", flush=True)
-    with open(args.controls, "r") as f:
+    with open(controls, "r") as f:
         controls = Bundle(json.load(f)["objects"], allow_custom=True)
     print("done")
 
     print("loading mappings... ", end="", flush=True)
-    with open(args.mappings, "r") as f:
+    with open(mappings, "r") as f:
         mappings = Bundle(json.load(f)["objects"])
     df = mappings_to_df(attack_data, controls, mappings)
     print("done")
 
-    print(f"writing {args.output}...", end="", flush=True)
+    print(f"writing {output}...", end="", flush=True)
     if extension in ["md"]:  # md doesn't support index=False and requires a stream and not a path
-        with open(args.output, "w") as f:
+        with open(output, "w") as f:
             getattr(df, extensionToPDExport[extension])(f)
     else:
-        getattr(df, extensionToPDExport[extension])(args.output, index=False)
+        getattr(df, extensionToPDExport[extension])(output, index=False)
 
         if extension in ["xlsx"]:
-            workbook_changes(args.output)
+            workbook_changes(output)
 
         print("done")
