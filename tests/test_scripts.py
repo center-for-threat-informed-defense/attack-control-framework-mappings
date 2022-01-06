@@ -21,7 +21,7 @@ def dir_location():
 
 
 @pytest.mark.parametrize("attack_version", ["v8.2", "v9.0"])
-@pytest.mark.parametrize("rev", ["nist800-53-r4", "nist800-53-r5"])
+@pytest.mark.parametrize("rev", ["nist800_53_r4", "nist800_53_r5"])
 def test_list_mappings(dir_location, attack_domain, attack_version, rev):
     """Tests list_mappings.py with both framework entries"""
     rx_controls = pathlib.Path(dir_location, "frameworks", f"ATT&CK-{attack_version}", rev,
@@ -44,7 +44,7 @@ def test_list_mappings(dir_location, attack_domain, attack_version, rev):
 
 
 @pytest.mark.parametrize("attack_version", ["v8.2", "v9.0"])
-@pytest.mark.parametrize("rev", ["nist800-53-r4", "nist800-53-r5"])
+@pytest.mark.parametrize("rev", ["nist800_53_r4", "nist800_53_r5"])
 def test_mappings_to_heatmaps(dir_location, attack_domain, attack_version, rev):
     """Tests mappings_to_heatmaps.py with both framework entries"""
     rx_controls = pathlib.Path(dir_location, "frameworks", f"ATT&CK-{attack_version}", rev,
@@ -70,7 +70,7 @@ def test_mappings_to_heatmaps(dir_location, attack_domain, attack_version, rev):
 
 
 @pytest.mark.parametrize("attack_version", ["v8.2", "v9.0"])
-@pytest.mark.parametrize("rev", ["nist800-53-r4", "nist800-53-r5"])
+@pytest.mark.parametrize("rev", ["nist800_53_r4", "nist800_53_r5"])
 def test_substitute(dir_location, attack_domain, attack_version, rev):
     """Tests substitute.py with both frameworks"""
     rx_controls = pathlib.Path(dir_location, "frameworks", f"ATT&CK-{attack_version}", rev,
@@ -104,9 +104,9 @@ def test_make(dir_location):
 
 
 @pytest.mark.parametrize("attack_version", ["v8.2", "v9.0"])
-@pytest.mark.parametrize("rev", ["nist800-53-r4", "nist800-53-r5"])
+@pytest.mark.parametrize("rev", ["nist800_53_r4", "nist800_53_r5"])
 def test_parse_framework(dir_location, attack_version, rev):
-    """Tests parse.py with both frameworks"""
+    """Tests parse_r4.py.bak.bak.bak with both frameworks"""
     rx_input_controls = pathlib.Path(dir_location, "frameworks", f"ATT&CK-{attack_version}", rev,
                                      "input", f"{rev}-controls.tsv")
     rx_input_mappings = pathlib.Path(dir_location, "frameworks", f"ATT&CK-{attack_version}", rev,
@@ -117,7 +117,7 @@ def test_parse_framework(dir_location, attack_version, rev):
                                       "stix", f"{rev}-mappings.json")
     config_location = pathlib.Path(dir_location, "frameworks", f"ATT&CK-{attack_version}", rev,
                                    "input", "config.json")
-    script_location = f"{dir_location}/frameworks/ATT&CK-{attack_version}/{rev}/parse.py"
+    script_location = f"{dir_location}/frameworks/ATT&CK-{attack_version}/{rev}/parse_r4.py.bak.bak.bak"
     child_process = subprocess.Popen([
         sys.executable, script_location,
         "-input-controls", str(rx_input_controls),

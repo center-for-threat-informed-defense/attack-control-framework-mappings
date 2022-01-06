@@ -7,13 +7,8 @@ import list_mappings
 import mappings_to_heatmaps
 import substitute
 
-#  TODO: Refactor.
-sys.path.insert(1, os.path.join(sys.path[0], '..'))   # Add frameworks folder to path.
-import frameworks.attack_8_2.nist800_53_r5.parse
-import frameworks.attack_9_0.nist800_53_r5.parse
-import frameworks.attack_10_1.nist800_53_r5.parse
-
-import parse
+import parse_r4
+import parse_r5
 
 ATTACK_8_2 = "8_2"
 ATTACK_9_0 = "9_0"
@@ -24,16 +19,16 @@ R5 = "nist800_53_r5"
 
 parse_lookup = {
     ATTACK_8_2: {
-        R4: parse,
-        R5: frameworks.attack_8_2.nist800_53_r5.parse,
+        R4: parse_r4,
+        R5: parse_r5,
     },
     ATTACK_9_0: {
-        R4: parse,
-        R5: frameworks.attack_9_0.nist800_53_r5.parse,
+        R4: parse_r4,
+        R5: parse_r5,
     },
     ATTACK_10_1: {
-        R4: parse,
-        R5: frameworks.attack_10_1.nist800_53_r5.parse,
+        R4: parse_r4,
+        R5: parse_r5,
     }
 }
 
@@ -49,7 +44,7 @@ def find_file_with_suffix(suffix, folder):
 def main():
     """rebuild all control frameworks from the input data"""
 
-    for attack_version in [ATTACK_8_2, ATTACK_9_0, ATTACK_10_1]:
+    for attack_version in [ATTACK_10_1, ]:  # [ATTACK_8_2, ATTACK_9_0, ATTACK_10_1]:
         for framework in [R4, R5]:
             # move to the framework folder
             versioned_folder = f"attack_{attack_version}"
