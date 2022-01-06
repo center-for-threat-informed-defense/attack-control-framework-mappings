@@ -3,6 +3,40 @@ import os
 import subprocess
 import sys
 
+import list_mappings
+import mappings_to_heatmaps
+import substitute
+
+#  TODO: Refactor.
+sys.path.insert(1, os.path.join(sys.path[0], '..'))   # Add frameworks folder to path.
+import frameworks.attack_8_2.nist800_53_r5.parse
+import frameworks.attack_9_0.nist800_53_r5.parse
+import frameworks.attack_10_1.nist800_53_r5.parse
+
+import parse
+
+ATTACK_8_2 = "8_2"
+ATTACK_9_0 = "9_0"
+ATTACK_10_1 = "10_1"
+
+R4 = "nist800_53_r4"
+R5 = "nist800_53_r5"
+
+parse_lookup = {
+    ATTACK_8_2: {
+        R4: parse,
+        R5: frameworks.attack_8_2.nist800_53_r5.parse,
+    },
+    ATTACK_9_0: {
+        R4: parse,
+        R5: frameworks.attack_9_0.nist800_53_r5.parse,
+    },
+    ATTACK_10_1: {
+        R4: parse,
+        R5: frameworks.attack_10_1.nist800_53_r5.parse,
+    }
+}
+
 
 def find_file_with_suffix(suffix, folder):
     """find a file with the given suffix in the folder"""
@@ -15,33 +49,42 @@ def find_file_with_suffix(suffix, folder):
 def main():
     """rebuild all control frameworks from the input data"""
 
-    for attack_version in ["v8.2", "v9.0", "v10.1"]:
-        for framework in ["nist800-53-r4", "nist800-53-r5"]:
+    for attack_version in [ATTACK_8_2, ATTACK_9_0, ATTACK_10_1]:
+        for framework in [R4, R5]:
             # move to the framework folder
-            versioned_folder = f"ATT&CK-{attack_version}"
+            versioned_folder = f"attack_{attack_version}"
             framework_folder = os.path.join(os.path.dirname(os.path.dirname(__file__)), "frameworks",
                                             versioned_folder, framework)
-            os.chdir(framework_folder)
 
             # read the framework config
-            config_path = os.path.join("input", "config.json")
+            config_path = os.path.join(framework_folder, "input", "config.json")
             if not os.path.exists(config_path):
-                print("WARNING: framework has no config file, skipping")
-                os.chdir(os.path.join("..", "..", "..", "src"))
-                continue
+                raise FileExistsError(f"Config file does not exist: {config_path}")
             with open(config_path, "r") as f:
                 config = json.load(f)
 
             # build the controls and mappings STIX
-            subprocess.run([sys.executable, "parse.py"])
-            os.chdir(os.path.join("..", "..", ".."))
+            parse = parse_lookup[attack_version][framework]
+
+            dashed_framework = framework.replace('_', '-')
+            in_controls = os.path.join(framework_folder, "input", f"{dashed_framework}-controls.tsv")
+            in_mappings = os.path.join(framework_folder, "input", f"{dashed_framework}-mappings.tsv")
+            out_controls = os.path.join(framework_folder, "stix", f"{dashed_framework}-controls.json")
+            out_mappings = os.path.join(framework_folder, "stix", f"{dashed_framework}-mappings.json")
+            config_location = os.path.join(framework_folder, "input", "config.json")
+
+            parse.main(in_controls=in_controls,
+                       in_mappings=in_mappings,
+                       out_controls=out_controls,
+                       out_mappings=out_mappings,
+                       config_location=config_location)
 
             # find the mapping and control files that were generated
             controls_file = find_file_with_suffix("-controls.json", os.path.join(framework_folder, "stix"))
             mappings_file = find_file_with_suffix("-mappings.json", os.path.join(framework_folder, "stix"))
 
             # run the utility scripts
-            subprocess.run([
+            subprocess.run([   # TODO: Refactor
                 sys.executable, "src/mappings_to_heatmaps.py",
                 "-controls", os.path.join(framework_folder, "stix", controls_file),
                 "-mappings", os.path.join(framework_folder, "stix", mappings_file),
@@ -52,19 +95,19 @@ def main():
                 "--clear",
                 "--build-directory"
             ])
-            subprocess.run([
+            subprocess.run([   # TODO: Refactor
                 sys.executable, "src/substitute.py",
                 "-controls", os.path.join(framework_folder, "stix", controls_file),
                 "-mappings", os.path.join(framework_folder, "stix", mappings_file),
-                "-output", os.path.join(framework_folder, "stix", f"{framework}-enterprise-attack.json"),
+                "-output", os.path.join(framework_folder, "stix", f"{dashed_framework}-enterprise-attack.json"),
                 "-domain", config["attack_domain"],
                 "-version", config["attack_version"]
             ])
-            subprocess.run([
+            subprocess.run([  # TODO: Refactor
                 sys.executable, "src/list_mappings.py",
                 "-controls", os.path.join(framework_folder, "stix", controls_file),
                 "-mappings", os.path.join(framework_folder, "stix", mappings_file),
-                "-output", os.path.join(framework_folder, f"{framework}-mappings.xlsx"),
+                "-output", os.path.join(framework_folder, f"{dashed_framework}-mappings.xlsx"),
                 "-domain", config["attack_domain"],
                 "-version", config["attack_version"]
             ])

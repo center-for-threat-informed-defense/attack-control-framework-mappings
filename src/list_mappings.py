@@ -88,12 +88,12 @@ if __name__ == "__main__":
     parser.add_argument("-controls",
                         dest="controls",
                         help="filepath to the stix bundle representing the control framework",
-                        default=os.path.join("..", "frameworks", "ATT&CK-v9.0", "nist800-53-r4",
+                        default=os.path.join("..", "frameworks", "attack_9_0", "nist800_53_r4",
                                              "stix", "nist800-53-r4-controls.json"))
     parser.add_argument("-mappings",
                         dest="mappings",
                         help="filepath to the stix bundle mapping the controls to ATT&CK",
-                        default=os.path.join("..", "frameworks", "ATT&CK-v9.0", "nist800-53-r4",
+                        default=os.path.join("..", "frameworks", "attack_9_0", "nist800_53_r4",
                                              "stix", "nist800-53-r4-mappings.json"))
     parser.add_argument("-domain",
                         dest="domain",
@@ -106,15 +106,15 @@ if __name__ == "__main__":
     parser.add_argument("-output",
                         help=f"filepath to write the output mappings to. Output format will be "
                              f"inferred from the extension. Allowed extensions: {allowedExtensionList}",
-                        default=os.path.join("..", "frameworks", "ATT&CK-v9.0", "nist800-53-r4",
+                        default=os.path.join("..", "frameworks", "attack_9_0", "nist800_53_r4",
                                              "nist800-53-r4-mappings.xlsx"))
 
     args = parser.parse_args()
 
     if args.version != "v9.0":
-        args.controls = args.controls.replace("ATT&CK-v9.0", f"ATT&CK-{args.version}")
-        args.mappings = args.mappings.replace("ATT&CK-v9.0", f"ATT&CK-{args.version}")
-        args.output = args.output.replace("ATT&CK-v9.0", f"ATT&CK-{args.version}")
+        args.controls = args.controls.replace("attack_9_0", f"ATT&CK-{args.version}")
+        args.mappings = args.mappings.replace("attack_9_0", f"ATT&CK-{args.version}")
+        args.output = args.output.replace("attack_9_0", f"ATT&CK-{args.version}")
 
     extension = args.output.split(".")[-1]
     if extension not in extensionToPDExport:

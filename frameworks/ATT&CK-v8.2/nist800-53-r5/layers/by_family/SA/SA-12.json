@@ -1,1 +1,0 @@
-{"name": "SA-12 mappings", "versions": {"navigator": "4.3", "layer": "4.2", "attack": "8"}, "sorting": 3, "description": "nist800-53-r5 SA-12 mappings", "domain": "enterprise-attack", "techniques": [{"techniqueID": "T1078", "score": 1, "comment": "Mitigated by SA-12"}], "gradient": {"colors": ["#ffffff", "#66b1ff"], "minValue": 0, "maxValue": 1}}

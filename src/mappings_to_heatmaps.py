@@ -251,17 +251,17 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Create ATT&CK Navigator layers from control mappings")
     parser.add_argument("-framework",
                         help="the name of the control framework",
-                        default="nist800-53-r4")
+                        default="nist800_53_r4")
     parser.add_argument("-controls",
                         dest="controls",
                         help="filepath to the stix bundle representing the control framework",
-                        default=os.path.join("..", "frameworks", "ATT&CK-v9.0", "nist800-53-r4",
-                                             "stix", "nist800-53-r4-controls.json"))
+                        default=os.path.join("..", "frameworks", "attack_9_0", "nist800_53_r4",
+                                             "stix", "nist800_53_r4-controls.json"))
     parser.add_argument("-mappings",
                         dest="mappings",
                         help="filepath to the stix bundle mapping the controls to ATT&CK",
-                        default=os.path.join("..", "frameworks", "ATT&CK-v9.0", "nist800-53-r4",
-                                             "stix", "nist800-53-r4-mappings.json"))
+                        default=os.path.join("..", "frameworks", "attack_9_0", "nist800_53_r4",
+                                             "stix", "nist800_53_r4-mappings.json"))
     parser.add_argument("-domain",
                         choices=["enterprise-attack", "mobile-attack"],
                         help="the domain of ATT&CK to visualize",
@@ -272,7 +272,7 @@ if __name__ == "__main__":
                         default="v9.0")
     parser.add_argument("-output",
                         help="folder to write output layers to",
-                        default=os.path.join("..", "frameworks", "ATT&CK-v9.0", "nist800-53-r4", "layers"))
+                        default=os.path.join("..", "frameworks", "attack_9_0", "nist800_53_r4", "layers"))
     parser.add_argument("--clear",
                         action="store_true",
                         help="if flag specified, will remove the contents the output folder before writing layers")
@@ -285,9 +285,9 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     if args.version != "v9.0":
-        args.controls = args.controls.replace("ATT&CK-v9.0", f"ATT&CK-{args.version}")
-        args.mappings = args.mappings.replace("ATT&CK-v9.0", f"ATT&CK-{args.version}")
-        args.output = args.output.replace("ATT&CK-v9.0", f"ATT&CK-{args.version}")
+        args.controls = args.controls.replace("attack_9_0", f"ATT&CK-{args.version}")
+        args.mappings = args.mappings.replace("attack_9_0", f"ATT&CK-{args.version}")
+        args.output = args.output.replace("attack_9_0", f"ATT&CK-{args.version}")
 
     print("downloading ATT&CK data... ", end="", flush=True)
     url = f"https://raw.githubusercontent.com/mitre/cti/ATT%26CK-{args.version}/{args.domain}/{args.domain}.json"

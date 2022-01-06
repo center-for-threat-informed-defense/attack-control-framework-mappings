@@ -1,1 +1,0 @@
-{"name": "SA-19 mappings", "versions": {"navigator": "4.3", "layer": "4.2", "attack": "8"}, "sorting": 3, "description": "nist800-53-r4 SA-19 mappings", "domain": "enterprise-attack", "techniques": [{"techniqueID": "T1554", "score": 1, "comment": "Mitigated by SA-19"}], "gradient": {"colors": ["#ffffff", "#66b1ff"], "minValue": 0, "maxValue": 1}}

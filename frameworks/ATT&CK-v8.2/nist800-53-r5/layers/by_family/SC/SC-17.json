@@ -1,1 +1,0 @@
-{"name": "SC-17 mappings", "versions": {"navigator": "4.3", "layer": "4.2", "attack": "8"}, "sorting": 3, "description": "nist800-53-r5 SC-17 mappings", "domain": "enterprise-attack", "techniques": [{"techniqueID": "T1072", "score": 1, "comment": "Mitigated by SC-17"}], "gradient": {"colors": ["#ffffff", "#66b1ff"], "minValue": 0, "maxValue": 1}}

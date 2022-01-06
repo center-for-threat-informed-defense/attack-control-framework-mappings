@@ -44,13 +44,13 @@ if __name__ == "__main__":
     parser.add_argument("-controls",
                         dest="controls",
                         help="filepath to the stix bundle representing the control framework",
-                        default=os.path.join("..", "frameworks", "ATT&CK-v9.0", "nist800-53-r5",
-                                             "stix", "nist800-53-r5-controls.json"))
+                        default=os.path.join("..", "frameworks", "attack_9_0", "nist800_53_r5",
+                                             "stix", "nist800_53_r5-controls.json"))
     parser.add_argument("-mappings",
                         dest="mappings",
                         help="filepath to the stix bundle mapping the controls to ATT&CK",
-                        default=os.path.join("..", "frameworks", "ATT&CK-v9.0", "nist800-53-r5",
-                                             "stix", "nist800-53-r5-mappings.json"))
+                        default=os.path.join("..", "frameworks", "attack_9_0", "nist800_53_r5",
+                                             "stix", "nist800_53_r5-mappings.json"))
     parser.add_argument("-domain",
                         choices=["enterprise-attack", "mobile-attack", "pre-attack"],
                         help="the domain of ATT&CK to substitute",
@@ -67,15 +67,15 @@ if __name__ == "__main__":
                         default=False)
     parser.add_argument("-output",
                         help="filepath to write the output stix bundle to",
-                        default=os.path.join("..", "frameworks", "ATT&CK-v9.0", "nist800-53-r5",
-                                             "stix", "nist800-53-r5-enterprise-attack.json"))
+                        default=os.path.join("..", "frameworks", "attack_9_0", "nist800_53_r5",
+                                             "stix", "nist800_53_r5-enterprise-attack.json"))
 
     args = parser.parse_args()
 
     if args.version != "v9.0":
-        args.controls = args.controls.replace("ATT&CK-v9.0", f"ATT&CK-{args.version}")
-        args.mappings = args.mappings.replace("ATT&CK-v9.0", f"ATT&CK-{args.version}")
-        args.output = args.output.replace("ATT&CK-v9.0", f"ATT&CK-{args.version}")
+        args.controls = args.controls.replace("attack_9_0", f"ATT&CK-{args.version}")
+        args.mappings = args.mappings.replace("attack_9_0", f"ATT&CK-{args.version}")
+        args.output = args.output.replace("attack_9_0", f"ATT&CK-{args.version}")
 
     print("downloading ATT&CK data... ", end="", flush=True)
     url = f"https://raw.githubusercontent.com/mitre/cti/ATT%26CK-{args.version}/{args.domain}/{args.domain}.json"

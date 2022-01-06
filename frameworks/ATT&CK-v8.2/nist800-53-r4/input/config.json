@@ -1,6 +1,0 @@
-{
-    "framework_id": "NIST 800-53 Revision 4",
-    "attack_domain": "enterprise-attack",
-    "attack_version": "v8.2",
-    "mappings_version": "v1.3"
-}
