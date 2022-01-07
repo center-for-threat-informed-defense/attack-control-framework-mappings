@@ -1,4 +1,3 @@
-import argparse
 import json
 import os
 import re
@@ -245,6 +244,7 @@ def get_x_mitre(ms, object_type="course-of-action"):
             if key.startswith("x_mitre_"):
                 keys.add(key)
     return keys
+
 
 def main(framework, controls, mappings, domain, version, output, clear, build_dir):
 

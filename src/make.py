@@ -1,7 +1,5 @@
 import json
 import os
-import subprocess
-import sys
 
 import list_mappings
 import mappings_to_heatmaps

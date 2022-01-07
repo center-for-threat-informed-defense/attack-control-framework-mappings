@@ -1,6 +1,4 @@
-import argparse
 import json
-import os
 
 from colorama import Fore
 from stix2.v20 import Bundle
