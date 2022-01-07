@@ -1,1 +1,0 @@
-slug = 'attack-v8.2'
