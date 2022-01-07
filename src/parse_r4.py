@@ -20,9 +20,9 @@ def main(in_controls,
          out_mappings,
          config_location):
     """
-    parse the NIST 800-53 revision 4 or 5 controls and ATT&CK mappings into STIX2.0 bundles
-    :param in_controls: tsv file of NIST 800-53 revision 4 or 5 controls
-    :param in_mappings: tsv file mapping NIST 800-53 revision 4 or 5 controls to ATT&CK
+    parse the NIST 800-53 revision 4 controls and ATT&CK mappings into STIX2.0 bundles
+    :param in_controls: tsv file of NIST 800-53 revision 4 controls
+    :param in_mappings: tsv file mapping NIST 800-53 revision 4 controls to ATT&CK
     :param out_controls: output STIX bundle file for the controls. If this file already exists,
                          the STIX IDs within will be reused in the replacing file so that they
                          don't change between consecutive executions of this script.
