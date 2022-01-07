@@ -14,11 +14,11 @@ def save_bundle(bundle, path):
     print("done!")
 
 
-def main(in_controls=os.path.join("input", "nist800_53_r5-controls.tsv"),
-         in_mappings=os.path.join("input", "nist800_53_r5-mappings.tsv"),
-         out_controls=os.path.join("stix", "nist800_53_r5-controls.json"),
-         out_mappings=os.path.join("stix", "nist800_53_r5-mappings.json"),
-         config_location=os.path.join("input", "config.json")):
+def main(in_controls,
+         in_mappings,
+         out_controls,
+         out_mappings,
+         config_location):
     """
     parse the NIST 800-53 revision 5 controls and ATT&CK mappings into STIX2.0 bundles
     :param in_controls: tsv file of NIST 800-53 revision 4 controls
@@ -80,35 +80,3 @@ def main(in_controls=os.path.join("input", "nist800_53_r5-controls.tsv"),
     save_bundle(mappings, out_mappings)
 
     return out_controls, out_mappings
-
-
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser(
-        description="parse the NIST 800-53 revision 5 controls and ATT&CK mappings into a STIX2.0 bundle"
-    )
-    parser.add_argument("-input-controls",
-                        dest="in_controls",
-                        help="tsv file of NIST 800-53 revision 5 controls",
-                        default=os.path.join("input", "nist800_53_r5-controls.tsv"))
-    parser.add_argument("-input-mappings",
-                        dest="in_mappings",
-                        help="tsv file mapping NIST 800-53 revision 5 controls to ATT&CK",
-                        default=os.path.join("input", "nist800_53_r5-mappings.tsv"))
-    parser.add_argument("-output-controls",
-                        dest="out_controls",
-                        help="output STIX bundle file for the controls. If this file already exists, "
-                             "the STIX IDs within will be reused in the replacing file so that they "
-                             "don't change between consecutive executions of this script.",
-                        default=os.path.join("stix", "nist800_53_r5-controls.json"))
-    parser.add_argument("-output-mappings",
-                        dest="out_mappings",
-                        help="output STIX bundle file for the mappings.",
-                        default=os.path.join("stix", "nist800_53_r5-mappings.json"))
-    parser.add_argument("-config-location",
-                        dest="config_location",
-                        help="filepath to the configuration for the framework",
-                        default=os.path.join("input", "config.json"))
-
-    args = parser.parse_args()
-
-    main(**vars(args))
