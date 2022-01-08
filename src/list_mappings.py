@@ -1,30 +1,24 @@
 import json
 
 from colorama import Fore
-from stix2.v20 import Bundle
 import openpyxl
 import openpyxl.utils
 import pandas
-import requests
 
 
-def mappings_to_df(attack_bundle, controls_bundle, mappings_bundle):
+def mappings_to_df(mappings_bundle, stixid_to_object):
     """Return a pandas dataframe listing the mappings in mappings_bundle"""
     rows = []
-    for mapping in mappings_bundle.objects:
-        control = controls_bundle.get(mapping.source_ref)
+    for mapping in mappings_bundle:
+        control = stixid_to_object.get(mapping["source_ref"])
         if not control:
             print(Fore.RED + f"ERROR: cannot find object with ID {mapping.source_ref} in controls bundle" + Fore.RESET)
             exit()
-        else:
-            control = control[0]
 
-        technique = attack_bundle.get(mapping.target_ref)
+        technique = stixid_to_object.get(mapping["target_ref"])
         if not technique:
             print(Fore.RED + f"ERROR: cannot find object with ID {mapping.target_ref} in ATT&CK bundle" + Fore.RESET)
             exit()
-        else:
-            technique = technique[0]
 
         rows.append({
             "Control ID": control["external_references"][0]["external_id"],
@@ -74,7 +68,7 @@ def workbook_changes(filename):
     workbook.save(filename)
 
 
-def main(controls, mappings, domain, version, output):
+def main(attack, controls, mappings, output):
     extensionToPDExport = {
         "xlsx": "to_excel",  # extension to df export function name
         "csv": "to_csv",
@@ -82,39 +76,34 @@ def main(controls, mappings, domain, version, output):
         "md": "to_markdown",
     }
     allowedExtensionList = ", ".join(extensionToPDExport.keys())
-
-    if version != "v9.0":
-        controls = controls.replace("attack_9_0", f"ATT&CK-{version}")
-        mappings = mappings.replace("attack_9_0", f"ATT&CK-{version}")
-        output = output.replace("attack_9_0", f"ATT&CK-{version}")
-
     extension = output.split(".")[-1]
     if extension not in extensionToPDExport:
         msg = (f"ERROR: Unknown output extension \"{extension}\", please make "
                f"sure your output extension is one of: {allowedExtensionList}")
-        print(Fore.RED + msg, Fore.reset)
+        print(Fore.RED + msg + Fore.RESET)
         exit()
 
-    print("downloading ATT&CK data... ", end="", flush=True)
-    url = f"https://raw.githubusercontent.com/mitre/cti/ATT%26CK-{version}/{domain}/{domain}.json"
-    attack_data = Bundle(
-        requests.get(url, verify=True).json()["objects"],
-        allow_custom=True
-    )
+    print("loading ATT&CK data... ", end="", flush=True)
+    with open(attack, "r") as f:
+        attack = json.load(f)["objects"]
+        stixid_to_object = {obj["id"]: obj for obj in attack}
+        attack.clear()  # clear unused data
     print("done")
 
     print("loading controls framework... ", end="", flush=True)
     with open(controls, "r") as f:
-        controls = Bundle(json.load(f)["objects"], allow_custom=True)
+        controls = json.load(f)["objects"]
+        stixid_to_object.update({obj["id"]: obj for obj in controls})
+        controls.clear()  # clear unused data
     print("done")
 
     print("loading mappings... ", end="", flush=True)
     with open(mappings, "r") as f:
-        mappings = Bundle(json.load(f)["objects"])
-    df = mappings_to_df(attack_data, controls, mappings)
+        mappings = json.load(f)["objects"]
+    df = mappings_to_df(mappings, stixid_to_object)
     print("done")
 
-    print(f"writing {output}...", end="", flush=True)
+    print(f"writing {output}... ", end="", flush=True)
     if extension in ["md"]:  # md doesn't support index=False and requires a stream and not a path
         with open(output, "w") as f:
             getattr(df, extensionToPDExport[extension])(f)
