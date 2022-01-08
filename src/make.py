@@ -48,6 +48,7 @@ def main():
             versioned_folder = f"attack_{attack_version}"
             framework_folder = os.path.join(os.path.dirname(os.path.dirname(__file__)), "frameworks",
                                             versioned_folder, framework)
+            attack_resources_folder = os.path.join(os.path.dirname(__file__), "attack_resources")
 
             # read the framework config
             config_path = os.path.join(framework_folder, "input", "config.json")
@@ -72,9 +73,10 @@ def main():
                        out_mappings=out_mappings,
                        config_location=config_location)
 
-            # find the mapping and control files that were generated
+            # find the mapping and control files that were generated, and the local attack copy
             controls_file = find_file_with_suffix("-controls.json", os.path.join(framework_folder, "stix"))
             mappings_file = find_file_with_suffix("-mappings.json", os.path.join(framework_folder, "stix"))
+            attack_file = find_file_with_suffix(f"-{config['attack_version']}.json", attack_resources_folder)
 
             # run the utility scripts
             mappings_to_heatmaps.main(
@@ -98,10 +100,9 @@ def main():
             )
 
             list_mappings.main(
+                attack=os.path.join(attack_resources_folder, attack_file),
                 controls=os.path.join(framework_folder, "stix", controls_file),
                 mappings=os.path.join(framework_folder, "stix", mappings_file),
-                domain=config["attack_domain"],
-                version=config["attack_version"],
                 output=os.path.join(framework_folder, f"{dashed_framework}-mappings.xlsx")
             )
 
