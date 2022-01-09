@@ -53,7 +53,7 @@ def parse_mappings(mappings_path, controls, relationship_ids, attack_location):
     for attack_object in tqdm(attack_data, desc="parsing ATT&CK data", bar_format=tqdm_format):
         if not attack_object["type"] == "relationship":
             # skip objects without IDs
-            if attack_object.get("external_references"):
+            if "external_references" not in attack_object:
                 continue
             # skip deprecated and revoked objects
             if attack_object.get("revoked", False):

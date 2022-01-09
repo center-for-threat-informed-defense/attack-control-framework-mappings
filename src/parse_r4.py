@@ -10,7 +10,7 @@ def save_bundle(bundle, path):
     print(f"{'overwriting' if os.path.exists(path) else 'writing'} {path}... ", end="", flush=True)
     with open(path, "w", encoding="utf-8") as outfile:
         bundle.fp_serialize(outfile, indent=4, sort_keys=True, ensure_ascii=False)
-    print("done!")
+    print("done")
 
 
 def main(in_controls,
