@@ -60,50 +60,60 @@ def main():
             # build the controls and mappings STIX
             parse = parse_lookup[attack_version][framework]
 
+            # find local attack copy location
+            attack_file = find_file_with_suffix(f"-{config['attack_version']}.json", attack_resources_folder)
+
             dashed_framework = framework.replace('_', '-')
             in_controls = os.path.join(framework_folder, "input", f"{dashed_framework}-controls.tsv")
             in_mappings = os.path.join(framework_folder, "input", f"{dashed_framework}-mappings.tsv")
             out_controls = os.path.join(framework_folder, "stix", f"{dashed_framework}-controls.json")
             out_mappings = os.path.join(framework_folder, "stix", f"{dashed_framework}-mappings.json")
             config_location = os.path.join(framework_folder, "input", "config.json")
+            attack_location = os.path.join(attack_resources_folder, attack_file)
 
             parse.main(in_controls=in_controls,
                        in_mappings=in_mappings,
                        out_controls=out_controls,
                        out_mappings=out_mappings,
-                       config_location=config_location)
+                       config_location=config_location,
+                       attack_location=attack_location)
 
-            # find the mapping and control files that were generated, and the local attack copy
+            # find the mapping and control files that were generated
             controls_file = find_file_with_suffix("-controls.json", os.path.join(framework_folder, "stix"))
             mappings_file = find_file_with_suffix("-mappings.json", os.path.join(framework_folder, "stix"))
-            attack_file = find_file_with_suffix(f"-{config['attack_version']}.json", attack_resources_folder)
+
+            controls = os.path.join(framework_folder, "stix", controls_file)
+            mappings = os.path.join(framework_folder, "stix", mappings_file)
+            out_layers = os.path.join(framework_folder, "layers")
+            out_enterprise = os.path.join(framework_folder, "stix", f"{dashed_framework}-enterprise-attack.json")
+            out_xlsx = os.path.join(framework_folder, f"{dashed_framework}-mappings.xlsx")
 
             # run the utility scripts
             mappings_to_heatmaps.main(
                 framework=framework,
-                attack=os.path.join(attack_resources_folder, attack_file),
-                controls=os.path.join(framework_folder, "stix", controls_file),
-                mappings=os.path.join(framework_folder, "stix", mappings_file),
+                attack=attack_location,
+                controls=controls,
+                mappings=mappings,
                 domain=config["attack_domain"],
                 version=config["attack_version"],
-                output=os.path.join(framework_folder, "layers"),
+                output=out_layers,
                 clear=True,
                 build_dir=True
             )
 
             substitute.main(
-                attack=os.path.join(attack_resources_folder, attack_file),
-                controls=os.path.join(framework_folder, "stix", controls_file),
-                mappings=os.path.join(framework_folder, "stix", mappings_file),
+                attack=attack_location,
+                controls=controls,
+                mappings=mappings,
                 allow_unmapped=False,
-                output=os.path.join(framework_folder, "stix", f"{dashed_framework}-enterprise-attack.json"),
+                output=out_enterprise
             )
 
             list_mappings.main(
-                attack=os.path.join(attack_resources_folder, attack_file),
-                controls=os.path.join(framework_folder, "stix", controls_file),
-                mappings=os.path.join(framework_folder, "stix", mappings_file),
-                output=os.path.join(framework_folder, f"{dashed_framework}-mappings.xlsx")
+                attack=attack_location,
+                controls=controls,
+                mappings=mappings,
+                output=out_xlsx
             )
 
 

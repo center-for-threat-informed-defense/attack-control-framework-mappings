@@ -5,7 +5,6 @@ from colorama import Fore
 from stix2.v20 import Bundle, Relationship
 from tqdm import tqdm
 import pandas as pd
-import requests
 
 
 def dict_regex_lookup(the_dict, regex_str):
@@ -29,7 +28,7 @@ def dict_regex_lookup(the_dict, regex_str):
     return values
 
 
-def parse_mappings(mappings_path, controls, relationship_ids, config_location):
+def parse_mappings(mappings_path, controls, relationship_ids, attack_location):
     """parse the NIST800-53 revision 4 mappings and return a STIX bundle
     of relationships mapping the controls to ATT&CK
 
@@ -37,22 +36,14 @@ def parse_mappings(mappings_path, controls, relationship_ids, config_location):
     :param controls: a stix2.Bundle representing the controls framework
     :param relationship_ids: is a dict of format {relationship-source-id---relationship-target-id: relationship-id}
                              which maps relationships to desired STIX IDs
-    :param config_location: the filepath to the configuration JSON file.
+    :param attack_location: the filepath to the ATT&CK content JSON file.
     """
-    print("reading framework config...", end="", flush=True)
-    # load the mapping config
-    with open(config_location, "r") as f:
-        config = json.load(f)
-        version = config["attack_version"]
-        domain = config["attack_domain"]
-    print("done")
-
     tqdm_format = "{desc}: {percentage:3.0f}% |{bar}| {elapsed}<{remaining}{postfix}"
 
     # load ATT&CK STIX data
-    print("downloading ATT&CK data... ", end="", flush=True)
-    url = f"https://raw.githubusercontent.com/mitre/cti/ATT%26CK-{version}/{domain}/{domain}.json"
-    attack_data = requests.get(url, verify=True).json()["objects"]
+    print("loading ATT&CK data... ", end="", flush=True)
+    with open(attack_location, "r") as f:
+        attack_data = json.load(f)["objects"]
     print("done")
 
     # build mapping of attack ID to stixID
@@ -60,12 +51,12 @@ def parse_mappings(mappings_path, controls, relationship_ids, config_location):
     for attack_object in tqdm(attack_data, desc="parsing ATT&CK data", bar_format=tqdm_format):
         if not attack_object["type"] == "relationship":
             # skip objects without IDs
-            if "external_references" not in attack_object:
+            if attack_object.get("external_references"):
                 continue
             # skip deprecated and revoked objects
-            if "revoked" in attack_object and attack_object["revoked"]:
+            if attack_object.get("revoked", False):
                 continue
-            if "x_mitre_deprecated" in attack_object and attack_object["x_mitre_deprecated"]:
+            if attack_object.get("x_mitre_deprecated", False):
                 continue
             # map attackID to stixID
             attack_id_to_stix_id[attack_object["external_references"][0]["external_id"]] = attack_object["id"]

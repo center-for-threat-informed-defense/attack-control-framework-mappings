@@ -17,7 +17,8 @@ def main(in_controls,
          in_mappings,
          out_controls,
          out_mappings,
-         config_location):
+         config_location,
+         attack_location):
     """
     parse the NIST 800-53 revision 4 controls and ATT&CK mappings into STIX2.0 bundles
     :param in_controls: tsv file of NIST 800-53 revision 4 controls
@@ -27,6 +28,7 @@ def main(in_controls,
                          don't change between consecutive executions of this script.
     :param out_mappings: output STIX bundle file for the mappings.
     :param config_location: the filepath to the configuration JSON file.
+    :param attack_location: the filepath to the ATT&CK content JSON file.
 
     :returns tuple: containing the output controls and mappings (out_controls, out_mappings)
     """
@@ -72,7 +74,7 @@ def main(in_controls,
         in_mappings,
         controls,
         mapping_relationship_ids,
-        config_location,
+        attack_location,
     )
 
     save_bundle(controls, out_controls)
