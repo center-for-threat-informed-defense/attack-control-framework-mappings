@@ -69,17 +69,17 @@ def workbook_changes(filename):
 
 
 def main(attack, controls, mappings, output):
-    extensionToPDExport = {
+    extension_to_pd_export = {
         "xlsx": "to_excel",  # extension to df export function name
         "csv": "to_csv",
         "html": "to_html",
         "md": "to_markdown",
     }
-    allowedExtensionList = ", ".join(extensionToPDExport.keys())
+    allowed_extension_list = ", ".join(extension_to_pd_export.keys())
     extension = output.split(".")[-1]
-    if extension not in extensionToPDExport:
+    if extension not in extension_to_pd_export:
         msg = (f"ERROR: Unknown output extension \"{extension}\", please make "
-               f"sure your output extension is one of: {allowedExtensionList}")
+               f"sure your output extension is one of: {allowed_extension_list}")
         print(Fore.RED + msg + Fore.RESET)
         exit()
 
@@ -106,9 +106,9 @@ def main(attack, controls, mappings, output):
     print(f"writing {output}... ", end="", flush=True)
     if extension in ["md"]:  # md doesn't support index=False and requires a stream and not a path
         with open(output, "w") as f:
-            getattr(df, extensionToPDExport[extension])(f)
+            getattr(df, extension_to_pd_export[extension])(f)
     else:
-        getattr(df, extensionToPDExport[extension])(output, index=False)
+        getattr(df, extension_to_pd_export[extension])(output, index=False)
 
         if extension in ["xlsx"]:
             workbook_changes(output)

@@ -81,6 +81,7 @@ def main():
             # run the utility scripts
             mappings_to_heatmaps.main(
                 framework=framework,
+                attack=os.path.join(attack_resources_folder, attack_file),
                 controls=os.path.join(framework_folder, "stix", controls_file),
                 mappings=os.path.join(framework_folder, "stix", mappings_file),
                 domain=config["attack_domain"],
@@ -91,10 +92,9 @@ def main():
             )
 
             substitute.main(
+                attack=os.path.join(attack_resources_folder, attack_file),
                 controls=os.path.join(framework_folder, "stix", controls_file),
                 mappings=os.path.join(framework_folder, "stix", mappings_file),
-                domain=config["attack_domain"],
-                version=config["attack_version"],
                 allow_unmapped=False,
                 output=os.path.join(framework_folder, "stix", f"{dashed_framework}-enterprise-attack.json"),
             )
