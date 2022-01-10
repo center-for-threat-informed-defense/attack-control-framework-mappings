@@ -35,7 +35,7 @@ def main(in_controls,
 
     # build control ID helper lookups so that STIX IDs don't get replaced on each rebuild
     control_ids = {}
-    control_relationship_ids = {}
+    control_relationship_ids = {"subcontrol-of": {}, "related-to": {}}
     if os.path.exists(out_controls):
         # parse idMappings from existing output so that IDs don't change when regenerated
         with open(out_controls, "r") as f:
@@ -49,7 +49,8 @@ def main(in_controls,
                 # parse relationships
                 from_ids = f"{sdo['source_ref']}---{sdo['target_ref']}"
                 to_id = sdo["id"]
-                control_relationship_ids[from_ids] = to_id
+                rel_type = sdo["relationship_type"]
+                control_relationship_ids[rel_type][from_ids] = to_id
 
     # build controls in STIX
     controls = parse_controls(

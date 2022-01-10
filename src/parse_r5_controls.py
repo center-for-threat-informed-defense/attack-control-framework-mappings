@@ -150,12 +150,14 @@ def parse_controls(control_path, control_ids, relationship_ids, config_location)
             target_id = control_ids[control.parent_id]
             source_id = control.stix_id
             joined_id = f"{source_id}---{target_id}"
+            rel_type = "subcontrol-of"
+            subcontrols_refs = relationship_ids.get(rel_type, {})
 
             relationships.append(Relationship(
-                id=relationship_ids[joined_id] if joined_id in relationship_ids else None,
+                id=subcontrols_refs[joined_id] if joined_id in subcontrols_refs else None,
                 source_ref=source_id,
                 target_ref=target_id,
-                relationship_type="subcontrol-of"
+                relationship_type=rel_type
             ))
 
         if len(control.related) > 0:
@@ -166,11 +168,14 @@ def parse_controls(control_path, control_ids, relationship_ids, config_location)
                 source_id = control.stix_id
                 target_id = control_ids[related_id]
                 joined_id = f"{source_id}---{target_id}"
+                rel_type = "related-to"
+                related_refs = relationship_ids.get(rel_type, {})
+
                 relationships.append(Relationship(
-                    id=relationship_ids[joined_id] if joined_id in relationship_ids else None,
+                    id=related_refs[joined_id] if joined_id in related_refs else None,
                     source_ref=source_id,
                     target_ref=target_id,
-                    relationship_type="related-to"
+                    relationship_type=rel_type
                 ))
 
     return Bundle(*itertools.chain(stix_controls, relationships))
