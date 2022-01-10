@@ -48,7 +48,8 @@ def main():
             versioned_folder = f"attack_{attack_version}"
             framework_folder = os.path.join(os.path.dirname(os.path.dirname(__file__)), "frameworks",
                                             versioned_folder, framework)
-            attack_resources_folder = os.path.join(os.path.dirname(__file__), "attack_resources")
+            attack_resources_folder = os.path.join(os.path.dirname(os.path.dirname(__file__)), "data",
+                                                   "attack")
 
             # read the framework config
             config_path = os.path.join(framework_folder, "input", "config.json")

@@ -44,7 +44,7 @@ def test_list_mappings(dir_location, attack_domain, attack_version, rev):
                                "stix", f"{dashed_rev}-mappings.json")
     output_location = pathlib.Path(dir_location, "frameworks", f"attack_{attack_version_filepath}", rev,
                                    f"{dashed_rev}-mappings.xlsx")
-    attack_location = pathlib.Path(dir_location, "src", "attack_resources",
+    attack_location = pathlib.Path(dir_location, "data", "attack",
                                    f"enterprise-attack-{attack_version}.json")
 
     list_mappings.main(
@@ -67,7 +67,7 @@ def test_mappings_to_heatmaps(dir_location, attack_domain, attack_version, rev):
                                "stix", f"{dashed_rev}-mappings.json")
     output_location = pathlib.Path(dir_location, "frameworks", f"attack_{attack_version_filepath}", rev,
                                    "layers")
-    attack_location = pathlib.Path(dir_location, "src", "attack_resources",
+    attack_location = pathlib.Path(dir_location, "data", "attack",
                                    f"enterprise-attack-{attack_version}.json")
 
     mappings_to_heatmaps.main(
@@ -95,7 +95,7 @@ def test_substitute(dir_location, attack_domain, attack_version, rev):
                                "stix", f"{dashed_rev}-mappings.json")
     output_location = pathlib.Path(dir_location, "frameworks", f"attack_{attack_version_filepath}", rev,
                                    "stix", f"{dashed_rev}-enterprise-attack.json")
-    attack_location = pathlib.Path(dir_location, "src", "attack_resources",
+    attack_location = pathlib.Path(dir_location, "data", "attack",
                                    f"enterprise-attack-{attack_version}.json")
 
     substitute.main(
@@ -133,7 +133,7 @@ def test_parse_framework(dir_location, attack_version, rev):
                                       "stix", f"{dashed_rev}-mappings.json")
     config_location = pathlib.Path(dir_location, "frameworks", f"attack_{attack_version_filepath}", rev,
                                    "input", "config.json")
-    attack_location = pathlib.Path(dir_location, "src", "attack_resources",
+    attack_location = pathlib.Path(dir_location, "data", "attack",
                                    f"enterprise-attack-{attack_version}.json")
 
     if rev == R4:
