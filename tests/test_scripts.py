@@ -44,12 +44,13 @@ def test_list_mappings(dir_location, attack_domain, attack_version, rev):
                                "stix", f"{dashed_rev}-mappings.json")
     output_location = pathlib.Path(dir_location, "frameworks", f"attack_{attack_version_filepath}", rev,
                                    f"{dashed_rev}-mappings.xlsx")
+    attack_location = pathlib.Path(dir_location, "src", "attack_resources",
+                                   f"enterprise-attack-{attack_version}.json")
 
     list_mappings.main(
+        attack=str(attack_location),
         controls=str(rx_controls),
         mappings=str(rx_mappings),
-        domain=attack_domain,
-        version=attack_version,
         output=str(output_location)
     )
 
@@ -66,9 +67,12 @@ def test_mappings_to_heatmaps(dir_location, attack_domain, attack_version, rev):
                                "stix", f"{dashed_rev}-mappings.json")
     output_location = pathlib.Path(dir_location, "frameworks", f"attack_{attack_version_filepath}", rev,
                                    "layers")
+    attack_location = pathlib.Path(dir_location, "src", "attack_resources",
+                                   f"enterprise-attack-{attack_version}.json")
 
     mappings_to_heatmaps.main(
         framework=rev,
+        attack=str(attack_location),
         controls=str(rx_controls),
         mappings=str(rx_mappings),
         domain=attack_domain,
@@ -91,12 +95,13 @@ def test_substitute(dir_location, attack_domain, attack_version, rev):
                                "stix", f"{dashed_rev}-mappings.json")
     output_location = pathlib.Path(dir_location, "frameworks", f"attack_{attack_version_filepath}", rev,
                                    "stix", f"{dashed_rev}-enterprise-attack.json")
+    attack_location = pathlib.Path(dir_location, "src", "attack_resources",
+                                   f"enterprise-attack-{attack_version}.json")
 
     substitute.main(
+        attack=str(attack_location),
         controls=str(rx_controls),
         mappings=str(rx_mappings),
-        domain=attack_domain,
-        version=attack_version,
         output=str(output_location),
         allow_unmapped=True
     )
@@ -128,6 +133,8 @@ def test_parse_framework(dir_location, attack_version, rev):
                                       "stix", f"{dashed_rev}-mappings.json")
     config_location = pathlib.Path(dir_location, "frameworks", f"attack_{attack_version_filepath}", rev,
                                    "input", "config.json")
+    attack_location = pathlib.Path(dir_location, "src", "attack_resources",
+                                   f"enterprise-attack-{attack_version}.json")
 
     if rev == R4:
         parse = parse_r4
@@ -141,5 +148,6 @@ def test_parse_framework(dir_location, attack_version, rev):
         in_mappings=str(rx_input_mappings),
         out_controls=str(rx_output_controls),
         out_mappings=str(rx_output_mappings),
-        config_location=str(config_location)
+        config_location=str(config_location),
+        attack_location=str(attack_location),
     )
