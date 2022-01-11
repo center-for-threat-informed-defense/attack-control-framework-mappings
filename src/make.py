@@ -65,8 +65,10 @@ def main():
             attack_file = find_file_with_suffix(f"-{config['attack_version']}.json", attack_resources_folder)
 
             dashed_framework = framework.replace('_', '-')
+            dashed_attack_version = attack_version.replace('_','-')
             in_controls = os.path.join("data", "controls", f"{dashed_framework}-controls.tsv")
-            in_mappings = os.path.join(framework_folder, "input", f"{dashed_framework}-mappings.tsv")
+            in_mappings = os.path.join("data", "mappings",
+                                       f"attack-{dashed_attack_version}-to-{dashed_framework}-mappings.tsv")
             out_controls = os.path.join(framework_folder, "stix", f"{dashed_framework}-controls.json")
             out_mappings = os.path.join(framework_folder, "stix", f"{dashed_framework}-mappings.json")
             config_location = os.path.join(framework_folder, "input", "config.json")
