@@ -30,7 +30,7 @@ def dict_regex_lookup(the_dict, regex_str):
     return values
 
 
-def parse_mappings(mappings_path, controls, relationship_ids, attack_location):
+def parse_mappings(mappings_path, controls, relationship_ids, attack_data):
     """parse the NIST800-53 revision 4 mappings and return a STIX bundle
     of relationships mapping the controls to ATT&CK
 
@@ -38,19 +38,14 @@ def parse_mappings(mappings_path, controls, relationship_ids, attack_location):
     :param controls: a stix2.Bundle representing the controls framework
     :param relationship_ids: is a dict of format {relationship-source-id---relationship-target-id: relationship-id}
                              which maps relationships to desired STIX IDs
-    :param attack_location: the filepath to the ATT&CK content JSON file
+    :param attack_data: ATT&CK content
     """
     tqdm_format = "{desc}: {percentage:3.0f}% |{bar}| {elapsed}<{remaining}{postfix}"
-
-    # load ATT&CK STIX data
-    print("loading ATT&CK data... ", end="", flush=True)
-    with open(attack_location, "r") as f:
-        attack_data = json.load(f)["objects"]
-    print("done")
+    attack_objects = attack_data["objects"]
 
     # build mapping of attack ID to stixID
     attack_id_to_stix_id = {}
-    for attack_object in tqdm(attack_data, desc="parsing ATT&CK data", bar_format=tqdm_format):
+    for attack_object in tqdm(attack_objects, desc="parsing ATT&CK data", bar_format=tqdm_format):
         if not attack_object["type"] == "relationship":
             # skip objects without IDs
             if not attack_object.get("external_references"):

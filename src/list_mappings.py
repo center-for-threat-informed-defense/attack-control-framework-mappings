@@ -68,7 +68,7 @@ def workbook_changes(filename):
     workbook.save(filename)
 
 
-def main(attack, controls, mappings, output):
+def main(attack_data, controls, mappings, output):
     extension_to_pd_export = {
         "xlsx": "to_excel",  # extension to df export function name
         "csv": "to_csv",
@@ -83,12 +83,8 @@ def main(attack, controls, mappings, output):
         print(Fore.RED + msg + Fore.RESET)
         exit()
 
-    print("loading ATT&CK data... ", end="", flush=True)
-    with open(attack, "r") as f:
-        attack = json.load(f)["objects"]
-        stixid_to_object = {obj["id"]: obj for obj in attack}
-        attack.clear()  # clear unused data
-    print("done")
+    attack_objects = attack_data["objects"]
+    stixid_to_object = {obj["id"]: obj for obj in attack_objects}
 
     print("loading controls framework... ", end="", flush=True)
     with open(controls, "r") as f:

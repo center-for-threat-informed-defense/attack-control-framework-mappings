@@ -1,3 +1,4 @@
+import json
 import os
 import pathlib
 import subprocess
@@ -11,19 +12,26 @@ import parse_r4
 import parse_r5
 import substitute
 
-
-ATTACK_VERSIONS = ["v8.2", "v9.0", "v10.1"]
+ATTACK_8_2 = "v8.2"
+ATTACK_9_0 = "v9.0"
+ATTACK_10_1 = "v10.1"
+ATTACK_VERSIONS = [ATTACK_8_2, ATTACK_9_0, ATTACK_10_1]
 R4 = "nist800_53_r4"
 R5 = "nist800_53_r5"
 NIST_REVS = [R4, R5]
 
 
-@pytest.fixture()
-def attack_domain():
-    return "enterprise-attack"
+def get_attack_data(attack_version):
+    if attack_version not in ATTACK_VERSIONS:
+        raise ValueError(f"Unknown ATT&CK version: {attack_version}")
+    attack_data_location = os.path.join("data", "attack", f"enterprise-attack-{attack_version}.json")
+    with open(attack_data_location, "r") as f:
+        attack_data = json.load(f)
+
+    return attack_data
 
 
-@pytest.fixture()
+@pytest.fixture
 def dir_location():
     cwd = os.getcwd()
     if "tests" in cwd:
@@ -34,7 +42,7 @@ def dir_location():
 
 @pytest.mark.parametrize("attack_version", ATTACK_VERSIONS)
 @pytest.mark.parametrize("rev", NIST_REVS)
-def test_list_mappings(dir_location, attack_domain, attack_version, rev):
+def test_list_mappings(dir_location, attack_version, rev):
     """Tests list_mappings.py with both framework entries"""
     dashed_rev = rev.replace('_', '-')
     attack_version_filepath = attack_version.replace('.', '_')[1:]  # turn v10.1 into 10_1
@@ -44,11 +52,10 @@ def test_list_mappings(dir_location, attack_domain, attack_version, rev):
                                "stix", f"{dashed_rev}-mappings.json")
     output_location = pathlib.Path(dir_location, "frameworks", f"attack_{attack_version_filepath}", rev,
                                    f"{dashed_rev}-mappings.xlsx")
-    attack_location = pathlib.Path(dir_location, "data", "attack",
-                                   f"enterprise-attack-{attack_version}.json")
+    attack_data = get_attack_data(attack_version)
 
     list_mappings.main(
-        attack=str(attack_location),
+        attack_data=attack_data,
         controls=str(rx_controls),
         mappings=str(rx_mappings),
         output=str(output_location)
@@ -57,7 +64,7 @@ def test_list_mappings(dir_location, attack_domain, attack_version, rev):
 
 @pytest.mark.parametrize("attack_version", ATTACK_VERSIONS)
 @pytest.mark.parametrize("rev", NIST_REVS)
-def test_mappings_to_heatmaps(dir_location, attack_domain, attack_version, rev):
+def test_mappings_to_heatmaps(dir_location, attack_version, rev):
     """Tests mappings_to_heatmaps.py with both framework entries"""
     dashed_rev = rev.replace('_', '-')
     attack_version_filepath = attack_version.replace('.', '_')[1:]  # turn v10.1 into 10_1
@@ -67,15 +74,14 @@ def test_mappings_to_heatmaps(dir_location, attack_domain, attack_version, rev):
                                "stix", f"{dashed_rev}-mappings.json")
     output_location = pathlib.Path(dir_location, "frameworks", f"attack_{attack_version_filepath}", rev,
                                    "layers")
-    attack_location = pathlib.Path(dir_location, "data", "attack",
-                                   f"enterprise-attack-{attack_version}.json")
+    attack_data = get_attack_data(attack_version)
 
     mappings_to_heatmaps.main(
         framework=rev,
-        attack=str(attack_location),
+        attack_data=attack_data,
         controls=str(rx_controls),
         mappings=str(rx_mappings),
-        domain=attack_domain,
+        domain="enterprise-attack",
         version=attack_version,
         output=str(output_location),
         clear=True,
@@ -85,7 +91,7 @@ def test_mappings_to_heatmaps(dir_location, attack_domain, attack_version, rev):
 
 @pytest.mark.parametrize("attack_version", ATTACK_VERSIONS)
 @pytest.mark.parametrize("rev", NIST_REVS)
-def test_substitute(dir_location, attack_domain, attack_version, rev):
+def test_substitute(dir_location, attack_version, rev):
     """Tests substitute.py with both frameworks"""
     dashed_rev = rev.replace('_', '-')
     attack_version_filepath = attack_version.replace('.', '_')[1:]  # turn v10.1 into 10_1
@@ -95,11 +101,10 @@ def test_substitute(dir_location, attack_domain, attack_version, rev):
                                "stix", f"{dashed_rev}-mappings.json")
     output_location = pathlib.Path(dir_location, "frameworks", f"attack_{attack_version_filepath}", rev,
                                    "stix", f"{dashed_rev}-enterprise-attack.json")
-    attack_location = pathlib.Path(dir_location, "data", "attack",
-                                   f"enterprise-attack-{attack_version}.json")
+    attack_data = get_attack_data(attack_version)
 
     substitute.main(
-        attack=str(attack_location),
+        attack_data=attack_data,
         controls=str(rx_controls),
         mappings=str(rx_mappings),
         output=str(output_location),
@@ -131,6 +136,7 @@ def test_parse_framework(dir_location, attack_version, rev):
                                       "stix", f"{dashed_rev}-controls.json")
     rx_output_mappings = pathlib.Path(dir_location, "frameworks", f"attack_{attack_version_filepath}", rev,
                                       "stix", f"{dashed_rev}-mappings.json")
+    attack_data = get_attack_data(attack_version)
     if rev == R4:
         parse = parse_r4
         framework_id = "NIST 800-53 Revision 4"
@@ -140,14 +146,11 @@ def test_parse_framework(dir_location, attack_version, rev):
     else:
         raise ValueError(f"Unknown revision: {rev}")
 
-    attack_location = pathlib.Path(dir_location, "data", "attack",
-                                   f"enterprise-attack-{attack_version}.json")
-
     parse.main(
         in_controls=str(rx_input_controls),
         in_mappings=str(rx_input_mappings),
         out_controls=str(rx_output_controls),
         out_mappings=str(rx_output_mappings),
         framework_id=framework_id,
-        attack_location=str(attack_location),
+        attack_data=attack_data,
     )

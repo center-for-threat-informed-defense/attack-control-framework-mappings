@@ -11,7 +11,7 @@ def save_bundle(bundle, path):
     print("done")
 
 
-def substitute(attack_bundle, controls_bundle, mappings_bundle, allow_unmapped=False):
+def substitute(attack_objects, controls_bundle, mappings_bundle, allow_unmapped=False):
     """substitute the controls bundle and mappings bundle for the mitigations in attack_bundle.
     attack_bundle, controls_bundle and mappings_bundle are of type stix2.Bundle
     allow_unmapped, if true, allows controls in the output bundle if they don't have mappings to ATT&CK techniques
@@ -21,7 +21,7 @@ def substitute(attack_bundle, controls_bundle, mappings_bundle, allow_unmapped=F
     # add attack data which are not mitigations or mitigation relationships
     out_objects = [
         sdo
-        for sdo in attack_bundle
+        for sdo in attack_objects
         if (sdo["type"] != "course-of-action" and
             not (sdo["type"] == "relationship" and sdo["relationship_type"] == "mitigates"))
     ]
@@ -43,11 +43,8 @@ def substitute(attack_bundle, controls_bundle, mappings_bundle, allow_unmapped=F
     }
 
 
-def main(attack, controls, mappings, allow_unmapped, output):
-    print("loading ATT&CK data... ", end="", flush=True)
-    with open(attack, "r") as f:
-        attack = json.load(f)["objects"]
-    print("done")
+def main(attack_data, controls, mappings, allow_unmapped, output):
+    attack_objects = attack_data["objects"]
 
     print("loading controls framework... ", end="", flush=True)
     with open(controls, "r") as f:
@@ -60,7 +57,7 @@ def main(attack, controls, mappings, allow_unmapped, output):
     print("done")
 
     print("substituting... ", end="", flush=True)
-    out_bundle = substitute(attack, controls, mappings, allow_unmapped)
+    out_bundle = substitute(attack_objects, controls, mappings, allow_unmapped)
     print("done")
 
     save_bundle(out_bundle, output)
