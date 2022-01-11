@@ -1,4 +1,3 @@
-import json
 import os
 
 import list_mappings
