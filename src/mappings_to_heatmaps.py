@@ -1,12 +1,8 @@
-import argparse
 import json
 import os
 import re
 import shutil
 import urllib.parse
-
-from stix2 import Filter, MemoryStore
-import requests
 
 
 def technique(attack_id, mapped_controls):
@@ -58,7 +54,10 @@ def parse_family_data(controls):
 
     family_id_to_controls = {}  # family ID to control object
     family_id_to_name = {}
-    for control in controls.query([Filter("type", "=", "course-of-action")]):
+    for control in controls:
+        if control["type"] != "course-of-action":
+            # skip any object that if is not a mitigation
+            continue
         # parse family ID from control external ID
         family_id = id_to_family.search(control["external_references"][0]["external_id"]).groups()[0]
         if family_id not in family_id_to_controls:
@@ -74,17 +73,19 @@ def parse_family_data(controls):
     return family_id_to_controls, family_id_to_name, id_to_family
 
 
-def to_technique_list(controls, mappings, attackdata, family_id_to_controls, family_id_to_name, id_to_family):
+def to_technique_list(controls, mappings, attack, family_id_to_controls, family_id_to_name, id_to_family):
     """take a controls ms, a mappings ms, and attack_data ms
     return a list of Techniques where the score is the number of controls that map to the technique"""
     technique_to_mapped_controls = {}
-    for mapping in mappings.query():
+    stixid_to_object = {obj["id"]: obj for obj in attack}
+    stixid_to_object.update({obj["id"]: obj for obj in controls})
+    for mapping in mappings:
         # source_ref is the control in controls
-        if not controls.get(mapping["source_ref"]):
+        if mapping["source_ref"] not in stixid_to_object:
             continue  # mapping not relevant to this list of controls
-        control_id = controls.get(mapping["source_ref"])["external_references"][0]["external_id"]
+        control_id = stixid_to_object[mapping["source_ref"]]["external_references"][0]["external_id"]
         # target_ref is the technique in attack_data
-        attack_id = attackdata.get(mapping["target_ref"])["external_references"][0]["external_id"]
+        attack_id = stixid_to_object[mapping["target_ref"]]["external_references"][0]["external_id"]
         # build the mapping
         if attack_id in technique_to_mapped_controls:
             technique_to_mapped_controls[attack_id].append(control_id)
@@ -107,8 +108,8 @@ def to_technique_list(controls, mappings, attackdata, family_id_to_controls, fam
         collapsed_controls = []
         for family_id in families:
             family_set = families[family_id]
-            controls_in_family = set(map(lambda c: c["external_references"][0]["external_id"],
-                                         family_id_to_controls[family_id]))
+            controls_in_family = set(c["external_references"][0]["external_id"]
+                                     for c in family_id_to_controls[family_id])
             if family_set == controls_in_family:  # all controls in family mapped?
                 # collapse
                 collapsed_controls.append(f"all '{family_id_to_name[family_id]}' controls")
@@ -125,7 +126,7 @@ def to_technique_list(controls, mappings, attackdata, family_id_to_controls, fam
             for attack_id in technique_to_mapped_controls]
 
 
-def get_framework_overview_layers(controls, mappings, attack_data, domain, framework_name, version):
+def get_framework_overview_layers(controls, mappings, attack, domain, framework_name, version):
     """ingest mappings and controls and attack_data, and return an array of layer jsons for layers
      according to control family"""
     # build list of control families
@@ -139,15 +140,15 @@ def get_framework_overview_layers(controls, mappings, attack_data, domain, frame
                 f"{framework_name} heatmap overview of control mappings, where scores are "
                 f"the number of associated controls",
                 domain,
-                to_technique_list(controls, mappings, attack_data, family_id_to_controls,
+                to_technique_list(controls, mappings, attack, family_id_to_controls,
                                   family_id_to_name, id_to_family),
                 version
             )
         }
     ]
     for family_id in family_id_to_controls:
-        controls_in_family = MemoryStore(stix_data=family_id_to_controls[family_id])
-        techniques_in_family = to_technique_list(controls_in_family, mappings, attack_data,
+        controls_in_family = family_id_to_controls[family_id]
+        techniques_in_family = to_technique_list(controls_in_family, mappings, attack,
                                                  family_id_to_controls, family_id_to_name, id_to_family)
         if len(techniques_in_family) > 0:  # don't build heatmaps with no mappings
             # build family overview mapping
@@ -166,9 +167,8 @@ def get_framework_overview_layers(controls, mappings, attack_data, domain, frame
             })
             # build layer for each control
             for control in family_id_to_controls[family_id]:
-                control_ms = MemoryStore(stix_data=control)
                 control_id = control["external_references"][0]["external_id"]
-                techniques_mapped_to_control = to_technique_list(control_ms, mappings, attack_data,
+                techniques_mapped_to_control = to_technique_list([control], mappings, attack,
                                                                  family_id_to_controls, family_id_to_name, id_to_family)
                 if len(techniques_mapped_to_control) > 0:  # don't build heatmaps with no mappings
                     out_layers.append({
@@ -187,7 +187,7 @@ def get_framework_overview_layers(controls, mappings, attack_data, domain, frame
     return out_layers
 
 
-def get_layers_by_property(controls, mappings, attack_data, domain, framework_name, x_mitre, version):
+def get_layers_by_property(controls, mappings, attack_data, domain, x_mitre, version):
     """get layers grouping the mappings according to values of the given property"""
     property_name = x_mitre.split("x_mitre_")[1]  # remove prefix
     family_id_to_controls, family_id_to_name, id_to_family = parse_family_data(controls)
@@ -203,7 +203,9 @@ def get_layers_by_property(controls, mappings, attack_data, domain, framework_na
 
     # iterate through controls, grouping by property
     is_list_type = False
-    for control in controls.query([Filter("type", "=", "course-of-action")]):
+    for control in controls:
+        if control["type"] != "course-of-action":
+            continue
         value = control.get(x_mitre)
         if not value:
             continue
@@ -217,7 +219,7 @@ def get_layers_by_property(controls, mappings, attack_data, domain, framework_na
     out_layers = []
     for value in property_value_to_controls:
         # controls for the corresponding values
-        controls_of_value = MemoryStore(stix_data=property_value_to_controls[value])
+        controls_of_value = property_value_to_controls[value]
         techniques = to_technique_list(controls_of_value, mappings, attack_data,
                                        family_id_to_controls, family_id_to_name, id_to_family)
         if len(techniques) > 0:
@@ -237,127 +239,89 @@ def get_layers_by_property(controls, mappings, attack_data, domain, framework_na
     return out_layers
 
 
-def get_x_mitre(ms, object_type="course-of-action"):
+def get_x_mitre(objects, object_type="course-of-action"):
     """return a list of all x_mitre_ properties defined on the given type"""
     keys = set()
-    for obj in ms.query([Filter("type", "=", object_type)]):
+    for obj in objects:
+        if obj["type"] != object_type:
+            # skip any objects that do not match the type
+            continue
         for key in obj:
             if key.startswith("x_mitre_"):
                 keys.add(key)
     return keys
 
 
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Create ATT&CK Navigator layers from control mappings")
-    parser.add_argument("-framework",
-                        help="the name of the control framework",
-                        default="nist800-53-r4")
-    parser.add_argument("-controls",
-                        dest="controls",
-                        help="filepath to the stix bundle representing the control framework",
-                        default=os.path.join("..", "frameworks", "ATT&CK-v9.0", "nist800-53-r4",
-                                             "stix", "nist800-53-r4-controls.json"))
-    parser.add_argument("-mappings",
-                        dest="mappings",
-                        help="filepath to the stix bundle mapping the controls to ATT&CK",
-                        default=os.path.join("..", "frameworks", "ATT&CK-v9.0", "nist800-53-r4",
-                                             "stix", "nist800-53-r4-mappings.json"))
-    parser.add_argument("-domain",
-                        choices=["enterprise-attack", "mobile-attack"],
-                        help="the domain of ATT&CK to visualize",
-                        default="enterprise-attack")
-    parser.add_argument("-version",
-                        dest="version",
-                        help="which ATT&CK version to use",
-                        default="v9.0")
-    parser.add_argument("-output",
-                        help="folder to write output layers to",
-                        default=os.path.join("..", "frameworks", "ATT&CK-v9.0", "nist800-53-r4", "layers"))
-    parser.add_argument("--clear",
-                        action="store_true",
-                        help="if flag specified, will remove the contents the output folder before writing layers")
-    parser.add_argument("--build-directory",
-                        dest="build_dir",
-                        action="store_true",
-                        help="if flag specified, will build a markdown file listing the output files for easy "
-                             "access in the Navigator")
-
-    args = parser.parse_args()
-
-    if args.version != "v9.0":
-        args.controls = args.controls.replace("ATT&CK-v9.0", f"ATT&CK-{args.version}")
-        args.mappings = args.mappings.replace("ATT&CK-v9.0", f"ATT&CK-{args.version}")
-        args.output = args.output.replace("ATT&CK-v9.0", f"ATT&CK-{args.version}")
-
-    print("downloading ATT&CK data... ", end="", flush=True)
-    url = f"https://raw.githubusercontent.com/mitre/cti/ATT%26CK-{args.version}/{args.domain}/{args.domain}.json"
-    attack_data = MemoryStore(stix_data=requests.get(url, verify=True).json()["objects"])
+def main(framework, attack, controls, mappings, domain, version, output, clear, build_dir):
+    print("loading ATT&CK data... ", end="", flush=True)
+    with open(attack, "r") as f:
+        attack = json.load(f)["objects"]
     print("done")
 
     print("loading controls framework... ", end="", flush=True)
-    with open(args.controls, "r") as f:
-        controls = MemoryStore(stix_data=json.load(f)["objects"], allow_custom=True)
+    with open(controls, "r") as f:
+        controls = json.load(f)["objects"]
     print("done")
 
     print("loading mappings... ", end="", flush=True)
-    with open(args.mappings, "r") as f:
-        mappings = MemoryStore(stix_data=json.load(f)["objects"])
+    with open(mappings, "r") as f:
+        mappings = json.load(f)["objects"]
     print("done")
 
     print("generating layers... ", end="", flush=True)
-    layers = get_framework_overview_layers(controls, mappings, attack_data, args.domain, args.framework, args.version)
+    layers = get_framework_overview_layers(controls, mappings, attack, domain, framework, version)
     for p in get_x_mitre(controls):  # iterate over all custom properties as potential layer-generation material
         if p == "x_mitre_family":
             continue
-        layers += get_layers_by_property(controls, mappings, attack_data, args.domain, args.framework, p, args.version)
+        layers += get_layers_by_property(controls, mappings, attack, domain, p, version)
     print("done")
 
-    if args.clear:
+    if clear:
         print("clearing layers directory...", end="", flush=True)
-        shutil.rmtree(args.output)
+        shutil.rmtree(output)
         print("done")
 
     print("writing layers... ", end="", flush=True)
     for layer in layers:
         # make path if it doesn't exist
-        layerdir = os.path.dirname(os.path.join(args.output, layer["outfile"]))
+        layerdir = os.path.dirname(os.path.join(output, layer["outfile"]))
         if not os.path.exists(layerdir):
             os.makedirs(layerdir)
         # write layer
-        with open(os.path.join(args.output, layer["outfile"]), "w") as f:
+        with open(os.path.join(output, layer["outfile"]), "w") as f:
             json.dump(layer["layer"], f)
     print("done")
-    if args.build_dir:
+    if build_dir:
         print("writing layer directory markdown... ", end="", flush=True)
 
         mdfile_lines = [
             "# ATT&CK Navigator Layers",
             "",  # "" is an empty line
             f"The following [ATT&CK Navigator](https://github.com/mitre-attack/attack-navigator/) layers "
-            f"represent the mappings from ATT&CK to {args.framework}:",
+            f"represent the mappings from ATT&CK to {framework}:",
             "",
         ]
         prefix = (f"https://raw.githubusercontent.com/center-for-threat-informed-defense/"
-                  f"attack-control-framework-mappings/main/frameworks/ATT&CK-{args.version}")
+                  f"attack-control-framework-mappings/main/frameworks/ATT&CK-{version}")
         nav_prefix = "https://mitre-attack.github.io/attack-navigator/#layerURL="
 
         for layer in layers:
             if "/" in layer["outfile"]:  # force URL delimiters even if local system uses "\"
-                pathParts = layer["outfile"].split("/")
+                path_parts = layer["outfile"].split("/")
             else:
-                pathParts = layer["outfile"].split("\\")
+                path_parts = layer["outfile"].split("\\")
 
-            depth = len(pathParts) - 1  # how many subdirectories deep is it?
+            depth = len(path_parts) - 1  # how many subdirectories deep is it?
             layer_name = layer['layer']['name']
             if layer_name.endswith("overview"):
                 depth = max(0, depth - 1)  # overviews get un-indented
-            path = [prefix] + [args.framework, "layers"] + pathParts
+            path = [prefix] + [framework, "layers"] + path_parts
             path = "/".join(path)
-            encodedPath = urllib.parse.quote(path, safe='~()*!.\'')  # encode the url for the query string
-            md_line = f"{'    ' * depth}- {layer_name} ( [download]({path}) | [view]({nav_prefix}{encodedPath}) )"
+            encoded_path = urllib.parse.quote(path, safe='~()*!.\'')  # encode the url for the query string
+            md_line = f"{'    ' * depth}- {layer_name} ( [download]({path}) | [view]({nav_prefix}{encoded_path}) )"
             mdfile_lines.append(md_line)
 
-        with open(os.path.join(args.output, "README.md"), "w") as f:
+        with open(os.path.join(output, "README.md"), "w") as f:
             f.write("\n".join(mdfile_lines))
 
         print("done")
