@@ -17,7 +17,7 @@ def main(in_controls,
          in_mappings,
          out_controls,
          out_mappings,
-         config_location,
+         framework_id,
          attack_location):
     """
     parse the NIST 800-53 revision 5 controls and ATT&CK mappings into STIX2.0 bundles
@@ -27,7 +27,7 @@ def main(in_controls,
                          the STIX IDs within will be reused in the replacing file so that they
                          don't change between consecutive executions of this script.
     :param out_mappings: output STIX bundle file for the mappings.
-    :param config_location: the filepath to the configuration JSON file.
+    :param framework_id: the framework id - e.g., "NIST 800-53 Revision 4"
     :param attack_location: the filepath to the ATT&CK content JSON file.
 
     :returns tuple: containing the output controls and mappings (out_controls, out_mappings)
@@ -57,7 +57,7 @@ def main(in_controls,
         in_controls,
         control_ids,
         control_relationship_ids,
-        config_location,
+        framework_id,
     )
 
     # build mapping ID helper lookup so that STIX IDs don't get replaced on each rebuild

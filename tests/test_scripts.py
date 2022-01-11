@@ -131,23 +131,23 @@ def test_parse_framework(dir_location, attack_version, rev):
                                       "stix", f"{dashed_rev}-controls.json")
     rx_output_mappings = pathlib.Path(dir_location, "frameworks", f"attack_{attack_version_filepath}", rev,
                                       "stix", f"{dashed_rev}-mappings.json")
-    config_location = pathlib.Path(dir_location, "frameworks", f"attack_{attack_version_filepath}", rev,
-                                   "input", "config.json")
-    attack_location = pathlib.Path(dir_location, "data", "attack",
-                                   f"enterprise-attack-{attack_version}.json")
-
     if rev == R4:
         parse = parse_r4
+        framework_id = "NIST 800-53 Revision 4"
     elif rev == R5:
         parse = parse_r5
+        framework_id = "NIST 800-53 Revision 5"
     else:
-        parse = None
+        raise ValueError(f"Unknown revision: {rev}")
+
+    attack_location = pathlib.Path(dir_location, "data", "attack",
+                                   f"enterprise-attack-{attack_version}.json")
 
     parse.main(
         in_controls=str(rx_input_controls),
         in_mappings=str(rx_input_mappings),
         out_controls=str(rx_output_controls),
         out_mappings=str(rx_output_mappings),
-        config_location=str(config_location),
+        framework_id=framework_id,
         attack_location=str(attack_location),
     )

@@ -30,6 +30,11 @@ parse_lookup = {
     }
 }
 
+framework_id_lookup = {
+    R4: "NIST 800-53 Revision 4",
+    R5: "NIST 800-53 Revision 5"
+}
+
 
 def find_file_with_suffix(suffix, folder):
     """find a file with the given suffix in the folder"""
@@ -44,25 +49,22 @@ def main():
 
     for attack_version in [ATTACK_8_2, ATTACK_9_0, ATTACK_10_1]:
         for framework in [R4, R5]:
-            # move to the framework folder
             versioned_folder = f"attack_{attack_version}"
+            framework_id = framework_id_lookup[framework]
             framework_folder = os.path.join(os.path.dirname(os.path.dirname(__file__)), "frameworks",
                                             versioned_folder, framework)
             attack_resources_folder = os.path.join(os.path.dirname(os.path.dirname(__file__)), "data",
                                                    "attack")
 
-            # read the framework config
-            config_path = os.path.join(framework_folder, "input", "config.json")
-            if not os.path.exists(config_path):
-                raise FileExistsError(f"Config file does not exist: {config_path}")
-            with open(config_path, "r") as f:
-                config = json.load(f)
-
             # build the controls and mappings STIX
             parse = parse_lookup[attack_version][framework]
 
             # find local attack copy location
-            attack_file = find_file_with_suffix(f"-{config['attack_version']}.json", attack_resources_folder)
+            attack_version_string = "v" + attack_version.replace("_", ".") + ".json"
+            attack_file = find_file_with_suffix(
+                f"-{attack_version_string}",
+                attack_resources_folder
+            )
 
             dashed_framework = framework.replace('_', '-')
             dashed_attack_version = attack_version.replace('_', '-')
@@ -71,14 +73,13 @@ def main():
                                        f"attack-{dashed_attack_version}-to-{dashed_framework}-mappings.tsv")
             out_controls = os.path.join(framework_folder, "stix", f"{dashed_framework}-controls.json")
             out_mappings = os.path.join(framework_folder, "stix", f"{dashed_framework}-mappings.json")
-            config_location = os.path.join(framework_folder, "input", "config.json")
             attack_location = os.path.join(attack_resources_folder, attack_file)
 
             parse.main(in_controls=in_controls,
                        in_mappings=in_mappings,
                        out_controls=out_controls,
                        out_mappings=out_mappings,
-                       config_location=config_location,
+                       framework_id=framework_id,
                        attack_location=attack_location)
 
             # find the mapping and control files that were generated
@@ -97,8 +98,8 @@ def main():
                 attack=attack_location,
                 controls=controls,
                 mappings=mappings,
-                domain=config["attack_domain"],
-                version=config["attack_version"],
+                domain="enterprise-attack",
+                version=attack_version_string,
                 output=out_layers,
                 clear=True,
                 build_dir=True
