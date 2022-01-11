@@ -123,8 +123,7 @@ def test_parse_framework(dir_location, attack_version, rev):
     """Tests parse_r4.py.bak.bak.bak with both frameworks"""
     dashed_rev = rev.replace('_', '-')
     attack_version_filepath = attack_version.replace('.', '_')[1:]  # turn v10.1 into 10_1
-    rx_input_controls = pathlib.Path(dir_location, "frameworks", f"attack_{attack_version_filepath}", rev,
-                                     "input", f"{dashed_rev}-controls.tsv")
+    rx_input_controls = pathlib.Path(dir_location, "data", f"controls", f"{dashed_rev}-controls.tsv")
     rx_input_mappings = pathlib.Path(dir_location, "frameworks", f"attack_{attack_version_filepath}", rev,
                                      "input", f"{dashed_rev}-mappings.tsv")
     rx_output_controls = pathlib.Path(dir_location, "frameworks", f"attack_{attack_version_filepath}", rev,
