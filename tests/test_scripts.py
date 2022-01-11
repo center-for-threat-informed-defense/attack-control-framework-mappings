@@ -46,18 +46,22 @@ def test_list_mappings(dir_location, attack_version, rev):
     """Tests list_mappings.py with both framework entries"""
     dashed_rev = rev.replace('_', '-')
     attack_version_filepath = attack_version.replace('.', '_')[1:]  # turn v10.1 into 10_1
-    rx_controls = pathlib.Path(dir_location, "frameworks", f"attack_{attack_version_filepath}", rev,
-                               "stix", f"{dashed_rev}-controls.json")
-    rx_mappings = pathlib.Path(dir_location, "frameworks", f"attack_{attack_version_filepath}", rev,
-                               "stix", f"{dashed_rev}-mappings.json")
+    controls_location = pathlib.Path(dir_location, "frameworks", f"attack_{attack_version_filepath}", rev,
+                                     "stix", f"{dashed_rev}-controls.json")
+    with open(controls_location, "r") as f:
+        controls = json.load(f)["objects"]
+    mappings_location = pathlib.Path(dir_location, "frameworks", f"attack_{attack_version_filepath}", rev,
+                                     "stix", f"{dashed_rev}-mappings.json")
+    with open(mappings_location, "r") as f:
+        mappings = json.load(f)["objects"]
     output_location = pathlib.Path(dir_location, "frameworks", f"attack_{attack_version_filepath}", rev,
                                    f"{dashed_rev}-mappings.xlsx")
     attack_data = get_attack_data(attack_version)
 
     list_mappings.main(
         attack_data=attack_data,
-        controls=str(rx_controls),
-        mappings=str(rx_mappings),
+        controls=controls,
+        mappings=mappings,
         output=str(output_location)
     )
 
@@ -68,10 +72,14 @@ def test_mappings_to_heatmaps(dir_location, attack_version, rev):
     """Tests mappings_to_heatmaps.py with both framework entries"""
     dashed_rev = rev.replace('_', '-')
     attack_version_filepath = attack_version.replace('.', '_')[1:]  # turn v10.1 into 10_1
-    rx_controls = pathlib.Path(dir_location, "frameworks", f"attack_{attack_version_filepath}", rev,
-                               "stix", f"{dashed_rev}-controls.json")
-    rx_mappings = pathlib.Path(dir_location, "frameworks", f"attack_{attack_version_filepath}", rev,
-                               "stix", f"{dashed_rev}-mappings.json")
+    controls_location = pathlib.Path(dir_location, "frameworks", f"attack_{attack_version_filepath}", rev,
+                                     "stix", f"{dashed_rev}-controls.json")
+    with open(controls_location, "r") as f:
+        controls = json.load(f)["objects"]
+    mappings_location = pathlib.Path(dir_location, "frameworks", f"attack_{attack_version_filepath}", rev,
+                                     "stix", f"{dashed_rev}-mappings.json")
+    with open(mappings_location, "r") as f:
+        mappings = json.load(f)["objects"]
     output_location = pathlib.Path(dir_location, "frameworks", f"attack_{attack_version_filepath}", rev,
                                    "layers")
     attack_data = get_attack_data(attack_version)
@@ -79,8 +87,8 @@ def test_mappings_to_heatmaps(dir_location, attack_version, rev):
     mappings_to_heatmaps.main(
         framework=rev,
         attack_data=attack_data,
-        controls=str(rx_controls),
-        mappings=str(rx_mappings),
+        controls=controls,
+        mappings=mappings,
         domain="enterprise-attack",
         version=attack_version,
         output=str(output_location),

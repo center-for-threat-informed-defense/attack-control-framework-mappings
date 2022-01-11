@@ -255,16 +255,6 @@ def get_x_mitre(objects, object_type="course-of-action"):
 def main(framework, attack_data, controls, mappings, domain, version, output, clear, build_dir):
     attack_objects = attack_data["objects"]
 
-    print("loading controls framework... ", end="", flush=True)
-    with open(controls, "r") as f:
-        controls = json.load(f)["objects"]
-    print("done")
-
-    print("loading mappings... ", end="", flush=True)
-    with open(mappings, "r") as f:
-        mappings = json.load(f)["objects"]
-    print("done")
-
     print("generating layers... ", end="", flush=True)
     layers = get_framework_overview_layers(controls, mappings, attack_objects, domain, framework, version)
     for p in get_x_mitre(controls):  # iterate over all custom properties as potential layer-generation material

@@ -49,8 +49,7 @@ def main():
             framework_id = framework_id_lookup[framework]
             framework_folder = os.path.join(os.path.dirname(os.path.dirname(__file__)), "frameworks",
                                             versioned_folder, framework)
-            attack_resources_folder = os.path.join(os.path.dirname(os.path.dirname(__file__)), "data",
-                                                   "attack")
+
             dist_folder = os.path.join("dist")
             dist_prefix = f"attack-{dashed_attack_version}-to-{dashed_framework}-"
             parse = parse_lookup[attack_version][framework]
@@ -73,8 +72,14 @@ def main():
                        framework_id=framework_id,
                        attack_data=attack_data)
 
-            controls = os.path.join(framework_folder, "stix", f"{dashed_framework}-controls.json")
-            mappings = os.path.join(framework_folder, "stix", f"{dashed_framework}-mappings.json")
+            stix_controls_location = os.path.join(framework_folder, "stix", f"{dashed_framework}-controls.json")
+            with open(stix_controls_location, "r") as f:
+                controls = json.load(f)["objects"]
+
+            mappings_location = os.path.join(framework_folder, "stix", f"{dashed_framework}-mappings.json")
+            with open(mappings_location, "r") as f:
+                mappings = json.load(f)["objects"]
+            # mappings = os.path.join(framework_folder, "stix", f"{dashed_framework}-mappings.json")
             out_enterprise = os.path.join(framework_folder, "stix", f"{dashed_framework}-enterprise-attack.json")
             out_layers = os.path.join(framework_folder, "layers")
             out_xlsx = os.path.join(dist_folder, f"{dist_prefix}mappings.xlsx")

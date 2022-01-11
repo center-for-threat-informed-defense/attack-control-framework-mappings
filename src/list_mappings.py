@@ -1,5 +1,3 @@
-import json
-
 from colorama import Fore
 import openpyxl
 import openpyxl.utils
@@ -85,19 +83,9 @@ def main(attack_data, controls, mappings, output):
 
     attack_objects = attack_data["objects"]
     stixid_to_object = {obj["id"]: obj for obj in attack_objects}
+    stixid_to_object.update({obj["id"]: obj for obj in controls})
 
-    print("loading controls framework... ", end="", flush=True)
-    with open(controls, "r") as f:
-        controls = json.load(f)["objects"]
-        stixid_to_object.update({obj["id"]: obj for obj in controls})
-        controls.clear()  # clear unused data
-    print("done")
-
-    print("loading mappings... ", end="", flush=True)
-    with open(mappings, "r") as f:
-        mappings = json.load(f)["objects"]
     df = mappings_to_df(mappings, stixid_to_object)
-    print("done")
 
     print(f"writing {output}... ", end="", flush=True)
     if extension in ["md"]:  # md doesn't support index=False and requires a stream and not a path
