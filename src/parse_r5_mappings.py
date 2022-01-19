@@ -39,11 +39,9 @@ def parse_mappings(mappings_path, controls, relationship_ids, attack_data):
     """
     tqdm_format = "{desc}: {percentage:3.0f}% |{bar}| {elapsed}<{remaining}{postfix}"
 
-    attack_objects = attack_data["objects"]
-
     # build mapping of attack ID to stixID
     attack_id_to_stix_id = {}
-    for attack_object in tqdm(attack_objects, desc="parsing ATT&CK data", bar_format=tqdm_format):
+    for attack_object in tqdm(attack_data, desc="parsing ATT&CK data", bar_format=tqdm_format):
         if not attack_object["type"] == "relationship":
             # skip objects without IDs
             if not attack_object.get("external_references"):

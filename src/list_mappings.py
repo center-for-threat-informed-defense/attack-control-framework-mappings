@@ -81,8 +81,7 @@ def main(attack_data, controls, mappings, output):
         print(Fore.RED + msg + Fore.RESET)
         exit()
 
-    attack_objects = attack_data["objects"]
-    stixid_to_object = {obj["id"]: obj for obj in attack_objects}
+    stixid_to_object = {obj["id"]: obj for obj in attack_data}
     stixid_to_object.update({obj["id"]: obj for obj in controls})
 
     df = mappings_to_df(mappings, stixid_to_object)

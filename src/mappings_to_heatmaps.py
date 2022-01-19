@@ -253,14 +253,12 @@ def get_x_mitre(objects, object_type="course-of-action"):
 
 
 def main(framework, attack_data, controls, mappings, domain, version, output, clear, build_dir):
-    attack_objects = attack_data["objects"]
-
     print("generating layers... ", end="", flush=True)
-    layers = get_framework_overview_layers(controls, mappings, attack_objects, domain, framework, version)
+    layers = get_framework_overview_layers(controls, mappings, attack_data, domain, framework, version)
     for p in get_x_mitre(controls):  # iterate over all custom properties as potential layer-generation material
         if p == "x_mitre_family":
             continue
-        layers += get_layers_by_property(controls, mappings, attack_objects, domain, p, version)
+        layers += get_layers_by_property(controls, mappings, attack_data, domain, p, version)
     print("done")
 
     if clear:

@@ -44,10 +44,8 @@ def substitute(attack_objects, controls, mappings_bundle, allow_unmapped=False):
 
 
 def main(attack_data, controls, mappings, allow_unmapped, output):
-    attack_objects = attack_data["objects"]
-
     print("substituting... ", end="", flush=True)
-    out_bundle = substitute(attack_objects, controls, mappings, allow_unmapped)
+    out_bundle = substitute(attack_data, controls, mappings, allow_unmapped)
     print("done")
 
     save_bundle(out_bundle, output)

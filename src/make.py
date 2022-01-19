@@ -55,12 +55,12 @@ def main():
             parse = parse_lookup[attack_version][framework]
             attack_version_string = "v" + attack_version.replace("_", ".")
 
-            # Create the dist/ directory if not already present, if present, do not raise an error.
+            # Create the dist/ directory if not already present, if already present, do not raise an error.
             dist_folder.mkdir(exist_ok=True)
 
             attack_data = project_folder / "data" / "attack" / f"enterprise-attack-{attack_version_string}.json"
             with attack_data.open("r") as f:
-                attack_data = json.load(f)
+                attack_data = json.load(f)["objects"]
 
             in_controls = project_folder / "data" / "controls" / f"{dashed_framework}-controls.tsv"
             in_mappings = (project_folder / "data" / "mappings" /
