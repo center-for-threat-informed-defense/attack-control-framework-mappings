@@ -21,12 +21,12 @@ R5 = "nist800_53_r5"
 NIST_REVS = [R4, R5]
 
 
-def get_attack_data(attack_version):
+def get_attack_data(data_location, attack_version):
     if attack_version not in ATTACK_VERSIONS:
         raise ValueError(f"Unknown ATT&CK version: {attack_version}")
-    attack_data_location = os.path.join("data", "attack", f"enterprise-attack-{attack_version}.json")
-    with open(attack_data_location, "r") as f:
-        attack_data = json.load(f)
+    attack_data_location = pathlib.Path(data_location, "data", "attack", f"enterprise-attack-{attack_version}.json")
+    with attack_data_location.open("r") as f:
+        attack_data = json.load(f)["objects"]
 
     return attack_data
 
@@ -56,7 +56,7 @@ def test_list_mappings(dir_location, attack_version, rev):
         mappings = json.load(f)["objects"]
     output_location = pathlib.Path(dir_location, "frameworks", f"attack_{attack_version_filepath}", rev,
                                    f"{dashed_rev}-mappings.xlsx")
-    attack_data = get_attack_data(attack_version)
+    attack_data = get_attack_data(dir_location, attack_version)
 
     list_mappings.main(
         attack_data=attack_data,
@@ -82,7 +82,7 @@ def test_mappings_to_heatmaps(dir_location, attack_version, rev):
         mappings = json.load(f)["objects"]
     output_location = pathlib.Path(dir_location, "frameworks", f"attack_{attack_version_filepath}", rev,
                                    "layers")
-    attack_data = get_attack_data(attack_version)
+    attack_data = get_attack_data(dir_location, attack_version)
 
     mappings_to_heatmaps.main(
         framework=rev,
@@ -105,11 +105,15 @@ def test_substitute(dir_location, attack_version, rev):
     attack_version_filepath = attack_version.replace('.', '_')[1:]  # turn v10.1 into 10_1
     rx_controls = pathlib.Path(dir_location, "frameworks", f"attack_{attack_version_filepath}", rev,
                                "stix", f"{dashed_rev}-controls.json")
+    with open(rx_controls, "r") as f:
+        rx_controls = json.load(f)["objects"]
     rx_mappings = pathlib.Path(dir_location, "frameworks", f"attack_{attack_version_filepath}", rev,
                                "stix", f"{dashed_rev}-mappings.json")
+    with open(rx_mappings, "r") as f:
+        rx_mappings = json.load(f)["objects"]
     output_location = pathlib.Path(dir_location, "frameworks", f"attack_{attack_version_filepath}", rev,
                                    "stix", f"{dashed_rev}-enterprise-attack.json")
-    attack_data = get_attack_data(attack_version)
+    attack_data = get_attack_data(dir_location, attack_version)
 
     substitute.main(
         attack_data=attack_data,
@@ -144,7 +148,7 @@ def test_parse_framework(dir_location, attack_version, rev):
                                       "stix", f"{dashed_rev}-controls.json")
     rx_output_mappings = pathlib.Path(dir_location, "frameworks", f"attack_{attack_version_filepath}", rev,
                                       "stix", f"{dashed_rev}-mappings.json")
-    attack_data = get_attack_data(attack_version)
+    attack_data = get_attack_data(dir_location, attack_version)
     if rev == R4:
         parse = parse_r4
         framework_id = "NIST 800-53 Revision 4"
