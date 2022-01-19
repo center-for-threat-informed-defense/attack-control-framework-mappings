@@ -68,15 +68,15 @@ def workbook_changes(filename):
 
 def main(attack_data, controls, mappings, output):
     extension_to_pd_export = {
-        "xlsx": "to_excel",  # extension to df export function name
-        "csv": "to_csv",
-        "html": "to_html",
-        "md": "to_markdown",
+        ".xlsx": "to_excel",  # extension to df export function name
+        ".csv": "to_csv",
+        ".html": "to_html",
+        ".md": "to_markdown",
     }
     allowed_extension_list = ", ".join(extension_to_pd_export.keys())
-    extension = output.split(".")[-1]
-    if extension not in extension_to_pd_export:
-        msg = (f"ERROR: Unknown output extension \"{extension}\", please make "
+    file_extension = output.suffix
+    if file_extension not in extension_to_pd_export:
+        msg = (f"ERROR: Unknown output extension \"{file_extension}\", please make "
                f"sure your output extension is one of: {allowed_extension_list}")
         print(Fore.RED + msg + Fore.RESET)
         exit()
@@ -88,13 +88,13 @@ def main(attack_data, controls, mappings, output):
     df = mappings_to_df(mappings, stixid_to_object)
 
     print(f"writing {output}... ", end="", flush=True)
-    if extension in ["md"]:  # md doesn't support index=False and requires a stream and not a path
+    if file_extension in [".md"]:  # md doesn't support index=False and requires a stream and not a path
         with open(output, "w") as f:
-            getattr(df, extension_to_pd_export[extension])(f)
+            getattr(df, extension_to_pd_export[file_extension])(f)
     else:
-        getattr(df, extension_to_pd_export[extension])(output, index=False)
+        getattr(df, extension_to_pd_export[file_extension])(output, index=False)
 
-        if extension in ["xlsx"]:
+        if file_extension in [".xlsx"]:
             workbook_changes(output)
 
         print("done")
