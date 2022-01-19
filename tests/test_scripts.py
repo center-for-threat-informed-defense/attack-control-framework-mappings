@@ -62,7 +62,7 @@ def test_list_mappings(dir_location, attack_version, rev):
         attack_data=attack_data,
         controls=controls,
         mappings=mappings,
-        output=str(output_location)
+        output=output_location
     )
 
 
@@ -91,7 +91,7 @@ def test_mappings_to_heatmaps(dir_location, attack_version, rev):
         mappings=mappings,
         domain="enterprise-attack",
         version=attack_version,
-        output=str(output_location),
+        output=output_location,
         clear=True,
         build_dir=True
     )
@@ -113,9 +113,9 @@ def test_substitute(dir_location, attack_version, rev):
 
     substitute.main(
         attack_data=attack_data,
-        controls=str(rx_controls),
-        mappings=str(rx_mappings),
-        output=str(output_location),
+        controls=rx_controls,
+        mappings=rx_mappings,
+        output=output_location,
         allow_unmapped=True
     )
 
@@ -155,10 +155,10 @@ def test_parse_framework(dir_location, attack_version, rev):
         raise ValueError(f"Unknown revision: {rev}")
 
     parse.main(
-        in_controls=str(rx_input_controls),
-        in_mappings=str(rx_input_mappings),
-        out_controls=str(rx_output_controls),
-        out_mappings=str(rx_output_mappings),
+        in_controls=rx_input_controls,
+        in_mappings=rx_input_mappings,
+        out_controls=rx_output_controls,
+        out_mappings=rx_output_mappings,
         framework_id=framework_id,
         attack_data=attack_data,
     )
