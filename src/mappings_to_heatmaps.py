@@ -255,7 +255,6 @@ def get_x_mitre(objects, object_type="course-of-action"):
 
 def main(framework, attack, controls, mappings, domain, version, output, clear, build_dir):
     underscore_version = version.replace('v', '').replace('.', '_')
-    dashed_framework = framework.replace('_', '-')
 
     print("loading ATT&CK data... ", end="", flush=True)
     with open(attack, "r") as f:
