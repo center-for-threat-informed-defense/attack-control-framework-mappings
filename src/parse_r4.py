@@ -2,7 +2,7 @@ import json
 import os
 
 from parse_r4_controls import parse_controls
-from parse_r4_mappings import parse_mappings
+from parse_mappings import parse_mappings
 
 
 def save_bundle(bundle, path):
