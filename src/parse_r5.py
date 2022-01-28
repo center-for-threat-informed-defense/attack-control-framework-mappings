@@ -20,7 +20,7 @@ def main(in_controls,
          framework_id,
          attack_data):
     """
-    parse the NIST 800-53 revision 5 controls and ATT&CK mappings into STIX2.0 bundles
+    parse the NIST 800-53 controls and ATT&CK mappings into STIX2.0 bundles
     :param in_controls: tsv file of NIST 800-53 revision 4 controls
     :param in_mappings: tsv file mapping NIST 800-53 revision 4 controls to ATT&CK
     :param out_controls: output STIX bundle file for the controls. If this file already exists,
