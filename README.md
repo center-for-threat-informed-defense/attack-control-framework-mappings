@@ -7,17 +7,17 @@ This repository contains security control framework mappings to MITRE ATT&CK® w
 
 | ATT&CK Version | Mappings as XLSX (download) | ATT&CK Navigator Layers | STIX Data |
 |---|---|---|---|
-| [ATT&CK-v10.1](/frameworks/ATT&CK-v10.1/nist800-53-r4/) | [Spreadsheet](https://github.com/center-for-threat-informed-defense/attack-control-framework-mappings/raw/main/frameworks/ATT%26CK-v10.1/nist800-53-r4/nist800-53-r4-mappings.xlsx) | [Navigator Layers](/frameworks/ATT&CK-v10.1/nist800-53-r4/layers) | [STIX](/frameworks/ATT&CK-v10.1/nist800-53-r4/stix) |
-| [ATT&CK-v9.0](/frameworks/ATT&CK-v9.0/nist800-53-r4/) | [Spreadsheet](https://github.com/center-for-threat-informed-defense/attack-control-framework-mappings/raw/main/frameworks/ATT%26CK-v9.0/nist800-53-r4/nist800-53-r4-mappings.xlsx) | [Navigator Layers](/frameworks/ATT&CK-v9.0/nist800-53-r4/layers) | [STIX](/frameworks/ATT&CK-v9.0/nist800-53-r4/stix) |
-| [ATT&CK-v8.2](/frameworks/ATT&CK-v8.2/nist800-53-r4/) | [Spreadsheet](https://github.com/center-for-threat-informed-defense/attack-control-framework-mappings/raw/main/frameworks/ATT%26CK-v8.2/nist800-53-r4/nist800-53-r4-mappings.xlsx) | [Navigator Layers](/frameworks/ATT&CK-v8.2/nist800-53-r4/layers) | [STIX](/frameworks/ATT&CK-v8.2/nist800-53-r4/stix) |
+| [ATT&CK-v10.1](/frameworks/attack_10_1/nist800_53_r4/) | [Spreadsheet](https://github.com/center-for-threat-informed-defense/attack-control-framework-mappings/raw/main/frameworks/attack_10_1/nist800_53_r4/nist800-53-r4-mappings.xlsx) | [Navigator Layers](/frameworks/attack_10_1/nist800_53_r4/layers) | [STIX](/frameworks/attack_10_1/nist800_53_r4/stix) |
+| [ATT&CK-v9.0](/frameworks/attack_9_0/nist800_53_r4/) | [Spreadsheet](https://github.com/center-for-threat-informed-defense/attack-control-framework-mappings/raw/main/frameworks/attack_9_0/nist800_53_r4/nist800-53-r4-mappings.xlsx) | [Navigator Layers](/frameworks/attack_9_0/nist800_53_r4/layers) | [STIX](/frameworks/attack_9_0/nist800_53_r4/stix) |
+| [ATT&CK-v8.2](/frameworks/attack_8_2/nist800_53_r4/) | [Spreadsheet](https://github.com/center-for-threat-informed-defense/attack-control-framework-mappings/raw/main/frameworks/attack_8_2/nist800_53_r4/nist800-53-r4-mappings.xlsx) | [Navigator Layers](/frameworks/attack_8_2/nist800_53_r4/layers) | [STIX](/frameworks/attack_8_2/nist800_53_r4/stix) |
 
 **NIST 800-53 Revision 5 Security Control Mappings**
 
 | ATT&CK Version | Mappings as XLSX (download) | ATT&CK Navigator Layers | STIX Data |
 |---|---|---|---|
-| [ATT&CK-v10.1](/frameworks/ATT&CK-v10.1/nist800-53-r5/) | [Spreadsheet](https://github.com/center-for-threat-informed-defense/attack-control-framework-mappings/raw/main/frameworks/ATT%26CK-v10.1/nist800-53-r5/nist800-53-r5-mappings.xlsx) | [Navigator Layers](/frameworks/ATT&CK-v10.1/nist800-53-r5/layers) | [STIX](/frameworks/ATT&CK-v10.1/nist800-53-r5/stix) |
-| [ATT&CK-v9.0](/frameworks/ATT&CK-v9.0/nist800-53-r5/) | [Spreadsheet](https://github.com/center-for-threat-informed-defense/attack-control-framework-mappings/raw/main/frameworks/ATT%26CK-v9.0/nist800-53-r5/nist800-53-r5-mappings.xlsx) | [Navigator Layers](/frameworks/ATT&CK-v9.0/nist800-53-r5/layers) | [STIX](/frameworks/ATT&CK-v9.0/nist800-53-r5/stix) |
-| [ATT&CK-v8.2](/frameworks/ATT&CK-v8.2/nist800-53-r5/) | [Spreadsheet](https://github.com/center-for-threat-informed-defense/attack-control-framework-mappings/raw/main/frameworks/ATT%26CK-v8.2/nist800-53-r5/nist800-53-r5-mappings.xlsx) | [Navigator Layers](/frameworks/ATT&CK-v8.2/nist800-53-r5/layers) | [STIX](/frameworks/ATT&CK-v8.2/nist800-53-r5/stix) |
+| [ATT&CK-v10.1](/frameworks/attack_10_1/nist800_53_r5/) | [Spreadsheet](https://github.com/center-for-threat-informed-defense/attack-control-framework-mappings/raw/main/frameworks/attack_10_1/nist800_53_r5/nist800-53-r5-mappings.xlsx) | [Navigator Layers](/frameworks/attack_10_1/nist800_53_r5/layers) | [STIX](/frameworks/attack_10_1/nist800_53_r5/stix) |
+| [ATT&CK-v9.0](/frameworks/attack_9_0/nist800_53_r5/) | [Spreadsheet](https://github.com/center-for-threat-informed-defense/attack-control-framework-mappings/raw/main/frameworks/attack_9_0/nist800_53_r5/nist800-53-r5-mappings.xlsx) | [Navigator Layers](/frameworks/attack_9_0/nist800_53_r5/layers) | [STIX](/frameworks/attack_9_0/nist800_53_r5/stix) |
+| [ATT&CK-v8.2](/frameworks/attack_8_2/nist800_53_r5/) | [Spreadsheet](https://github.com/center-for-threat-informed-defense/attack-control-framework-mappings/raw/main/frameworks/attack_8_2/nist800_53_r5/nist800-53-r5-mappings.xlsx) | [Navigator Layers](/frameworks/attack_8_2/nist800_53_r5/layers) | [STIX](/frameworks/attack_8_2/nist800_53_r5/stix) |
 
 ## A Collaborative Approach
 

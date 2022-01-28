@@ -129,12 +129,13 @@ def to_technique_list(controls, mappings, attack, family_id_to_controls, family_
 def get_framework_overview_layers(controls, mappings, attack, domain, framework_name, version):
     """ingest mappings and controls and attack_data, and return an array of layer jsons for layers
      according to control family"""
+    dashed_framework = framework_name.replace('_', '-')
     # build list of control families
     family_id_to_controls, family_id_to_name, id_to_family = parse_family_data(controls)
 
     out_layers = [
         {
-            "outfile": f"{framework_name}-overview.json",
+            "outfile": f"{dashed_framework}-overview.json",
             "layer": create_layer(
                 f"{framework_name} overview",
                 f"{framework_name} heatmap overview of control mappings, where scores are "
@@ -286,8 +287,9 @@ def main(framework, attack_data, controls, mappings, domain, version, output, cl
             f"represent the mappings from ATT&CK to {framework}:",
             "",
         ]
+
         prefix = (f"https://raw.githubusercontent.com/center-for-threat-informed-defense/"
-                  f"attack-control-framework-mappings/main/frameworks/ATT&CK-{version}")
+                  f"attack-control-framework-mappings/main/frameworks/attack_{underscore_version}")
         nav_prefix = "https://mitre-attack.github.io/attack-navigator/#layerURL="
 
         for layer in layers:
