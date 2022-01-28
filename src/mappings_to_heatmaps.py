@@ -254,6 +254,7 @@ def get_x_mitre(objects, object_type="course-of-action"):
 
 
 def main(framework, attack_data, controls, mappings, domain, version, output, clear, build_dir):
+    underscore_version = version.replace('v', '').replace('.', '_')
     print("generating layers... ", end="", flush=True)
     layers = get_framework_overview_layers(controls, mappings, attack_data, domain, framework, version)
     for p in get_x_mitre(controls):  # iterate over all custom properties as potential layer-generation material
