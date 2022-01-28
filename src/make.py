@@ -1,5 +1,5 @@
 import json
-import os
+import pathlib
 
 import list_mappings
 import mappings_to_heatmaps
@@ -30,13 +30,10 @@ parse_lookup = {
     }
 }
 
-
-def find_file_with_suffix(suffix, folder):
-    """find a file with the given suffix in the folder"""
-    for f in os.listdir(folder):
-        if f.endswith(suffix):
-            return f
-    raise ValueError(f"Could not locate file with suffix of {suffix} in {folder}")
+framework_id_lookup = {
+    R4: "NIST 800-53 Revision 4",
+    R5: "NIST 800-53 Revision 5"
+}
 
 
 def main():
@@ -44,66 +41,67 @@ def main():
 
     for attack_version in [ATTACK_8_2, ATTACK_9_0, ATTACK_10_1]:
         for framework in [R4, R5]:
-            # move to the framework folder
+            # TODO: Lots of variable setting. Clean up
             versioned_folder = f"attack_{attack_version}"
-            framework_folder = os.path.join(os.path.dirname(os.path.dirname(__file__)), "frameworks",
-                                            versioned_folder, framework)
-            attack_resources_folder = os.path.join(os.path.dirname(os.path.dirname(__file__)), "data",
-                                                   "attack")
-
-            # read the framework config
-            config_path = os.path.join(framework_folder, "input", "config.json")
-            if not os.path.exists(config_path):
-                raise FileExistsError(f"Config file does not exist: {config_path}")
-            with open(config_path, "r") as f:
-                config = json.load(f)
-
-            # build the controls and mappings STIX
-            parse = parse_lookup[attack_version][framework]
-
-            # find local attack copy location
-            attack_file = find_file_with_suffix(f"-{config['attack_version']}.json", attack_resources_folder)
-
             dashed_framework = framework.replace('_', '-')
-            in_controls = os.path.join(framework_folder, "input", f"{dashed_framework}-controls.tsv")
-            in_mappings = os.path.join(framework_folder, "input", f"{dashed_framework}-mappings.tsv")
-            out_controls = os.path.join(framework_folder, "stix", f"{dashed_framework}-controls.json")
-            out_mappings = os.path.join(framework_folder, "stix", f"{dashed_framework}-mappings.json")
-            config_location = os.path.join(framework_folder, "input", "config.json")
-            attack_location = os.path.join(attack_resources_folder, attack_file)
+            dashed_attack_version = attack_version.replace('_', '-')
+
+            framework_id = framework_id_lookup[framework]
+            project_folder = pathlib.Path(__file__).absolute().parent.parent
+            framework_folder = project_folder / "frameworks" / versioned_folder / framework
+
+            dist_folder = project_folder / "dist"
+            dist_prefix = f"attack-{dashed_attack_version}-to-{dashed_framework}-"
+            parse = parse_lookup[attack_version][framework]
+            attack_version_string = "v" + attack_version.replace("_", ".")
+
+            # Create the dist/ directory if not already present, if already present, do not raise an error.
+            dist_folder.mkdir(exist_ok=True)
+
+            attack_data = project_folder / "data" / "attack" / f"enterprise-attack-{attack_version_string}.json"
+            with attack_data.open("r") as f:
+                attack_data = json.load(f)["objects"]
+
+            in_controls = project_folder / "data" / "controls" / f"{dashed_framework}-controls.tsv"
+            in_mappings = (project_folder / "data" / "mappings" /
+                           f"attack-{dashed_attack_version}-to-{dashed_framework}-mappings.tsv")
+            out_controls = framework_folder / "stix" / f"{dashed_framework}-controls.json"
+            out_mappings = framework_folder / "stix" / f"{dashed_framework}-mappings.json"
 
             parse.main(in_controls=in_controls,
                        in_mappings=in_mappings,
                        out_controls=out_controls,
                        out_mappings=out_mappings,
-                       config_location=config_location,
-                       attack_location=attack_location)
+                       framework_id=framework_id,
+                       attack_data=attack_data)
 
-            # find the mapping and control files that were generated
-            controls_file = find_file_with_suffix("-controls.json", os.path.join(framework_folder, "stix"))
-            mappings_file = find_file_with_suffix("-mappings.json", os.path.join(framework_folder, "stix"))
+            controls = framework_folder / "stix" / f"{dashed_framework}-controls.json"
+            with controls.open("r") as f:
+                controls = json.load(f)["objects"]
 
-            controls = os.path.join(framework_folder, "stix", controls_file)
-            mappings = os.path.join(framework_folder, "stix", mappings_file)
-            out_layers = os.path.join(framework_folder, "layers")
-            out_enterprise = os.path.join(framework_folder, "stix", f"{dashed_framework}-enterprise-attack.json")
-            out_xlsx = os.path.join(framework_folder, f"{dashed_framework}-mappings.xlsx")
+            mappings = framework_folder / "stix" / f"{dashed_framework}-mappings.json"
+            with mappings.open("r") as f:
+                mappings = json.load(f)["objects"]
+
+            out_enterprise = framework_folder / "stix" / f"{dashed_framework}-enterprise-attack.json"
+            out_layers = framework_folder / "layers"
+            out_xlsx = dist_folder / f"{dist_prefix}mappings.xlsx"
 
             # run the utility scripts
             mappings_to_heatmaps.main(
                 framework=framework,
-                attack=attack_location,
+                attack_data=attack_data,
                 controls=controls,
                 mappings=mappings,
-                domain=config["attack_domain"],
-                version=config["attack_version"],
+                domain="enterprise-attack",
+                version=attack_version_string,
                 output=out_layers,
                 clear=True,
                 build_dir=True
             )
 
             substitute.main(
-                attack=attack_location,
+                attack_data=attack_data,
                 controls=controls,
                 mappings=mappings,
                 allow_unmapped=False,
@@ -111,7 +109,7 @@ def main():
             )
 
             list_mappings.main(
-                attack=attack_location,
+                attack_data=attack_data,
                 controls=controls,
                 mappings=mappings,
                 output=out_xlsx

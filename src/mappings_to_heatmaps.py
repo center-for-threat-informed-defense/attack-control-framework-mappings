@@ -253,30 +253,14 @@ def get_x_mitre(objects, object_type="course-of-action"):
     return keys
 
 
-def main(framework, attack, controls, mappings, domain, version, output, clear, build_dir):
+def main(framework, attack_data, controls, mappings, domain, version, output, clear, build_dir):
     underscore_version = version.replace('v', '').replace('.', '_')
-
-    print("loading ATT&CK data... ", end="", flush=True)
-    with open(attack, "r") as f:
-        attack = json.load(f)["objects"]
-    print("done")
-
-    print("loading controls framework... ", end="", flush=True)
-    with open(controls, "r") as f:
-        controls = json.load(f)["objects"]
-    print("done")
-
-    print("loading mappings... ", end="", flush=True)
-    with open(mappings, "r") as f:
-        mappings = json.load(f)["objects"]
-    print("done")
-
     print("generating layers... ", end="", flush=True)
-    layers = get_framework_overview_layers(controls, mappings, attack, domain, framework, version)
+    layers = get_framework_overview_layers(controls, mappings, attack_data, domain, framework, version)
     for p in get_x_mitre(controls):  # iterate over all custom properties as potential layer-generation material
         if p == "x_mitre_family":
             continue
-        layers += get_layers_by_property(controls, mappings, attack, domain, p, version)
+        layers += get_layers_by_property(controls, mappings, attack_data, domain, p, version)
     print("done")
 
     if clear:
