@@ -5,8 +5,7 @@ import list_mappings
 import mappings_to_heatmaps
 import substitute
 
-import parse_r4
-import parse_r5
+import parse
 
 ATTACK_8_2 = "8_2"
 ATTACK_9_0 = "9_0"
@@ -14,21 +13,6 @@ ATTACK_10_1 = "10_1"
 
 R4 = "nist800_53_r4"
 R5 = "nist800_53_r5"
-
-parse_lookup = {
-    ATTACK_8_2: {
-        R4: parse_r4,
-        R5: parse_r5,
-    },
-    ATTACK_9_0: {
-        R4: parse_r4,
-        R5: parse_r5,
-    },
-    ATTACK_10_1: {
-        R4: parse_r4,
-        R5: parse_r5,
-    }
-}
 
 framework_id_lookup = {
     R4: "NIST 800-53 Revision 4",
@@ -52,7 +36,6 @@ def main():
 
             dist_folder = project_folder / "dist"
             dist_prefix = f"attack-{dashed_attack_version}-to-{dashed_framework}-"
-            parse = parse_lookup[attack_version][framework]
             attack_version_string = "v" + attack_version.replace("_", ".")
 
             # Create the dist/ directory if not already present, if already present, do not raise an error.

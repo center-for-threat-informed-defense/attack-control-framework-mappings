@@ -1,8 +1,9 @@
 import json
 import os
 
-from parse_r5_controls import parse_controls
 from parse_mappings import parse_mappings
+import parse_r4_controls
+import parse_r5_controls
 
 
 def save_bundle(bundle, path):
@@ -20,7 +21,7 @@ def main(in_controls,
          framework_id,
          attack_data):
     """
-    parse the NIST 800-53 revision 5 controls and ATT&CK mappings into STIX2.0 bundles
+    parse the NIST 800-53 controls and ATT&CK mappings into STIX2.0 bundles
     :param in_controls: tsv file of NIST 800-53 revision 4 controls
     :param in_mappings: tsv file mapping NIST 800-53 revision 4 controls to ATT&CK
     :param out_controls: output STIX bundle file for the controls. If this file already exists,
@@ -53,6 +54,13 @@ def main(in_controls,
                 control_relationship_ids[rel_type][from_ids] = to_id
 
     # build controls in STIX
+    if framework_id == "NIST 800-53 Revision 4":
+        parse_controls = parse_r4_controls.parse_controls
+    elif framework_id == "NIST 800-53 Revision 5":
+        parse_controls = parse_r5_controls.parse_controls
+    else:
+        raise ValueError(f"Unknown framework_id \"{framework_id}\"")
+
     controls = parse_controls(
         in_controls,
         control_ids,

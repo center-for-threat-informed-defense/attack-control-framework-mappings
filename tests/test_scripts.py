@@ -8,8 +8,7 @@ import pytest
 
 import list_mappings
 import mappings_to_heatmaps
-import parse_r4
-import parse_r5
+import parse
 import substitute
 
 ATTACK_8_2 = "v8.2"
@@ -150,10 +149,8 @@ def test_parse_framework(dir_location, attack_version, rev):
                                       "stix", f"{dashed_rev}-mappings.json")
     attack_data = get_attack_data(dir_location, attack_version)
     if rev == R4:
-        parse = parse_r4
         framework_id = "NIST 800-53 Revision 4"
     elif rev == R5:
-        parse = parse_r5
         framework_id = "NIST 800-53 Revision 5"
     else:
         raise ValueError(f"Unknown revision: {rev}")
