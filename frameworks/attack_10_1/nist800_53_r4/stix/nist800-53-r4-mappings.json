@@ -16491,15 +16491,6 @@
         },
         {
             "created": "2022-01-26T16:18:11.614Z",
-            "id": "relationship--c39f2ea6-3895-4ed1-9d76-574055dec982",
-            "modified": "2022-01-26T16:18:11.614Z",
-            "relationship_type": "mitigates",
-            "source_ref": "course-of-action--d7ae0fd8-8a87-4d22-ad25-dfb1a3c40f5c",
-            "target_ref": "attack-pattern--94cb00a4-b295-4d06-aa2b-5653b9c1be9c",
-            "type": "relationship"
-        },
-        {
-            "created": "2022-01-26T16:18:11.614Z",
             "id": "relationship--9031f1a7-8d24-47f7-be89-55c64d4acf6b",
             "modified": "2022-01-26T16:18:11.614Z",
             "relationship_type": "mitigates",
