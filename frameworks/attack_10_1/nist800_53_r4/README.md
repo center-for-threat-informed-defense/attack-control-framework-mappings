@@ -8,7 +8,7 @@ This folder contains mappings of NIST Special Publication (SP) 800-53 Revision 4
 
 | Data ||
 |---|---|
-| [spreadsheet](nist800-53-r4-mappings.xlsx) | Lists all of the mappings for this control framework.
+| [spreadsheet](nist800-53-r4-mappings.xlsx) | Lists all of the mappings for this control framework. |
 | [layers](layers) | [ATT&CK Navigator](https://github.com/mitre-attack/attack-navigator) layers showing the mappings in the context of the ATT&CK Matrix. |
 | [stix](stix) | Output STIX 2.0 json data. See the README in that folder for more information. |
 | [input](input) | Input spreadsheets from which the STIX is built. To rebuild the STIX data from the input spreadsheets, run `python3 parse.py`.See the README in that folder for more information. |

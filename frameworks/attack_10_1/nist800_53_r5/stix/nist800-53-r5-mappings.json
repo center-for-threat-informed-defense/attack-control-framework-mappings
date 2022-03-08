@@ -16500,15 +16500,6 @@
         },
         {
             "created": "2022-01-26T16:18:20.793Z",
-            "id": "relationship--80132cfa-62c5-4c91-a4b4-5ca8da9ab4ac",
-            "modified": "2022-01-26T16:18:20.793Z",
-            "relationship_type": "mitigates",
-            "source_ref": "course-of-action--85f9c6f1-5443-43a7-aaed-959233c2d658",
-            "target_ref": "attack-pattern--94cb00a4-b295-4d06-aa2b-5653b9c1be9c",
-            "type": "relationship"
-        },
-        {
-            "created": "2022-01-26T16:18:20.793Z",
             "id": "relationship--d35802a2-d52f-46e2-bfb6-b0d04a44f2ec",
             "modified": "2022-01-26T16:18:20.793Z",
             "relationship_type": "mitigates",
