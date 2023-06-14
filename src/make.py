@@ -24,8 +24,7 @@ framework_id_lookup = {
 def main():
     """rebuild all control frameworks from the input data"""
 
-    # for attack_version in [ATTACK_8_2, ATTACK_9_0, ATTACK_10_1, ATTACK_12_1]:
-    for attack_version in [ATTACK_12_1]:
+    for attack_version in [ATTACK_8_2, ATTACK_9_0, ATTACK_10_1, ATTACK_12_1]:
         for framework in [R4, R5]:
             # TODO: Lots of variable setting. Clean up
             versioned_folder = f"attack_{attack_version}"
