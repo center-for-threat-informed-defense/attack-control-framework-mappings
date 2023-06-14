@@ -77,8 +77,10 @@ def parse_mappings(mappings_path, controls, relationship_ids, attack_data):
 
         if not from_ids:
             print(Fore.RED + "ERROR: cannot find controlID", row["controlID"], Fore.RESET)
+            print(f"{row=}")
         if not to_ids:
             print(Fore.RED + "ERROR: cannot find techniqueID", row["techniqueID"], Fore.RESET)
+            print(f"{row=}")
         if not from_ids or not to_ids:
             exit()
 

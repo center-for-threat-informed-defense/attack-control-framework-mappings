@@ -1,0 +1,1 @@
+{"name": "AC-8 mappings", "versions": {"navigator": "4.3", "layer": "4.2", "attack": "12"}, "sorting": 3, "description": "nist800_53_r4 AC-8 mappings", "domain": "enterprise-attack", "techniques": [{"techniqueID": "T1199", "score": 1, "comment": "Mitigated by AC-8"}], "gradient": {"colors": ["#ffffff", "#66b1ff"], "minValue": 0, "maxValue": 1}}

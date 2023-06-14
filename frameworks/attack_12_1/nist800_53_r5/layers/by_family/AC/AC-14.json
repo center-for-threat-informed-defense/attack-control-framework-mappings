@@ -1,0 +1,1 @@
+{"name": "AC-14 mappings", "versions": {"navigator": "4.3", "layer": "4.2", "attack": "12"}, "sorting": 3, "description": "nist800_53_r5 AC-14 mappings", "domain": "enterprise-attack", "techniques": [{"techniqueID": "T1137.002", "score": 1, "comment": "Mitigated by AC-14"}], "gradient": {"colors": ["#ffffff", "#66b1ff"], "minValue": 0, "maxValue": 1}}
